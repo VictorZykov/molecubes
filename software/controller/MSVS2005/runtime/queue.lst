@@ -1,0 +1,1663 @@
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 1
+
+
+   1              		.file	"queue.c"
+   2              		.section	.debug_abbrev,"",%progbits
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,"",%progbits
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,"",%progbits
+   7              	.Ldebug_line0:
+   8 0000 92000000 		.text
+   8      02004800 
+   8      00000201 
+   8      FB0E0A00 
+   8      01010101 
+   9              	.Ltext0:
+  10              		.align	2
+  11              		.global	initQueue
+  12              		.type	initQueue, %function
+  13              	initQueue:
+  14              	.LFB3:
+  15              		.file 1 "queue.c"
+   1:queue.c       **** #include "global.h"
+   2:queue.c       **** #include "queue.h"
+   3:queue.c       **** #include "malloc.h"
+   4:queue.c       **** #include "rprintf.h"
+   5:queue.c       **** 
+   6:queue.c       **** #define NULL ((void *) 0)
+   7:queue.c       **** 
+   8:queue.c       **** void initQueueArray(QUEUE *q, int count) {
+   9:queue.c       **** 	int i;
+  10:queue.c       **** 	for(i=0; i<count; i++)
+  11:queue.c       **** 	{
+  12:queue.c       **** 		initQueue(&q[i]);
+  13:queue.c       **** 	}
+  14:queue.c       **** }
+  15:queue.c       **** 
+  16:queue.c       **** void initQueue(QUEUE *q) {
+  16              		.loc 1 16 0
+  17              		@ args = 0, pretend = 0, frame = 0
+  18              		@ frame_needed = 0, uses_anonymous_args = 0
+  19              		@ link register save eliminated.
+  20              	.LVL0:
+  21              		@ lr needed for prologue
+  17:queue.c       **** 	q->count = 0;
+  22              		.loc 1 17 0
+  23 0000 0020A0E3 		mov	r2, #0
+  24 0004 042080E5 		str	r2, [r0, #4]
+  18:queue.c       **** 	q->id = 0xFE; // default address
+  25              		.loc 1 18 0
+  26 0008 0130E0E3 		mvn	r3, #1
+  27 000c 0030C0E5 		strb	r3, [r0, #0]
+  19:queue.c       **** 	q->head = NULL;
+  28              		.loc 1 19 0
+  29 0010 082080E5 		str	r2, [r0, #8]
+  20:queue.c       **** 	q->tail = NULL;
+  30              		.loc 1 20 0
+  31 0014 0C2080E5 		str	r2, [r0, #12]
+  21:queue.c       **** }
+  32              		.loc 1 21 0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 2
+
+
+  33 0018 1EFF2FE1 		bx	lr
+  34              	.LFE3:
+  35              		.size	initQueue, .-initQueue
+  36              		.align	2
+  37              		.global	initQueueArray
+  38              		.type	initQueueArray, %function
+  39              	initQueueArray:
+  40              	.LFB2:
+  41              		.loc 1 8 0
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 0, uses_anonymous_args = 0
+  44              	.LVL1:
+  45 001c 70402DE9 		stmfd	sp!, {r4, r5, r6, lr}
+  46              	.LCFI0:
+  47              		.loc 1 10 0
+  48 0020 006051E2 		subs	r6, r1, #0
+  49 0024 7080BDD8 		ldmlefd	sp!, {r4, r5, r6, pc}
+  50              	.LVL2:
+  51 0028 0040A0E1 		mov	r4, r0
+  52 002c 0050A0E3 		mov	r5, #0
+  53              	.LVL3:
+  54              	.L6:
+  55              		.loc 1 12 0
+  56 0030 0400A0E1 		mov	r0, r4
+  57              	.LVL4:
+  58 0034 FEFFFFEB 		bl	initQueue
+  59              		.loc 1 10 0
+  60 0038 015085E2 		add	r5, r5, #1
+  61 003c 104084E2 		add	r4, r4, #16
+  62 0040 050056E1 		cmp	r6, r5
+  63 0044 0A00001A 		bne	.L6
+  64 0048 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+  65              	.LFE2:
+  66              		.size	initQueueArray, .-initQueueArray
+  67              		.align	2
+  68              		.global	enqueue
+  69              		.type	enqueue, %function
+  70              	enqueue:
+  71              	.LFB4:
+  22:queue.c       **** 
+  23:queue.c       **** void enqueue(QUEUE *q, NODE *lnode) {
+  72              		.loc 1 23 0
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 0, uses_anonymous_args = 0
+  75              		@ link register save eliminated.
+  76              	.LVL5:
+  77              		@ lr needed for prologue
+  24:queue.c       **** 	if(q->head == NULL) {
+  78              		.loc 1 24 0
+  79 004c 083090E5 		ldr	r3, [r0, #8]
+  80 0050 000053E3 		cmp	r3, #0
+  25:queue.c       **** 		q->head = lnode;
+  81              		.loc 1 25 0
+  82 0054 08108005 		streq	r1, [r0, #8]
+  26:queue.c       **** 		lnode->prev = NULL;
+  83              		.loc 1 26 0
+  84 0058 08308105 		streq	r3, [r1, #8]
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 3
+
+
+  27:queue.c       **** 		q->count = 1;
+  85              		.loc 1 27 0
+  86 005c 01308302 		addeq	r3, r3, #1
+  87 0060 04308005 		streq	r3, [r0, #4]
+  88              		.loc 1 24 0
+  89 0064 1F00000A 		beq	.L12
+  28:queue.c       **** 	} else {
+  29:queue.c       **** 		q->tail->next = lnode;
+  90              		.loc 1 29 0
+  91 0068 0C3090E5 		ldr	r3, [r0, #12]
+  92 006c 041083E5 		str	r1, [r3, #4]
+  30:queue.c       **** 		lnode->prev = q->tail;
+  93              		.loc 1 30 0
+  94 0070 0C3090E5 		ldr	r3, [r0, #12]
+  95 0074 083081E5 		str	r3, [r1, #8]
+  31:queue.c       **** 		q->count++;
+  96              		.loc 1 31 0
+  97 0078 043090E5 		ldr	r3, [r0, #4]
+  98 007c 013083E2 		add	r3, r3, #1
+  99 0080 043080E5 		str	r3, [r0, #4]
+ 100              	.L12:
+  32:queue.c       **** 	}
+  33:queue.c       **** 
+  34:queue.c       **** 	q->tail = lnode;
+ 101              		.loc 1 34 0
+ 102 0084 0C1080E5 		str	r1, [r0, #12]
+  35:queue.c       **** 	lnode->next = NULL;
+ 103              		.loc 1 35 0
+ 104 0088 0030A0E3 		mov	r3, #0
+ 105 008c 043081E5 		str	r3, [r1, #4]
+  36:queue.c       **** }
+ 106              		.loc 1 36 0
+ 107 0090 1EFF2FE1 		bx	lr
+ 108              	.LFE4:
+ 109              		.size	enqueue, .-enqueue
+ 110              		.align	2
+ 111              		.global	getHead
+ 112              		.type	getHead, %function
+ 113              	getHead:
+ 114              	.LFB6:
+  37:queue.c       **** 
+  38:queue.c       **** u08 dequeue(QUEUE *q)
+  39:queue.c       **** {
+  40:queue.c       **** 	if(q->head == NULL) // queue empty error
+  41:queue.c       **** 		return -1;
+  42:queue.c       **** 	if(q->tail == q->head) // final element in queue
+  43:queue.c       **** 	{
+  44:queue.c       **** 		free(q->tail);
+  45:queue.c       **** 		q->tail = NULL;
+  46:queue.c       **** 		q->head = NULL;
+  47:queue.c       **** 		q->count = 0;
+  48:queue.c       **** 	}
+  49:queue.c       **** 	else
+  50:queue.c       **** 	{
+  51:queue.c       **** 		q->head = q->head->next;
+  52:queue.c       **** 		free(q->head->prev);
+  53:queue.c       **** 		q->count--;
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 4
+
+
+  54:queue.c       **** 	}
+  55:queue.c       **** 	return 0;
+  56:queue.c       **** }
+  57:queue.c       **** 
+  58:queue.c       **** NODE *getHead(QUEUE *q) {
+ 115              		.loc 1 58 0
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+ 119              	.LVL6:
+ 120              		@ lr needed for prologue
+  59:queue.c       **** 	return q->head;
+  60:queue.c       **** }
+ 121              		.loc 1 60 0
+ 122 0094 080090E5 		ldr	r0, [r0, #8]
+ 123              	.LVL7:
+ 124 0098 1EFF2FE1 		bx	lr
+ 125              	.LFE6:
+ 126              		.size	getHead, .-getHead
+ 127              		.align	2
+ 128              		.global	getTail
+ 129              		.type	getTail, %function
+ 130              	getTail:
+ 131              	.LFB7:
+  61:queue.c       **** 
+  62:queue.c       **** NODE *getTail(QUEUE *q) {
+ 132              		.loc 1 62 0
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 135              		@ link register save eliminated.
+ 136              	.LVL8:
+ 137              		@ lr needed for prologue
+  63:queue.c       **** 	return q->tail;
+  64:queue.c       **** }
+ 138              		.loc 1 64 0
+ 139 009c 0C0090E5 		ldr	r0, [r0, #12]
+ 140              	.LVL9:
+ 141 00a0 1EFF2FE1 		bx	lr
+ 142              	.LFE7:
+ 143              		.size	getTail, .-getTail
+ 144              		.align	2
+ 145              		.global	getNodePtr
+ 146              		.type	getNodePtr, %function
+ 147              	getNodePtr:
+ 148              	.LFB8:
+  65:queue.c       **** 
+  66:queue.c       **** void *getNodePtr(NODE *n) {
+ 149              		.loc 1 66 0
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152              		@ link register save eliminated.
+ 153              	.LVL10:
+ 154              		@ lr needed for prologue
+  67:queue.c       **** 	return n->ptr;
+  68:queue.c       **** }
+ 155              		.loc 1 68 0
+ 156 00a4 000090E5 		ldr	r0, [r0, #0]
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 5
+
+
+ 157              	.LVL11:
+ 158 00a8 1EFF2FE1 		bx	lr
+ 159              	.LFE8:
+ 160              		.size	getNodePtr, .-getNodePtr
+ 161              		.align	2
+ 162              		.global	getQueueID
+ 163              		.type	getQueueID, %function
+ 164              	getQueueID:
+ 165              	.LFB9:
+  69:queue.c       **** 
+  70:queue.c       **** u08 getQueueID(QUEUE *q) {
+ 166              		.loc 1 70 0
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170              	.LVL12:
+ 171              		@ lr needed for prologue
+  71:queue.c       **** 	return q->id;
+  72:queue.c       **** }
+ 172              		.loc 1 72 0
+ 173 00ac 0000D0E5 		ldrb	r0, [r0, #0]	@ zero_extendqisi2
+ 174              	.LVL13:
+ 175 00b0 1EFF2FE1 		bx	lr
+ 176              	.LFE9:
+ 177              		.size	getQueueID, .-getQueueID
+ 178              		.align	2
+ 179              		.global	setQueueID
+ 180              		.type	setQueueID, %function
+ 181              	setQueueID:
+ 182              	.LFB10:
+  73:queue.c       **** 
+  74:queue.c       **** void setQueueID(QUEUE *q, u08 id){
+ 183              		.loc 1 74 0
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+ 187              	.LVL14:
+ 188              		@ lr needed for prologue
+  75:queue.c       **** 	q->id = id;
+ 189              		.loc 1 75 0
+ 190 00b4 0010C0E5 		strb	r1, [r0, #0]
+  76:queue.c       **** }
+ 191              		.loc 1 76 0
+ 192 00b8 1EFF2FE1 		bx	lr
+ 193              	.LFE10:
+ 194              		.size	setQueueID, .-setQueueID
+ 195              		.align	2
+ 196              		.global	findQueueWithAddress
+ 197              		.type	findQueueWithAddress, %function
+ 198              	findQueueWithAddress:
+ 199              	.LFB11:
+  77:queue.c       **** 
+  78:queue.c       **** // returns first Queue with particular id
+  79:queue.c       **** int findQueueWithAddress(u08 id, QUEUE *Qarray, u08 count, int *index) {
+ 200              		.loc 1 79 0
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 6
+
+
+ 203              	.LVL15:
+ 204 00bc 04E02DE5 		str	lr, [sp, #-4]!
+ 205              	.LCFI1:
+ 206 00c0 03E0A0E1 		mov	lr, r3
+ 207 00c4 FF0000E2 		and	r0, r0, #255
+ 208 00c8 FF2002E2 		and	r2, r2, #255
+ 209              	.LVL16:
+  80:queue.c       **** 	int i;
+  81:queue.c       **** 	for(i=0; i<count; i++)
+ 210              		.loc 1 81 0
+ 211 00cc 000052E3 		cmp	r2, #0
+ 212 00d0 420000DA 		ble	.L25
+ 213              	.LVL17:
+  82:queue.c       **** 	{
+  83:queue.c       **** 		if(Qarray[i].id == id)
+ 214              		.loc 1 83 0
+ 215 00d4 0030D1E5 		ldrb	r3, [r1, #0]	@ zero_extendqisi2
+ 216 00d8 000053E1 		cmp	r3, r0
+ 217 00dc 00C0A003 		moveq	ip, #0
+ 218              	.LVL18:
+ 219 00e0 3B00000A 		beq	.L29
+ 220 00e4 3E0000EA 		b	.L27
+ 221              	.L30:
+ 222 00e8 0C32D1E7 		ldrb	r3, [r1, ip, asl #4]	@ zero_extendqisi2
+ 223 00ec 000053E1 		cmp	r3, r0
+ 224 00f0 3F00001A 		bne	.L31
+ 225              	.L29:
+  84:queue.c       **** 		{
+  85:queue.c       **** 			*index = i;
+ 226              		.loc 1 85 0
+ 227 00f4 00C08EE5 		str	ip, [lr, #0]
+ 228 00f8 0000E0E3 		mvn	r0, #0
+ 229              	.LVL19:
+ 230 00fc 04F09DE4 		ldr	pc, [sp], #4
+ 231              	.LVL20:
+ 232              	.L27:
+  86:queue.c       **** 			return TRUE;
+ 233              		.loc 1 86 0
+ 234 0100 00C0A0E3 		mov	ip, #0
+ 235              	.L31:
+ 236              		.loc 1 81 0
+ 237 0104 01C08CE2 		add	ip, ip, #1
+ 238 0108 02005CE1 		cmp	ip, r2
+ 239 010c 3800001A 		bne	.L30
+ 240              	.LVL21:
+ 241              	.L25:
+ 242 0110 0000A0E3 		mov	r0, #0
+ 243              	.LVL22:
+  87:queue.c       **** 		}
+  88:queue.c       **** 	}
+  89:queue.c       **** 	return FALSE;
+  90:queue.c       **** }
+ 244              		.loc 1 90 0
+ 245 0114 04F09DE4 		ldr	pc, [sp], #4
+ 246              	.LFE11:
+ 247              		.size	findQueueWithAddress, .-findQueueWithAddress
+ 248              		.align	2
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 7
+
+
+ 249              		.global	dequeue
+ 250              		.type	dequeue, %function
+ 251              	dequeue:
+ 252              	.LFB5:
+ 253              		.loc 1 39 0
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256              	.LVL23:
+ 257 0118 10402DE9 		stmfd	sp!, {r4, lr}
+ 258              	.LCFI2:
+ 259 011c 0040A0E1 		mov	r4, r0
+ 260              		.loc 1 40 0
+ 261 0120 080090E5 		ldr	r0, [r0, #8]
+ 262              	.LVL24:
+ 263 0124 000050E3 		cmp	r0, #0
+ 264 0128 FF008002 		addeq	r0, r0, #255
+ 265 012c 1080BD08 		ldmeqfd	sp!, {r4, pc}
+ 266              		.loc 1 42 0
+ 267 0130 0C3094E5 		ldr	r3, [r4, #12]
+ 268 0134 030050E1 		cmp	r0, r3
+ 269 0138 5400001A 		bne	.L39
+ 270              		.loc 1 44 0
+ 271 013c FEFFFFEB 		bl	free
+ 272              		.loc 1 45 0
+ 273 0140 0030A0E3 		mov	r3, #0
+ 274 0144 0C3084E5 		str	r3, [r4, #12]
+ 275              		.loc 1 46 0
+ 276 0148 083084E5 		str	r3, [r4, #8]
+ 277              		.loc 1 47 0
+ 278 014c 043084E5 		str	r3, [r4, #4]
+ 279 0150 0300A0E1 		mov	r0, r3
+ 280 0154 1080BDE8 		ldmfd	sp!, {r4, pc}
+ 281              	.L39:
+ 282              		.loc 1 51 0
+ 283 0158 043090E5 		ldr	r3, [r0, #4]
+ 284 015c 083084E5 		str	r3, [r4, #8]
+ 285              		.loc 1 52 0
+ 286 0160 080093E5 		ldr	r0, [r3, #8]
+ 287 0164 FEFFFFEB 		bl	free
+ 288              		.loc 1 53 0
+ 289 0168 043094E5 		ldr	r3, [r4, #4]
+ 290 016c 013043E2 		sub	r3, r3, #1
+ 291 0170 043084E5 		str	r3, [r4, #4]
+ 292 0174 0000A0E3 		mov	r0, #0
+ 293              		.loc 1 56 0
+ 294 0178 1080BDE8 		ldmfd	sp!, {r4, pc}
+ 295              	.LFE5:
+ 296              		.size	dequeue, .-dequeue
+ 297              		.section	.debug_frame,"",%progbits
+ 298              	.Lframe0:
+ 299 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+ 300              	.LSCIE0:
+ 301 0004 FFFFFFFF 		.4byte	0xffffffff
+ 302 0008 01       		.byte	0x1
+ 303 0009 00       		.ascii	"\000"
+ 304 000a 01       		.uleb128 0x1
+ 305 000b 7C       		.sleb128 -4
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 8
+
+
+ 306 000c 0E       		.byte	0xe
+ 307 000d 0C       		.byte	0xc
+ 308 000e 0D       		.uleb128 0xd
+ 309 000f 00       		.uleb128 0x0
+ 310              		.align	2
+ 311              	.LECIE0:
+ 312              	.LSFDE0:
+ 313 0010 0C000000 		.4byte	.LEFDE0-.LASFDE0
+ 314              	.LASFDE0:
+ 315 0014 00000000 		.4byte	.Lframe0
+ 316 0018 00000000 		.4byte	.LFB3
+ 317 001c 1C000000 		.4byte	.LFE3-.LFB3
+ 318              		.align	2
+ 319              	.LEFDE0:
+ 320              	.LSFDE2:
+ 321 0020 18000000 		.4byte	.LEFDE2-.LASFDE2
+ 322              	.LASFDE2:
+ 323 0024 00000000 		.4byte	.Lframe0
+ 324 0028 1C000000 		.4byte	.LFB2
+ 325 002c 30000000 		.4byte	.LFE2-.LFB2
+ 326 0030 44       		.byte	0x4
+ 327              		.4byte	.LCFI0-.LFB2
+ 328 0031 0E       		.byte	0xe
+ 329 0032 10       		.uleb128 0x10
+ 330 0033 8E       		.byte	0x8e
+ 331 0034 01       		.uleb128 0x1
+ 332 0035 86       		.byte	0x86
+ 333 0036 02       		.uleb128 0x2
+ 334 0037 85       		.byte	0x85
+ 335 0038 03       		.uleb128 0x3
+ 336 0039 84       		.byte	0x84
+ 337 003a 04       		.uleb128 0x4
+ 338 003b 00       		.align	2
+ 339              	.LEFDE2:
+ 340              	.LSFDE4:
+ 341 003c 0C000000 		.4byte	.LEFDE4-.LASFDE4
+ 342              	.LASFDE4:
+ 343 0040 00000000 		.4byte	.Lframe0
+ 344 0044 4C000000 		.4byte	.LFB4
+ 345 0048 48000000 		.4byte	.LFE4-.LFB4
+ 346              		.align	2
+ 347              	.LEFDE4:
+ 348              	.LSFDE6:
+ 349 004c 0C000000 		.4byte	.LEFDE6-.LASFDE6
+ 350              	.LASFDE6:
+ 351 0050 00000000 		.4byte	.Lframe0
+ 352 0054 94000000 		.4byte	.LFB6
+ 353 0058 08000000 		.4byte	.LFE6-.LFB6
+ 354              		.align	2
+ 355              	.LEFDE6:
+ 356              	.LSFDE8:
+ 357 005c 0C000000 		.4byte	.LEFDE8-.LASFDE8
+ 358              	.LASFDE8:
+ 359 0060 00000000 		.4byte	.Lframe0
+ 360 0064 9C000000 		.4byte	.LFB7
+ 361 0068 08000000 		.4byte	.LFE7-.LFB7
+ 362              		.align	2
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 9
+
+
+ 363              	.LEFDE8:
+ 364              	.LSFDE10:
+ 365 006c 0C000000 		.4byte	.LEFDE10-.LASFDE10
+ 366              	.LASFDE10:
+ 367 0070 00000000 		.4byte	.Lframe0
+ 368 0074 A4000000 		.4byte	.LFB8
+ 369 0078 08000000 		.4byte	.LFE8-.LFB8
+ 370              		.align	2
+ 371              	.LEFDE10:
+ 372              	.LSFDE12:
+ 373 007c 0C000000 		.4byte	.LEFDE12-.LASFDE12
+ 374              	.LASFDE12:
+ 375 0080 00000000 		.4byte	.Lframe0
+ 376 0084 AC000000 		.4byte	.LFB9
+ 377 0088 08000000 		.4byte	.LFE9-.LFB9
+ 378              		.align	2
+ 379              	.LEFDE12:
+ 380              	.LSFDE14:
+ 381 008c 0C000000 		.4byte	.LEFDE14-.LASFDE14
+ 382              	.LASFDE14:
+ 383 0090 00000000 		.4byte	.Lframe0
+ 384 0094 B4000000 		.4byte	.LFB10
+ 385 0098 08000000 		.4byte	.LFE10-.LFB10
+ 386              		.align	2
+ 387              	.LEFDE14:
+ 388              	.LSFDE16:
+ 389 009c 14000000 		.4byte	.LEFDE16-.LASFDE16
+ 390              	.LASFDE16:
+ 391 00a0 00000000 		.4byte	.Lframe0
+ 392 00a4 BC000000 		.4byte	.LFB11
+ 393 00a8 5C000000 		.4byte	.LFE11-.LFB11
+ 394 00ac 44       		.byte	0x4
+ 395              		.4byte	.LCFI1-.LFB11
+ 396 00ad 0E       		.byte	0xe
+ 397 00ae 04       		.uleb128 0x4
+ 398 00af 8E       		.byte	0x8e
+ 399 00b0 01       		.uleb128 0x1
+ 400 00b1 000000   		.align	2
+ 401              	.LEFDE16:
+ 402              	.LSFDE18:
+ 403 00b4 14000000 		.4byte	.LEFDE18-.LASFDE18
+ 404              	.LASFDE18:
+ 405 00b8 00000000 		.4byte	.Lframe0
+ 406 00bc 18010000 		.4byte	.LFB5
+ 407 00c0 64000000 		.4byte	.LFE5-.LFB5
+ 408 00c4 44       		.byte	0x4
+ 409              		.4byte	.LCFI2-.LFB5
+ 410 00c5 0E       		.byte	0xe
+ 411 00c6 08       		.uleb128 0x8
+ 412 00c7 8E       		.byte	0x8e
+ 413 00c8 01       		.uleb128 0x1
+ 414 00c9 84       		.byte	0x84
+ 415 00ca 02       		.uleb128 0x2
+ 416 00cb 00       		.align	2
+ 417              	.LEFDE18:
+ 418              		.file 2 "queue.h"
+ 419              		.file 3 "C:\\WinARM\\armlib/armlibtypes.h"
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 10
+
+
+ 420              		.text
+ 421              	.Letext0:
+ 422              		.section	.debug_loc,"",%progbits
+ 423              	.Ldebug_loc0:
+ 424              	.LLST1:
+ 425 0000 1C000000 		.4byte	.LFB2-.Ltext0
+ 426 0004 20000000 		.4byte	.LCFI0-.Ltext0
+ 427 0008 0100     		.2byte	0x1
+ 428 000a 5D       		.byte	0x5d
+ 429 000b 20000000 		.4byte	.LCFI0-.Ltext0
+ 430 000f 4C000000 		.4byte	.LFE2-.Ltext0
+ 431 0013 0200     		.2byte	0x2
+ 432 0015 7D       		.byte	0x7d
+ 433 0016 10       		.sleb128 16
+ 434 0017 00000000 		.4byte	0x0
+ 435 001b 00000000 		.4byte	0x0
+ 436              	.LLST2:
+ 437 001f 1C000000 		.4byte	.LVL1-.Ltext0
+ 438 0023 34000000 		.4byte	.LVL4-.Ltext0
+ 439 0027 0100     		.2byte	0x1
+ 440 0029 50       		.byte	0x50
+ 441 002a 00000000 		.4byte	0x0
+ 442 002e 00000000 		.4byte	0x0
+ 443              	.LLST3:
+ 444 0032 1C000000 		.4byte	.LVL1-.Ltext0
+ 445 0036 28000000 		.4byte	.LVL2-.Ltext0
+ 446 003a 0100     		.2byte	0x1
+ 447 003c 51       		.byte	0x51
+ 448 003d 28000000 		.4byte	.LVL2-.Ltext0
+ 449 0041 4C000000 		.4byte	.LFE2-.Ltext0
+ 450 0045 0100     		.2byte	0x1
+ 451 0047 56       		.byte	0x56
+ 452 0048 00000000 		.4byte	0x0
+ 453 004c 00000000 		.4byte	0x0
+ 454              	.LLST6:
+ 455 0050 94000000 		.4byte	.LVL6-.Ltext0
+ 456 0054 98000000 		.4byte	.LVL7-.Ltext0
+ 457 0058 0100     		.2byte	0x1
+ 458 005a 50       		.byte	0x50
+ 459 005b 00000000 		.4byte	0x0
+ 460 005f 00000000 		.4byte	0x0
+ 461              	.LLST8:
+ 462 0063 9C000000 		.4byte	.LVL8-.Ltext0
+ 463 0067 A0000000 		.4byte	.LVL9-.Ltext0
+ 464 006b 0100     		.2byte	0x1
+ 465 006d 50       		.byte	0x50
+ 466 006e 00000000 		.4byte	0x0
+ 467 0072 00000000 		.4byte	0x0
+ 468              	.LLST10:
+ 469 0076 A4000000 		.4byte	.LVL10-.Ltext0
+ 470 007a A8000000 		.4byte	.LVL11-.Ltext0
+ 471 007e 0100     		.2byte	0x1
+ 472 0080 50       		.byte	0x50
+ 473 0081 00000000 		.4byte	0x0
+ 474 0085 00000000 		.4byte	0x0
+ 475              	.LLST12:
+ 476 0089 AC000000 		.4byte	.LVL12-.Ltext0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 11
+
+
+ 477 008d B0000000 		.4byte	.LVL13-.Ltext0
+ 478 0091 0100     		.2byte	0x1
+ 479 0093 50       		.byte	0x50
+ 480 0094 00000000 		.4byte	0x0
+ 481 0098 00000000 		.4byte	0x0
+ 482              	.LLST14:
+ 483 009c BC000000 		.4byte	.LFB11-.Ltext0
+ 484 00a0 C0000000 		.4byte	.LCFI1-.Ltext0
+ 485 00a4 0100     		.2byte	0x1
+ 486 00a6 5D       		.byte	0x5d
+ 487 00a7 C0000000 		.4byte	.LCFI1-.Ltext0
+ 488 00ab 18010000 		.4byte	.LFE11-.Ltext0
+ 489 00af 0200     		.2byte	0x2
+ 490 00b1 7D       		.byte	0x7d
+ 491 00b2 04       		.sleb128 4
+ 492 00b3 00000000 		.4byte	0x0
+ 493 00b7 00000000 		.4byte	0x0
+ 494              	.LLST15:
+ 495 00bb BC000000 		.4byte	.LVL15-.Ltext0
+ 496 00bf FC000000 		.4byte	.LVL19-.Ltext0
+ 497 00c3 0100     		.2byte	0x1
+ 498 00c5 50       		.byte	0x50
+ 499 00c6 00010000 		.4byte	.LVL20-.Ltext0
+ 500 00ca 14010000 		.4byte	.LVL22-.Ltext0
+ 501 00ce 0100     		.2byte	0x1
+ 502 00d0 50       		.byte	0x50
+ 503 00d1 00000000 		.4byte	0x0
+ 504 00d5 00000000 		.4byte	0x0
+ 505              	.LLST16:
+ 506 00d9 BC000000 		.4byte	.LVL15-.Ltext0
+ 507 00dd CC000000 		.4byte	.LVL16-.Ltext0
+ 508 00e1 0100     		.2byte	0x1
+ 509 00e3 52       		.byte	0x52
+ 510 00e4 00000000 		.4byte	0x0
+ 511 00e8 00000000 		.4byte	0x0
+ 512              	.LLST17:
+ 513 00ec BC000000 		.4byte	.LVL15-.Ltext0
+ 514 00f0 D4000000 		.4byte	.LVL17-.Ltext0
+ 515 00f4 0100     		.2byte	0x1
+ 516 00f6 53       		.byte	0x53
+ 517 00f7 D4000000 		.4byte	.LVL17-.Ltext0
+ 518 00fb 18010000 		.4byte	.LFE11-.Ltext0
+ 519 00ff 0100     		.2byte	0x1
+ 520 0101 5E       		.byte	0x5e
+ 521 0102 00000000 		.4byte	0x0
+ 522 0106 00000000 		.4byte	0x0
+ 523              	.LLST18:
+ 524 010a 18010000 		.4byte	.LFB5-.Ltext0
+ 525 010e 1C010000 		.4byte	.LCFI2-.Ltext0
+ 526 0112 0100     		.2byte	0x1
+ 527 0114 5D       		.byte	0x5d
+ 528 0115 1C010000 		.4byte	.LCFI2-.Ltext0
+ 529 0119 7C010000 		.4byte	.LFE5-.Ltext0
+ 530 011d 0200     		.2byte	0x2
+ 531 011f 7D       		.byte	0x7d
+ 532 0120 08       		.sleb128 8
+ 533 0121 00000000 		.4byte	0x0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 12
+
+
+ 534 0125 00000000 		.4byte	0x0
+ 535              	.LLST19:
+ 536 0129 18010000 		.4byte	.LVL23-.Ltext0
+ 537 012d 24010000 		.4byte	.LVL24-.Ltext0
+ 538 0131 0100     		.2byte	0x1
+ 539 0133 50       		.byte	0x50
+ 540 0134 24010000 		.4byte	.LVL24-.Ltext0
+ 541 0138 7C010000 		.4byte	.LFE5-.Ltext0
+ 542 013c 0100     		.2byte	0x1
+ 543 013e 54       		.byte	0x54
+ 544 013f 00000000 		.4byte	0x0
+ 545 0143 00000000 		.4byte	0x0
+ 546              		.section	.debug_info
+ 547 0000 1C030000 		.4byte	0x31c
+ 548 0004 0200     		.2byte	0x2
+ 549 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 550 000a 04       		.byte	0x4
+ 551 000b 01       		.uleb128 0x1
+ 552 000c 00000000 		.4byte	.Ldebug_line0
+ 553 0010 7C010000 		.4byte	.Letext0
+ 554 0014 00000000 		.4byte	.Ltext0
+ 555 0018 5E010000 		.4byte	.LASF31
+ 556 001c 01       		.byte	0x1
+ 557 001d 49000000 		.4byte	.LASF32
+ 558 0021 DB000000 		.4byte	.LASF33
+ 559 0025 02       		.uleb128 0x2
+ 560 0026 75303800 		.ascii	"u08\000"
+ 561 002a 03       		.byte	0x3
+ 562 002b 20       		.byte	0x20
+ 563 002c 30000000 		.4byte	0x30
+ 564 0030 03       		.uleb128 0x3
+ 565 0031 22010000 		.4byte	.LASF0
+ 566 0035 01       		.byte	0x1
+ 567 0036 08       		.byte	0x8
+ 568 0037 03       		.uleb128 0x3
+ 569 0038 5F000000 		.4byte	.LASF1
+ 570 003c 01       		.byte	0x1
+ 571 003d 06       		.byte	0x6
+ 572 003e 03       		.uleb128 0x3
+ 573 003f C2000000 		.4byte	.LASF2
+ 574 0043 02       		.byte	0x2
+ 575 0044 07       		.byte	0x7
+ 576 0045 03       		.uleb128 0x3
+ 577 0046 35010000 		.4byte	.LASF3
+ 578 004a 02       		.byte	0x2
+ 579 004b 05       		.byte	0x5
+ 580 004c 03       		.uleb128 0x3
+ 581 004d AB000000 		.4byte	.LASF4
+ 582 0051 04       		.byte	0x4
+ 583 0052 07       		.byte	0x7
+ 584 0053 03       		.uleb128 0x3
+ 585 0054 80000000 		.4byte	.LASF5
+ 586 0058 04       		.byte	0x4
+ 587 0059 05       		.byte	0x5
+ 588 005a 03       		.uleb128 0x3
+ 589 005b 22000000 		.4byte	.LASF6
+ 590 005f 08       		.byte	0x8
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 13
+
+
+ 591 0060 07       		.byte	0x7
+ 592 0061 03       		.uleb128 0x3
+ 593 0062 51000000 		.4byte	.LASF7
+ 594 0066 08       		.byte	0x8
+ 595 0067 05       		.byte	0x5
+ 596 0068 03       		.uleb128 0x3
+ 597 0069 97000000 		.4byte	.LASF8
+ 598 006d 04       		.byte	0x4
+ 599 006e 07       		.byte	0x7
+ 600 006f 03       		.uleb128 0x3
+ 601 0070 49010000 		.4byte	.LASF9
+ 602 0074 01       		.byte	0x1
+ 603 0075 08       		.byte	0x8
+ 604 0076 04       		.uleb128 0x4
+ 605 0077 696E7400 		.ascii	"int\000"
+ 606 007b 04       		.byte	0x4
+ 607 007c 05       		.byte	0x5
+ 608 007d 05       		.uleb128 0x5
+ 609 007e B4000000 		.4byte	0xb4
+ 610 0082 30010000 		.4byte	.LASF13
+ 611 0086 0C       		.byte	0xc
+ 612 0087 02       		.byte	0x2
+ 613 0088 06       		.byte	0x6
+ 614 0089 06       		.uleb128 0x6
+ 615 008a 70747200 		.ascii	"ptr\000"
+ 616 008e 02       		.byte	0x2
+ 617 008f 07       		.byte	0x7
+ 618 0090 B4000000 		.4byte	0xb4
+ 619 0094 02       		.byte	0x2
+ 620 0095 23       		.byte	0x23
+ 621 0096 00       		.uleb128 0x0
+ 622 0097 07       		.uleb128 0x7
+ 623 0098 44000000 		.4byte	.LASF10
+ 624 009c 02       		.byte	0x2
+ 625 009d 08       		.byte	0x8
+ 626 009e B6000000 		.4byte	0xb6
+ 627 00a2 02       		.byte	0x2
+ 628 00a3 23       		.byte	0x23
+ 629 00a4 04       		.uleb128 0x4
+ 630 00a5 07       		.uleb128 0x7
+ 631 00a6 15000000 		.4byte	.LASF11
+ 632 00aa 02       		.byte	0x2
+ 633 00ab 09       		.byte	0x9
+ 634 00ac B6000000 		.4byte	0xb6
+ 635 00b0 02       		.byte	0x2
+ 636 00b1 23       		.byte	0x23
+ 637 00b2 08       		.uleb128 0x8
+ 638 00b3 00       		.byte	0x0
+ 639 00b4 08       		.uleb128 0x8
+ 640 00b5 04       		.byte	0x4
+ 641 00b6 09       		.uleb128 0x9
+ 642 00b7 04       		.byte	0x4
+ 643 00b8 7D000000 		.4byte	0x7d
+ 644 00bc 0A       		.uleb128 0xa
+ 645 00bd 3F010000 		.4byte	.LASF12
+ 646 00c1 02       		.byte	0x2
+ 647 00c2 0A       		.byte	0xa
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 14
+
+
+ 648 00c3 7D000000 		.4byte	0x7d
+ 649 00c7 05       		.uleb128 0x5
+ 650 00c8 0B010000 		.4byte	0x10b
+ 651 00cc 89000000 		.4byte	.LASF14
+ 652 00d0 10       		.byte	0x10
+ 653 00d1 02       		.byte	0x2
+ 654 00d2 0C       		.byte	0xc
+ 655 00d3 06       		.uleb128 0x6
+ 656 00d4 696400   		.ascii	"id\000"
+ 657 00d7 02       		.byte	0x2
+ 658 00d8 0D       		.byte	0xd
+ 659 00d9 25000000 		.4byte	0x25
+ 660 00dd 02       		.byte	0x2
+ 661 00de 23       		.byte	0x23
+ 662 00df 00       		.uleb128 0x0
+ 663 00e0 07       		.uleb128 0x7
+ 664 00e1 00000000 		.4byte	.LASF15
+ 665 00e5 02       		.byte	0x2
+ 666 00e6 0E       		.byte	0xe
+ 667 00e7 76000000 		.4byte	0x76
+ 668 00eb 02       		.byte	0x2
+ 669 00ec 23       		.byte	0x23
+ 670 00ed 04       		.uleb128 0x4
+ 671 00ee 07       		.uleb128 0x7
+ 672 00ef 44010000 		.4byte	.LASF16
+ 673 00f3 02       		.byte	0x2
+ 674 00f4 0F       		.byte	0xf
+ 675 00f5 0B010000 		.4byte	0x10b
+ 676 00f9 02       		.byte	0x2
+ 677 00fa 23       		.byte	0x23
+ 678 00fb 08       		.uleb128 0x8
+ 679 00fc 07       		.uleb128 0x7
+ 680 00fd BD000000 		.4byte	.LASF17
+ 681 0101 02       		.byte	0x2
+ 682 0102 10       		.byte	0x10
+ 683 0103 0B010000 		.4byte	0x10b
+ 684 0107 02       		.byte	0x2
+ 685 0108 23       		.byte	0x23
+ 686 0109 0C       		.uleb128 0xc
+ 687 010a 00       		.byte	0x0
+ 688 010b 09       		.uleb128 0x9
+ 689 010c 04       		.byte	0x4
+ 690 010d BC000000 		.4byte	0xbc
+ 691 0111 0A       		.uleb128 0xa
+ 692 0112 0C010000 		.4byte	.LASF18
+ 693 0116 02       		.byte	0x2
+ 694 0117 11       		.byte	0x11
+ 695 0118 C7000000 		.4byte	0xc7
+ 696 011c 03       		.uleb128 0x3
+ 697 011d AB000000 		.4byte	.LASF4
+ 698 0121 04       		.byte	0x4
+ 699 0122 07       		.byte	0x7
+ 700 0123 0B       		.uleb128 0xb
+ 701 0124 46010000 		.4byte	0x146
+ 702 0128 01       		.byte	0x1
+ 703 0129 4E010000 		.4byte	.LASF19
+ 704 012d 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 15
+
+
+ 705 012e 10       		.byte	0x10
+ 706 012f 01       		.byte	0x1
+ 707 0130 00000000 		.4byte	.LFB3
+ 708 0134 1C000000 		.4byte	.LFE3
+ 709 0138 01       		.byte	0x1
+ 710 0139 5D       		.byte	0x5d
+ 711 013a 0C       		.uleb128 0xc
+ 712 013b 7100     		.ascii	"q\000"
+ 713 013d 01       		.byte	0x1
+ 714 013e 10       		.byte	0x10
+ 715 013f 46010000 		.4byte	0x146
+ 716 0143 01       		.byte	0x1
+ 717 0144 50       		.byte	0x50
+ 718 0145 00       		.byte	0x0
+ 719 0146 09       		.uleb128 0x9
+ 720 0147 04       		.byte	0x4
+ 721 0148 11010000 		.4byte	0x111
+ 722 014c 0D       		.uleb128 0xd
+ 723 014d 8D010000 		.4byte	0x18d
+ 724 0151 01       		.byte	0x1
+ 725 0152 06000000 		.4byte	.LASF20
+ 726 0156 01       		.byte	0x1
+ 727 0157 08       		.byte	0x8
+ 728 0158 01       		.byte	0x1
+ 729 0159 1C000000 		.4byte	.LFB2
+ 730 015d 4C000000 		.4byte	.LFE2
+ 731 0161 00000000 		.4byte	.LLST1
+ 732 0165 0E       		.uleb128 0xe
+ 733 0166 7100     		.ascii	"q\000"
+ 734 0168 01       		.byte	0x1
+ 735 0169 08       		.byte	0x8
+ 736 016a 46010000 		.4byte	0x146
+ 737 016e 1F000000 		.4byte	.LLST2
+ 738 0172 0F       		.uleb128 0xf
+ 739 0173 00000000 		.4byte	.LASF15
+ 740 0177 01       		.byte	0x1
+ 741 0178 08       		.byte	0x8
+ 742 0179 76000000 		.4byte	0x76
+ 743 017d 32000000 		.4byte	.LLST3
+ 744 0181 10       		.uleb128 0x10
+ 745 0182 6900     		.ascii	"i\000"
+ 746 0184 01       		.byte	0x1
+ 747 0185 09       		.byte	0x9
+ 748 0186 76000000 		.4byte	0x76
+ 749 018a 01       		.byte	0x1
+ 750 018b 55       		.byte	0x55
+ 751 018c 00       		.byte	0x0
+ 752 018d 0B       		.uleb128 0xb
+ 753 018e BD010000 		.4byte	0x1bd
+ 754 0192 01       		.byte	0x1
+ 755 0193 1A000000 		.4byte	.LASF21
+ 756 0197 01       		.byte	0x1
+ 757 0198 17       		.byte	0x17
+ 758 0199 01       		.byte	0x1
+ 759 019a 4C000000 		.4byte	.LFB4
+ 760 019e 94000000 		.4byte	.LFE4
+ 761 01a2 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 16
+
+
+ 762 01a3 5D       		.byte	0x5d
+ 763 01a4 0C       		.uleb128 0xc
+ 764 01a5 7100     		.ascii	"q\000"
+ 765 01a7 01       		.byte	0x1
+ 766 01a8 17       		.byte	0x17
+ 767 01a9 46010000 		.4byte	0x146
+ 768 01ad 01       		.byte	0x1
+ 769 01ae 50       		.byte	0x50
+ 770 01af 11       		.uleb128 0x11
+ 771 01b0 D5000000 		.4byte	.LASF22
+ 772 01b4 01       		.byte	0x1
+ 773 01b5 17       		.byte	0x17
+ 774 01b6 0B010000 		.4byte	0x10b
+ 775 01ba 01       		.byte	0x1
+ 776 01bb 51       		.byte	0x51
+ 777 01bc 00       		.byte	0x0
+ 778 01bd 12       		.uleb128 0x12
+ 779 01be E6010000 		.4byte	0x1e6
+ 780 01c2 01       		.byte	0x1
+ 781 01c3 8F000000 		.4byte	.LASF23
+ 782 01c7 01       		.byte	0x1
+ 783 01c8 3A       		.byte	0x3a
+ 784 01c9 01       		.byte	0x1
+ 785 01ca 0B010000 		.4byte	0x10b
+ 786 01ce 94000000 		.4byte	.LFB6
+ 787 01d2 9C000000 		.4byte	.LFE6
+ 788 01d6 01       		.byte	0x1
+ 789 01d7 5D       		.byte	0x5d
+ 790 01d8 0E       		.uleb128 0xe
+ 791 01d9 7100     		.ascii	"q\000"
+ 792 01db 01       		.byte	0x1
+ 793 01dc 3A       		.byte	0x3a
+ 794 01dd 46010000 		.4byte	0x146
+ 795 01e1 50000000 		.4byte	.LLST6
+ 796 01e5 00       		.byte	0x0
+ 797 01e6 12       		.uleb128 0x12
+ 798 01e7 0F020000 		.4byte	0x20f
+ 799 01eb 01       		.byte	0x1
+ 800 01ec 1A010000 		.4byte	.LASF24
+ 801 01f0 01       		.byte	0x1
+ 802 01f1 3E       		.byte	0x3e
+ 803 01f2 01       		.byte	0x1
+ 804 01f3 0B010000 		.4byte	0x10b
+ 805 01f7 9C000000 		.4byte	.LFB7
+ 806 01fb A4000000 		.4byte	.LFE7
+ 807 01ff 01       		.byte	0x1
+ 808 0200 5D       		.byte	0x5d
+ 809 0201 0E       		.uleb128 0xe
+ 810 0202 7100     		.ascii	"q\000"
+ 811 0204 01       		.byte	0x1
+ 812 0205 3E       		.byte	0x3e
+ 813 0206 46010000 		.4byte	0x146
+ 814 020a 63000000 		.4byte	.LLST8
+ 815 020e 00       		.byte	0x0
+ 816 020f 12       		.uleb128 0x12
+ 817 0210 38020000 		.4byte	0x238
+ 818 0214 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 17
+
+
+ 819 0215 7E010000 		.4byte	.LASF25
+ 820 0219 01       		.byte	0x1
+ 821 021a 42       		.byte	0x42
+ 822 021b 01       		.byte	0x1
+ 823 021c B4000000 		.4byte	0xb4
+ 824 0220 A4000000 		.4byte	.LFB8
+ 825 0224 AC000000 		.4byte	.LFE8
+ 826 0228 01       		.byte	0x1
+ 827 0229 5D       		.byte	0x5d
+ 828 022a 0E       		.uleb128 0xe
+ 829 022b 6E00     		.ascii	"n\000"
+ 830 022d 01       		.byte	0x1
+ 831 022e 42       		.byte	0x42
+ 832 022f 0B010000 		.4byte	0x10b
+ 833 0233 76000000 		.4byte	.LLST10
+ 834 0237 00       		.byte	0x0
+ 835 0238 12       		.uleb128 0x12
+ 836 0239 61020000 		.4byte	0x261
+ 837 023d 01       		.byte	0x1
+ 838 023e 39000000 		.4byte	.LASF26
+ 839 0242 01       		.byte	0x1
+ 840 0243 46       		.byte	0x46
+ 841 0244 01       		.byte	0x1
+ 842 0245 25000000 		.4byte	0x25
+ 843 0249 AC000000 		.4byte	.LFB9
+ 844 024d B4000000 		.4byte	.LFE9
+ 845 0251 01       		.byte	0x1
+ 846 0252 5D       		.byte	0x5d
+ 847 0253 0E       		.uleb128 0xe
+ 848 0254 7100     		.ascii	"q\000"
+ 849 0256 01       		.byte	0x1
+ 850 0257 46       		.byte	0x46
+ 851 0258 46010000 		.4byte	0x146
+ 852 025c 89000000 		.4byte	.LLST12
+ 853 0260 00       		.byte	0x0
+ 854 0261 0B       		.uleb128 0xb
+ 855 0262 90020000 		.4byte	0x290
+ 856 0266 01       		.byte	0x1
+ 857 0267 73010000 		.4byte	.LASF27
+ 858 026b 01       		.byte	0x1
+ 859 026c 4A       		.byte	0x4a
+ 860 026d 01       		.byte	0x1
+ 861 026e B4000000 		.4byte	.LFB10
+ 862 0272 BC000000 		.4byte	.LFE10
+ 863 0276 01       		.byte	0x1
+ 864 0277 5D       		.byte	0x5d
+ 865 0278 0C       		.uleb128 0xc
+ 866 0279 7100     		.ascii	"q\000"
+ 867 027b 01       		.byte	0x1
+ 868 027c 4A       		.byte	0x4a
+ 869 027d 46010000 		.4byte	0x146
+ 870 0281 01       		.byte	0x1
+ 871 0282 50       		.byte	0x50
+ 872 0283 0C       		.uleb128 0xc
+ 873 0284 696400   		.ascii	"id\000"
+ 874 0287 01       		.byte	0x1
+ 875 0288 4A       		.byte	0x4a
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 18
+
+
+ 876 0289 25000000 		.4byte	0x25
+ 877 028d 01       		.byte	0x1
+ 878 028e 51       		.byte	0x51
+ 879 028f 00       		.byte	0x0
+ 880 0290 13       		.uleb128 0x13
+ 881 0291 F2020000 		.4byte	0x2f2
+ 882 0295 01       		.byte	0x1
+ 883 0296 6B000000 		.4byte	.LASF28
+ 884 029a 01       		.byte	0x1
+ 885 029b 4F       		.byte	0x4f
+ 886 029c 01       		.byte	0x1
+ 887 029d 76000000 		.4byte	0x76
+ 888 02a1 BC000000 		.4byte	.LFB11
+ 889 02a5 18010000 		.4byte	.LFE11
+ 890 02a9 9C000000 		.4byte	.LLST14
+ 891 02ad 0E       		.uleb128 0xe
+ 892 02ae 696400   		.ascii	"id\000"
+ 893 02b1 01       		.byte	0x1
+ 894 02b2 4F       		.byte	0x4f
+ 895 02b3 25000000 		.4byte	0x25
+ 896 02b7 BB000000 		.4byte	.LLST15
+ 897 02bb 11       		.uleb128 0x11
+ 898 02bc A4000000 		.4byte	.LASF29
+ 899 02c0 01       		.byte	0x1
+ 900 02c1 4F       		.byte	0x4f
+ 901 02c2 46010000 		.4byte	0x146
+ 902 02c6 01       		.byte	0x1
+ 903 02c7 51       		.byte	0x51
+ 904 02c8 0F       		.uleb128 0xf
+ 905 02c9 00000000 		.4byte	.LASF15
+ 906 02cd 01       		.byte	0x1
+ 907 02ce 4F       		.byte	0x4f
+ 908 02cf 25000000 		.4byte	0x25
+ 909 02d3 D9000000 		.4byte	.LLST16
+ 910 02d7 0F       		.uleb128 0xf
+ 911 02d8 58010000 		.4byte	.LASF30
+ 912 02dc 01       		.byte	0x1
+ 913 02dd 4F       		.byte	0x4f
+ 914 02de F2020000 		.4byte	0x2f2
+ 915 02e2 EC000000 		.4byte	.LLST17
+ 916 02e6 10       		.uleb128 0x10
+ 917 02e7 6900     		.ascii	"i\000"
+ 918 02e9 01       		.byte	0x1
+ 919 02ea 50       		.byte	0x50
+ 920 02eb 76000000 		.4byte	0x76
+ 921 02ef 01       		.byte	0x1
+ 922 02f0 5C       		.byte	0x5c
+ 923 02f1 00       		.byte	0x0
+ 924 02f2 09       		.uleb128 0x9
+ 925 02f3 04       		.byte	0x4
+ 926 02f4 76000000 		.4byte	0x76
+ 927 02f8 14       		.uleb128 0x14
+ 928 02f9 01       		.byte	0x1
+ 929 02fa 12010000 		.4byte	.LASF34
+ 930 02fe 01       		.byte	0x1
+ 931 02ff 27       		.byte	0x27
+ 932 0300 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 19
+
+
+ 933 0301 25000000 		.4byte	0x25
+ 934 0305 18010000 		.4byte	.LFB5
+ 935 0309 7C010000 		.4byte	.LFE5
+ 936 030d 0A010000 		.4byte	.LLST18
+ 937 0311 0E       		.uleb128 0xe
+ 938 0312 7100     		.ascii	"q\000"
+ 939 0314 01       		.byte	0x1
+ 940 0315 26       		.byte	0x26
+ 941 0316 46010000 		.4byte	0x146
+ 942 031a 29010000 		.4byte	.LLST19
+ 943 031e 00       		.byte	0x0
+ 944 031f 00       		.byte	0x0
+ 945              		.section	.debug_abbrev
+ 946 0000 01       		.uleb128 0x1
+ 947 0001 11       		.uleb128 0x11
+ 948 0002 01       		.byte	0x1
+ 949 0003 10       		.uleb128 0x10
+ 950 0004 06       		.uleb128 0x6
+ 951 0005 12       		.uleb128 0x12
+ 952 0006 01       		.uleb128 0x1
+ 953 0007 11       		.uleb128 0x11
+ 954 0008 01       		.uleb128 0x1
+ 955 0009 25       		.uleb128 0x25
+ 956 000a 0E       		.uleb128 0xe
+ 957 000b 13       		.uleb128 0x13
+ 958 000c 0B       		.uleb128 0xb
+ 959 000d 03       		.uleb128 0x3
+ 960 000e 0E       		.uleb128 0xe
+ 961 000f 1B       		.uleb128 0x1b
+ 962 0010 0E       		.uleb128 0xe
+ 963 0011 00       		.byte	0x0
+ 964 0012 00       		.byte	0x0
+ 965 0013 02       		.uleb128 0x2
+ 966 0014 16       		.uleb128 0x16
+ 967 0015 00       		.byte	0x0
+ 968 0016 03       		.uleb128 0x3
+ 969 0017 08       		.uleb128 0x8
+ 970 0018 3A       		.uleb128 0x3a
+ 971 0019 0B       		.uleb128 0xb
+ 972 001a 3B       		.uleb128 0x3b
+ 973 001b 0B       		.uleb128 0xb
+ 974 001c 49       		.uleb128 0x49
+ 975 001d 13       		.uleb128 0x13
+ 976 001e 00       		.byte	0x0
+ 977 001f 00       		.byte	0x0
+ 978 0020 03       		.uleb128 0x3
+ 979 0021 24       		.uleb128 0x24
+ 980 0022 00       		.byte	0x0
+ 981 0023 03       		.uleb128 0x3
+ 982 0024 0E       		.uleb128 0xe
+ 983 0025 0B       		.uleb128 0xb
+ 984 0026 0B       		.uleb128 0xb
+ 985 0027 3E       		.uleb128 0x3e
+ 986 0028 0B       		.uleb128 0xb
+ 987 0029 00       		.byte	0x0
+ 988 002a 00       		.byte	0x0
+ 989 002b 04       		.uleb128 0x4
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 20
+
+
+ 990 002c 24       		.uleb128 0x24
+ 991 002d 00       		.byte	0x0
+ 992 002e 03       		.uleb128 0x3
+ 993 002f 08       		.uleb128 0x8
+ 994 0030 0B       		.uleb128 0xb
+ 995 0031 0B       		.uleb128 0xb
+ 996 0032 3E       		.uleb128 0x3e
+ 997 0033 0B       		.uleb128 0xb
+ 998 0034 00       		.byte	0x0
+ 999 0035 00       		.byte	0x0
+ 1000 0036 05       		.uleb128 0x5
+ 1001 0037 13       		.uleb128 0x13
+ 1002 0038 01       		.byte	0x1
+ 1003 0039 01       		.uleb128 0x1
+ 1004 003a 13       		.uleb128 0x13
+ 1005 003b 03       		.uleb128 0x3
+ 1006 003c 0E       		.uleb128 0xe
+ 1007 003d 0B       		.uleb128 0xb
+ 1008 003e 0B       		.uleb128 0xb
+ 1009 003f 3A       		.uleb128 0x3a
+ 1010 0040 0B       		.uleb128 0xb
+ 1011 0041 3B       		.uleb128 0x3b
+ 1012 0042 0B       		.uleb128 0xb
+ 1013 0043 00       		.byte	0x0
+ 1014 0044 00       		.byte	0x0
+ 1015 0045 06       		.uleb128 0x6
+ 1016 0046 0D       		.uleb128 0xd
+ 1017 0047 00       		.byte	0x0
+ 1018 0048 03       		.uleb128 0x3
+ 1019 0049 08       		.uleb128 0x8
+ 1020 004a 3A       		.uleb128 0x3a
+ 1021 004b 0B       		.uleb128 0xb
+ 1022 004c 3B       		.uleb128 0x3b
+ 1023 004d 0B       		.uleb128 0xb
+ 1024 004e 49       		.uleb128 0x49
+ 1025 004f 13       		.uleb128 0x13
+ 1026 0050 38       		.uleb128 0x38
+ 1027 0051 0A       		.uleb128 0xa
+ 1028 0052 00       		.byte	0x0
+ 1029 0053 00       		.byte	0x0
+ 1030 0054 07       		.uleb128 0x7
+ 1031 0055 0D       		.uleb128 0xd
+ 1032 0056 00       		.byte	0x0
+ 1033 0057 03       		.uleb128 0x3
+ 1034 0058 0E       		.uleb128 0xe
+ 1035 0059 3A       		.uleb128 0x3a
+ 1036 005a 0B       		.uleb128 0xb
+ 1037 005b 3B       		.uleb128 0x3b
+ 1038 005c 0B       		.uleb128 0xb
+ 1039 005d 49       		.uleb128 0x49
+ 1040 005e 13       		.uleb128 0x13
+ 1041 005f 38       		.uleb128 0x38
+ 1042 0060 0A       		.uleb128 0xa
+ 1043 0061 00       		.byte	0x0
+ 1044 0062 00       		.byte	0x0
+ 1045 0063 08       		.uleb128 0x8
+ 1046 0064 0F       		.uleb128 0xf
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 21
+
+
+ 1047 0065 00       		.byte	0x0
+ 1048 0066 0B       		.uleb128 0xb
+ 1049 0067 0B       		.uleb128 0xb
+ 1050 0068 00       		.byte	0x0
+ 1051 0069 00       		.byte	0x0
+ 1052 006a 09       		.uleb128 0x9
+ 1053 006b 0F       		.uleb128 0xf
+ 1054 006c 00       		.byte	0x0
+ 1055 006d 0B       		.uleb128 0xb
+ 1056 006e 0B       		.uleb128 0xb
+ 1057 006f 49       		.uleb128 0x49
+ 1058 0070 13       		.uleb128 0x13
+ 1059 0071 00       		.byte	0x0
+ 1060 0072 00       		.byte	0x0
+ 1061 0073 0A       		.uleb128 0xa
+ 1062 0074 16       		.uleb128 0x16
+ 1063 0075 00       		.byte	0x0
+ 1064 0076 03       		.uleb128 0x3
+ 1065 0077 0E       		.uleb128 0xe
+ 1066 0078 3A       		.uleb128 0x3a
+ 1067 0079 0B       		.uleb128 0xb
+ 1068 007a 3B       		.uleb128 0x3b
+ 1069 007b 0B       		.uleb128 0xb
+ 1070 007c 49       		.uleb128 0x49
+ 1071 007d 13       		.uleb128 0x13
+ 1072 007e 00       		.byte	0x0
+ 1073 007f 00       		.byte	0x0
+ 1074 0080 0B       		.uleb128 0xb
+ 1075 0081 2E       		.uleb128 0x2e
+ 1076 0082 01       		.byte	0x1
+ 1077 0083 01       		.uleb128 0x1
+ 1078 0084 13       		.uleb128 0x13
+ 1079 0085 3F       		.uleb128 0x3f
+ 1080 0086 0C       		.uleb128 0xc
+ 1081 0087 03       		.uleb128 0x3
+ 1082 0088 0E       		.uleb128 0xe
+ 1083 0089 3A       		.uleb128 0x3a
+ 1084 008a 0B       		.uleb128 0xb
+ 1085 008b 3B       		.uleb128 0x3b
+ 1086 008c 0B       		.uleb128 0xb
+ 1087 008d 27       		.uleb128 0x27
+ 1088 008e 0C       		.uleb128 0xc
+ 1089 008f 11       		.uleb128 0x11
+ 1090 0090 01       		.uleb128 0x1
+ 1091 0091 12       		.uleb128 0x12
+ 1092 0092 01       		.uleb128 0x1
+ 1093 0093 40       		.uleb128 0x40
+ 1094 0094 0A       		.uleb128 0xa
+ 1095 0095 00       		.byte	0x0
+ 1096 0096 00       		.byte	0x0
+ 1097 0097 0C       		.uleb128 0xc
+ 1098 0098 05       		.uleb128 0x5
+ 1099 0099 00       		.byte	0x0
+ 1100 009a 03       		.uleb128 0x3
+ 1101 009b 08       		.uleb128 0x8
+ 1102 009c 3A       		.uleb128 0x3a
+ 1103 009d 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 22
+
+
+ 1104 009e 3B       		.uleb128 0x3b
+ 1105 009f 0B       		.uleb128 0xb
+ 1106 00a0 49       		.uleb128 0x49
+ 1107 00a1 13       		.uleb128 0x13
+ 1108 00a2 02       		.uleb128 0x2
+ 1109 00a3 0A       		.uleb128 0xa
+ 1110 00a4 00       		.byte	0x0
+ 1111 00a5 00       		.byte	0x0
+ 1112 00a6 0D       		.uleb128 0xd
+ 1113 00a7 2E       		.uleb128 0x2e
+ 1114 00a8 01       		.byte	0x1
+ 1115 00a9 01       		.uleb128 0x1
+ 1116 00aa 13       		.uleb128 0x13
+ 1117 00ab 3F       		.uleb128 0x3f
+ 1118 00ac 0C       		.uleb128 0xc
+ 1119 00ad 03       		.uleb128 0x3
+ 1120 00ae 0E       		.uleb128 0xe
+ 1121 00af 3A       		.uleb128 0x3a
+ 1122 00b0 0B       		.uleb128 0xb
+ 1123 00b1 3B       		.uleb128 0x3b
+ 1124 00b2 0B       		.uleb128 0xb
+ 1125 00b3 27       		.uleb128 0x27
+ 1126 00b4 0C       		.uleb128 0xc
+ 1127 00b5 11       		.uleb128 0x11
+ 1128 00b6 01       		.uleb128 0x1
+ 1129 00b7 12       		.uleb128 0x12
+ 1130 00b8 01       		.uleb128 0x1
+ 1131 00b9 40       		.uleb128 0x40
+ 1132 00ba 06       		.uleb128 0x6
+ 1133 00bb 00       		.byte	0x0
+ 1134 00bc 00       		.byte	0x0
+ 1135 00bd 0E       		.uleb128 0xe
+ 1136 00be 05       		.uleb128 0x5
+ 1137 00bf 00       		.byte	0x0
+ 1138 00c0 03       		.uleb128 0x3
+ 1139 00c1 08       		.uleb128 0x8
+ 1140 00c2 3A       		.uleb128 0x3a
+ 1141 00c3 0B       		.uleb128 0xb
+ 1142 00c4 3B       		.uleb128 0x3b
+ 1143 00c5 0B       		.uleb128 0xb
+ 1144 00c6 49       		.uleb128 0x49
+ 1145 00c7 13       		.uleb128 0x13
+ 1146 00c8 02       		.uleb128 0x2
+ 1147 00c9 06       		.uleb128 0x6
+ 1148 00ca 00       		.byte	0x0
+ 1149 00cb 00       		.byte	0x0
+ 1150 00cc 0F       		.uleb128 0xf
+ 1151 00cd 05       		.uleb128 0x5
+ 1152 00ce 00       		.byte	0x0
+ 1153 00cf 03       		.uleb128 0x3
+ 1154 00d0 0E       		.uleb128 0xe
+ 1155 00d1 3A       		.uleb128 0x3a
+ 1156 00d2 0B       		.uleb128 0xb
+ 1157 00d3 3B       		.uleb128 0x3b
+ 1158 00d4 0B       		.uleb128 0xb
+ 1159 00d5 49       		.uleb128 0x49
+ 1160 00d6 13       		.uleb128 0x13
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 23
+
+
+ 1161 00d7 02       		.uleb128 0x2
+ 1162 00d8 06       		.uleb128 0x6
+ 1163 00d9 00       		.byte	0x0
+ 1164 00da 00       		.byte	0x0
+ 1165 00db 10       		.uleb128 0x10
+ 1166 00dc 34       		.uleb128 0x34
+ 1167 00dd 00       		.byte	0x0
+ 1168 00de 03       		.uleb128 0x3
+ 1169 00df 08       		.uleb128 0x8
+ 1170 00e0 3A       		.uleb128 0x3a
+ 1171 00e1 0B       		.uleb128 0xb
+ 1172 00e2 3B       		.uleb128 0x3b
+ 1173 00e3 0B       		.uleb128 0xb
+ 1174 00e4 49       		.uleb128 0x49
+ 1175 00e5 13       		.uleb128 0x13
+ 1176 00e6 02       		.uleb128 0x2
+ 1177 00e7 0A       		.uleb128 0xa
+ 1178 00e8 00       		.byte	0x0
+ 1179 00e9 00       		.byte	0x0
+ 1180 00ea 11       		.uleb128 0x11
+ 1181 00eb 05       		.uleb128 0x5
+ 1182 00ec 00       		.byte	0x0
+ 1183 00ed 03       		.uleb128 0x3
+ 1184 00ee 0E       		.uleb128 0xe
+ 1185 00ef 3A       		.uleb128 0x3a
+ 1186 00f0 0B       		.uleb128 0xb
+ 1187 00f1 3B       		.uleb128 0x3b
+ 1188 00f2 0B       		.uleb128 0xb
+ 1189 00f3 49       		.uleb128 0x49
+ 1190 00f4 13       		.uleb128 0x13
+ 1191 00f5 02       		.uleb128 0x2
+ 1192 00f6 0A       		.uleb128 0xa
+ 1193 00f7 00       		.byte	0x0
+ 1194 00f8 00       		.byte	0x0
+ 1195 00f9 12       		.uleb128 0x12
+ 1196 00fa 2E       		.uleb128 0x2e
+ 1197 00fb 01       		.byte	0x1
+ 1198 00fc 01       		.uleb128 0x1
+ 1199 00fd 13       		.uleb128 0x13
+ 1200 00fe 3F       		.uleb128 0x3f
+ 1201 00ff 0C       		.uleb128 0xc
+ 1202 0100 03       		.uleb128 0x3
+ 1203 0101 0E       		.uleb128 0xe
+ 1204 0102 3A       		.uleb128 0x3a
+ 1205 0103 0B       		.uleb128 0xb
+ 1206 0104 3B       		.uleb128 0x3b
+ 1207 0105 0B       		.uleb128 0xb
+ 1208 0106 27       		.uleb128 0x27
+ 1209 0107 0C       		.uleb128 0xc
+ 1210 0108 49       		.uleb128 0x49
+ 1211 0109 13       		.uleb128 0x13
+ 1212 010a 11       		.uleb128 0x11
+ 1213 010b 01       		.uleb128 0x1
+ 1214 010c 12       		.uleb128 0x12
+ 1215 010d 01       		.uleb128 0x1
+ 1216 010e 40       		.uleb128 0x40
+ 1217 010f 0A       		.uleb128 0xa
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 24
+
+
+ 1218 0110 00       		.byte	0x0
+ 1219 0111 00       		.byte	0x0
+ 1220 0112 13       		.uleb128 0x13
+ 1221 0113 2E       		.uleb128 0x2e
+ 1222 0114 01       		.byte	0x1
+ 1223 0115 01       		.uleb128 0x1
+ 1224 0116 13       		.uleb128 0x13
+ 1225 0117 3F       		.uleb128 0x3f
+ 1226 0118 0C       		.uleb128 0xc
+ 1227 0119 03       		.uleb128 0x3
+ 1228 011a 0E       		.uleb128 0xe
+ 1229 011b 3A       		.uleb128 0x3a
+ 1230 011c 0B       		.uleb128 0xb
+ 1231 011d 3B       		.uleb128 0x3b
+ 1232 011e 0B       		.uleb128 0xb
+ 1233 011f 27       		.uleb128 0x27
+ 1234 0120 0C       		.uleb128 0xc
+ 1235 0121 49       		.uleb128 0x49
+ 1236 0122 13       		.uleb128 0x13
+ 1237 0123 11       		.uleb128 0x11
+ 1238 0124 01       		.uleb128 0x1
+ 1239 0125 12       		.uleb128 0x12
+ 1240 0126 01       		.uleb128 0x1
+ 1241 0127 40       		.uleb128 0x40
+ 1242 0128 06       		.uleb128 0x6
+ 1243 0129 00       		.byte	0x0
+ 1244 012a 00       		.byte	0x0
+ 1245 012b 14       		.uleb128 0x14
+ 1246 012c 2E       		.uleb128 0x2e
+ 1247 012d 01       		.byte	0x1
+ 1248 012e 3F       		.uleb128 0x3f
+ 1249 012f 0C       		.uleb128 0xc
+ 1250 0130 03       		.uleb128 0x3
+ 1251 0131 0E       		.uleb128 0xe
+ 1252 0132 3A       		.uleb128 0x3a
+ 1253 0133 0B       		.uleb128 0xb
+ 1254 0134 3B       		.uleb128 0x3b
+ 1255 0135 0B       		.uleb128 0xb
+ 1256 0136 27       		.uleb128 0x27
+ 1257 0137 0C       		.uleb128 0xc
+ 1258 0138 49       		.uleb128 0x49
+ 1259 0139 13       		.uleb128 0x13
+ 1260 013a 11       		.uleb128 0x11
+ 1261 013b 01       		.uleb128 0x1
+ 1262 013c 12       		.uleb128 0x12
+ 1263 013d 01       		.uleb128 0x1
+ 1264 013e 40       		.uleb128 0x40
+ 1265 013f 06       		.uleb128 0x6
+ 1266 0140 00       		.byte	0x0
+ 1267 0141 00       		.byte	0x0
+ 1268 0142 00       		.byte	0x0
+ 1269              		.section	.debug_pubnames,"",%progbits
+ 1270 0000 A5000000 		.4byte	0xa5
+ 1271 0004 0200     		.2byte	0x2
+ 1272 0006 00000000 		.4byte	.Ldebug_info0
+ 1273 000a 20030000 		.4byte	0x320
+ 1274 000e 23010000 		.4byte	0x123
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 25
+
+
+ 1275 0012 696E6974 		.ascii	"initQueue\000"
+ 1275      51756575 
+ 1275      6500
+ 1276 001c 4C010000 		.4byte	0x14c
+ 1277 0020 696E6974 		.ascii	"initQueueArray\000"
+ 1277      51756575 
+ 1277      65417272 
+ 1277      617900
+ 1278 002f 8D010000 		.4byte	0x18d
+ 1279 0033 656E7175 		.ascii	"enqueue\000"
+ 1279      65756500 
+ 1280 003b BD010000 		.4byte	0x1bd
+ 1281 003f 67657448 		.ascii	"getHead\000"
+ 1281      65616400 
+ 1282 0047 E6010000 		.4byte	0x1e6
+ 1283 004b 67657454 		.ascii	"getTail\000"
+ 1283      61696C00 
+ 1284 0053 0F020000 		.4byte	0x20f
+ 1285 0057 6765744E 		.ascii	"getNodePtr\000"
+ 1285      6F646550 
+ 1285      747200
+ 1286 0062 38020000 		.4byte	0x238
+ 1287 0066 67657451 		.ascii	"getQueueID\000"
+ 1287      75657565 
+ 1287      494400
+ 1288 0071 61020000 		.4byte	0x261
+ 1289 0075 73657451 		.ascii	"setQueueID\000"
+ 1289      75657565 
+ 1289      494400
+ 1290 0080 90020000 		.4byte	0x290
+ 1291 0084 66696E64 		.ascii	"findQueueWithAddress\000"
+ 1291      51756575 
+ 1291      65576974 
+ 1291      68416464 
+ 1291      72657373 
+ 1292 0099 F8020000 		.4byte	0x2f8
+ 1293 009d 64657175 		.ascii	"dequeue\000"
+ 1293      65756500 
+ 1294 00a5 00000000 		.4byte	0x0
+ 1295              		.section	.debug_aranges,"",%progbits
+ 1296 0000 1C000000 		.4byte	0x1c
+ 1297 0004 0200     		.2byte	0x2
+ 1298 0006 00000000 		.4byte	.Ldebug_info0
+ 1299 000a 04       		.byte	0x4
+ 1300 000b 00       		.byte	0x0
+ 1301 000c 0000     		.2byte	0x0
+ 1302 000e 0000     		.2byte	0x0
+ 1303 0010 00000000 		.4byte	.Ltext0
+ 1304 0014 7C010000 		.4byte	.Letext0-.Ltext0
+ 1305 0018 00000000 		.4byte	0x0
+ 1306 001c 00000000 		.4byte	0x0
+ 1307              		.section	.debug_str,"MS",%progbits,1
+ 1308              	.LASF15:
+ 1309 0000 636F756E 		.ascii	"count\000"
+ 1309      7400
+ 1310              	.LASF20:
+ 1311 0006 696E6974 		.ascii	"initQueueArray\000"
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 26
+
+
+ 1311      51756575 
+ 1311      65417272 
+ 1311      617900
+ 1312              	.LASF11:
+ 1313 0015 70726576 		.ascii	"prev\000"
+ 1313      00
+ 1314              	.LASF21:
+ 1315 001a 656E7175 		.ascii	"enqueue\000"
+ 1315      65756500 
+ 1316              	.LASF6:
+ 1317 0022 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1317      206C6F6E 
+ 1317      6720756E 
+ 1317      7369676E 
+ 1317      65642069 
+ 1318              	.LASF26:
+ 1319 0039 67657451 		.ascii	"getQueueID\000"
+ 1319      75657565 
+ 1319      494400
+ 1320              	.LASF10:
+ 1321 0044 6E657874 		.ascii	"next\000"
+ 1321      00
+ 1322              	.LASF32:
+ 1323 0049 71756575 		.ascii	"queue.c\000"
+ 1323      652E6300 
+ 1324              	.LASF7:
+ 1325 0051 6C6F6E67 		.ascii	"long long int\000"
+ 1325      206C6F6E 
+ 1325      6720696E 
+ 1325      7400
+ 1326              	.LASF1:
+ 1327 005f 7369676E 		.ascii	"signed char\000"
+ 1327      65642063 
+ 1327      68617200 
+ 1328              	.LASF28:
+ 1329 006b 66696E64 		.ascii	"findQueueWithAddress\000"
+ 1329      51756575 
+ 1329      65576974 
+ 1329      68416464 
+ 1329      72657373 
+ 1330              	.LASF5:
+ 1331 0080 6C6F6E67 		.ascii	"long int\000"
+ 1331      20696E74 
+ 1331      00
+ 1332              	.LASF14:
+ 1333 0089 71756575 		.ascii	"queue\000"
+ 1333      6500
+ 1334              	.LASF23:
+ 1335 008f 67657448 		.ascii	"getHead\000"
+ 1335      65616400 
+ 1336              	.LASF8:
+ 1337 0097 756E7369 		.ascii	"unsigned int\000"
+ 1337      676E6564 
+ 1337      20696E74 
+ 1337      00
+ 1338              	.LASF29:
+ 1339 00a4 51617272 		.ascii	"Qarray\000"
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 27
+
+
+ 1339      617900
+ 1340              	.LASF4:
+ 1341 00ab 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1341      20756E73 
+ 1341      69676E65 
+ 1341      6420696E 
+ 1341      7400
+ 1342              	.LASF17:
+ 1343 00bd 7461696C 		.ascii	"tail\000"
+ 1343      00
+ 1344              	.LASF2:
+ 1345 00c2 73686F72 		.ascii	"short unsigned int\000"
+ 1345      7420756E 
+ 1345      7369676E 
+ 1345      65642069 
+ 1345      6E7400
+ 1346              	.LASF22:
+ 1347 00d5 6C6E6F64 		.ascii	"lnode\000"
+ 1347      6500
+ 1348              	.LASF33:
+ 1349 00db 633A5C4D 		.ascii	"c:\\MScubes\\Simulator\\2008conv\\controller\\runti"
+ 1349      53637562 
+ 1349      65735C53 
+ 1349      696D756C 
+ 1349      61746F72 
+ 1350 0109 6D6500   		.ascii	"me\000"
+ 1351              	.LASF18:
+ 1352 010c 51554555 		.ascii	"QUEUE\000"
+ 1352      4500
+ 1353              	.LASF34:
+ 1354 0112 64657175 		.ascii	"dequeue\000"
+ 1354      65756500 
+ 1355              	.LASF24:
+ 1356 011a 67657454 		.ascii	"getTail\000"
+ 1356      61696C00 
+ 1357              	.LASF0:
+ 1358 0122 756E7369 		.ascii	"unsigned char\000"
+ 1358      676E6564 
+ 1358      20636861 
+ 1358      7200
+ 1359              	.LASF13:
+ 1360 0130 6E6F6465 		.ascii	"node\000"
+ 1360      00
+ 1361              	.LASF3:
+ 1362 0135 73686F72 		.ascii	"short int\000"
+ 1362      7420696E 
+ 1362      7400
+ 1363              	.LASF12:
+ 1364 013f 4E4F4445 		.ascii	"NODE\000"
+ 1364      00
+ 1365              	.LASF16:
+ 1366 0144 68656164 		.ascii	"head\000"
+ 1366      00
+ 1367              	.LASF9:
+ 1368 0149 63686172 		.ascii	"char\000"
+ 1368      00
+ 1369              	.LASF19:
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 28
+
+
+ 1370 014e 696E6974 		.ascii	"initQueue\000"
+ 1370      51756575 
+ 1370      6500
+ 1371              	.LASF30:
+ 1372 0158 696E6465 		.ascii	"index\000"
+ 1372      7800
+ 1373              	.LASF31:
+ 1374 015e 474E5520 		.ascii	"GNU C 4.1.1 (WinARM)\000"
+ 1374      4320342E 
+ 1374      312E3120 
+ 1374      2857696E 
+ 1374      41524D29 
+ 1375              	.LASF27:
+ 1376 0173 73657451 		.ascii	"setQueueID\000"
+ 1376      75657565 
+ 1376      494400
+ 1377              	.LASF25:
+ 1378 017e 6765744E 		.ascii	"getNodePtr\000"
+ 1378      6F646550 
+ 1378      747200
+ 1379              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s 			page 29
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 queue.c
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:13     .text:00000000 initQueue
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:23     .text:00000000 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:39     .text:0000001c initQueueArray
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:70     .text:0000004c enqueue
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:113    .text:00000094 getHead
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:130    .text:0000009c getTail
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:147    .text:000000a4 getNodePtr
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:164    .text:000000ac getQueueID
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:181    .text:000000b4 setQueueID
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:198    .text:000000bc findQueueWithAddress
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/cc6Paaaa.s:251    .text:00000118 dequeue
+
+UNDEFINED SYMBOLS
+free

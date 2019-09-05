@@ -1,0 +1,232 @@
+14:33:55: Creating resource group General
+14:33:55: Creating resource group Internal
+14:33:55: Creating resource group Autodetect
+14:33:55: SceneManagerFactory for type 'DefaultSceneManager' registered.
+14:33:55: Registering ResourceManager for type Material
+14:33:55: Registering ResourceManager for type Mesh
+14:33:55: Registering ResourceManager for type Skeleton
+14:33:55: MovableObjectFactory for type 'ParticleSystem' registered.
+14:33:55: OverlayElementFactory for type Panel registered.
+14:33:55: OverlayElementFactory for type BorderPanel registered.
+14:33:55: OverlayElementFactory for type TextArea registered.
+14:33:55: Registering ResourceManager for type Font
+14:33:55: ArchiveFactory for archive type FileSystem registered.
+14:33:55: ArchiveFactory for archive type Zip registered.
+14:33:55: FreeImage version: 3.9.2
+14:33:55: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+14:33:55: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi
+14:33:55: DDS codec registering
+14:33:55: Registering ResourceManager for type HighLevelGpuProgram
+14:33:55: Registering ResourceManager for type Compositor
+14:33:55: MovableObjectFactory for type 'Entity' registered.
+14:33:55: MovableObjectFactory for type 'Light' registered.
+14:33:55: MovableObjectFactory for type 'BillboardSet' registered.
+14:33:55: MovableObjectFactory for type 'ManualObject' registered.
+14:33:55: MovableObjectFactory for type 'BillboardChain' registered.
+14:33:55: MovableObjectFactory for type 'RibbonTrail' registered.
+14:33:56: *-*-* OGRE Initialising
+14:33:56: *-*-* Version 1.4.3 (Eihort)
+14:33:56: Loading library RenderSystem_Direct3D9
+14:33:56: Installing plugin: D3D9 RenderSystem
+14:33:56: D3D9 : Direct3D9 Rendering Subsystem created.
+14:33:56: D3D9: Driver Detection Starts
+14:33:56: D3D9: Driver Detection Ends
+14:33:56: Plugin successfully installed
+14:33:56: Loading library RenderSystem_GL
+14:33:56: Installing plugin: GL RenderSystem
+14:33:56: OpenGL Rendering Subsystem created.
+14:33:57: Plugin successfully installed
+14:33:57: Loading library Plugin_ParticleFX
+14:33:57: Installing plugin: ParticleFX
+14:33:57: Particle Emitter Type 'Point' registered
+14:33:57: Particle Emitter Type 'Box' registered
+14:33:57: Particle Emitter Type 'Ellipsoid' registered
+14:33:57: Particle Emitter Type 'Cylinder' registered
+14:33:57: Particle Emitter Type 'Ring' registered
+14:33:57: Particle Emitter Type 'HollowEllipsoid' registered
+14:33:57: Particle Affector Type 'LinearForce' registered
+14:33:57: Particle Affector Type 'ColourFader' registered
+14:33:57: Particle Affector Type 'ColourFader2' registered
+14:33:57: Particle Affector Type 'ColourImage' registered
+14:33:57: Particle Affector Type 'ColourInterpolator' registered
+14:33:57: Particle Affector Type 'Scaler' registered
+14:33:57: Particle Affector Type 'Rotator' registered
+14:33:57: Particle Affector Type 'DirectionRandomiser' registered
+14:33:57: Particle Affector Type 'DeflectorPlane' registered
+14:33:57: Plugin successfully installed
+14:33:57: D3D9 : RenderSystem Option: Full Screen = No
+14:33:57: D3D9 : RenderSystem Option: VSync = No
+14:33:57: D3D9 : RenderSystem Option: Video Mode = 1024 x 768 @ 16-bit colour
+14:33:57: Creating resource group Bootstrap
+14:33:57: Added resource location 'Media/boot.zip' of type 'Zip' to resource group 'Bootstrap'
+14:33:57: Added resource location 'Media/' of type 'FileSystem' to resource group 'General'
+14:33:57: Added resource location 'Media/606/' of type 'FileSystem' to resource group 'General'
+14:33:57: Added resource location 'Media/tutorialmedia.zip' of type 'Zip' to resource group 'General'
+14:33:57: Added resource location 'Media/bguires.zip' of type 'Zip' to resource group 'General'
+14:33:57: CPU Identifier & Features
+14:33:57: -------------------------
+14:33:57:  *   CPU ID: GenuineIntel: Intel(R) Pentium(R) 4 CPU 1.80GHz
+14:33:57:  *      SSE: yes
+14:33:57:  *     SSE2: yes
+14:33:57:  *     SSE3: no
+14:33:57:  *      MMX: yes
+14:33:57:  *   MMXEXT: yes
+14:33:57:  *    3DNOW: no
+14:33:57:  * 3DNOWEXT: no
+14:33:57:  *     CMOV: yes
+14:33:57:  *      TSC: yes
+14:33:57:  *      FPU: yes
+14:33:57:  *      PRO: no
+14:33:57:  *       HT: yes
+14:33:57: -------------------------
+14:33:57: D3D9 : Subsystem Initialising
+14:33:57: D3D9RenderSystem::createRenderWindow "Cube Interface - Cube Interface for PhysX simulation", 1024x768 windowed  miscParams: FSAA=0 FSAAQuality=0 colourDepth=16 useNVPerfHUD=false vsync=false 
+14:33:57: D3D9 : Created D3D9 Rendering Window 'Cube Interface - Cube Interface for PhysX simulation' : 1024x768, 16bpp
+14:33:57: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+14:33:57: Registering ResourceManager for type Texture
+14:33:57: Registering ResourceManager for type GpuProgram
+14:33:57: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
+14:33:57: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
+14:33:57: D3D9: Vertex texture format supported - PF_FLOAT32_R
+14:33:57: RenderSystem capabilities
+14:33:57: -------------------------
+14:33:57:  * Hardware generation of mipmaps: yes
+14:33:57:  * Texture blending: yes
+14:33:57:  * Anisotropic texture filtering: yes
+14:33:57:  * Dot product texture operation: yes
+14:33:57:  * Cube mapping: yes
+14:33:57:  * Hardware stencil buffer: no
+14:33:57:  * Hardware vertex / index buffers: yes
+14:33:57:  * Vertex programs: yes
+14:33:57:    - Max vertex program version: vs_3_0
+14:33:57:  * Fragment programs: yes
+14:33:57:    - Max fragment program version: ps_3_0
+14:33:57:  * Texture Compression: yes
+14:33:57:    - DXT: yes
+14:33:57:    - VTC: no
+14:33:57:  * Scissor Rectangle: yes
+14:33:57:  * Hardware Occlusion Query: yes
+14:33:57:  * User clip planes: yes
+14:33:57:  * VET_UBYTE4 vertex element type: yes
+14:33:57:  * Infinite far plane projection: yes
+14:33:57:  * Hardware render-to-texture: yes
+14:33:57:  * Floating point textures: yes
+14:33:57:  * Non-power-of-two textures: yes
+14:33:57:  * Volume textures: yes
+14:33:57:  * Multiple Render Targets: 4
+14:33:57:  * Point Sprites: yes
+14:33:57:  * Extended point parameters: yes
+14:33:57:  * Max Point Size: 8192
+14:33:57:  * Vertex texture fetch: yes
+14:33:57:    - Max vertex textures: 4
+14:33:57:    - Vertex textures shared: no
+14:33:57: ***************************************
+14:33:57: *** D3D9 : Subsystem Initialised OK ***
+14:33:57: ***************************************
+14:33:57: ResourceBackgroundQueue - threading disabled
+14:33:57: Particle Renderer Type 'billboard' registered
+14:33:57: Creating viewport on target 'Cube Interface - Cube Interface for PhysX simulation', rendering from camera 'MainCamera', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+14:33:57: Viewport for camera 'MainCamera', actual dimensions L: 0 T: 0 W: 1024 H: 768
+14:33:57: Parsing scripts for resource group Autodetect
+14:33:57: Finished parsing scripts for resource group Autodetect
+14:33:57: Parsing scripts for resource group Bootstrap
+14:33:57: Parsing script gui.material
+14:33:57: Parsing script instructions.material
+14:33:57: Parsing script nx.bodyguide.material
+14:33:57: Parsing script boot.material
+14:33:57: Parsing script Ogre.fontdef
+14:33:57: Finished parsing scripts for resource group Bootstrap
+14:33:57: Parsing scripts for resource group General
+14:33:57: Parsing script 01 - Default.material
+14:33:57: Parsing script base.material
+14:33:57: Error in material base at line 11 of base.material: Invalid vertex_program_ref entry - vertex program BlinnVP has not been defined.
+14:33:57: Error in material base at line 15 of base.material: Invalid fragment_program_ref entry - fragment program Blinn_Pure_FP has not been defined.
+14:33:57: Parsing script battery.material
+14:33:57: Error in material battery at line 11 of battery.material: Invalid vertex_program_ref entry - vertex program BlinnVP has not been defined.
+14:33:57: Error in material battery at line 15 of battery.material: Invalid fragment_program_ref entry - fragment program Blinn_Pure_FP has not been defined.
+14:33:57: Parsing script controller.material
+14:33:57: Error in material controller at line 11 of controller.material: Invalid vertex_program_ref entry - vertex program BlinnVP has not been defined.
+14:33:57: Error in material controller at line 15 of controller.material: Invalid fragment_program_ref entry - fragment program Blinn_Pure_FP has not been defined.
+14:33:57: Parsing script cube.material
+14:33:57: Error in material cube at line 11 of cube.material: Invalid vertex_program_ref entry - vertex program BlinnVP has not been defined.
+14:33:57: Error in material cube at line 15 of cube.material: Invalid fragment_program_ref entry - fragment program Blinn_Pure_FP has not been defined.
+14:33:57: Parsing script gripper.material
+14:33:57: Error in material gripper at line 11 of gripper.material: Invalid vertex_program_ref entry - vertex program BlinnVP has not been defined.
+14:33:57: Error in material gripper at line 15 of gripper.material: Invalid fragment_program_ref entry - fragment program Blinn_Pure_FP has not been defined.
+14:33:57: Parsing script nxbgui.material
+14:33:57: Parsing script nx.floor.material
+14:33:57: Parsing script nx.floor2.material
+14:33:57: Parsing script nx.particles.material
+14:33:57: Parsing script 312.material
+14:33:57: Parsing script 313.material
+14:33:57: Parsing script arrows.material
+14:33:57: Parsing script chair.material
+14:33:57: Parsing script int.material
+14:33:57: Parsing script nx.interior1.material
+14:33:57: Parsing script nx.stairs.material
+14:33:57: Parsing script set.material
+14:33:57: Parsing script nx.shapes.material
+14:33:57: Parsing script bgui.material
+14:33:57: Finished parsing scripts for resource group General
+14:33:57: Parsing scripts for resource group Internal
+14:33:57: Finished parsing scripts for resource group Internal
+14:33:57: Texture: any.jpg: Loading 1 faces(PF_R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+14:33:57: Texture: gui_loading_notice.png: Loading 1 faces(PF_A8R8G8B8,128x32x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x32x1.
+14:33:57: *** Initializing OIS ***
+14:33:58: Texture: bgui.exit.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:33:58: Texture: pause.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:33:58: Texture: debug.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:33:58: Texture: bgui.window.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
+14:33:58: Font nxogrefontusing texture size 512x256
+14:33:58: Info: Freetype returned null for character 160 in font nxogrefont
+14:33:58: Texture: nxogrefontTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+14:33:58: Texture: bgui.textinput.png: Loading 1 faces(PF_R8G8B8,120x22x1) with 1 generated mipmaps from Image. Internal format is PF_X8R8G8B8,120x22x1.
+14:33:58: Texture: bgui.button.png: Loading 1 faces(PF_R8G8B8,75x22x1) with 1 generated mipmaps from Image. Internal format is PF_X8R8G8B8,75x22x1.
+14:33:58: Texture: bgui.window.titlebar.png: Loading 1 faces(PF_A8R8G8B8,128x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x22x1.
+14:33:58: Texture: bgui.pointer.png: Loading 1 faces(PF_A8R8G8B8,24x24x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,24x24x1.
+14:33:58: Texture: gui_pause.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
+14:33:58: Registering ResourceManager for type NxSCM
+14:33:58: Mesh: Loading battery.mesh.
+14:33:58: Mesh: Loading nx.floor2.mesh.
+14:33:58: Texture: nx.floor.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+14:33:58: Texture: nx.floor2.png: Loading 1 faces(PF_R8G8B8,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+14:33:58: Mesh: Loading nx.body.axis.mesh.
+14:33:58: WARNING: nx.body.axis.mesh is an older format ([MeshSerializer_v1.30]); you should upgrade it as soon as possible using the OgreMeshUpgrade tool.
+14:33:58: Texture: arrow1.png: Loading 1 faces(PF_A8R8G8B8,256x256x1) with  hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x256x1.
+14:33:58: WARNING: Stencil shadows were requested, but this device does not have a hardware stencil. Shadows disabled.
+14:34:01: Texture: bgui.button.active.png: Loading 1 faces(PF_R8G8B8,75x22x1) with 1 generated mipmaps from Image. Internal format is PF_X8R8G8B8,75x22x1.
+14:34:01: Mesh: Loading collisionController.mesh.
+14:34:01: Mesh: Loading controller.mesh.
+14:34:01: Mesh: Loading Battery.mesh.
+14:34:01: Mesh: Loading collisionPinCubeB.mesh.
+14:34:01: Mesh: Loading cubeB.mesh.
+14:34:01: Mesh: Loading collisionPinCubeT.mesh.
+14:34:02: Mesh: Loading cubeT.mesh.
+14:34:36: Texture: bgui.textinput.active.png: Loading 1 faces(PF_R8G8B8,120x22x1) with 1 generated mipmaps from Image. Internal format is PF_X8R8G8B8,120x22x1.
+14:46:20: Texture: debugon.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:46:20: Texture: pause.active.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:46:20: Texture: bgui.exit.active.png: Loading 1 faces(PF_A8R8G8B8,22x22x1) with 1 generated mipmaps from Image. Internal format is PF_A8R8G8B8,22x22x1.
+14:46:21: Unregistering ResourceManager for type NxSCM
+14:46:21: *-*-* OGRE Shutdown
+14:46:21: *-*-* OGRE Shutdown
+14:46:21: Unregistering ResourceManager for type Compositor
+14:46:21: Unregistering ResourceManager for type Font
+14:46:21: Unregistering ResourceManager for type Skeleton
+14:46:21: Unregistering ResourceManager for type Mesh
+14:46:21: Unregistering ResourceManager for type HighLevelGpuProgram
+14:46:21: Uninstalling plugin: ParticleFX
+14:46:21: Plugin successfully uninstalled
+14:46:21: Unloading library Plugin_ParticleFX
+14:46:21: Uninstalling plugin: GL RenderSystem
+14:46:21: *** Stopping Win32GL Subsystem ***
+14:46:21: Plugin successfully uninstalled
+14:46:21: Unloading library RenderSystem_GL
+14:46:21: Uninstalling plugin: D3D9 RenderSystem
+14:46:22: Render Target 'Cube Interface - Cube Interface for PhysX simulation' Average FPS: 78.6677 Best FPS: 154.609 Worst FPS: 0.206307
+14:46:22: D3D9 : Shutting down cleanly.
+14:46:22: Unregistering ResourceManager for type Texture
+14:46:22: Unregistering ResourceManager for type GpuProgram
+14:46:22: D3D9 : Direct3D9 Rendering Subsystem destroyed.
+14:46:22: Plugin successfully uninstalled
+14:46:22: Unloading library RenderSystem_Direct3D9
+14:46:22: Unregistering ResourceManager for type Material

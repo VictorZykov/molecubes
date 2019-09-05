@@ -1,0 +1,1977 @@
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 1
+
+
+   1              		.file	"main_serial.c"
+   2              		.section	.debug_abbrev,"",%progbits
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,"",%progbits
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,"",%progbits
+   7              	.Ldebug_line0:
+   8 0000 CB000000 		.text
+   8      02006600 
+   8      00000201 
+   8      FB0E0D00 
+   8      01010101 
+   9              	.Ltext0:
+  10              		.align	2
+  11              		.global	uartGetRxBuffer
+  12              		.type	uartGetRxBuffer, %function
+  13              	uartGetRxBuffer:
+  14              	.LFB2:
+  15              		.file 1 "main_serial.c"
+   1:main_serial.c **** /*
+   2:main_serial.c **** 	LPCUSB, an USB device driver for LPC microcontrollers	
+   3:main_serial.c **** 	Copyright (C) 2006 Bertrik Sikken (bertrik@sikken.nl)
+   4:main_serial.c **** 
+   5:main_serial.c **** 	Redistribution and use in source and binary forms, with or without
+   6:main_serial.c **** 	modification, are permitted provided that the following conditions are met:
+   7:main_serial.c **** 
+   8:main_serial.c **** 	1. Redistributions of source code must retain the above copyright
+   9:main_serial.c **** 	   notice, this list of conditions and the following disclaimer.
+  10:main_serial.c **** 	2. Redistributions in binary form must reproduce the above copyright
+  11:main_serial.c **** 	   notice, this list of conditions and the following disclaimer in the
+  12:main_serial.c **** 	   documentation and/or other materials provided with the distribution.
+  13:main_serial.c **** 	3. The name of the author may not be used to endorse or promote products
+  14:main_serial.c **** 	   derived from this software without specific prior written permission.
+  15:main_serial.c **** 
+  16:main_serial.c **** 	THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+  17:main_serial.c **** 	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+  18:main_serial.c **** 	OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+  19:main_serial.c **** 	IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  20:main_serial.c **** 	INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  21:main_serial.c **** 	NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  22:main_serial.c **** 	DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  23:main_serial.c **** 	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  24:main_serial.c **** 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+  25:main_serial.c **** 	THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  26:main_serial.c **** */
+  27:main_serial.c **** 
+  28:main_serial.c **** /*
+  29:main_serial.c **** 	Minimal implementation of a USB serial port, using the CDC class.
+  30:main_serial.c **** 	This example application simply echoes everything it receives right back
+  31:main_serial.c **** 	to the host.
+  32:main_serial.c **** 
+  33:main_serial.c **** 	Windows:
+  34:main_serial.c **** 	Extract the usbser.sys file from .cab file in C:\WINDOWS\Driver Cache\i386
+  35:main_serial.c **** 	and store it somewhere (C:\temp is a good place) along with the usbser.inf
+  36:main_serial.c **** 	file. Then plug in the LPC214x and direct windows to the usbser driver.
+  37:main_serial.c **** 	Windows then creates an extra COMx port that you can open in a terminal
+  38:main_serial.c **** 	program, like hyperterminal.
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 2
+
+
+  39:main_serial.c **** 
+  40:main_serial.c **** 	Linux:
+  41:main_serial.c **** 	The device should be recognised automatically by the cdc_acm driver,
+  42:main_serial.c **** 	which creates a /dev/ttyACMx device file that acts just like a regular
+  43:main_serial.c **** 	serial port.
+  44:main_serial.c **** 
+  45:main_serial.c **** */
+  46:main_serial.c **** #include <string.h>
+  47:main_serial.c **** #include "global.h"			// include our global project settings
+  48:main_serial.c **** #include "lpc2000.h"		// include LPC210x defines
+  49:main_serial.c **** 
+  50:main_serial.c **** #include "processor.h"		// include processor initialization functions
+  51:main_serial.c **** #include "timer.h"			// include timer functions
+  52:main_serial.c **** #include "buffer.h"
+  53:main_serial.c **** 
+  54:main_serial.c **** #include "uartintr.h"
+  55:main_serial.c **** #include "spi.h"
+  56:main_serial.c **** #include "a2d.h"
+  57:main_serial.c **** #include "i2c.h"
+  58:main_serial.c **** #include "rprintf.h"
+  59:main_serial.c **** #include "usb.h"
+  60:main_serial.c **** #include "uartintr.h"
+  61:main_serial.c **** 
+  62:main_serial.c **** #include "molecubePacket.h"
+  63:main_serial.c **** //#include "orientationControl.h"
+  64:main_serial.c **** 
+  65:main_serial.c **** #define broadcastAddress	0xFE
+  66:main_serial.c **** #define broadcastClass		0xFE
+  67:main_serial.c **** 
+  68:main_serial.c **** 
+  69:main_serial.c **** cBuffer* uartGetRxBuffer(u08 bus)
+  70:main_serial.c **** {
+  16              		.loc 1 70 0
+  17              		@ args = 0, pretend = 0, frame = 0
+  18              		@ frame_needed = 0, uses_anonymous_args = 0
+  19              	.LVL0:
+  20 0000 04E02DE5 		str	lr, [sp, #-4]!
+  21              	.LCFI0:
+  71:main_serial.c **** 	if(bus == 0)
+  22              		.loc 1 71 0
+  23 0004 FF0010E3 		tst	r0, #255
+  24 0008 0100001A 		bne	.L2
+  72:main_serial.c **** 		return uart0GetRxBuffer();
+  25              		.loc 1 72 0
+  26 000c FEFFFFEB 		bl	uart0GetRxBuffer
+  27              	.LVL1:
+  28 0010 04F09DE4 		ldr	pc, [sp], #4
+  29              	.LVL2:
+  30              	.L2:
+  73:main_serial.c **** 	else
+  74:main_serial.c **** 		return uart1GetRxBuffer();
+  31              		.loc 1 74 0
+  32 0014 FEFFFFEB 		bl	uart1GetRxBuffer
+  33              	.LVL3:
+  75:main_serial.c **** }
+  34              		.loc 1 75 0
+  35 0018 04F09DE4 		ldr	pc, [sp], #4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 3
+
+
+  36              	.LFE2:
+  37              		.size	uartGetRxBuffer, .-uartGetRxBuffer
+  38              		.align	2
+  39              		.global	GetResponse
+  40              		.type	GetResponse, %function
+  41              	GetResponse:
+  42              	.LFB3:
+  76:main_serial.c **** 
+  77:main_serial.c **** 
+  78:main_serial.c **** u08 GetResponse(u08 serBus, u08 devClass, u08 devAddress)
+  79:main_serial.c **** {
+  43              		.loc 1 79 0
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46              	.LVL4:
+  47 001c F0412DE9 		stmfd	sp!, {r4, r5, r6, r7, r8, lr}
+  48              	.LCFI1:
+  49 0020 FF5000E2 		and	r5, r0, #255
+  50 0024 FF7001E2 		and	r7, r1, #255
+  51 0028 FF6002E2 		and	r6, r2, #255
+  52              		.loc 1 79 0
+  53 002c 0040A0E3 		mov	r4, #0
+  54              	.LVL5:
+  55 0030 5D3DA0E3 		mov	r3, #5952
+  56 0034 308083E2 		add	r8, r3, #48
+  57 0038 000000EA 		b	.L7
+  58              	.LVL6:
+  59              	.L8:
+  80:main_serial.c **** 	u32 a = 0;
+  81:main_serial.c **** 	while ((packetRxProcess(serBus, devClass, devAddress, 
+  82:main_serial.c **** 			uartGetRxBuffer(serBus)) == FALSE) && 
+  83:main_serial.c **** 			(a < CMD_RESPONSE_TIMEOUT))
+  84:main_serial.c **** 	{	a+=1;	};
+  60              		.loc 1 84 0
+  61 003c 014084E2 		add	r4, r4, #1
+  62              	.LVL7:
+  63              	.L7:
+  64              		.loc 1 81 0
+  65 0040 0500A0E1 		mov	r0, r5
+  66 0044 FEFFFFEB 		bl	uartGetRxBuffer
+  67 0048 0030A0E1 		mov	r3, r0
+  68 004c 0500A0E1 		mov	r0, r5
+  69 0050 0710A0E1 		mov	r1, r7
+  70 0054 0620A0E1 		mov	r2, r6
+  71 0058 FEFFFFEB 		bl	packetRxProcess
+  72 005c 000050E3 		cmp	r0, #0
+  73 0060 0200001A 		bne	.L9
+  74 0064 080054E1 		cmp	r4, r8
+  75 0068 F3FFFF1A 		bne	.L8
+  76 006c 040000EA 		b	.L11
+  77              	.L9:
+  85:main_serial.c **** 	
+  86:main_serial.c **** 	if (a < CMD_RESPONSE_TIMEOUT)	// wait intil a serial timeout occurs
+  78              		.loc 1 86 0
+  79 0070 5D3DA0E3 		mov	r3, #5952
+  80 0074 2F3083E2 		add	r3, r3, #47
+  81 0078 030054E1 		cmp	r4, r3
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 4
+
+
+  82 007c FF00A093 		movls	r0, #255
+  83 0080 F081BD98 		ldmlsfd	sp!, {r4, r5, r6, r7, r8, pc}
+  84              	.L11:
+  85 0084 0000A0E3 		mov	r0, #0
+  87:main_serial.c **** 	{				// check if the right command is confirmed
+  88:main_serial.c **** 		return TRUE;
+  89:main_serial.c **** //		RGB_LED_PWMx(M_PCA, 0x01, 0xFF, 0x01);
+  90:main_serial.c **** //		timerPause(5);
+  91:main_serial.c **** //		RGB_LED_PWMx(M_PCA, 0.01, 0x01, 0x01);
+  92:main_serial.c **** 	} // report an error: serial communication timeout occurred 
+  93:main_serial.c **** 	return FALSE;
+  94:main_serial.c **** };
+  86              		.loc 1 94 0
+  87 0088 F081BDE8 		ldmfd	sp!, {r4, r5, r6, r7, r8, pc}
+  88              	.LFE3:
+  89              		.size	GetResponse, .-GetResponse
+  90              		.section	.rodata.str1.4,"aMS",%progbits,1
+  91              		.align	2
+  92              	.LC0:
+  93 0000 3A2800   		.ascii	":(\000"
+  94 0003 00       		.text
+  95              		.align	2
+  96              		.global	main
+  97              		.type	main, %function
+  98              	main:
+  99              	.LFB4:
+  95:main_serial.c **** 
+  96:main_serial.c **** 
+  97:main_serial.c **** /*************************************************************************
+  98:main_serial.c **** 	main
+  99:main_serial.c **** 	====
+ 100:main_serial.c **** **************************************************************************/
+ 101:main_serial.c **** int main(void)
+ 102:main_serial.c **** {
+ 100              		.loc 1 102 0
+ 101              		@ args = 0, pretend = 0, frame = 64
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103 008c 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 104              	.LCFI2:
+ 105 0090 44D04DE2 		sub	sp, sp, #68
+ 106              	.LCFI3:
+ 103:main_serial.c **** 	int c;
+ 104:main_serial.c **** 	u08 params[MAX_PACKET_SIZE];
+ 105:main_serial.c **** 
+ 106:main_serial.c **** 	// initialize processor
+ 107:main_serial.c **** 	processorInit();
+ 107              		.loc 1 107 0
+ 108 0094 FEFFFFEB 		bl	processorInit
+ 108:main_serial.c **** 	// initialize timers
+ 109:main_serial.c **** 	
+ 110:main_serial.c **** 	usbSetup();
+ 109              		.loc 1 110 0
+ 110 0098 FEFFFFEB 		bl	usbSetup
+ 111:main_serial.c **** 	rprintfInit((void*)VCOM_putchar);
+ 111              		.loc 1 111 0
+ 112 009c 18039FE5 		ldr	r0, .L51
+ 113 00a0 FEFFFFEB 		bl	rprintfInit
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 5
+
+
+ 112:main_serial.c **** 	HD232_Init();
+ 114              		.loc 1 112 0
+ 115 00a4 FEFFFFEB 		bl	HD232_Init
+ 113:main_serial.c **** 	timerInit();
+ 116              		.loc 1 113 0
+ 117 00a8 FEFFFFEB 		bl	timerInit
+ 114:main_serial.c **** 	
+ 115:main_serial.c **** 	a2dInit();
+ 118              		.loc 1 115 0
+ 119 00ac FEFFFFEB 		bl	a2dInit
+ 116:main_serial.c **** 	spiInit();
+ 120              		.loc 1 116 0
+ 121 00b0 FEFFFFEB 		bl	spiInit
+ 117:main_serial.c **** 	i2cInit();
+ 122              		.loc 1 117 0
+ 123 00b4 FEFFFFEB 		bl	i2cInit
+ 118:main_serial.c **** 	cmd_Init();
+ 124              		.loc 1 118 0
+ 125 00b8 FEFFFFEB 		bl	cmd_Init
+ 119:main_serial.c **** 
+ 120:main_serial.c **** 	
+ 121:main_serial.c **** 	RXPKT *trgPkt;
+ 122:main_serial.c **** 	trgPkt = &ext_busRxPkt;
+ 123:main_serial.c **** 
+ 124:main_serial.c **** //	u16 HalfPeriod = 2000;
+ 125:main_serial.c **** //	u16 b = 0;
+ 126:main_serial.c **** 
+ 127:main_serial.c **** 
+ 128:main_serial.c **** 		timerPause(5000);
+ 126              		.loc 1 128 0
+ 127 00bc 4E0DA0E3 		mov	r0, #4992
+ 128 00c0 080080E2 		add	r0, r0, #8
+ 129 00c4 FEFFFFEB 		bl	timerPause
+ 129:main_serial.c **** 
+ 130:main_serial.c **** 		// Turn an output ON
+ 131:main_serial.c **** 
+ 132:main_serial.c **** 		u08 InSide = 3; 	// 0..5 Side ID: Main = 0, Right = 1, Left = 2, S_Main = 3, S_R = 4, S_L = 5
+ 133:main_serial.c **** 		u08 InPin = 0;		// 0..4 - individual pins
+ 134:main_serial.c **** 		u08 InState = 1;	// 0..1 OUTPUT HIGH On = 1 / Off = 0 toggle, desired state of pin
+ 135:main_serial.c **** 				
+ 136:main_serial.c **** 		params[0] = (InSide<<4) | (InPin<<2) | InState;  		
+ 130              		.loc 1 136 0
+ 131 00c8 3130A0E3 		mov	r3, #49
+ 132 00cc 0430CDE5 		strb	r3, [sp, #4]
+ 137:main_serial.c **** 
+ 138:main_serial.c **** 		cmd_BuildPacket(controllerTripletClass, 0x00, 0x08, 1, params);
+ 133              		.loc 1 138 0
+ 134 00d0 04308DE2 		add	r3, sp, #4
+ 135 00d4 00308DE5 		str	r3, [sp, #0]
+ 136 00d8 FC00A0E3 		mov	r0, #252
+ 137 00dc 0010A0E3 		mov	r1, #0
+ 138 00e0 0820A0E3 		mov	r2, #8
+ 139 00e4 0130A0E3 		mov	r3, #1
+ 140 00e8 FEFFFFEB 		bl	cmd_BuildPacket
+ 139:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);	
+ 141              		.loc 1 139 0
+ 142 00ec 0100A0E3 		mov	r0, #1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 6
+
+
+ 143 00f0 FEFFFFEB 		bl	cmd_Execute
+ 140:main_serial.c **** 
+ 141:main_serial.c **** 
+ 142:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, controllerTripletClass, 0x00))
+ 144              		.loc 1 142 0
+ 145 00f4 0100A0E3 		mov	r0, #1
+ 146 00f8 FC10A0E3 		mov	r1, #252
+ 147 00fc 0020A0E3 		mov	r2, #0
+ 148 0100 FEFFFFEB 		bl	GetResponse
+ 149 0104 000050E3 		cmp	r0, #0
+ 150 0108 1400000A 		beq	.L16
+ 151              	.LBB2:
+ 143:main_serial.c **** 		{
+ 144:main_serial.c **** 			rprintfu08(trgPkt->cmd);		//	VCOM_putchar(' ');
+ 152              		.loc 1 144 0
+ 153 010c AC429FE5 		ldr	r4, .L51+4
+ 154 0110 0000D4E5 		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 155 0114 FEFFFFEB 		bl	rprintfu08
+ 145:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);	//	VCOM_putchar(' ');
+ 156              		.loc 1 145 0
+ 157 0118 8100D4E5 		ldrb	r0, [r4, #129]	@ zero_extendqisi2
+ 158 011c FEFFFFEB 		bl	rprintfu08
+ 146:main_serial.c **** 			u08 i = 0;
+ 147:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 159              		.loc 1 147 0
+ 160 0120 8130D4E5 		ldrb	r3, [r4, #129]	@ zero_extendqisi2
+ 161 0124 000053E3 		cmp	r3, #0
+ 162 0128 0900000A 		beq	.L18
+ 163 012c 0040A0E3 		mov	r4, #0
+ 164              	.LVL8:
+ 165 0130 88529FE5 		ldr	r5, .L51+4
+ 166              	.L20:
+ 148:main_serial.c **** 			{	
+ 149:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 167              		.loc 1 149 0
+ 168 0134 053084E0 		add	r3, r4, r5
+ 169 0138 0100D3E5 		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 170 013c FEFFFFEB 		bl	rprintfu08
+ 171              		.loc 1 147 0
+ 172 0140 013084E2 		add	r3, r4, #1
+ 173 0144 FF4003E2 		and	r4, r3, #255
+ 174 0148 8130D5E5 		ldrb	r3, [r5, #129]	@ zero_extendqisi2
+ 175 014c 040053E1 		cmp	r3, r4
+ 176 0150 F7FFFF8A 		bhi	.L20
+ 177              	.L18:
+ 150:main_serial.c **** 			};
+ 151:main_serial.c **** 			VCOM_putchar('\r');
+ 178              		.loc 1 151 0
+ 179 0154 0D00A0E3 		mov	r0, #13
+ 180 0158 FEFFFFEB 		bl	VCOM_putchar
+ 181 015c 040000EA 		b	.L21
+ 182              	.LVL9:
+ 183              	.L16:
+ 184              	.LBE2:
+ 152:main_serial.c **** 		}
+ 153:main_serial.c **** 		else	{	rprintf(":(");	 VCOM_putchar('\r');	};
+ 185              		.loc 1 153 0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 7
+
+
+ 186 0160 0000A0E3 		mov	r0, #0
+ 187 0164 58129FE5 		ldr	r1, .L51+8
+ 188 0168 FEFFFFEB 		bl	rprintf1RamRom
+ 189 016c 0D00A0E3 		mov	r0, #13
+ 190 0170 FEFFFFEB 		bl	VCOM_putchar
+ 191              	.LVL10:
+ 192              	.L21:
+ 154:main_serial.c **** 
+ 155:main_serial.c **** 
+ 156:main_serial.c **** /*
+ 157:main_serial.c **** 		timerPause(100);
+ 158:main_serial.c **** 
+ 159:main_serial.c **** 		// Turn an output OFF
+ 160:main_serial.c **** 
+ 161:main_serial.c **** 		InSide = 0; 	// 0..5 Side ID: Main = 0, Right = 1, Left = 2, S_Main = 3, S_R = 4, S_L = 5
+ 162:main_serial.c **** 		InPin = 0;		// 0..4 - individual pins
+ 163:main_serial.c **** 		InState = 0;	// 0..1 OUTPUT HIGH On = 1 / Off = 0 toggle, desired state of pin
+ 164:main_serial.c **** 				
+ 165:main_serial.c **** 		params[0] = (InSide<<4) | (InPin<<2) | InState;  		
+ 166:main_serial.c **** 
+ 167:main_serial.c **** 		cmd_BuildPacket(0xFC, 0x00, 0x08, 1, params);
+ 168:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);		
+ 169:main_serial.c **** 
+ 170:main_serial.c **** 
+ 171:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, 0xFC, 0x00))
+ 172:main_serial.c **** 		{
+ 173:main_serial.c **** 			rprintfu08(trgPkt->cmd);			//VCOM_putchar(' ');
+ 174:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);		//VCOM_putchar(' ');
+ 175:main_serial.c **** 			u08 i = 0;
+ 176:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 177:main_serial.c **** 			{	
+ 178:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 179:main_serial.c **** 			};
+ 180:main_serial.c **** 			VCOM_putchar('\r');
+ 181:main_serial.c **** 		}
+ 182:main_serial.c **** 		else	{	rprintf(":(");	VCOM_putchar('\r');		};
+ 183:main_serial.c **** 
+ 184:main_serial.c **** */
+ 185:main_serial.c **** 
+ 186:main_serial.c **** 
+ 187:main_serial.c **** /*		timerPause(10);
+ 188:main_serial.c **** 
+ 189:main_serial.c **** 		// Poll INPUTS
+ 190:main_serial.c **** 
+ 191:main_serial.c **** 		cmd_BuildPacket(0xFE, 0x00, 0x09, 0, params);
+ 192:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);	
+ 193:main_serial.c **** 
+ 194:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, 0xFC, 0x00))
+ 195:main_serial.c **** 		{
+ 196:main_serial.c **** 			rprintfu08(trgPkt->cmd);		//	VCOM_putchar(' ');
+ 197:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);	//	VCOM_putchar(' ');
+ 198:main_serial.c **** 			u08 i = 0;
+ 199:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 200:main_serial.c **** 			{	
+ 201:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 202:main_serial.c **** 			};
+ 203:main_serial.c **** 			VCOM_putchar('\r');
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 8
+
+
+ 204:main_serial.c **** 		}
+ 205:main_serial.c **** 		else	{	rprintf(":(");	 VCOM_putchar('\r');	};
+ 206:main_serial.c **** */
+ 207:main_serial.c **** 
+ 208:main_serial.c **** 		timerPause(100);
+ 193              		.loc 1 208 0
+ 194 0174 6400A0E3 		mov	r0, #100
+ 195 0178 FEFFFFEB 		bl	timerPause
+ 209:main_serial.c **** 
+ 210:main_serial.c **** 		// Conditional address assignment upon sensing a high input
+ 211:main_serial.c **** 
+ 212:main_serial.c **** 		u08 goalAddress = 1;
+ 213:main_serial.c **** 
+ 214:main_serial.c **** 		params[0] = goalAddress;
+ 196              		.loc 1 214 0
+ 197 017c 0140A0E3 		mov	r4, #1
+ 198              	.LVL11:
+ 199 0180 0440CDE5 		strb	r4, [sp, #4]
+ 215:main_serial.c **** 
+ 216:main_serial.c **** 		cmd_BuildPacket(broadcastClass, broadcastAddress, 0x04, 1, params);
+ 200              		.loc 1 216 0
+ 201 0184 04308DE2 		add	r3, sp, #4
+ 202 0188 00308DE5 		str	r3, [sp, #0]
+ 203 018c FE00A0E3 		mov	r0, #254
+ 204 0190 0010A0E1 		mov	r1, r0
+ 205 0194 0420A0E3 		mov	r2, #4
+ 206 0198 0430A0E1 		mov	r3, r4
+ 207 019c FEFFFFEB 		bl	cmd_BuildPacket
+ 217:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);	
+ 208              		.loc 1 217 0
+ 209 01a0 0400A0E1 		mov	r0, r4
+ 210 01a4 FEFFFFEB 		bl	cmd_Execute
+ 218:main_serial.c **** 
+ 219:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, actuatorSouthClass, goalAddress))
+ 211              		.loc 1 219 0
+ 212 01a8 0400A0E1 		mov	r0, r4
+ 213 01ac FA10A0E3 		mov	r1, #250
+ 214 01b0 0420A0E1 		mov	r2, r4
+ 215 01b4 FEFFFFEB 		bl	GetResponse
+ 216 01b8 000050E3 		cmp	r0, #0
+ 217 01bc 1400000A 		beq	.L22
+ 218              	.LBB3:
+ 220:main_serial.c **** 		{
+ 221:main_serial.c **** 			rprintfu08(trgPkt->cmd);		//	VCOM_putchar(' ');
+ 219              		.loc 1 221 0
+ 220 01c0 F8419FE5 		ldr	r4, .L51+4
+ 221 01c4 0000D4E5 		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 222 01c8 FEFFFFEB 		bl	rprintfu08
+ 222:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);	//	VCOM_putchar(' ');
+ 223              		.loc 1 222 0
+ 224 01cc 8100D4E5 		ldrb	r0, [r4, #129]	@ zero_extendqisi2
+ 225 01d0 FEFFFFEB 		bl	rprintfu08
+ 223:main_serial.c **** 			u08 i = 0;
+ 224:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 226              		.loc 1 224 0
+ 227 01d4 8130D4E5 		ldrb	r3, [r4, #129]	@ zero_extendqisi2
+ 228 01d8 000053E3 		cmp	r3, #0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 9
+
+
+ 229 01dc 0900000A 		beq	.L24
+ 230 01e0 0040A0E3 		mov	r4, #0
+ 231              	.LVL12:
+ 232 01e4 D4519FE5 		ldr	r5, .L51+4
+ 233              	.L26:
+ 225:main_serial.c **** 			{	
+ 226:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 234              		.loc 1 226 0
+ 235 01e8 053084E0 		add	r3, r4, r5
+ 236 01ec 0100D3E5 		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 237 01f0 FEFFFFEB 		bl	rprintfu08
+ 238              		.loc 1 224 0
+ 239 01f4 013084E2 		add	r3, r4, #1
+ 240 01f8 FF4003E2 		and	r4, r3, #255
+ 241 01fc 8130D5E5 		ldrb	r3, [r5, #129]	@ zero_extendqisi2
+ 242 0200 040053E1 		cmp	r3, r4
+ 243 0204 F7FFFF8A 		bhi	.L26
+ 244              	.L24:
+ 227:main_serial.c **** 			};
+ 228:main_serial.c **** 			VCOM_putchar('\r');
+ 245              		.loc 1 228 0
+ 246 0208 0D00A0E3 		mov	r0, #13
+ 247 020c FEFFFFEB 		bl	VCOM_putchar
+ 248 0210 040000EA 		b	.L50
+ 249              	.LVL13:
+ 250              	.L22:
+ 251              	.LBE3:
+ 229:main_serial.c **** 		}
+ 230:main_serial.c **** 		else	{	rprintf(":(");	 VCOM_putchar('\r');	};
+ 252              		.loc 1 230 0
+ 253 0214 0000A0E3 		mov	r0, #0
+ 254 0218 A4119FE5 		ldr	r1, .L51+8
+ 255 021c FEFFFFEB 		bl	rprintf1RamRom
+ 256 0220 0D00A0E3 		mov	r0, #13
+ 257 0224 FEFFFFEB 		bl	VCOM_putchar
+ 258              	.LVL14:
+ 259              	.L50:
+ 231:main_serial.c **** 
+ 232:main_serial.c **** 
+ 233:main_serial.c **** 
+ 234:main_serial.c **** 		while(1)
+ 235:main_serial.c **** 		{
+ 236:main_serial.c **** 
+ 237:main_serial.c **** 		timerPause(20);
+ 260              		.loc 1 237 0
+ 261 0228 1400A0E3 		mov	r0, #20
+ 262 022c FEFFFFEB 		bl	timerPause
+ 238:main_serial.c **** 
+ 239:main_serial.c **** 		// Setting LEDs
+ 240:main_serial.c **** 
+ 241:main_serial.c **** 		params[0] = 0;
+ 263              		.loc 1 241 0
+ 264 0230 0050A0E3 		mov	r5, #0
+ 265 0234 0450CDE5 		strb	r5, [sp, #4]
+ 242:main_serial.c **** 		params[1] = 2;
+ 266              		.loc 1 242 0
+ 267 0238 0230A0E3 		mov	r3, #2
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 10
+
+
+ 268 023c 0530CDE5 		strb	r3, [sp, #5]
+ 243:main_serial.c **** 		params[2] = 50;
+ 269              		.loc 1 243 0
+ 270 0240 303083E2 		add	r3, r3, #48
+ 271 0244 0630CDE5 		strb	r3, [sp, #6]
+ 244:main_serial.c **** 		params[3] = 50;
+ 272              		.loc 1 244 0
+ 273 0248 0730CDE5 		strb	r3, [sp, #7]
+ 245:main_serial.c **** 
+ 246:main_serial.c **** 		cmd_BuildPacket(actuatorSouthClass, goalAddress, 0x12, 4, params);
+ 274              		.loc 1 246 0
+ 275 024c 04308DE2 		add	r3, sp, #4
+ 276 0250 00308DE5 		str	r3, [sp, #0]
+ 277 0254 FA00A0E3 		mov	r0, #250
+ 278 0258 0110A0E3 		mov	r1, #1
+ 279 025c 1220A0E3 		mov	r2, #18
+ 280 0260 0430A0E3 		mov	r3, #4
+ 281 0264 FEFFFFEB 		bl	cmd_BuildPacket
+ 247:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);	
+ 282              		.loc 1 247 0
+ 283 0268 0100A0E3 		mov	r0, #1
+ 284 026c FEFFFFEB 		bl	cmd_Execute
+ 248:main_serial.c **** 
+ 249:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, actuatorSouthClass, goalAddress))
+ 285              		.loc 1 249 0
+ 286 0270 0100A0E3 		mov	r0, #1
+ 287 0274 FA10A0E3 		mov	r1, #250
+ 288 0278 0020A0E1 		mov	r2, r0
+ 289 027c FEFFFFEB 		bl	GetResponse
+ 290 0280 050050E1 		cmp	r0, r5
+ 291 0284 1400000A 		beq	.L28
+ 292              	.LBB4:
+ 250:main_serial.c **** 		{
+ 251:main_serial.c **** 			rprintfu08(trgPkt->cmd);		//	VCOM_putchar(' ');
+ 293              		.loc 1 251 0
+ 294 0288 30419FE5 		ldr	r4, .L51+4
+ 295              	.LVL15:
+ 296 028c 0000D4E5 		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 297 0290 FEFFFFEB 		bl	rprintfu08
+ 252:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);	//	VCOM_putchar(' ');
+ 298              		.loc 1 252 0
+ 299 0294 8100D4E5 		ldrb	r0, [r4, #129]	@ zero_extendqisi2
+ 300 0298 FEFFFFEB 		bl	rprintfu08
+ 253:main_serial.c **** 			u08 i = 0;
+ 254:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 301              		.loc 1 254 0
+ 302 029c 8130D4E5 		ldrb	r3, [r4, #129]	@ zero_extendqisi2
+ 303 02a0 050053E1 		cmp	r3, r5
+ 304 02a4 0900000A 		beq	.L30
+ 305 02a8 0540A0E1 		mov	r4, r5
+ 306              	.LVL16:
+ 307 02ac 0C519FE5 		ldr	r5, .L51+4
+ 308              	.L32:
+ 255:main_serial.c **** 			{	
+ 256:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 309              		.loc 1 256 0
+ 310 02b0 053084E0 		add	r3, r4, r5
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 11
+
+
+ 311 02b4 0100D3E5 		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 312 02b8 FEFFFFEB 		bl	rprintfu08
+ 313              		.loc 1 254 0
+ 314 02bc 013084E2 		add	r3, r4, #1
+ 315 02c0 FF4003E2 		and	r4, r3, #255
+ 316 02c4 8130D5E5 		ldrb	r3, [r5, #129]	@ zero_extendqisi2
+ 317 02c8 040053E1 		cmp	r3, r4
+ 318 02cc F7FFFF8A 		bhi	.L32
+ 319              	.L30:
+ 257:main_serial.c **** 			};
+ 258:main_serial.c **** 			VCOM_putchar('\r');
+ 320              		.loc 1 258 0
+ 321 02d0 0D00A0E3 		mov	r0, #13
+ 322 02d4 FEFFFFEB 		bl	VCOM_putchar
+ 323 02d8 040000EA 		b	.L33
+ 324              	.LVL17:
+ 325              	.L28:
+ 326              	.LBE4:
+ 259:main_serial.c **** 		}
+ 260:main_serial.c **** 		else	{	rprintf(":(");	 VCOM_putchar('\r');	};
+ 327              		.loc 1 260 0
+ 328 02dc 0000A0E3 		mov	r0, #0
+ 329 02e0 DC109FE5 		ldr	r1, .L51+8
+ 330 02e4 FEFFFFEB 		bl	rprintf1RamRom
+ 331 02e8 0D00A0E3 		mov	r0, #13
+ 332 02ec FEFFFFEB 		bl	VCOM_putchar
+ 333              	.L33:
+ 261:main_serial.c **** 
+ 262:main_serial.c **** 
+ 263:main_serial.c **** 		timerPause(20);
+ 334              		.loc 1 263 0
+ 335 02f0 1400A0E3 		mov	r0, #20
+ 336 02f4 FEFFFFEB 		bl	timerPause
+ 264:main_serial.c **** 
+ 265:main_serial.c **** 		// Setting LEDs
+ 266:main_serial.c **** 
+ 267:main_serial.c **** 		params[0] = 0;
+ 337              		.loc 1 267 0
+ 338 02f8 0050A0E3 		mov	r5, #0
+ 339 02fc 0450CDE5 		strb	r5, [sp, #4]
+ 268:main_serial.c **** 		params[1] = 2;
+ 340              		.loc 1 268 0
+ 341 0300 0230A0E3 		mov	r3, #2
+ 342 0304 0530CDE5 		strb	r3, [sp, #5]
+ 269:main_serial.c **** 		params[2] = 2;
+ 343              		.loc 1 269 0
+ 344 0308 0630CDE5 		strb	r3, [sp, #6]
+ 270:main_serial.c **** 		params[3] = 3;
+ 345              		.loc 1 270 0
+ 346 030c 013083E2 		add	r3, r3, #1
+ 347 0310 0730CDE5 		strb	r3, [sp, #7]
+ 271:main_serial.c **** 
+ 272:main_serial.c **** 		cmd_BuildPacket(actuatorSouthClass, goalAddress, 0x12, 4, params);
+ 348              		.loc 1 272 0
+ 349 0314 04308DE2 		add	r3, sp, #4
+ 350 0318 00308DE5 		str	r3, [sp, #0]
+ 351 031c FA00A0E3 		mov	r0, #250
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 12
+
+
+ 352 0320 0110A0E3 		mov	r1, #1
+ 353 0324 1220A0E3 		mov	r2, #18
+ 354 0328 0430A0E3 		mov	r3, #4
+ 355 032c FEFFFFEB 		bl	cmd_BuildPacket
+ 273:main_serial.c **** 		cmd_Execute(EXTERNAL_SERIAL);	
+ 356              		.loc 1 273 0
+ 357 0330 0100A0E3 		mov	r0, #1
+ 358 0334 FEFFFFEB 		bl	cmd_Execute
+ 274:main_serial.c **** 
+ 275:main_serial.c **** 		if (GetResponse(EXTERNAL_SERIAL, actuatorSouthClass, goalAddress))
+ 359              		.loc 1 275 0
+ 360 0338 0100A0E3 		mov	r0, #1
+ 361 033c FA10A0E3 		mov	r1, #250
+ 362 0340 0020A0E1 		mov	r2, r0
+ 363 0344 FEFFFFEB 		bl	GetResponse
+ 364 0348 050050E1 		cmp	r0, r5
+ 365 034c 1400000A 		beq	.L34
+ 366              	.LBB5:
+ 276:main_serial.c **** 		{
+ 277:main_serial.c **** 			rprintfu08(trgPkt->cmd);		//	VCOM_putchar(' ');
+ 367              		.loc 1 277 0
+ 368 0350 68409FE5 		ldr	r4, .L51+4
+ 369              	.LVL18:
+ 370 0354 0000D4E5 		ldrb	r0, [r4, #0]	@ zero_extendqisi2
+ 371 0358 FEFFFFEB 		bl	rprintfu08
+ 278:main_serial.c **** 			rprintfu08(trgPkt->paramCnt);	//	VCOM_putchar(' ');
+ 372              		.loc 1 278 0
+ 373 035c 8100D4E5 		ldrb	r0, [r4, #129]	@ zero_extendqisi2
+ 374 0360 FEFFFFEB 		bl	rprintfu08
+ 279:main_serial.c **** 			u08 i = 0;
+ 280:main_serial.c **** 			for(i=0; i<trgPkt->paramCnt; i++)
+ 375              		.loc 1 280 0
+ 376 0364 8130D4E5 		ldrb	r3, [r4, #129]	@ zero_extendqisi2
+ 377 0368 050053E1 		cmp	r3, r5
+ 378 036c 0900000A 		beq	.L36
+ 379 0370 0540A0E1 		mov	r4, r5
+ 380              	.LVL19:
+ 381 0374 44509FE5 		ldr	r5, .L51+4
+ 382              	.L38:
+ 281:main_serial.c **** 			{	
+ 282:main_serial.c **** 				rprintfu08(trgPkt->params[i]);//	VCOM_putchar(' ');
+ 383              		.loc 1 282 0
+ 384 0378 053084E0 		add	r3, r4, r5
+ 385 037c 0100D3E5 		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 386 0380 FEFFFFEB 		bl	rprintfu08
+ 387              		.loc 1 280 0
+ 388 0384 013084E2 		add	r3, r4, #1
+ 389 0388 FF4003E2 		and	r4, r3, #255
+ 390 038c 8130D5E5 		ldrb	r3, [r5, #129]	@ zero_extendqisi2
+ 391 0390 040053E1 		cmp	r3, r4
+ 392 0394 F7FFFF8A 		bhi	.L38
+ 393              	.L36:
+ 283:main_serial.c **** 			};
+ 284:main_serial.c **** 			VCOM_putchar('\r');
+ 394              		.loc 1 284 0
+ 395 0398 0D00A0E3 		mov	r0, #13
+ 396 039c FEFFFFEB 		bl	VCOM_putchar
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 13
+
+
+ 397 03a0 A0FFFFEA 		b	.L50
+ 398              	.LVL20:
+ 399              	.L34:
+ 400              	.LBE5:
+ 285:main_serial.c **** 		}
+ 286:main_serial.c **** 		else	{	rprintf(":(");	 VCOM_putchar('\r');	};
+ 401              		.loc 1 286 0
+ 402 03a4 0000A0E3 		mov	r0, #0
+ 403 03a8 14109FE5 		ldr	r1, .L51+8
+ 404 03ac FEFFFFEB 		bl	rprintf1RamRom
+ 405 03b0 0D00A0E3 		mov	r0, #13
+ 406 03b4 FEFFFFEB 		bl	VCOM_putchar
+ 407 03b8 9AFFFFEA 		b	.L50
+ 408              	.L52:
+ 409              		.align	2
+ 410              	.L51:
+ 411 03bc 00000000 		.word	VCOM_putchar
+ 412 03c0 00000000 		.word	ext_busRxPkt
+ 413 03c4 00000000 		.word	.LC0
+ 414              	.LFE4:
+ 415              		.size	main, .-main
+ 416              		.comm	cmdBufferData,128,1
+ 417              		.comm	cmdBuffer,12,4
+ 418              		.comm	int_busRxPkt,132,4
+ 419              		.comm	ext_busRxPkt,132,4
+ 420              		.section	.debug_frame,"",%progbits
+ 421              	.Lframe0:
+ 422 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+ 423              	.LSCIE0:
+ 424 0004 FFFFFFFF 		.4byte	0xffffffff
+ 425 0008 01       		.byte	0x1
+ 426 0009 00       		.ascii	"\000"
+ 427 000a 01       		.uleb128 0x1
+ 428 000b 7C       		.sleb128 -4
+ 429 000c 0E       		.byte	0xe
+ 430 000d 0C       		.byte	0xc
+ 431 000e 0D       		.uleb128 0xd
+ 432 000f 00       		.uleb128 0x0
+ 433              		.align	2
+ 434              	.LECIE0:
+ 435              	.LSFDE0:
+ 436 0010 14000000 		.4byte	.LEFDE0-.LASFDE0
+ 437              	.LASFDE0:
+ 438 0014 00000000 		.4byte	.Lframe0
+ 439 0018 00000000 		.4byte	.LFB2
+ 440 001c 1C000000 		.4byte	.LFE2-.LFB2
+ 441 0020 44       		.byte	0x4
+ 442              		.4byte	.LCFI0-.LFB2
+ 443 0021 0E       		.byte	0xe
+ 444 0022 04       		.uleb128 0x4
+ 445 0023 8E       		.byte	0x8e
+ 446 0024 01       		.uleb128 0x1
+ 447 0025 000000   		.align	2
+ 448              	.LEFDE0:
+ 449              	.LSFDE2:
+ 450 0028 1C000000 		.4byte	.LEFDE2-.LASFDE2
+ 451              	.LASFDE2:
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 14
+
+
+ 452 002c 00000000 		.4byte	.Lframe0
+ 453 0030 1C000000 		.4byte	.LFB3
+ 454 0034 70000000 		.4byte	.LFE3-.LFB3
+ 455 0038 44       		.byte	0x4
+ 456              		.4byte	.LCFI1-.LFB3
+ 457 0039 0E       		.byte	0xe
+ 458 003a 18       		.uleb128 0x18
+ 459 003b 8E       		.byte	0x8e
+ 460 003c 01       		.uleb128 0x1
+ 461 003d 88       		.byte	0x88
+ 462 003e 02       		.uleb128 0x2
+ 463 003f 87       		.byte	0x87
+ 464 0040 03       		.uleb128 0x3
+ 465 0041 86       		.byte	0x86
+ 466 0042 04       		.uleb128 0x4
+ 467 0043 85       		.byte	0x85
+ 468 0044 05       		.uleb128 0x5
+ 469 0045 84       		.byte	0x84
+ 470 0046 06       		.uleb128 0x6
+ 471 0047 00       		.align	2
+ 472              	.LEFDE2:
+ 473              	.LSFDE4:
+ 474 0048 18000000 		.4byte	.LEFDE4-.LASFDE4
+ 475              	.LASFDE4:
+ 476 004c 00000000 		.4byte	.Lframe0
+ 477 0050 8C000000 		.4byte	.LFB4
+ 478 0054 3C030000 		.4byte	.LFE4-.LFB4
+ 479 0058 44       		.byte	0x4
+ 480              		.4byte	.LCFI2-.LFB4
+ 481 0059 0E       		.byte	0xe
+ 482 005a 0C       		.uleb128 0xc
+ 483 005b 44       		.byte	0x4
+ 484              		.4byte	.LCFI3-.LCFI2
+ 485 005c 0E       		.byte	0xe
+ 486 005d 50       		.uleb128 0x50
+ 487 005e 8E       		.byte	0x8e
+ 488 005f 01       		.uleb128 0x1
+ 489 0060 85       		.byte	0x85
+ 490 0061 02       		.uleb128 0x2
+ 491 0062 84       		.byte	0x84
+ 492 0063 03       		.uleb128 0x3
+ 493              		.align	2
+ 494              	.LEFDE4:
+ 495              		.file 2 "D:\\WinARM\\armlib/buffer.h"
+ 496              		.file 3 "D:\\WinARM\\armlib/armlibtypes.h"
+ 497              		.file 4 "molecubePacket.h"
+ 498              		.text
+ 499              	.Letext0:
+ 500              		.section	.debug_loc,"",%progbits
+ 501              	.Ldebug_loc0:
+ 502              	.LLST0:
+ 503 0000 00000000 		.4byte	.LFB2-.Ltext0
+ 504 0004 04000000 		.4byte	.LCFI0-.Ltext0
+ 505 0008 0100     		.2byte	0x1
+ 506 000a 5D       		.byte	0x5d
+ 507 000b 04000000 		.4byte	.LCFI0-.Ltext0
+ 508 000f 1C000000 		.4byte	.LFE2-.Ltext0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 15
+
+
+ 509 0013 0200     		.2byte	0x2
+ 510 0015 7D       		.byte	0x7d
+ 511 0016 04       		.sleb128 4
+ 512 0017 00000000 		.4byte	0x0
+ 513 001b 00000000 		.4byte	0x0
+ 514              	.LLST1:
+ 515 001f 00000000 		.4byte	.LVL0-.Ltext0
+ 516 0023 10000000 		.4byte	.LVL1-.Ltext0
+ 517 0027 0100     		.2byte	0x1
+ 518 0029 50       		.byte	0x50
+ 519 002a 14000000 		.4byte	.LVL2-.Ltext0
+ 520 002e 18000000 		.4byte	.LVL3-.Ltext0
+ 521 0032 0100     		.2byte	0x1
+ 522 0034 50       		.byte	0x50
+ 523 0035 00000000 		.4byte	0x0
+ 524 0039 00000000 		.4byte	0x0
+ 525              	.LLST2:
+ 526 003d 1C000000 		.4byte	.LFB3-.Ltext0
+ 527 0041 20000000 		.4byte	.LCFI1-.Ltext0
+ 528 0045 0100     		.2byte	0x1
+ 529 0047 5D       		.byte	0x5d
+ 530 0048 20000000 		.4byte	.LCFI1-.Ltext0
+ 531 004c 8C000000 		.4byte	.LFE3-.Ltext0
+ 532 0050 0200     		.2byte	0x2
+ 533 0052 7D       		.byte	0x7d
+ 534 0053 18       		.sleb128 24
+ 535 0054 00000000 		.4byte	0x0
+ 536 0058 00000000 		.4byte	0x0
+ 537              	.LLST3:
+ 538 005c 1C000000 		.4byte	.LVL4-.Ltext0
+ 539 0060 3C000000 		.4byte	.LVL6-.Ltext0
+ 540 0064 0100     		.2byte	0x1
+ 541 0066 50       		.byte	0x50
+ 542 0067 3C000000 		.4byte	.LVL6-.Ltext0
+ 543 006b 8C000000 		.4byte	.LFE3-.Ltext0
+ 544 006f 0100     		.2byte	0x1
+ 545 0071 55       		.byte	0x55
+ 546 0072 00000000 		.4byte	0x0
+ 547 0076 00000000 		.4byte	0x0
+ 548              	.LLST4:
+ 549 007a 1C000000 		.4byte	.LVL4-.Ltext0
+ 550 007e 3C000000 		.4byte	.LVL6-.Ltext0
+ 551 0082 0100     		.2byte	0x1
+ 552 0084 51       		.byte	0x51
+ 553 0085 3C000000 		.4byte	.LVL6-.Ltext0
+ 554 0089 8C000000 		.4byte	.LFE3-.Ltext0
+ 555 008d 0100     		.2byte	0x1
+ 556 008f 57       		.byte	0x57
+ 557 0090 00000000 		.4byte	0x0
+ 558 0094 00000000 		.4byte	0x0
+ 559              	.LLST5:
+ 560 0098 1C000000 		.4byte	.LVL4-.Ltext0
+ 561 009c 3C000000 		.4byte	.LVL6-.Ltext0
+ 562 00a0 0100     		.2byte	0x1
+ 563 00a2 52       		.byte	0x52
+ 564 00a3 3C000000 		.4byte	.LVL6-.Ltext0
+ 565 00a7 8C000000 		.4byte	.LFE3-.Ltext0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 16
+
+
+ 566 00ab 0100     		.2byte	0x1
+ 567 00ad 56       		.byte	0x56
+ 568 00ae 00000000 		.4byte	0x0
+ 569 00b2 00000000 		.4byte	0x0
+ 570              	.LLST6:
+ 571 00b6 8C000000 		.4byte	.LFB4-.Ltext0
+ 572 00ba 90000000 		.4byte	.LCFI2-.Ltext0
+ 573 00be 0100     		.2byte	0x1
+ 574 00c0 5D       		.byte	0x5d
+ 575 00c1 90000000 		.4byte	.LCFI2-.Ltext0
+ 576 00c5 94000000 		.4byte	.LCFI3-.Ltext0
+ 577 00c9 0200     		.2byte	0x2
+ 578 00cb 7D       		.byte	0x7d
+ 579 00cc 0C       		.sleb128 12
+ 580 00cd 94000000 		.4byte	.LCFI3-.Ltext0
+ 581 00d1 C8030000 		.4byte	.LFE4-.Ltext0
+ 582 00d5 0300     		.2byte	0x3
+ 583 00d7 7D       		.byte	0x7d
+ 584 00d8 D000     		.sleb128 80
+ 585 00da 00000000 		.4byte	0x0
+ 586 00de 00000000 		.4byte	0x0
+ 587              	.LLST7:
+ 588 00e2 30010000 		.4byte	.LVL8-.Ltext0
+ 589 00e6 60010000 		.4byte	.LVL9-.Ltext0
+ 590 00ea 0100     		.2byte	0x1
+ 591 00ec 54       		.byte	0x54
+ 592 00ed 74010000 		.4byte	.LVL10-.Ltext0
+ 593 00f1 80010000 		.4byte	.LVL11-.Ltext0
+ 594 00f5 0100     		.2byte	0x1
+ 595 00f7 54       		.byte	0x54
+ 596 00f8 00000000 		.4byte	0x0
+ 597 00fc 00000000 		.4byte	0x0
+ 598              	.LLST8:
+ 599 0100 E4010000 		.4byte	.LVL12-.Ltext0
+ 600 0104 14020000 		.4byte	.LVL13-.Ltext0
+ 601 0108 0100     		.2byte	0x1
+ 602 010a 54       		.byte	0x54
+ 603 010b 28020000 		.4byte	.LVL14-.Ltext0
+ 604 010f 8C020000 		.4byte	.LVL15-.Ltext0
+ 605 0113 0100     		.2byte	0x1
+ 606 0115 54       		.byte	0x54
+ 607 0116 DC020000 		.4byte	.LVL17-.Ltext0
+ 608 011a 54030000 		.4byte	.LVL18-.Ltext0
+ 609 011e 0100     		.2byte	0x1
+ 610 0120 54       		.byte	0x54
+ 611 0121 A4030000 		.4byte	.LVL20-.Ltext0
+ 612 0125 C8030000 		.4byte	.LFE4-.Ltext0
+ 613 0129 0100     		.2byte	0x1
+ 614 012b 54       		.byte	0x54
+ 615 012c 00000000 		.4byte	0x0
+ 616 0130 00000000 		.4byte	0x0
+ 617              	.LLST9:
+ 618 0134 28020000 		.4byte	.LVL14-.Ltext0
+ 619 0138 8C020000 		.4byte	.LVL15-.Ltext0
+ 620 013c 0100     		.2byte	0x1
+ 621 013e 54       		.byte	0x54
+ 622 013f AC020000 		.4byte	.LVL16-.Ltext0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 17
+
+
+ 623 0143 54030000 		.4byte	.LVL18-.Ltext0
+ 624 0147 0100     		.2byte	0x1
+ 625 0149 54       		.byte	0x54
+ 626 014a A4030000 		.4byte	.LVL20-.Ltext0
+ 627 014e C8030000 		.4byte	.LFE4-.Ltext0
+ 628 0152 0100     		.2byte	0x1
+ 629 0154 54       		.byte	0x54
+ 630 0155 00000000 		.4byte	0x0
+ 631 0159 00000000 		.4byte	0x0
+ 632              	.LLST10:
+ 633 015d 28020000 		.4byte	.LVL14-.Ltext0
+ 634 0161 8C020000 		.4byte	.LVL15-.Ltext0
+ 635 0165 0100     		.2byte	0x1
+ 636 0167 54       		.byte	0x54
+ 637 0168 DC020000 		.4byte	.LVL17-.Ltext0
+ 638 016c 54030000 		.4byte	.LVL18-.Ltext0
+ 639 0170 0100     		.2byte	0x1
+ 640 0172 54       		.byte	0x54
+ 641 0173 74030000 		.4byte	.LVL19-.Ltext0
+ 642 0177 C8030000 		.4byte	.LFE4-.Ltext0
+ 643 017b 0100     		.2byte	0x1
+ 644 017d 54       		.byte	0x54
+ 645 017e 00000000 		.4byte	0x0
+ 646 0182 00000000 		.4byte	0x0
+ 647              		.section	.debug_info
+ 648 0000 FE020000 		.4byte	0x2fe
+ 649 0004 0200     		.2byte	0x2
+ 650 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 651 000a 04       		.byte	0x4
+ 652 000b 01       		.uleb128 0x1
+ 653 000c 00000000 		.4byte	.Ldebug_line0
+ 654 0010 C8030000 		.4byte	.Letext0
+ 655 0014 00000000 		.4byte	.Ltext0
+ 656 0018 BC000000 		.4byte	.LASF33
+ 657 001c 01       		.byte	0x1
+ 658 001d 69010000 		.4byte	.LASF34
+ 659 0021 EB000000 		.4byte	.LASF35
+ 660 0025 02       		.uleb128 0x2
+ 661 0026 696E7400 		.ascii	"int\000"
+ 662 002a 04       		.byte	0x4
+ 663 002b 05       		.byte	0x5
+ 664 002c 03       		.uleb128 0x3
+ 665 002d 5A010000 		.4byte	.LASF0
+ 666 0031 04       		.byte	0x4
+ 667 0032 05       		.byte	0x5
+ 668 0033 03       		.uleb128 0x3
+ 669 0034 D1000000 		.4byte	.LASF1
+ 670 0038 08       		.byte	0x8
+ 671 0039 05       		.byte	0x5
+ 672 003a 03       		.uleb128 0x3
+ 673 003b 1A000000 		.4byte	.LASF2
+ 674 003f 04       		.byte	0x4
+ 675 0040 07       		.byte	0x7
+ 676 0041 03       		.uleb128 0x3
+ 677 0042 77010000 		.4byte	.LASF3
+ 678 0046 04       		.byte	0x4
+ 679 0047 07       		.byte	0x7
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 18
+
+
+ 680 0048 03       		.uleb128 0x3
+ 681 0049 89010000 		.4byte	.LASF4
+ 682 004d 01       		.byte	0x1
+ 683 004e 08       		.byte	0x8
+ 684 004f 03       		.uleb128 0x3
+ 685 0050 77010000 		.4byte	.LASF3
+ 686 0054 04       		.byte	0x4
+ 687 0055 07       		.byte	0x7
+ 688 0056 04       		.uleb128 0x4
+ 689 0057 04       		.byte	0x4
+ 690 0058 48000000 		.4byte	0x48
+ 691 005c 03       		.uleb128 0x3
+ 692 005d 27000000 		.4byte	.LASF5
+ 693 0061 02       		.byte	0x2
+ 694 0062 05       		.byte	0x5
+ 695 0063 03       		.uleb128 0x3
+ 696 0064 B0000000 		.4byte	.LASF6
+ 697 0068 01       		.byte	0x1
+ 698 0069 08       		.byte	0x8
+ 699 006a 03       		.uleb128 0x3
+ 700 006b AB010000 		.4byte	.LASF7
+ 701 006f 02       		.byte	0x2
+ 702 0070 07       		.byte	0x7
+ 703 0071 03       		.uleb128 0x3
+ 704 0072 6E000000 		.4byte	.LASF8
+ 705 0076 08       		.byte	0x8
+ 706 0077 07       		.byte	0x7
+ 707 0078 05       		.uleb128 0x5
+ 708 0079 75303800 		.ascii	"u08\000"
+ 709 007d 03       		.byte	0x3
+ 710 007e 20       		.byte	0x20
+ 711 007f 48000000 		.4byte	0x48
+ 712 0083 03       		.uleb128 0x3
+ 713 0084 9F010000 		.4byte	.LASF9
+ 714 0088 01       		.byte	0x1
+ 715 0089 06       		.byte	0x6
+ 716 008a 05       		.uleb128 0x5
+ 717 008b 75333200 		.ascii	"u32\000"
+ 718 008f 03       		.byte	0x3
+ 719 0090 24       		.byte	0x24
+ 720 0091 4F000000 		.4byte	0x4f
+ 721 0095 06       		.uleb128 0x6
+ 722 0096 DA000000 		.4byte	0xda
+ 723 009a A1000000 		.4byte	.LASF36
+ 724 009e 0C       		.byte	0xc
+ 725 009f 02       		.byte	0x2
+ 726 00a0 2A       		.byte	0x2a
+ 727 00a1 07       		.uleb128 0x7
+ 728 00a2 3F010000 		.4byte	.LASF10
+ 729 00a6 02       		.byte	0x2
+ 730 00a7 2B       		.byte	0x2b
+ 731 00a8 56000000 		.4byte	0x56
+ 732 00ac 02       		.byte	0x2
+ 733 00ad 23       		.byte	0x23
+ 734 00ae 00       		.uleb128 0x0
+ 735 00af 07       		.uleb128 0x7
+ 736 00b0 E6000000 		.4byte	.LASF11
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 19
+
+
+ 737 00b4 02       		.byte	0x2
+ 738 00b5 2C       		.byte	0x2c
+ 739 00b6 6A000000 		.4byte	0x6a
+ 740 00ba 02       		.byte	0x2
+ 741 00bb 23       		.byte	0x23
+ 742 00bc 04       		.uleb128 0x4
+ 743 00bd 07       		.uleb128 0x7
+ 744 00be 85000000 		.4byte	.LASF12
+ 745 00c2 02       		.byte	0x2
+ 746 00c3 2D       		.byte	0x2d
+ 747 00c4 6A000000 		.4byte	0x6a
+ 748 00c8 02       		.byte	0x2
+ 749 00c9 23       		.byte	0x23
+ 750 00ca 06       		.uleb128 0x6
+ 751 00cb 07       		.uleb128 0x7
+ 752 00cc 35010000 		.4byte	.LASF13
+ 753 00d0 02       		.byte	0x2
+ 754 00d1 2E       		.byte	0x2e
+ 755 00d2 6A000000 		.4byte	0x6a
+ 756 00d6 02       		.byte	0x2
+ 757 00d7 23       		.byte	0x23
+ 758 00d8 08       		.uleb128 0x8
+ 759 00d9 00       		.byte	0x0
+ 760 00da 08       		.uleb128 0x8
+ 761 00db 97010000 		.4byte	.LASF14
+ 762 00df 02       		.byte	0x2
+ 763 00e0 2F       		.byte	0x2f
+ 764 00e1 95000000 		.4byte	0x95
+ 765 00e5 09       		.uleb128 0x9
+ 766 00e6 19010000 		.4byte	0x119
+ 767 00ea 84       		.byte	0x84
+ 768 00eb 04       		.byte	0x4
+ 769 00ec 22       		.byte	0x22
+ 770 00ed 0A       		.uleb128 0xa
+ 771 00ee 636D6400 		.ascii	"cmd\000"
+ 772 00f2 04       		.byte	0x4
+ 773 00f3 23       		.byte	0x23
+ 774 00f4 78000000 		.4byte	0x78
+ 775 00f8 02       		.byte	0x2
+ 776 00f9 23       		.byte	0x23
+ 777 00fa 00       		.uleb128 0x0
+ 778 00fb 07       		.uleb128 0x7
+ 779 00fc 00000000 		.4byte	.LASF15
+ 780 0100 04       		.byte	0x4
+ 781 0101 24       		.byte	0x24
+ 782 0102 19010000 		.4byte	0x119
+ 783 0106 02       		.byte	0x2
+ 784 0107 23       		.byte	0x23
+ 785 0108 01       		.uleb128 0x1
+ 786 0109 07       		.uleb128 0x7
+ 787 010a 54000000 		.4byte	.LASF16
+ 788 010e 04       		.byte	0x4
+ 789 010f 25       		.byte	0x25
+ 790 0110 78000000 		.4byte	0x78
+ 791 0114 03       		.byte	0x3
+ 792 0115 23       		.byte	0x23
+ 793 0116 8101     		.uleb128 0x81
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 20
+
+
+ 794 0118 00       		.byte	0x0
+ 795 0119 0B       		.uleb128 0xb
+ 796 011a 29010000 		.4byte	0x129
+ 797 011e 78000000 		.4byte	0x78
+ 798 0122 0C       		.uleb128 0xc
+ 799 0123 41000000 		.4byte	0x41
+ 800 0127 7F       		.byte	0x7f
+ 801 0128 00       		.byte	0x0
+ 802 0129 08       		.uleb128 0x8
+ 803 012a 5D000000 		.4byte	.LASF17
+ 804 012e 04       		.byte	0x4
+ 805 012f 26       		.byte	0x26
+ 806 0130 E5000000 		.4byte	0xe5
+ 807 0134 0D       		.uleb128 0xd
+ 808 0135 61010000 		.4byte	0x161
+ 809 0139 01       		.byte	0x1
+ 810 013a CB010000 		.4byte	.LASF18
+ 811 013e 01       		.byte	0x1
+ 812 013f 46       		.byte	0x46
+ 813 0140 01       		.byte	0x1
+ 814 0141 61010000 		.4byte	0x161
+ 815 0145 00000000 		.4byte	.LFB2
+ 816 0149 1C000000 		.4byte	.LFE2
+ 817 014d 00000000 		.4byte	.LLST0
+ 818 0151 0E       		.uleb128 0xe
+ 819 0152 62757300 		.ascii	"bus\000"
+ 820 0156 01       		.byte	0x1
+ 821 0157 45       		.byte	0x45
+ 822 0158 78000000 		.4byte	0x78
+ 823 015c 1F000000 		.4byte	.LLST1
+ 824 0160 00       		.byte	0x0
+ 825 0161 04       		.uleb128 0x4
+ 826 0162 04       		.byte	0x4
+ 827 0163 DA000000 		.4byte	0xda
+ 828 0167 0D       		.uleb128 0xd
+ 829 0168 BD010000 		.4byte	0x1bd
+ 830 016c 01       		.byte	0x1
+ 831 016d 90000000 		.4byte	.LASF19
+ 832 0171 01       		.byte	0x1
+ 833 0172 4F       		.byte	0x4f
+ 834 0173 01       		.byte	0x1
+ 835 0174 78000000 		.4byte	0x78
+ 836 0178 1C000000 		.4byte	.LFB3
+ 837 017c 8C000000 		.4byte	.LFE3
+ 838 0180 3D000000 		.4byte	.LLST2
+ 839 0184 0F       		.uleb128 0xf
+ 840 0185 53010000 		.4byte	.LASF20
+ 841 0189 01       		.byte	0x1
+ 842 018a 4E       		.byte	0x4e
+ 843 018b 78000000 		.4byte	0x78
+ 844 018f 5C000000 		.4byte	.LLST3
+ 845 0193 0F       		.uleb128 0xf
+ 846 0194 11000000 		.4byte	.LASF21
+ 847 0198 01       		.byte	0x1
+ 848 0199 4E       		.byte	0x4e
+ 849 019a 78000000 		.4byte	0x78
+ 850 019e 7A000000 		.4byte	.LLST4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 21
+
+
+ 851 01a2 0F       		.uleb128 0xf
+ 852 01a3 63000000 		.4byte	.LASF22
+ 853 01a7 01       		.byte	0x1
+ 854 01a8 4E       		.byte	0x4e
+ 855 01a9 78000000 		.4byte	0x78
+ 856 01ad 98000000 		.4byte	.LLST5
+ 857 01b1 10       		.uleb128 0x10
+ 858 01b2 6100     		.ascii	"a\000"
+ 859 01b4 01       		.byte	0x1
+ 860 01b5 50       		.byte	0x50
+ 861 01b6 8A000000 		.4byte	0x8a
+ 862 01ba 01       		.byte	0x1
+ 863 01bb 54       		.byte	0x54
+ 864 01bc 00       		.byte	0x0
+ 865 01bd 0D       		.uleb128 0xd
+ 866 01be 93020000 		.4byte	0x293
+ 867 01c2 01       		.byte	0x1
+ 868 01c3 9C000000 		.4byte	.LASF23
+ 869 01c7 01       		.byte	0x1
+ 870 01c8 66       		.byte	0x66
+ 871 01c9 01       		.byte	0x1
+ 872 01ca 25000000 		.4byte	0x25
+ 873 01ce 8C000000 		.4byte	.LFB4
+ 874 01d2 C8030000 		.4byte	.LFE4
+ 875 01d6 B6000000 		.4byte	.LLST6
+ 876 01da 11       		.uleb128 0x11
+ 877 01db 6300     		.ascii	"c\000"
+ 878 01dd 01       		.byte	0x1
+ 879 01de 67       		.byte	0x67
+ 880 01df 25000000 		.4byte	0x25
+ 881 01e3 12       		.uleb128 0x12
+ 882 01e4 00000000 		.4byte	.LASF15
+ 883 01e8 01       		.byte	0x1
+ 884 01e9 68       		.byte	0x68
+ 885 01ea 93020000 		.4byte	0x293
+ 886 01ee 03       		.byte	0x3
+ 887 01ef 91       		.byte	0x91
+ 888 01f0 B47F     		.sleb128 -76
+ 889 01f2 13       		.uleb128 0x13
+ 890 01f3 B5000000 		.4byte	.LASF24
+ 891 01f7 01       		.byte	0x1
+ 892 01f8 79       		.byte	0x79
+ 893 01f9 A3020000 		.4byte	0x2a3
+ 894 01fd 13       		.uleb128 0x13
+ 895 01fe DF000000 		.4byte	.LASF25
+ 896 0202 01       		.byte	0x1
+ 897 0203 84       		.byte	0x84
+ 898 0204 78000000 		.4byte	0x78
+ 899 0208 13       		.uleb128 0x13
+ 900 0209 63010000 		.4byte	.LASF26
+ 901 020d 01       		.byte	0x1
+ 902 020e 85       		.byte	0x85
+ 903 020f 78000000 		.4byte	0x78
+ 904 0213 13       		.uleb128 0x13
+ 905 0214 3E000000 		.4byte	.LASF27
+ 906 0218 01       		.byte	0x1
+ 907 0219 86       		.byte	0x86
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 22
+
+
+ 908 021a 78000000 		.4byte	0x78
+ 909 021e 13       		.uleb128 0x13
+ 910 021f 47010000 		.4byte	.LASF28
+ 911 0223 01       		.byte	0x1
+ 912 0224 D4       		.byte	0xd4
+ 913 0225 78000000 		.4byte	0x78
+ 914 0229 14       		.uleb128 0x14
+ 915 022a 44020000 		.4byte	0x244
+ 916 022e 0C010000 		.4byte	.LBB2
+ 917 0232 60010000 		.4byte	.LBE2
+ 918 0236 15       		.uleb128 0x15
+ 919 0237 6900     		.ascii	"i\000"
+ 920 0239 01       		.byte	0x1
+ 921 023a 92       		.byte	0x92
+ 922 023b 78000000 		.4byte	0x78
+ 923 023f E2000000 		.4byte	.LLST7
+ 924 0243 00       		.byte	0x0
+ 925 0244 14       		.uleb128 0x14
+ 926 0245 5F020000 		.4byte	0x25f
+ 927 0249 C0010000 		.4byte	.LBB3
+ 928 024d 14020000 		.4byte	.LBE3
+ 929 0251 15       		.uleb128 0x15
+ 930 0252 6900     		.ascii	"i\000"
+ 931 0254 01       		.byte	0x1
+ 932 0255 DF       		.byte	0xdf
+ 933 0256 78000000 		.4byte	0x78
+ 934 025a 00010000 		.4byte	.LLST8
+ 935 025e 00       		.byte	0x0
+ 936 025f 14       		.uleb128 0x14
+ 937 0260 7A020000 		.4byte	0x27a
+ 938 0264 88020000 		.4byte	.LBB4
+ 939 0268 DC020000 		.4byte	.LBE4
+ 940 026c 15       		.uleb128 0x15
+ 941 026d 6900     		.ascii	"i\000"
+ 942 026f 01       		.byte	0x1
+ 943 0270 FD       		.byte	0xfd
+ 944 0271 78000000 		.4byte	0x78
+ 945 0275 34010000 		.4byte	.LLST9
+ 946 0279 00       		.byte	0x0
+ 947 027a 16       		.uleb128 0x16
+ 948 027b 50030000 		.4byte	.LBB5
+ 949 027f A4030000 		.4byte	.LBE5
+ 950 0283 17       		.uleb128 0x17
+ 951 0284 6900     		.ascii	"i\000"
+ 952 0286 01       		.byte	0x1
+ 953 0287 1701     		.2byte	0x117
+ 954 0289 78000000 		.4byte	0x78
+ 955 028d 5D010000 		.4byte	.LLST10
+ 956 0291 00       		.byte	0x0
+ 957 0292 00       		.byte	0x0
+ 958 0293 0B       		.uleb128 0xb
+ 959 0294 A3020000 		.4byte	0x2a3
+ 960 0298 78000000 		.4byte	0x78
+ 961 029c 0C       		.uleb128 0xc
+ 962 029d 41000000 		.4byte	0x41
+ 963 02a1 3F       		.byte	0x3f
+ 964 02a2 00       		.byte	0x0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 23
+
+
+ 965 02a3 04       		.uleb128 0x4
+ 966 02a4 04       		.byte	0x4
+ 967 02a5 29010000 		.4byte	0x129
+ 968 02a9 0B       		.uleb128 0xb
+ 969 02aa B9020000 		.4byte	0x2b9
+ 970 02ae 48000000 		.4byte	0x48
+ 971 02b2 0C       		.uleb128 0xc
+ 972 02b3 41000000 		.4byte	0x41
+ 973 02b7 7F       		.byte	0x7f
+ 974 02b8 00       		.byte	0x0
+ 975 02b9 18       		.uleb128 0x18
+ 976 02ba 46000000 		.4byte	.LASF29
+ 977 02be 04       		.byte	0x4
+ 978 02bf 1F       		.byte	0x1f
+ 979 02c0 A9020000 		.4byte	0x2a9
+ 980 02c4 01       		.byte	0x1
+ 981 02c5 05       		.byte	0x5
+ 982 02c6 03       		.byte	0x3
+ 983 02c7 00000000 		.4byte	cmdBufferData
+ 984 02cb 18       		.uleb128 0x18
+ 985 02cc 07000000 		.4byte	.LASF30
+ 986 02d0 04       		.byte	0x4
+ 987 02d1 20       		.byte	0x20
+ 988 02d2 DA000000 		.4byte	0xda
+ 989 02d6 01       		.byte	0x1
+ 990 02d7 05       		.byte	0x5
+ 991 02d8 03       		.byte	0x3
+ 992 02d9 00000000 		.4byte	cmdBuffer
+ 993 02dd 18       		.uleb128 0x18
+ 994 02de 31000000 		.4byte	.LASF31
+ 995 02e2 04       		.byte	0x4
+ 996 02e3 28       		.byte	0x28
+ 997 02e4 29010000 		.4byte	0x129
+ 998 02e8 01       		.byte	0x1
+ 999 02e9 05       		.byte	0x5
+ 1000 02ea 03       		.byte	0x3
+ 1001 02eb 00000000 		.4byte	int_busRxPkt
+ 1002 02ef 18       		.uleb128 0x18
+ 1003 02f0 BE010000 		.4byte	.LASF32
+ 1004 02f4 04       		.byte	0x4
+ 1005 02f5 29       		.byte	0x29
+ 1006 02f6 29010000 		.4byte	0x129
+ 1007 02fa 01       		.byte	0x1
+ 1008 02fb 05       		.byte	0x5
+ 1009 02fc 03       		.byte	0x3
+ 1010 02fd 00000000 		.4byte	ext_busRxPkt
+ 1011 0301 00       		.byte	0x0
+ 1012              		.section	.debug_abbrev
+ 1013 0000 01       		.uleb128 0x1
+ 1014 0001 11       		.uleb128 0x11
+ 1015 0002 01       		.byte	0x1
+ 1016 0003 10       		.uleb128 0x10
+ 1017 0004 06       		.uleb128 0x6
+ 1018 0005 12       		.uleb128 0x12
+ 1019 0006 01       		.uleb128 0x1
+ 1020 0007 11       		.uleb128 0x11
+ 1021 0008 01       		.uleb128 0x1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 24
+
+
+ 1022 0009 25       		.uleb128 0x25
+ 1023 000a 0E       		.uleb128 0xe
+ 1024 000b 13       		.uleb128 0x13
+ 1025 000c 0B       		.uleb128 0xb
+ 1026 000d 03       		.uleb128 0x3
+ 1027 000e 0E       		.uleb128 0xe
+ 1028 000f 1B       		.uleb128 0x1b
+ 1029 0010 0E       		.uleb128 0xe
+ 1030 0011 00       		.byte	0x0
+ 1031 0012 00       		.byte	0x0
+ 1032 0013 02       		.uleb128 0x2
+ 1033 0014 24       		.uleb128 0x24
+ 1034 0015 00       		.byte	0x0
+ 1035 0016 03       		.uleb128 0x3
+ 1036 0017 08       		.uleb128 0x8
+ 1037 0018 0B       		.uleb128 0xb
+ 1038 0019 0B       		.uleb128 0xb
+ 1039 001a 3E       		.uleb128 0x3e
+ 1040 001b 0B       		.uleb128 0xb
+ 1041 001c 00       		.byte	0x0
+ 1042 001d 00       		.byte	0x0
+ 1043 001e 03       		.uleb128 0x3
+ 1044 001f 24       		.uleb128 0x24
+ 1045 0020 00       		.byte	0x0
+ 1046 0021 03       		.uleb128 0x3
+ 1047 0022 0E       		.uleb128 0xe
+ 1048 0023 0B       		.uleb128 0xb
+ 1049 0024 0B       		.uleb128 0xb
+ 1050 0025 3E       		.uleb128 0x3e
+ 1051 0026 0B       		.uleb128 0xb
+ 1052 0027 00       		.byte	0x0
+ 1053 0028 00       		.byte	0x0
+ 1054 0029 04       		.uleb128 0x4
+ 1055 002a 0F       		.uleb128 0xf
+ 1056 002b 00       		.byte	0x0
+ 1057 002c 0B       		.uleb128 0xb
+ 1058 002d 0B       		.uleb128 0xb
+ 1059 002e 49       		.uleb128 0x49
+ 1060 002f 13       		.uleb128 0x13
+ 1061 0030 00       		.byte	0x0
+ 1062 0031 00       		.byte	0x0
+ 1063 0032 05       		.uleb128 0x5
+ 1064 0033 16       		.uleb128 0x16
+ 1065 0034 00       		.byte	0x0
+ 1066 0035 03       		.uleb128 0x3
+ 1067 0036 08       		.uleb128 0x8
+ 1068 0037 3A       		.uleb128 0x3a
+ 1069 0038 0B       		.uleb128 0xb
+ 1070 0039 3B       		.uleb128 0x3b
+ 1071 003a 0B       		.uleb128 0xb
+ 1072 003b 49       		.uleb128 0x49
+ 1073 003c 13       		.uleb128 0x13
+ 1074 003d 00       		.byte	0x0
+ 1075 003e 00       		.byte	0x0
+ 1076 003f 06       		.uleb128 0x6
+ 1077 0040 13       		.uleb128 0x13
+ 1078 0041 01       		.byte	0x1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 25
+
+
+ 1079 0042 01       		.uleb128 0x1
+ 1080 0043 13       		.uleb128 0x13
+ 1081 0044 03       		.uleb128 0x3
+ 1082 0045 0E       		.uleb128 0xe
+ 1083 0046 0B       		.uleb128 0xb
+ 1084 0047 0B       		.uleb128 0xb
+ 1085 0048 3A       		.uleb128 0x3a
+ 1086 0049 0B       		.uleb128 0xb
+ 1087 004a 3B       		.uleb128 0x3b
+ 1088 004b 0B       		.uleb128 0xb
+ 1089 004c 00       		.byte	0x0
+ 1090 004d 00       		.byte	0x0
+ 1091 004e 07       		.uleb128 0x7
+ 1092 004f 0D       		.uleb128 0xd
+ 1093 0050 00       		.byte	0x0
+ 1094 0051 03       		.uleb128 0x3
+ 1095 0052 0E       		.uleb128 0xe
+ 1096 0053 3A       		.uleb128 0x3a
+ 1097 0054 0B       		.uleb128 0xb
+ 1098 0055 3B       		.uleb128 0x3b
+ 1099 0056 0B       		.uleb128 0xb
+ 1100 0057 49       		.uleb128 0x49
+ 1101 0058 13       		.uleb128 0x13
+ 1102 0059 38       		.uleb128 0x38
+ 1103 005a 0A       		.uleb128 0xa
+ 1104 005b 00       		.byte	0x0
+ 1105 005c 00       		.byte	0x0
+ 1106 005d 08       		.uleb128 0x8
+ 1107 005e 16       		.uleb128 0x16
+ 1108 005f 00       		.byte	0x0
+ 1109 0060 03       		.uleb128 0x3
+ 1110 0061 0E       		.uleb128 0xe
+ 1111 0062 3A       		.uleb128 0x3a
+ 1112 0063 0B       		.uleb128 0xb
+ 1113 0064 3B       		.uleb128 0x3b
+ 1114 0065 0B       		.uleb128 0xb
+ 1115 0066 49       		.uleb128 0x49
+ 1116 0067 13       		.uleb128 0x13
+ 1117 0068 00       		.byte	0x0
+ 1118 0069 00       		.byte	0x0
+ 1119 006a 09       		.uleb128 0x9
+ 1120 006b 13       		.uleb128 0x13
+ 1121 006c 01       		.byte	0x1
+ 1122 006d 01       		.uleb128 0x1
+ 1123 006e 13       		.uleb128 0x13
+ 1124 006f 0B       		.uleb128 0xb
+ 1125 0070 0B       		.uleb128 0xb
+ 1126 0071 3A       		.uleb128 0x3a
+ 1127 0072 0B       		.uleb128 0xb
+ 1128 0073 3B       		.uleb128 0x3b
+ 1129 0074 0B       		.uleb128 0xb
+ 1130 0075 00       		.byte	0x0
+ 1131 0076 00       		.byte	0x0
+ 1132 0077 0A       		.uleb128 0xa
+ 1133 0078 0D       		.uleb128 0xd
+ 1134 0079 00       		.byte	0x0
+ 1135 007a 03       		.uleb128 0x3
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 26
+
+
+ 1136 007b 08       		.uleb128 0x8
+ 1137 007c 3A       		.uleb128 0x3a
+ 1138 007d 0B       		.uleb128 0xb
+ 1139 007e 3B       		.uleb128 0x3b
+ 1140 007f 0B       		.uleb128 0xb
+ 1141 0080 49       		.uleb128 0x49
+ 1142 0081 13       		.uleb128 0x13
+ 1143 0082 38       		.uleb128 0x38
+ 1144 0083 0A       		.uleb128 0xa
+ 1145 0084 00       		.byte	0x0
+ 1146 0085 00       		.byte	0x0
+ 1147 0086 0B       		.uleb128 0xb
+ 1148 0087 01       		.uleb128 0x1
+ 1149 0088 01       		.byte	0x1
+ 1150 0089 01       		.uleb128 0x1
+ 1151 008a 13       		.uleb128 0x13
+ 1152 008b 49       		.uleb128 0x49
+ 1153 008c 13       		.uleb128 0x13
+ 1154 008d 00       		.byte	0x0
+ 1155 008e 00       		.byte	0x0
+ 1156 008f 0C       		.uleb128 0xc
+ 1157 0090 21       		.uleb128 0x21
+ 1158 0091 00       		.byte	0x0
+ 1159 0092 49       		.uleb128 0x49
+ 1160 0093 13       		.uleb128 0x13
+ 1161 0094 2F       		.uleb128 0x2f
+ 1162 0095 0B       		.uleb128 0xb
+ 1163 0096 00       		.byte	0x0
+ 1164 0097 00       		.byte	0x0
+ 1165 0098 0D       		.uleb128 0xd
+ 1166 0099 2E       		.uleb128 0x2e
+ 1167 009a 01       		.byte	0x1
+ 1168 009b 01       		.uleb128 0x1
+ 1169 009c 13       		.uleb128 0x13
+ 1170 009d 3F       		.uleb128 0x3f
+ 1171 009e 0C       		.uleb128 0xc
+ 1172 009f 03       		.uleb128 0x3
+ 1173 00a0 0E       		.uleb128 0xe
+ 1174 00a1 3A       		.uleb128 0x3a
+ 1175 00a2 0B       		.uleb128 0xb
+ 1176 00a3 3B       		.uleb128 0x3b
+ 1177 00a4 0B       		.uleb128 0xb
+ 1178 00a5 27       		.uleb128 0x27
+ 1179 00a6 0C       		.uleb128 0xc
+ 1180 00a7 49       		.uleb128 0x49
+ 1181 00a8 13       		.uleb128 0x13
+ 1182 00a9 11       		.uleb128 0x11
+ 1183 00aa 01       		.uleb128 0x1
+ 1184 00ab 12       		.uleb128 0x12
+ 1185 00ac 01       		.uleb128 0x1
+ 1186 00ad 40       		.uleb128 0x40
+ 1187 00ae 06       		.uleb128 0x6
+ 1188 00af 00       		.byte	0x0
+ 1189 00b0 00       		.byte	0x0
+ 1190 00b1 0E       		.uleb128 0xe
+ 1191 00b2 05       		.uleb128 0x5
+ 1192 00b3 00       		.byte	0x0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 27
+
+
+ 1193 00b4 03       		.uleb128 0x3
+ 1194 00b5 08       		.uleb128 0x8
+ 1195 00b6 3A       		.uleb128 0x3a
+ 1196 00b7 0B       		.uleb128 0xb
+ 1197 00b8 3B       		.uleb128 0x3b
+ 1198 00b9 0B       		.uleb128 0xb
+ 1199 00ba 49       		.uleb128 0x49
+ 1200 00bb 13       		.uleb128 0x13
+ 1201 00bc 02       		.uleb128 0x2
+ 1202 00bd 06       		.uleb128 0x6
+ 1203 00be 00       		.byte	0x0
+ 1204 00bf 00       		.byte	0x0
+ 1205 00c0 0F       		.uleb128 0xf
+ 1206 00c1 05       		.uleb128 0x5
+ 1207 00c2 00       		.byte	0x0
+ 1208 00c3 03       		.uleb128 0x3
+ 1209 00c4 0E       		.uleb128 0xe
+ 1210 00c5 3A       		.uleb128 0x3a
+ 1211 00c6 0B       		.uleb128 0xb
+ 1212 00c7 3B       		.uleb128 0x3b
+ 1213 00c8 0B       		.uleb128 0xb
+ 1214 00c9 49       		.uleb128 0x49
+ 1215 00ca 13       		.uleb128 0x13
+ 1216 00cb 02       		.uleb128 0x2
+ 1217 00cc 06       		.uleb128 0x6
+ 1218 00cd 00       		.byte	0x0
+ 1219 00ce 00       		.byte	0x0
+ 1220 00cf 10       		.uleb128 0x10
+ 1221 00d0 34       		.uleb128 0x34
+ 1222 00d1 00       		.byte	0x0
+ 1223 00d2 03       		.uleb128 0x3
+ 1224 00d3 08       		.uleb128 0x8
+ 1225 00d4 3A       		.uleb128 0x3a
+ 1226 00d5 0B       		.uleb128 0xb
+ 1227 00d6 3B       		.uleb128 0x3b
+ 1228 00d7 0B       		.uleb128 0xb
+ 1229 00d8 49       		.uleb128 0x49
+ 1230 00d9 13       		.uleb128 0x13
+ 1231 00da 02       		.uleb128 0x2
+ 1232 00db 0A       		.uleb128 0xa
+ 1233 00dc 00       		.byte	0x0
+ 1234 00dd 00       		.byte	0x0
+ 1235 00de 11       		.uleb128 0x11
+ 1236 00df 34       		.uleb128 0x34
+ 1237 00e0 00       		.byte	0x0
+ 1238 00e1 03       		.uleb128 0x3
+ 1239 00e2 08       		.uleb128 0x8
+ 1240 00e3 3A       		.uleb128 0x3a
+ 1241 00e4 0B       		.uleb128 0xb
+ 1242 00e5 3B       		.uleb128 0x3b
+ 1243 00e6 0B       		.uleb128 0xb
+ 1244 00e7 49       		.uleb128 0x49
+ 1245 00e8 13       		.uleb128 0x13
+ 1246 00e9 00       		.byte	0x0
+ 1247 00ea 00       		.byte	0x0
+ 1248 00eb 12       		.uleb128 0x12
+ 1249 00ec 34       		.uleb128 0x34
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 28
+
+
+ 1250 00ed 00       		.byte	0x0
+ 1251 00ee 03       		.uleb128 0x3
+ 1252 00ef 0E       		.uleb128 0xe
+ 1253 00f0 3A       		.uleb128 0x3a
+ 1254 00f1 0B       		.uleb128 0xb
+ 1255 00f2 3B       		.uleb128 0x3b
+ 1256 00f3 0B       		.uleb128 0xb
+ 1257 00f4 49       		.uleb128 0x49
+ 1258 00f5 13       		.uleb128 0x13
+ 1259 00f6 02       		.uleb128 0x2
+ 1260 00f7 0A       		.uleb128 0xa
+ 1261 00f8 00       		.byte	0x0
+ 1262 00f9 00       		.byte	0x0
+ 1263 00fa 13       		.uleb128 0x13
+ 1264 00fb 34       		.uleb128 0x34
+ 1265 00fc 00       		.byte	0x0
+ 1266 00fd 03       		.uleb128 0x3
+ 1267 00fe 0E       		.uleb128 0xe
+ 1268 00ff 3A       		.uleb128 0x3a
+ 1269 0100 0B       		.uleb128 0xb
+ 1270 0101 3B       		.uleb128 0x3b
+ 1271 0102 0B       		.uleb128 0xb
+ 1272 0103 49       		.uleb128 0x49
+ 1273 0104 13       		.uleb128 0x13
+ 1274 0105 00       		.byte	0x0
+ 1275 0106 00       		.byte	0x0
+ 1276 0107 14       		.uleb128 0x14
+ 1277 0108 0B       		.uleb128 0xb
+ 1278 0109 01       		.byte	0x1
+ 1279 010a 01       		.uleb128 0x1
+ 1280 010b 13       		.uleb128 0x13
+ 1281 010c 11       		.uleb128 0x11
+ 1282 010d 01       		.uleb128 0x1
+ 1283 010e 12       		.uleb128 0x12
+ 1284 010f 01       		.uleb128 0x1
+ 1285 0110 00       		.byte	0x0
+ 1286 0111 00       		.byte	0x0
+ 1287 0112 15       		.uleb128 0x15
+ 1288 0113 34       		.uleb128 0x34
+ 1289 0114 00       		.byte	0x0
+ 1290 0115 03       		.uleb128 0x3
+ 1291 0116 08       		.uleb128 0x8
+ 1292 0117 3A       		.uleb128 0x3a
+ 1293 0118 0B       		.uleb128 0xb
+ 1294 0119 3B       		.uleb128 0x3b
+ 1295 011a 0B       		.uleb128 0xb
+ 1296 011b 49       		.uleb128 0x49
+ 1297 011c 13       		.uleb128 0x13
+ 1298 011d 02       		.uleb128 0x2
+ 1299 011e 06       		.uleb128 0x6
+ 1300 011f 00       		.byte	0x0
+ 1301 0120 00       		.byte	0x0
+ 1302 0121 16       		.uleb128 0x16
+ 1303 0122 0B       		.uleb128 0xb
+ 1304 0123 01       		.byte	0x1
+ 1305 0124 11       		.uleb128 0x11
+ 1306 0125 01       		.uleb128 0x1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 29
+
+
+ 1307 0126 12       		.uleb128 0x12
+ 1308 0127 01       		.uleb128 0x1
+ 1309 0128 00       		.byte	0x0
+ 1310 0129 00       		.byte	0x0
+ 1311 012a 17       		.uleb128 0x17
+ 1312 012b 34       		.uleb128 0x34
+ 1313 012c 00       		.byte	0x0
+ 1314 012d 03       		.uleb128 0x3
+ 1315 012e 08       		.uleb128 0x8
+ 1316 012f 3A       		.uleb128 0x3a
+ 1317 0130 0B       		.uleb128 0xb
+ 1318 0131 3B       		.uleb128 0x3b
+ 1319 0132 05       		.uleb128 0x5
+ 1320 0133 49       		.uleb128 0x49
+ 1321 0134 13       		.uleb128 0x13
+ 1322 0135 02       		.uleb128 0x2
+ 1323 0136 06       		.uleb128 0x6
+ 1324 0137 00       		.byte	0x0
+ 1325 0138 00       		.byte	0x0
+ 1326 0139 18       		.uleb128 0x18
+ 1327 013a 34       		.uleb128 0x34
+ 1328 013b 00       		.byte	0x0
+ 1329 013c 03       		.uleb128 0x3
+ 1330 013d 0E       		.uleb128 0xe
+ 1331 013e 3A       		.uleb128 0x3a
+ 1332 013f 0B       		.uleb128 0xb
+ 1333 0140 3B       		.uleb128 0x3b
+ 1334 0141 0B       		.uleb128 0xb
+ 1335 0142 49       		.uleb128 0x49
+ 1336 0143 13       		.uleb128 0x13
+ 1337 0144 3F       		.uleb128 0x3f
+ 1338 0145 0C       		.uleb128 0xc
+ 1339 0146 02       		.uleb128 0x2
+ 1340 0147 0A       		.uleb128 0xa
+ 1341 0148 00       		.byte	0x0
+ 1342 0149 00       		.byte	0x0
+ 1343 014a 00       		.byte	0x0
+ 1344              		.section	.debug_pubnames,"",%progbits
+ 1345 0000 7D000000 		.4byte	0x7d
+ 1346 0004 0200     		.2byte	0x2
+ 1347 0006 00000000 		.4byte	.Ldebug_info0
+ 1348 000a 02030000 		.4byte	0x302
+ 1349 000e 34010000 		.4byte	0x134
+ 1350 0012 75617274 		.ascii	"uartGetRxBuffer\000"
+ 1350      47657452 
+ 1350      78427566 
+ 1350      66657200 
+ 1351 0022 67010000 		.4byte	0x167
+ 1352 0026 47657452 		.ascii	"GetResponse\000"
+ 1352      6573706F 
+ 1352      6E736500 
+ 1353 0032 BD010000 		.4byte	0x1bd
+ 1354 0036 6D61696E 		.ascii	"main\000"
+ 1354      00
+ 1355 003b B9020000 		.4byte	0x2b9
+ 1356 003f 636D6442 		.ascii	"cmdBufferData\000"
+ 1356      75666665 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 30
+
+
+ 1356      72446174 
+ 1356      6100
+ 1357 004d CB020000 		.4byte	0x2cb
+ 1358 0051 636D6442 		.ascii	"cmdBuffer\000"
+ 1358      75666665 
+ 1358      7200
+ 1359 005b DD020000 		.4byte	0x2dd
+ 1360 005f 696E745F 		.ascii	"int_busRxPkt\000"
+ 1360      62757352 
+ 1360      78506B74 
+ 1360      00
+ 1361 006c EF020000 		.4byte	0x2ef
+ 1362 0070 6578745F 		.ascii	"ext_busRxPkt\000"
+ 1362      62757352 
+ 1362      78506B74 
+ 1362      00
+ 1363 007d 00000000 		.4byte	0x0
+ 1364              		.section	.debug_aranges,"",%progbits
+ 1365 0000 1C000000 		.4byte	0x1c
+ 1366 0004 0200     		.2byte	0x2
+ 1367 0006 00000000 		.4byte	.Ldebug_info0
+ 1368 000a 04       		.byte	0x4
+ 1369 000b 00       		.byte	0x0
+ 1370 000c 0000     		.2byte	0x0
+ 1371 000e 0000     		.2byte	0x0
+ 1372 0010 00000000 		.4byte	.Ltext0
+ 1373 0014 C8030000 		.4byte	.Letext0-.Ltext0
+ 1374 0018 00000000 		.4byte	0x0
+ 1375 001c 00000000 		.4byte	0x0
+ 1376              		.section	.debug_str,"MS",%progbits,1
+ 1377              	.LASF15:
+ 1378 0000 70617261 		.ascii	"params\000"
+ 1378      6D7300
+ 1379              	.LASF30:
+ 1380 0007 636D6442 		.ascii	"cmdBuffer\000"
+ 1380      75666665 
+ 1380      7200
+ 1381              	.LASF21:
+ 1382 0011 64657643 		.ascii	"devClass\000"
+ 1382      6C617373 
+ 1382      00
+ 1383              	.LASF2:
+ 1384 001a 756E7369 		.ascii	"unsigned int\000"
+ 1384      676E6564 
+ 1384      20696E74 
+ 1384      00
+ 1385              	.LASF5:
+ 1386 0027 73686F72 		.ascii	"short int\000"
+ 1386      7420696E 
+ 1386      7400
+ 1387              	.LASF31:
+ 1388 0031 696E745F 		.ascii	"int_busRxPkt\000"
+ 1388      62757352 
+ 1388      78506B74 
+ 1388      00
+ 1389              	.LASF27:
+ 1390 003e 496E5374 		.ascii	"InState\000"
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 31
+
+
+ 1390      61746500 
+ 1391              	.LASF29:
+ 1392 0046 636D6442 		.ascii	"cmdBufferData\000"
+ 1392      75666665 
+ 1392      72446174 
+ 1392      6100
+ 1393              	.LASF16:
+ 1394 0054 70617261 		.ascii	"paramCnt\000"
+ 1394      6D436E74 
+ 1394      00
+ 1395              	.LASF17:
+ 1396 005d 5258504B 		.ascii	"RXPKT\000"
+ 1396      5400
+ 1397              	.LASF22:
+ 1398 0063 64657641 		.ascii	"devAddress\000"
+ 1398      64647265 
+ 1398      737300
+ 1399              	.LASF8:
+ 1400 006e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1400      206C6F6E 
+ 1400      6720756E 
+ 1400      7369676E 
+ 1400      65642069 
+ 1401              	.LASF12:
+ 1402 0085 64617461 		.ascii	"datalength\000"
+ 1402      6C656E67 
+ 1402      746800
+ 1403              	.LASF19:
+ 1404 0090 47657452 		.ascii	"GetResponse\000"
+ 1404      6573706F 
+ 1404      6E736500 
+ 1405              	.LASF23:
+ 1406 009c 6D61696E 		.ascii	"main\000"
+ 1406      00
+ 1407              	.LASF36:
+ 1408 00a1 73747275 		.ascii	"struct_cBuffer\000"
+ 1408      63745F63 
+ 1408      42756666 
+ 1408      657200
+ 1409              	.LASF6:
+ 1410 00b0 63686172 		.ascii	"char\000"
+ 1410      00
+ 1411              	.LASF24:
+ 1412 00b5 74726750 		.ascii	"trgPkt\000"
+ 1412      6B7400
+ 1413              	.LASF33:
+ 1414 00bc 474E5520 		.ascii	"GNU C 4.1.1 (WinARM)\000"
+ 1414      4320342E 
+ 1414      312E3120 
+ 1414      2857696E 
+ 1414      41524D29 
+ 1415              	.LASF1:
+ 1416 00d1 6C6F6E67 		.ascii	"long long int\000"
+ 1416      206C6F6E 
+ 1416      6720696E 
+ 1416      7400
+ 1417              	.LASF25:
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 32
+
+
+ 1418 00df 496E5369 		.ascii	"InSide\000"
+ 1418      646500
+ 1419              	.LASF11:
+ 1420 00e6 73697A65 		.ascii	"size\000"
+ 1420      00
+ 1421              	.LASF35:
+ 1422 00eb 653A5C57 		.ascii	"e:\\Work\\MScubes\\SourceForge\\trunk\\software\\co"
+ 1422      6F726B5C 
+ 1422      4D536375 
+ 1422      6265735C 
+ 1422      536F7572 
+ 1423 0118 6E74726F 		.ascii	"ntroller\\serialInterfaceTest\000"
+ 1423      6C6C6572 
+ 1423      5C736572 
+ 1423      69616C49 
+ 1423      6E746572 
+ 1424              	.LASF13:
+ 1425 0135 64617461 		.ascii	"dataindex\000"
+ 1425      696E6465 
+ 1425      7800
+ 1426              	.LASF10:
+ 1427 013f 64617461 		.ascii	"dataptr\000"
+ 1427      70747200 
+ 1428              	.LASF28:
+ 1429 0147 676F616C 		.ascii	"goalAddress\000"
+ 1429      41646472 
+ 1429      65737300 
+ 1430              	.LASF20:
+ 1431 0153 73657242 		.ascii	"serBus\000"
+ 1431      757300
+ 1432              	.LASF0:
+ 1433 015a 6C6F6E67 		.ascii	"long int\000"
+ 1433      20696E74 
+ 1433      00
+ 1434              	.LASF26:
+ 1435 0163 496E5069 		.ascii	"InPin\000"
+ 1435      6E00
+ 1436              	.LASF34:
+ 1437 0169 6D61696E 		.ascii	"main_serial.c\000"
+ 1437      5F736572 
+ 1437      69616C2E 
+ 1437      6300
+ 1438              	.LASF3:
+ 1439 0177 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1439      20756E73 
+ 1439      69676E65 
+ 1439      6420696E 
+ 1439      7400
+ 1440              	.LASF4:
+ 1441 0189 756E7369 		.ascii	"unsigned char\000"
+ 1441      676E6564 
+ 1441      20636861 
+ 1441      7200
+ 1442              	.LASF14:
+ 1443 0197 63427566 		.ascii	"cBuffer\000"
+ 1443      66657200 
+ 1444              	.LASF9:
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 33
+
+
+ 1445 019f 7369676E 		.ascii	"signed char\000"
+ 1445      65642063 
+ 1445      68617200 
+ 1446              	.LASF7:
+ 1447 01ab 73686F72 		.ascii	"short unsigned int\000"
+ 1447      7420756E 
+ 1447      7369676E 
+ 1447      65642069 
+ 1447      6E7400
+ 1448              	.LASF32:
+ 1449 01be 6578745F 		.ascii	"ext_busRxPkt\000"
+ 1449      62757352 
+ 1449      78506B74 
+ 1449      00
+ 1450              	.LASF18:
+ 1451 01cb 75617274 		.ascii	"uartGetRxBuffer\000"
+ 1451      47657452 
+ 1451      78427566 
+ 1451      66657200 
+ 1452              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s 			page 34
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main_serial.c
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s:13     .text:00000000 uartGetRxBuffer
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s:20     .text:00000000 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s:41     .text:0000001c GetResponse
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s:98     .text:0000008c main
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccmcbaaa.s:411    .text:000003bc $d
+                            *COM*:00000084 ext_busRxPkt
+                            *COM*:00000080 cmdBufferData
+                            *COM*:0000000c cmdBuffer
+                            *COM*:00000084 int_busRxPkt
+
+UNDEFINED SYMBOLS
+uart0GetRxBuffer
+uart1GetRxBuffer
+packetRxProcess
+processorInit
+usbSetup
+rprintfInit
+HD232_Init
+timerInit
+a2dInit
+spiInit
+i2cInit
+cmd_Init
+timerPause
+cmd_BuildPacket
+cmd_Execute
+rprintfu08
+VCOM_putchar
+rprintf1RamRom

@@ -1,0 +1,41 @@
+EAGLE Version 4.16r2 Copyright (c) 1988-2006 CadSoft
+
+Electrical Rule Check for C:/Documents and Settings/Phelps Williams/Desktop/cornell/molecubes_sf/trunk/hardware/ctl_daughterboard/dboard.sch at 10/25/2007 10:20:24p
+
+WARNING: Sheet 1/1: POWER Pin IC1P VCC connected to +5V
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 PIO_3/INT
+WARNING: Sheet 1/1: POWER Pin IC4P VCC connected to +3V3
+WARNING: Only 1 Pin on net P0.2
+WARNING: Only 1 Pin on net P0.3
+WARNING: Only 1 Pin on net P0.10
+WARNING: Only 1 Pin on net P0.11
+WARNING: Only 1 Pin on net P0.12
+WARNING: Only 1 Pin on net P0.13
+WARNING: Only 1 Pin on net P0.15
+WARNING: Only 1 Pin on net P0.16
+WARNING: Only 1 Pin on net P0.21
+WARNING: Only 1 Pin on net P0.22
+WARNING: Only 1 Pin on net P0.23
+WARNING: Only 1 Pin on net P0.25
+WARNING: Only 1 Pin on net P0.28
+WARNING: Only 1 Pin on net P0.29
+WARNING: Only 1 Pin on net P0.30
+WARNING: Only 1 Pin on net P0.31
+WARNING: Only 1 Pin on net P1.22
+WARNING: Only 1 Pin on net P1.23
+WARNING: Only 1 Pin on net P1.24
+WARNING: Only 1 Pin on net P1.25
+WARNING: Only 1 Pin on net P1.26
+WARNING: Only 1 Pin on net P1.27
+WARNING: Only 1 Pin on net P1.28
+WARNING: Only 1 Pin on net P1.29
+WARNING: Only 1 Pin on net P1.30
+WARNING: Only 1 Pin on net P1.31
+WARNING: Only 1 Pin on net RST
+WARNING: Only 1 Pin on net VBAT
+WARNING: Only 1 Pin on net VREF
+
+Board and schematic are consistent
+
+    1 errors
+   31 warnings

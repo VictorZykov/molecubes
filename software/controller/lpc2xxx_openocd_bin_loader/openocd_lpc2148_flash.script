@@ -1,0 +1,23 @@
+# 
+# The following command wills be executed on
+# reset (because of run_and_init in the config-file)
+# - wait for target halt
+# - erase memory
+# - flash content of file main.bin into target-memory
+# - shutdown openocd
+#
+# created by Martin Thomas 
+# http://www.siwawi.arubi.uni-kl.de/avr_projects/arm_projects
+# based on information from Dominic Rath 
+#
+
+arm7_9 dcc_downloads enable
+wait_halt
+sleep 10
+poll
+flash probe 0
+flash erase 0 0 0
+flash write 0 main.bin 0x0
+reset run
+sleep 10
+shutdown

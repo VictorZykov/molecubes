@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Runtime Simulation", "Runtime Simulation\Runtime Simulation.vcproj", "{18C6F283-F200-4620-93DC-FC1B093A07F2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SequenceWriter", "SequenceWriter\SequenceWriter.vcproj", "{512B5F25-3CD6-44D7-AC0F-FE7A484476A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18C6F283-F200-4620-93DC-FC1B093A07F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{18C6F283-F200-4620-93DC-FC1B093A07F2}.Debug|Win32.Build.0 = Debug|Win32
+		{18C6F283-F200-4620-93DC-FC1B093A07F2}.Release|Win32.ActiveCfg = Release|Win32
+		{18C6F283-F200-4620-93DC-FC1B093A07F2}.Release|Win32.Build.0 = Release|Win32
+		{512B5F25-3CD6-44D7-AC0F-FE7A484476A4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{512B5F25-3CD6-44D7-AC0F-FE7A484476A4}.Debug|Win32.Build.0 = Debug|Win32
+		{512B5F25-3CD6-44D7-AC0F-FE7A484476A4}.Release|Win32.ActiveCfg = Release|Win32
+		{512B5F25-3CD6-44D7-AC0F-FE7A484476A4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

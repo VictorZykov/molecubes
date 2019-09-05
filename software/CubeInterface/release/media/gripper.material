@@ -1,0 +1,27 @@
+
+material gripper
+{
+	technique Default
+	{
+		pass Main
+		{
+			ambient 0.960784 0.34902 0.0862745 1
+			specular 0.9 0.9 0.9 1 0.1
+
+			vertex_program_ref BlinnVP
+			{
+			}
+
+			fragment_program_ref Blinn_Pure_FP
+			{
+				param_named ambientColor float4 0.960784 0.34902 0.0862745 1
+				param_named diffuseColor float4 0.960784 0.34902 0.0862745 1
+				param_named glossLevel float4 10 0 0 0
+				param_named specularColor float4 0.9 0.9 0.9 1
+				param_named specularLevel float4 0 0 0 0
+			}
+		}
+
+	}
+
+}

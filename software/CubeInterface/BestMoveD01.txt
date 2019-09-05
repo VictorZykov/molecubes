@@ -1,0 +1,180 @@
+Generation1: Group: 2: 1.46869;  
+    Cube0: 2021021
+    Cube1: 1321030
+    Cube2: 3032310
+    Cube3: 3010121
+    Cube4: 3120321
+    Cube5: 0213120
+    Cube6: 0212120
+    Cube7: 1231313
+Generation2: Group: 2: 8.8625: 
+    Cube0: 2021021
+    Cube1: 1321030
+    Cube2: 3032110
+    Cube3: 3010121
+    Cube4: 3120321
+    Cube5: 0313120
+    Cube6: 0212020
+    Cube7: 1231313
+Generation3: Group: 2: 13.8821:
+    Cube0: 20210212
+    Cube1: 1321030
+    Cube2: 3032310
+    Cube3: 3010120
+    Cube4: 31203223
+    Cube5: 0212120
+    Cube6: 0012120
+    Cube7: 1231331
+Generation4: Group: 2: 10.6898: 
+    Cube0: 2021021
+    Cube1: 1321030
+    Cube2: 3032110
+    Cube3: 3010121
+    Cube4: 3120321
+    Cube5: 0213120
+    Cube6: 0211020
+    Cube7: 0231313
+Generation5: Group: 2: 10.9626: 
+    Cube0: 2021021
+    Cube1: 1321030
+    Cube2: 3032110
+    Cube3: 3010121
+    Cube4: 3120321
+    Cube5: 0213120
+    Cube6: 0211020
+    Cube7: 02313233
+Generation6: Group: 2: 8.11405: 
+    Cube0: 2021021
+    Cube1: 1321130
+    Cube2: 3032110
+    Cube3: 3010121
+    Cube4: 3120321
+    Cube5: 0203120
+    Cube6: 0211020
+    Cube7: 02313233
+Generation7: Group: 2: 12.6981: 
+    Cube0: 2021020
+    Cube1: 3321030
+    Cube2: 30321100
+    Cube3: 3010321
+    Cube4: 3120301
+    Cube5: 0013120
+    Cube6: 02120203
+    Cube7: 02223033
+Generation8: Group: 2: 12.7842: 
+    Cube0: 2021032
+    Cube1: 3321030
+    Cube2: 30131100
+    Cube3: 3012321
+    Cube4: 312030101
+    Cube5: 0012120
+    Cube6: 02120003
+    Cube7: 02323033
+Generation9: Group: 2: 10.9842: 
+    Cube0: 2021032
+    Cube1: 3321030
+    Cube2: 30131100
+    Cube3: 3012321
+    Cube4: 312030101
+    Cube5: 0012120
+    Cube6: 02120003
+    Cube7: 023230333
+Generation10: Group: 2: 10.0249: 
+    Cube0: 20210321
+    Cube1: 3321030
+    Cube2: 30101100
+    Cube3: 3012321
+    Cube4: 312030001
+    Cube5: 0022120
+    Cube6: 021200032
+    Cube7: 023230333
+Generation11: Group: 2: 10.8776): 
+    Cube0: 1021033
+    Cube1: 3321031
+    Cube2: 30131100
+    Cube3: 3012321
+    Cube4: 311030101
+    Cube5: 0012121
+    Cube6: 01120003
+    Cube7: 023210333
+Generation12: Group: 2: 8.50266: 
+    Cube0: 20210321
+    Cube1: 33210303
+    Cube2: 30101100
+    Cube3: 1012321
+    Cube4: 332030001
+    Cube5: 0032120
+    Cube6: 021210032
+    Cube7: 033230333
+Generation13: Group: 2: 7.96167: 
+    Cube0: 20210321
+    Cube1: 3021030
+    Cube2: 30110100
+    Cube3: 3012321
+    Cube4: 311030001
+    Cube5: 0022020
+    Cube6: 011200132
+    Cube7: 223230323
+Generation14: Group: 2: 9.34959): 
+    Cube0: 20210321
+    Cube1: 3021030
+    Cube2: 30110100
+    Cube3: 3012321
+    Cube4: 301030001
+    Cube5: 0322020
+    Cube6: 011230132
+    Cube7: 223230323
+Generation15: Group: 2: 8.53468: 
+    Cube0: 20210321
+    Cube1: 3021030
+    Cube2: 30110100
+    Cube3: 3011321
+    Cube4: 321030001
+    Cube5: 0322120
+    Cube6: 011230132
+    Cube7: 223230323
+Generation16: Group: 2: 7.88314): 
+    Cube0: 202103212
+    Cube1: 3021020
+    Cube2: 30110000
+    Cube3: 3312321
+    Cube4: 301030001
+    Cube5: 0322010
+    Cube6: 01123013200
+    Cube7: 220230323
+Generation17: Group: 2: 8.93313): 
+    Cube0: 20210321
+    Cube1: 2021030
+    Cube2: 301111000
+    Cube3: 3312321
+    Cube4: 301032001
+    Cube5: 13220201
+    Cube6: 011230132
+    Cube7: 2230303232
+Generation18: Group: 2: 9.76637: 
+    Cube0: 20210321
+    Cube1: 3021030
+    Cube2: 10110100
+    Cube3: 0012322
+    Cube4: 30113000100
+    Cube5: 0202010
+    Cube6: 0112321120
+    Cube7: 2232203232
+Generation19: Group: 2: 13.7314: 
+    Cube0: 20210321
+    Cube1: 3021030
+    Cube2: 10310100
+    Cube3: 0012323
+    Cube4: 30113000100
+    Cube5: 0202010
+    Cube6: 0112321120
+    Cube7: 2232203232
+Generation20: Group: 2: 10.1833): 
+    Cube0: 132103221
+    Cube1: 2001030
+    Cube2: 301211000
+    Cube3: 3302321
+    Cube4: 30101300112
+    Cube5: 132002011
+    Cube6: 031220132
+    Cube7: 323030303

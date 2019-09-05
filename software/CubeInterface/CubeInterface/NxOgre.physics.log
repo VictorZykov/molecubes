@@ -1,0 +1,19 @@
+13:58:12.000001 Starting up NxOgre using versions:
+  -> PhysX SDK   2.6.4
+  -> Hardware    None installed or none found.
+  -> NxOgre      NxOgre 0.4.RC3 (Compatible: no)
+  -> Ogre        1.4.3 'Eihort'
+13:58:12.000001 Started.
+13:58:12.000001 Creating scene 'Main'.
+13:58:32.002057 Shutting down.
+13:58:32.002057 Scene 'Main' (Software) shutting down
+  > 1 bodies
+  > 1 NxActors
+  > 0 controllables
+  > 0 fluids
+13:58:32.002057 Deleting 'Main.floor'.
+13:58:32.002057 Deleted Materials
+13:58:32.002057 Deleted Material aliases.
+13:58:32.002057 Released Scene.
+13:58:32.002057 Calculated physics for 19.2792 seconds.
+13:58:32.002057 Goodbye.

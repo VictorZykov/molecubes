@@ -1,0 +1,37 @@
+Drill Station Info File: D:/Work/MScubes/PCB/v2.8/Gerb/Drills.dri
+
+ Date              : 10/17/2007 11:08:17p
+ Drills            : D:/Work/MScubes/PCB/v2.8/Gerb/Rack.drl
+ Device            : Excellon drill station
+
+Parameter settings:
+
+ Tolerance Drill + :  0.00 %
+ Tolerance Drill - :  0.00 %
+ Rotate            : no
+ Mirror            : no
+ Optimize          : yes
+ Auto fit          : yes
+ OffsetX           : 0inch
+ OffsetY           : 0inch
+ Layers            : Drills Holes
+
+Drill File Info:
+
+ Data Mode         : Absolute
+ Units             : 1/1000 Inch
+ End Of Block      : CR/LF
+
+Drills used:
+
+ Code  Size       used
+
+ T01   20.000mil   103
+ T02   40.000mil    14
+ T03   52.000mil     7
+
+Total number of drills: 124
+
+Plotfiles:
+
+ D:/Work/MScubes/PCB/v2.8/Gerb/Drills.nci

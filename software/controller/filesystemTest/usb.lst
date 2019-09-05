@@ -1,0 +1,2664 @@
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 1
+
+
+   1              		.file	"usb.c"
+   2              		.section	.debug_abbrev,"",%progbits
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,"",%progbits
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,"",%progbits
+   7              	.Ldebug_line0:
+   8 0000 BC000000 		.text
+   8      02005600 
+   8      00000201 
+   8      FB0E0A00 
+   8      01010101 
+   9              	.Ltext0:
+  10              		.data
+  11              		.align	2
+  12              		.type	LineCoding, %object
+  13              		.size	LineCoding, 8
+  14              	LineCoding:
+  15 0000 40420F00 		.word	1000000
+  16 0004 00       		.byte	0
+  17 0005 00       		.byte	0
+  18 0006 08       		.byte	8
+  19 0007 00       		.space	1
+  20              		.section	.rodata
+  21              		.type	abDescriptors, %object
+  22              		.size	abDescriptors, 142
+  23              	abDescriptors:
+  24 0000 12       		.byte	18
+  25 0001 01       		.byte	1
+  26 0002 01       		.byte	1
+  27 0003 01       		.byte	1
+  28 0004 02       		.byte	2
+  29 0005 00       		.byte	0
+  30 0006 00       		.byte	0
+  31 0007 40       		.byte	64
+  32 0008 FF       		.byte	-1
+  33 0009 FF       		.byte	-1
+  34 000a 05       		.byte	5
+  35 000b 00       		.byte	0
+  36 000c 00       		.byte	0
+  37 000d 01       		.byte	1
+  38 000e 01       		.byte	1
+  39 000f 02       		.byte	2
+  40 0010 03       		.byte	3
+  41 0011 01       		.byte	1
+  42 0012 09       		.byte	9
+  43 0013 02       		.byte	2
+  44 0014 43       		.byte	67
+  45 0015 00       		.byte	0
+  46 0016 02       		.byte	2
+  47 0017 01       		.byte	1
+  48 0018 00       		.byte	0
+  49 0019 C0       		.byte	-64
+  50 001a 32       		.byte	50
+  51 001b 09       		.byte	9
+  52 001c 04       		.byte	4
+  53 001d 00       		.byte	0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 2
+
+
+  54 001e 00       		.byte	0
+  55 001f 01       		.byte	1
+  56 0020 02       		.byte	2
+  57 0021 02       		.byte	2
+  58 0022 01       		.byte	1
+  59 0023 00       		.byte	0
+  60 0024 05       		.byte	5
+  61 0025 24       		.byte	36
+  62 0026 00       		.byte	0
+  63 0027 10       		.byte	16
+  64 0028 01       		.byte	1
+  65 0029 05       		.byte	5
+  66 002a 24       		.byte	36
+  67 002b 01       		.byte	1
+  68 002c 01       		.byte	1
+  69 002d 01       		.byte	1
+  70 002e 04       		.byte	4
+  71 002f 24       		.byte	36
+  72 0030 02       		.byte	2
+  73 0031 02       		.byte	2
+  74 0032 05       		.byte	5
+  75 0033 24       		.byte	36
+  76 0034 06       		.byte	6
+  77 0035 00       		.byte	0
+  78 0036 01       		.byte	1
+  79 0037 07       		.byte	7
+  80 0038 05       		.byte	5
+  81 0039 81       		.byte	-127
+  82 003a 03       		.byte	3
+  83 003b 08       		.byte	8
+  84 003c 00       		.byte	0
+  85 003d 0A       		.byte	10
+  86 003e 09       		.byte	9
+  87 003f 04       		.byte	4
+  88 0040 01       		.byte	1
+  89 0041 00       		.byte	0
+  90 0042 02       		.byte	2
+  91 0043 0A       		.byte	10
+  92 0044 00       		.byte	0
+  93 0045 00       		.byte	0
+  94 0046 00       		.byte	0
+  95 0047 07       		.byte	7
+  96 0048 05       		.byte	5
+  97 0049 05       		.byte	5
+  98 004a 02       		.byte	2
+  99 004b 40       		.byte	64
+ 100 004c 00       		.byte	0
+ 101 004d 00       		.byte	0
+ 102 004e 07       		.byte	7
+ 103 004f 05       		.byte	5
+ 104 0050 82       		.byte	-126
+ 105 0051 02       		.byte	2
+ 106 0052 40       		.byte	64
+ 107 0053 00       		.byte	0
+ 108 0054 00       		.byte	0
+ 109 0055 04       		.byte	4
+ 110 0056 03       		.byte	3
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 3
+
+
+ 111 0057 09       		.byte	9
+ 112 0058 04       		.byte	4
+ 113 0059 0E       		.byte	14
+ 114 005a 03       		.byte	3
+ 115 005b 4C       		.byte	76
+ 116 005c 00       		.byte	0
+ 117 005d 50       		.byte	80
+ 118 005e 00       		.byte	0
+ 119 005f 43       		.byte	67
+ 120 0060 00       		.byte	0
+ 121 0061 55       		.byte	85
+ 122 0062 00       		.byte	0
+ 123 0063 53       		.byte	83
+ 124 0064 00       		.byte	0
+ 125 0065 42       		.byte	66
+ 126 0066 00       		.byte	0
+ 127 0067 14       		.byte	20
+ 128 0068 03       		.byte	3
+ 129 0069 55       		.byte	85
+ 130 006a 00       		.byte	0
+ 131 006b 53       		.byte	83
+ 132 006c 00       		.byte	0
+ 133 006d 42       		.byte	66
+ 134 006e 00       		.byte	0
+ 135 006f 53       		.byte	83
+ 136 0070 00       		.byte	0
+ 137 0071 65       		.byte	101
+ 138 0072 00       		.byte	0
+ 139 0073 72       		.byte	114
+ 140 0074 00       		.byte	0
+ 141 0075 69       		.byte	105
+ 142 0076 00       		.byte	0
+ 143 0077 61       		.byte	97
+ 144 0078 00       		.byte	0
+ 145 0079 6C       		.byte	108
+ 146 007a 00       		.byte	0
+ 147 007b 12       		.byte	18
+ 148 007c 03       		.byte	3
+ 149 007d 44       		.byte	68
+ 150 007e 00       		.byte	0
+ 151 007f 45       		.byte	69
+ 152 0080 00       		.byte	0
+ 153 0081 41       		.byte	65
+ 154 0082 00       		.byte	0
+ 155 0083 44       		.byte	68
+ 156 0084 00       		.byte	0
+ 157 0085 43       		.byte	67
+ 158 0086 00       		.byte	0
+ 159 0087 30       		.byte	48
+ 160 0088 00       		.byte	0
+ 161 0089 44       		.byte	68
+ 162 008a 00       		.byte	0
+ 163 008b 45       		.byte	69
+ 164 008c 00       		.byte	0
+ 165 008d 00       		.byte	0
+ 166              		.text
+ 167              		.align	2
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 4
+
+
+ 168              		.type	BulkOut, %function
+ 169              	BulkOut:
+ 170              	.LFB2:
+ 171              		.file 1 "usb.c"
+   1:usb.c         **** #include "global.h"			// include our global project settings
+   2:usb.c         **** #include "processor.h"		// include processor initialization functions
+   3:usb.c         **** #include "lpc2000.h"		// include LPC210x defines
+   4:usb.c         **** #include "buffer.h"
+   5:usb.c         **** #include "usb.h"
+   6:usb.c         **** 
+   7:usb.c         **** static unsigned char uartRxData[UART_RX_BUFFER_SIZE];
+   8:usb.c         **** static unsigned char uartTxData[UART_TX_BUFFER_SIZE];
+   9:usb.c         **** cBuffer uartRxBuffer;				///< uart receive buffer
+  10:usb.c         **** cBuffer uartTxBuffer;				///< uart transmit buffer
+  11:usb.c         **** unsigned short uartRxOverflow;		///< receive overflow counter
+  12:usb.c         **** 
+  13:usb.c         **** // data structure for GET_LINE_CODING / SET_LINE_CODING class requests
+  14:usb.c         **** typedef struct {
+  15:usb.c         **** 	U32		dwDTERate;
+  16:usb.c         **** 	U8		bCharFormat;
+  17:usb.c         **** 	U8		bParityType;
+  18:usb.c         **** 	U8		bDataBits;
+  19:usb.c         **** } TLineCoding;
+  20:usb.c         **** 
+  21:usb.c         **** //static TLineCoding LineCoding = {115200, 0, 0, 8};
+  22:usb.c         **** static TLineCoding LineCoding = {1000000, 0, 0, 8};
+  23:usb.c         **** static U8 abBulkBuf[64];
+  24:usb.c         **** static U8 abClassReqData[8];
+  25:usb.c         **** 
+  26:usb.c         **** // forward declaration of interrupt handler
+  27:usb.c         **** static void USBIntHandler(void) __attribute__ ((interrupt("IRQ")));
+  28:usb.c         **** 
+  29:usb.c         **** 
+  30:usb.c         **** static const U8 abDescriptors[] = {
+  31:usb.c         **** 
+  32:usb.c         **** // device descriptor
+  33:usb.c         **** 	0x12,
+  34:usb.c         **** 	DESC_DEVICE,
+  35:usb.c         **** 	LE_WORD(0x0101),			// bcdUSB
+  36:usb.c         **** 	0x02,						// bDeviceClass
+  37:usb.c         **** 	0x00,						// bDeviceSubClass
+  38:usb.c         **** 	0x00,						// bDeviceProtocol
+  39:usb.c         **** 	MAX_PACKET_SIZE0,			// bMaxPacketSize
+  40:usb.c         **** 	LE_WORD(0xFFFF),			// idVendor
+  41:usb.c         **** 	LE_WORD(0x0005),			// idProduct
+  42:usb.c         **** 	LE_WORD(0x0100),			// bcdDevice
+  43:usb.c         **** 	0x01,						// iManufacturer
+  44:usb.c         **** 	0x02,						// iProduct
+  45:usb.c         **** 	0x03,						// iSerialNumber
+  46:usb.c         **** 	0x01,						// bNumConfigurations
+  47:usb.c         **** 
+  48:usb.c         **** // configuration descriptor
+  49:usb.c         **** 	0x09,
+  50:usb.c         **** 	DESC_CONFIGURATION,
+  51:usb.c         **** 	LE_WORD(67),				// wTotalLength
+  52:usb.c         **** 	0x02,						// bNumInterfaces
+  53:usb.c         **** 	0x01,						// bConfigurationValue
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 5
+
+
+  54:usb.c         **** 	0x00,						// iConfiguration
+  55:usb.c         **** 	0xC0,						// bmAttributes
+  56:usb.c         **** 	0x32,						// bMaxPower
+  57:usb.c         **** // control class interface
+  58:usb.c         **** 	0x09,
+  59:usb.c         **** 	DESC_INTERFACE,
+  60:usb.c         **** 	0x00,						// bInterfaceNumber
+  61:usb.c         **** 	0x00,						// bAlternateSetting
+  62:usb.c         **** 	0x01,						// bNumEndPoints
+  63:usb.c         **** 	0x02,						// bInterfaceClass
+  64:usb.c         **** 	0x02,						// bInterfaceSubClass
+  65:usb.c         **** 	0x01,						// bInterfaceProtocol, linux requires value of 1 for the cdc_acm module
+  66:usb.c         **** 	0x00,						// iInterface
+  67:usb.c         **** // header functional descriptor
+  68:usb.c         **** 	0x05,
+  69:usb.c         **** 	CS_INTERFACE,
+  70:usb.c         **** 	0x00,
+  71:usb.c         **** 	LE_WORD(0x0110),
+  72:usb.c         **** // call management functional descriptor
+  73:usb.c         **** 	0x05,
+  74:usb.c         **** 	CS_INTERFACE,
+  75:usb.c         **** 	0x01,
+  76:usb.c         **** 	0x01,						// bmCapabilities = device handles call management
+  77:usb.c         **** 	0x01,						// bDataInterface
+  78:usb.c         **** // ACM functional descriptor
+  79:usb.c         **** 	0x04,
+  80:usb.c         **** 	CS_INTERFACE,
+  81:usb.c         **** 	0x02,
+  82:usb.c         **** 	0x02,						// bmCapabilities
+  83:usb.c         **** // union functional descriptor
+  84:usb.c         **** 	0x05,
+  85:usb.c         **** 	CS_INTERFACE,
+  86:usb.c         **** 	0x06,
+  87:usb.c         **** 	0x00,						// bMasterInterface
+  88:usb.c         **** 	0x01,						// bSlaveInterface0
+  89:usb.c         **** // notification EP
+  90:usb.c         **** 	0x07,
+  91:usb.c         **** 	DESC_ENDPOINT,
+  92:usb.c         **** 	INT_IN_EP,					// bEndpointAddress
+  93:usb.c         **** 	0x03,						// bmAttributes = intr
+  94:usb.c         **** 	LE_WORD(8),					// wMaxPacketSize
+  95:usb.c         **** 	0x0A,						// bInterval
+  96:usb.c         **** // data class interface descriptor
+  97:usb.c         **** 	0x09,
+  98:usb.c         **** 	DESC_INTERFACE,
+  99:usb.c         **** 	0x01,						// bInterfaceNumber
+ 100:usb.c         **** 	0x00,						// bAlternateSetting
+ 101:usb.c         **** 	0x02,						// bNumEndPoints
+ 102:usb.c         **** 	0x0A,						// bInterfaceClass = data
+ 103:usb.c         **** 	0x00,						// bInterfaceSubClass
+ 104:usb.c         **** 	0x00,						// bInterfaceProtocol
+ 105:usb.c         **** 	0x00,						// iInterface
+ 106:usb.c         **** // data EP OUT
+ 107:usb.c         **** 	0x07,
+ 108:usb.c         **** 	DESC_ENDPOINT,
+ 109:usb.c         **** 	BULK_OUT_EP,				// bEndpointAddress
+ 110:usb.c         **** 	0x02,						// bmAttributes = bulk
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 6
+
+
+ 111:usb.c         **** 	LE_WORD(MAX_PACKET_SIZE),	// wMaxPacketSize
+ 112:usb.c         **** 	0x00,						// bInterval
+ 113:usb.c         **** // data EP in
+ 114:usb.c         **** 	0x07,
+ 115:usb.c         **** 	DESC_ENDPOINT,
+ 116:usb.c         **** 	BULK_IN_EP,					// bEndpointAddress
+ 117:usb.c         **** 	0x02,						// bmAttributes = bulk
+ 118:usb.c         **** 	LE_WORD(MAX_PACKET_SIZE),	// wMaxPacketSize
+ 119:usb.c         **** 	0x00,						// bInterval
+ 120:usb.c         **** 	
+ 121:usb.c         **** 	// string descriptors
+ 122:usb.c         **** 	0x04,
+ 123:usb.c         **** 	DESC_STRING,
+ 124:usb.c         **** 	LE_WORD(0x0409),
+ 125:usb.c         **** 
+ 126:usb.c         **** 	0x0E,
+ 127:usb.c         **** 	DESC_STRING,
+ 128:usb.c         **** 	'L', 0, 'P', 0, 'C', 0, 'U', 0, 'S', 0, 'B', 0,
+ 129:usb.c         **** 
+ 130:usb.c         **** 	0x14,
+ 131:usb.c         **** 	DESC_STRING,
+ 132:usb.c         **** 	'U', 0, 'S', 0, 'B', 0, 'S', 0, 'e', 0, 'r', 0, 'i', 0, 'a', 0, 'l', 0,
+ 133:usb.c         **** 
+ 134:usb.c         **** 	0x12,
+ 135:usb.c         **** 	DESC_STRING,
+ 136:usb.c         **** 	'D', 0, 'E', 0, 'A', 0, 'D', 0, 'C', 0, '0', 0, 'D', 0, 'E', 0,
+ 137:usb.c         **** 
+ 138:usb.c         **** // terminating zero
+ 139:usb.c         **** 	0
+ 140:usb.c         **** };
+ 141:usb.c         **** 
+ 142:usb.c         **** 
+ 143:usb.c         **** /**
+ 144:usb.c         **** 	Local function to handle incoming bulk data
+ 145:usb.c         **** 		
+ 146:usb.c         **** 	@param [in] bEP
+ 147:usb.c         **** 	@param [in] bEPStatus
+ 148:usb.c         ****  */
+ 149:usb.c         **** static void BulkOut(U8 bEP, U8 bEPStatus)
+ 150:usb.c         **** {
+ 172              		.loc 1 150 0
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175              	.LVL0:
+ 176 0000 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 177              	.LCFI0:
+ 178 0004 FF4000E2 		and	r4, r0, #255
+ 151:usb.c         **** 	int i, iLen;
+ 152:usb.c         **** 
+ 153:usb.c         **** 	
+ 154:usb.c         **** 	//if (fifo_free(&rxfifo) < MAX_PACKET_SIZE) {
+ 155:usb.c         **** 	if (bufferIsNotFull(&uartRxBuffer) < MAX_PACKET_SIZE) {
+ 179              		.loc 1 155 0
+ 180 0008 50009FE5 		ldr	r0, .L9
+ 181              	.LVL1:
+ 182 000c FEFFFFEB 		bl	bufferIsNotFull
+ 183              	.LVL2:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 7
+
+
+ 184 0010 3F0050E3 		cmp	r0, #63
+ 185 0014 3080BD98 		ldmlsfd	sp!, {r4, r5, pc}
+ 156:usb.c         **** 		// may not fit into fifo
+ 157:usb.c         **** 		return;
+ 158:usb.c         **** 	}
+ 159:usb.c         **** 
+ 160:usb.c         **** 	// get data from USB into intermediate buffer
+ 161:usb.c         **** 	iLen = USBHwEPRead(bEP, abBulkBuf, sizeof(abBulkBuf));
+ 186              		.loc 1 161 0
+ 187 0018 44509FE5 		ldr	r5, .L9+4
+ 188 001c 0400A0E1 		mov	r0, r4
+ 189 0020 0510A0E1 		mov	r1, r5
+ 190 0024 4020A0E3 		mov	r2, #64
+ 191 0028 FEFFFFEB 		bl	USBHwEPRead
+ 162:usb.c         **** 	for (i = 0; i < iLen; i++) {
+ 192              		.loc 1 162 0
+ 193 002c 000050E3 		cmp	r0, #0
+ 194              	.LVL3:
+ 195 0030 3080BDD8 		ldmlefd	sp!, {r4, r5, pc}
+ 196 0034 0540A0E1 		mov	r4, r5
+ 197              	.LVL4:
+ 198 0038 055080E0 		add	r5, r0, r5
+ 199              	.L5:
+ 163:usb.c         **** 		// put into FIFO
+ 164:usb.c         **** 		//if (!fifo_put(&rxfifo, abBulkBuf[i])) {
+ 165:usb.c         **** 		if(!bufferAddToEnd(&uartRxBuffer, abBulkBuf[i])) {	
+ 200              		.loc 1 165 0
+ 201 003c 1C009FE5 		ldr	r0, .L9
+ 202              	.LVL5:
+ 203 0040 0010D4E5 		ldrb	r1, [r4, #0]	@ zero_extendqisi2
+ 204 0044 FEFFFFEB 		bl	bufferAddToEnd
+ 205 0048 000050E3 		cmp	r0, #0
+ 206 004c 3080BD08 		ldmeqfd	sp!, {r4, r5, pc}
+ 166:usb.c         **** 			// overflow... :(
+ 167:usb.c         **** 			//ASSERT(FALSE);
+ 168:usb.c         **** 			break;
+ 207              		.loc 1 168 0
+ 208 0050 014084E2 		add	r4, r4, #1
+ 209              		.loc 1 162 0
+ 210 0054 050054E1 		cmp	r4, r5
+ 211 0058 0D00001A 		bne	.L5
+ 212 005c 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 213              	.L10:
+ 214              		.align	2
+ 215              	.L9:
+ 216 0060 00000000 		.word	uartRxBuffer
+ 217 0064 80000000 		.word	abBulkBuf
+ 218              	.LFE2:
+ 219              		.size	BulkOut, .-BulkOut
+ 220              		.align	2
+ 221              		.type	BulkIn, %function
+ 222              	BulkIn:
+ 223              	.LFB3:
+ 169:usb.c         **** 		}
+ 170:usb.c         **** 	}
+ 171:usb.c         **** }
+ 172:usb.c         **** 
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 8
+
+
+ 173:usb.c         **** 
+ 174:usb.c         **** /**
+ 175:usb.c         **** 	Local function to handle outgoing bulk data
+ 176:usb.c         **** 		
+ 177:usb.c         **** 	@param [in] bEP
+ 178:usb.c         **** 	@param [in] bEPStatus
+ 179:usb.c         ****  */
+ 180:usb.c         **** static void BulkIn(U8 bEP, U8 bEPStatus)
+ 181:usb.c         **** {
+ 224              		.loc 1 181 0
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227              	.LVL6:
+ 228 0068 70402DE9 		stmfd	sp!, {r4, r5, r6, lr}
+ 229              	.LCFI1:
+ 230 006c FF6000E2 		and	r6, r0, #255
+ 182:usb.c         **** 	int i, iLen;
+ 183:usb.c         **** 	unsigned char c;
+ 184:usb.c         **** 
+ 185:usb.c         **** 	//if (fifo_avail(&txfifo) == 0) {
+ 186:usb.c         **** 	if (!bufferIsNotFull(&uartTxBuffer)) {
+ 231              		.loc 1 186 0
+ 232 0070 58009FE5 		ldr	r0, .L21
+ 233              	.LVL7:
+ 234 0074 FEFFFFEB 		bl	bufferIsNotFull
+ 235              	.LVL8:
+ 236 0078 000050E3 		cmp	r0, #0
+ 187:usb.c         **** 		// no more data, disable further NAK interrupts until next USB frame
+ 188:usb.c         **** 		USBHwNakIntEnable(0);
+ 189:usb.c         **** 		return;
+ 237              		.loc 1 189 0
+ 238 007c 0040A013 		movne	r4, #0
+ 239              	.LVL9:
+ 240 0080 4C509F15 		ldrne	r5, .L21+4
+ 241              		.loc 1 186 0
+ 242 0084 2200001A 		bne	.L15
+ 243              		.loc 1 188 0
+ 244 0088 FEFFFFEB 		bl	USBHwNakIntEnable
+ 245 008c 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+ 246              	.L15:
+ 190:usb.c         **** 	}
+ 191:usb.c         **** 
+ 192:usb.c         **** 	// get bytes from transmit FIFO into intermediate buffer
+ 193:usb.c         **** 	for (i = 0; i < MAX_PACKET_SIZE; i++) {
+ 194:usb.c         **** 		c = bufferGetFromFront(&uartTxBuffer);
+ 247              		.loc 1 194 0
+ 248 0090 38009FE5 		ldr	r0, .L21
+ 249 0094 FEFFFFEB 		bl	bufferGetFromFront
+ 195:usb.c         **** 		if(!c) {
+ 250              		.loc 1 195 0
+ 251 0098 000050E3 		cmp	r0, #0
+ 252 009c 2B00000A 		beq	.L16
+ 196:usb.c         **** 		//if (!fifo_get(&txfifo, &abBulkBuf[i])) {
+ 197:usb.c         **** 			break;
+ 198:usb.c         **** 		} else {
+ 199:usb.c         **** 			abBulkBuf[i] = c;
+ 253              		.loc 1 199 0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 9
+
+
+ 254 00a0 0500C4E7 		strb	r0, [r4, r5]
+ 255              		.loc 1 193 0
+ 256 00a4 014084E2 		add	r4, r4, #1
+ 257 00a8 400054E3 		cmp	r4, #64
+ 258 00ac 2D00000A 		beq	.L18
+ 259 00b0 220000EA 		b	.L15
+ 260              	.L16:
+ 200:usb.c         **** 		}
+ 201:usb.c         **** 	}
+ 202:usb.c         **** 	iLen = i;
+ 203:usb.c         **** 	
+ 204:usb.c         **** 	// send over USB
+ 205:usb.c         **** 	if (iLen > 0) {
+ 261              		.loc 1 205 0
+ 262 00b4 000054E3 		cmp	r4, #0
+ 263 00b8 7080BDD8 		ldmlefd	sp!, {r4, r5, r6, pc}
+ 264              	.L18:
+ 206:usb.c         **** 		USBHwEPWrite(bEP, abBulkBuf, iLen);
+ 265              		.loc 1 206 0
+ 266 00bc 0600A0E1 		mov	r0, r6
+ 267 00c0 0C109FE5 		ldr	r1, .L21+4
+ 268 00c4 0420A0E1 		mov	r2, r4
+ 269 00c8 FEFFFFEB 		bl	USBHwEPWrite
+ 270 00cc 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+ 271              	.L22:
+ 272              		.align	2
+ 273              	.L21:
+ 274 00d0 00000000 		.word	uartTxBuffer
+ 275 00d4 80000000 		.word	abBulkBuf
+ 276              	.LFE3:
+ 277              		.size	BulkIn, .-BulkIn
+ 278              		.align	2
+ 279              		.type	HandleClassRequest, %function
+ 280              	HandleClassRequest:
+ 281              	.LFB4:
+ 207:usb.c         **** 	}
+ 208:usb.c         **** }
+ 209:usb.c         **** 
+ 210:usb.c         **** 
+ 211:usb.c         **** /**
+ 212:usb.c         **** 	Local function to handle the USB-CDC class requests
+ 213:usb.c         **** 		
+ 214:usb.c         **** 	@param [in] pSetup
+ 215:usb.c         **** 	@param [out] piLen
+ 216:usb.c         **** 	@param [out] ppbData
+ 217:usb.c         ****  */
+ 218:usb.c         **** static BOOL HandleClassRequest(TSetupPacket *pSetup, int *piLen, U8 **ppbData)
+ 219:usb.c         **** {
+ 282              		.loc 1 219 0
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285              	.LVL10:
+ 286 00d8 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 287              	.LCFI2:
+ 288 00dc 0150A0E1 		mov	r5, r1
+ 220:usb.c         **** 	switch (pSetup->bRequest) {
+ 289              		.loc 1 220 0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 10
+
+
+ 290 00e0 0130D0E5 		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 291 00e4 210053E3 		cmp	r3, #33
+ 292 00e8 4700000A 		beq	.L26
+ 293              	.LVL11:
+ 294 00ec 220053E3 		cmp	r3, #34
+ 295 00f0 FF00A003 		moveq	r0, #255
+ 296              	.LVL12:
+ 297 00f4 3080BD08 		ldmeqfd	sp!, {r4, r5, pc}
+ 298 00f8 200053E3 		cmp	r3, #32
+ 299 00fc 0000A013 		movne	r0, #0
+ 300 0100 3080BD18 		ldmnefd	sp!, {r4, r5, pc}
+ 221:usb.c         **** 
+ 222:usb.c         **** 	// set line coding
+ 223:usb.c         **** 	case SET_LINE_CODING:
+ 224:usb.c         **** //DBG("SET_LINE_CODING\n");
+ 225:usb.c         **** 		memcpy((U8 *)&LineCoding, *ppbData, 7);
+ 301              		.loc 1 225 0
+ 302 0104 0740A0E3 		mov	r4, #7
+ 303 0108 2C009FE5 		ldr	r0, .L30
+ 304 010c 001092E5 		ldr	r1, [r2, #0]
+ 305 0110 0420A0E1 		mov	r2, r4
+ 306              	.LVL13:
+ 307 0114 FEFFFFEB 		bl	memcpy
+ 226:usb.c         **** 		*piLen = 7;
+ 308              		.loc 1 226 0
+ 309 0118 004085E5 		str	r4, [r5, #0]
+ 310 011c FF00A0E3 		mov	r0, #255
+ 311 0120 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 312              	.LVL14:
+ 313              	.L26:
+ 227:usb.c         **** //DBG("dwDTERate=%u, bCharFormat=%u, bParityType=%u, bDataBits=%u\n",
+ 228:usb.c         **** //	LineCoding.dwDTERate,
+ 229:usb.c         **** //	LineCoding.bCharFormat,
+ 230:usb.c         **** //	LineCoding.bParityType,
+ 231:usb.c         **** //	LineCoding.bDataBits);
+ 232:usb.c         **** 		break;
+ 233:usb.c         **** 
+ 234:usb.c         **** 	// get line coding
+ 235:usb.c         **** 	case GET_LINE_CODING:
+ 236:usb.c         **** //DBG("GET_LINE_CODING\n");
+ 237:usb.c         **** 		*ppbData = (U8 *)&LineCoding;
+ 314              		.loc 1 237 0
+ 315 0124 10309FE5 		ldr	r3, .L30
+ 316 0128 003082E5 		str	r3, [r2, #0]
+ 238:usb.c         **** 		*piLen = 7;
+ 317              		.loc 1 238 0
+ 318 012c 0730A0E3 		mov	r3, #7
+ 319 0130 003081E5 		str	r3, [r1, #0]
+ 320 0134 FF00A0E3 		mov	r0, #255
+ 321              	.LVL15:
+ 239:usb.c         **** 		break;
+ 240:usb.c         **** 
+ 241:usb.c         **** 	// set control line state
+ 242:usb.c         **** 	case SET_CONTROL_LINE_STATE:
+ 243:usb.c         **** 		// bit0 = DTR, bit = RTS
+ 244:usb.c         **** //DBG("SET_CONTROL_LINE_STATE %X\n", pSetup->wValue);
+ 245:usb.c         **** 		break;
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 11
+
+
+ 246:usb.c         **** 
+ 247:usb.c         **** 	default:
+ 248:usb.c         **** 		return FALSE;
+ 249:usb.c         **** 	}
+ 250:usb.c         **** 	return TRUE;
+ 251:usb.c         **** }
+ 322              		.loc 1 251 0
+ 323 0138 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 324              	.L31:
+ 325              		.align	2
+ 326              	.L30:
+ 327 013c 00000000 		.word	LineCoding
+ 328              	.LFE4:
+ 329              		.size	HandleClassRequest, .-HandleClassRequest
+ 330              		.align	2
+ 331              		.global	VCOM_init
+ 332              		.type	VCOM_init, %function
+ 333              	VCOM_init:
+ 334              	.LFB5:
+ 252:usb.c         **** 
+ 253:usb.c         **** 
+ 254:usb.c         **** /**
+ 255:usb.c         **** 	Initialises the VCOM port.
+ 256:usb.c         **** 	Call this function before using VCOM_putchar or VCOM_getchar
+ 257:usb.c         ****  */
+ 258:usb.c         **** void VCOM_init(void)
+ 259:usb.c         **** {
+ 335              		.loc 1 259 0
+ 336              		@ args = 0, pretend = 0, frame = 0
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338              	.LVL16:
+ 339 0140 04E02DE5 		str	lr, [sp, #-4]!
+ 340              	.LCFI3:
+ 260:usb.c         **** 	//fifo_init(&txfifo, txdata);
+ 261:usb.c         **** 	//fifo_init(&rxfifo, rxdata);
+ 262:usb.c         **** 	bufferInit(&uartTxBuffer, uartTxData, UART_TX_BUFFER_SIZE);
+ 341              		.loc 1 262 0
+ 342 0144 1C009FE5 		ldr	r0, .L34
+ 343 0148 1C109FE5 		ldr	r1, .L34+4
+ 344 014c 4020A0E3 		mov	r2, #64
+ 345 0150 FEFFFFEB 		bl	bufferInit
+ 263:usb.c         **** 	bufferInit(&uartRxBuffer, uartRxData, UART_RX_BUFFER_SIZE);
+ 346              		.loc 1 263 0
+ 347 0154 14009FE5 		ldr	r0, .L34+8
+ 348 0158 14109FE5 		ldr	r1, .L34+12
+ 349 015c 4020A0E3 		mov	r2, #64
+ 350 0160 FEFFFFEB 		bl	bufferInit
+ 264:usb.c         **** }
+ 351              		.loc 1 264 0
+ 352 0164 04F09DE4 		ldr	pc, [sp], #4
+ 353              	.L35:
+ 354              		.align	2
+ 355              	.L34:
+ 356 0168 00000000 		.word	uartTxBuffer
+ 357 016c 40000000 		.word	uartTxData
+ 358 0170 00000000 		.word	uartRxBuffer
+ 359 0174 00000000 		.word	uartRxData
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 12
+
+
+ 360              	.LFE5:
+ 361              		.size	VCOM_init, .-VCOM_init
+ 362              		.align	2
+ 363              		.global	VCOM_putchar
+ 364              		.type	VCOM_putchar, %function
+ 365              	VCOM_putchar:
+ 366              	.LFB6:
+ 265:usb.c         **** 
+ 266:usb.c         **** 
+ 267:usb.c         **** /**
+ 268:usb.c         **** 	Writes one character to VCOM port
+ 269:usb.c         **** 	
+ 270:usb.c         **** 	@param [in] c character to write
+ 271:usb.c         **** 	@returns character written, or EOF if character could not be written
+ 272:usb.c         **** 	though with recent modifications this will never happen. The loop waits
+ 273:usb.c         **** 	until space is available in the buffer before writing, poor way to do it.
+ 274:usb.c         ****  */
+ 275:usb.c         **** int VCOM_putchar(int c)
+ 276:usb.c         **** {
+ 367              		.loc 1 276 0
+ 368              		@ args = 0, pretend = 0, frame = 0
+ 369              		@ frame_needed = 0, uses_anonymous_args = 0
+ 370              	.LVL17:
+ 371 0178 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 372              	.LCFI4:
+ 373 017c 0050A0E1 		mov	r5, r0
+ 374 0180 2C409FE5 		ldr	r4, .L45
+ 375              	.LVL18:
+ 376              	.L38:
+ 277:usb.c         **** 	//return fifo_put(&txfifo, c) ? c : EOF;
+ 278:usb.c         **** 	while(MAX_PACKET_SIZE - bufferIsNotFull(&uartTxBuffer) > 1);
+ 377              		.loc 1 278 0
+ 378 0184 0400A0E1 		mov	r0, r4
+ 379 0188 FEFFFFEB 		bl	bufferIsNotFull
+ 380 018c 400060E2 		rsb	r0, r0, #64
+ 381 0190 010050E3 		cmp	r0, #1
+ 382 0194 5F0000CA 		bgt	.L38
+ 279:usb.c         **** 	return bufferAddToEnd(&uartTxBuffer, c) ? c : EOF;
+ 383              		.loc 1 279 0
+ 384 0198 FF1005E2 		and	r1, r5, #255
+ 385 019c 0400A0E1 		mov	r0, r4
+ 386 01a0 FEFFFFEB 		bl	bufferAddToEnd
+ 387 01a4 000050E3 		cmp	r0, #0
+ 280:usb.c         **** }
+ 388              		.loc 1 280 0
+ 389 01a8 0500A011 		movne	r0, r5
+ 390 01ac 0000E003 		mvneq	r0, #0
+ 391 01b0 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 392              	.L46:
+ 393              		.align	2
+ 394              	.L45:
+ 395 01b4 00000000 		.word	uartTxBuffer
+ 396              	.LFE6:
+ 397              		.size	VCOM_putchar, .-VCOM_putchar
+ 398              		.align	2
+ 399              		.global	VCOM_getchar
+ 400              		.type	VCOM_getchar, %function
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 13
+
+
+ 401              	VCOM_getchar:
+ 402              	.LFB7:
+ 281:usb.c         **** 
+ 282:usb.c         **** 
+ 283:usb.c         **** /**
+ 284:usb.c         **** 	Reads one character from VCOM port
+ 285:usb.c         **** 	
+ 286:usb.c         **** 	@returns character read, or EOF if character could not be read
+ 287:usb.c         ****  */
+ 288:usb.c         **** int VCOM_getchar(void)
+ 289:usb.c         **** {
+ 403              		.loc 1 289 0
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 406              	.LVL19:
+ 407 01b8 04E02DE5 		str	lr, [sp, #-4]!
+ 408              	.LCFI5:
+ 290:usb.c         **** 	//return fifo_get(&rxfifo, &c) ? c : EOF;
+ 291:usb.c         **** 	return bufferGetFromFront(&uartRxBuffer);
+ 409              		.loc 1 291 0
+ 410 01bc 04009FE5 		ldr	r0, .L49
+ 411 01c0 FEFFFFEB 		bl	bufferGetFromFront
+ 292:usb.c         **** }
+ 412              		.loc 1 292 0
+ 413 01c4 04F09DE4 		ldr	pc, [sp], #4
+ 414              	.L50:
+ 415              		.align	2
+ 416              	.L49:
+ 417 01c8 00000000 		.word	uartRxBuffer
+ 418              	.LFE7:
+ 419              		.size	VCOM_getchar, .-VCOM_getchar
+ 420              		.align	2
+ 421              		.type	USBIntHandler, %function
+ 422              	USBIntHandler:
+ 423              	.LFB8:
+ 293:usb.c         **** 
+ 294:usb.c         **** 
+ 295:usb.c         **** /**
+ 296:usb.c         **** 	Interrupt handler
+ 297:usb.c         **** 	
+ 298:usb.c         **** 	Simply calls the USB ISR, then signals end of interrupt to VIC
+ 299:usb.c         ****  */
+ 300:usb.c         **** static void USBIntHandler(void)
+ 301:usb.c         **** {
+ 424              		.loc 1 301 0
+ 425              		@ Interrupt Service Routine.
+ 426              		@ args = 0, pretend = 0, frame = 0
+ 427              		@ frame_needed = 0, uses_anonymous_args = 0
+ 428              	.LVL20:
+ 429 01cc 04E04EE2 		sub	lr, lr, #4
+ 430 01d0 0F502DE9 		stmfd	sp!, {r0, r1, r2, r3, ip, lr}
+ 431              	.LCFI6:
+ 302:usb.c         **** 	USBHwISR();
+ 432              		.loc 1 302 0
+ 433 01d4 FEFFFFEB 		bl	USBHwISR
+ 303:usb.c         **** 	VICVectAddr = 0x00;    // dummy write to VIC to signal end of ISR 	
+ 434              		.loc 1 303 0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 14
+
+
+ 435 01d8 0020A0E3 		mov	r2, #0
+ 436 01dc 0231A0E3 		mov	r3, #-2147483648
+ 437 01e0 C339A0E1 		mov	r3, r3, asr #19
+ 438 01e4 302083E5 		str	r2, [r3, #48]
+ 304:usb.c         **** }
+ 439              		.loc 1 304 0
+ 440 01e8 0F90FDE8 		ldmfd	sp!, {r0, r1, r2, r3, ip, pc}^
+ 441              	.LFE8:
+ 442              		.size	USBIntHandler, .-USBIntHandler
+ 443              		.align	2
+ 444              		.type	USBFrameHandler, %function
+ 445              	USBFrameHandler:
+ 446              	.LFB9:
+ 305:usb.c         **** 
+ 306:usb.c         **** 
+ 307:usb.c         **** static void USBFrameHandler(U16 wFrame)
+ 308:usb.c         **** {
+ 447              		.loc 1 308 0
+ 448              		@ args = 0, pretend = 0, frame = 0
+ 449              		@ frame_needed = 0, uses_anonymous_args = 0
+ 450              	.LVL21:
+ 451 01ec 04E02DE5 		str	lr, [sp, #-4]!
+ 452              	.LCFI7:
+ 309:usb.c         **** 	//if (fifo_avail(&txfifo) > 0) {
+ 310:usb.c         **** 	if (bufferIsNotFull(&uartTxBuffer) > 0) {
+ 453              		.loc 1 310 0
+ 454 01f0 14009FE5 		ldr	r0, .L57
+ 455              	.LVL22:
+ 456 01f4 FEFFFFEB 		bl	bufferIsNotFull
+ 457 01f8 000050E3 		cmp	r0, #0
+ 458 01fc 04F09D04 		ldreq	pc, [sp], #4
+ 311:usb.c         **** 		// data available, enable NAK interrupt on bulk in
+ 312:usb.c         **** 		USBHwNakIntEnable(INACK_BI);
+ 459              		.loc 1 312 0
+ 460 0200 2000A0E3 		mov	r0, #32
+ 461 0204 FEFFFFEB 		bl	USBHwNakIntEnable
+ 462 0208 04F09DE4 		ldr	pc, [sp], #4
+ 463              	.L58:
+ 464              		.align	2
+ 465              	.L57:
+ 466 020c 00000000 		.word	uartTxBuffer
+ 467              	.LFE9:
+ 468              		.size	USBFrameHandler, .-USBFrameHandler
+ 469              		.align	2
+ 470              		.global	usbSetup
+ 471              		.type	usbSetup, %function
+ 472              	usbSetup:
+ 473              	.LFB10:
+ 313:usb.c         **** 	}
+ 314:usb.c         **** }
+ 315:usb.c         **** 
+ 316:usb.c         **** void usbSetup(void)
+ 317:usb.c         **** {
+ 474              		.loc 1 317 0
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477              	.LVL23:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 15
+
+
+ 478 0210 04E02DE5 		str	lr, [sp, #-4]!
+ 479              	.LCFI8:
+ 318:usb.c         **** 	
+ 319:usb.c         **** 	// init DBG
+ 320:usb.c         **** 	//ConsoleInit(60000000 / (16 * BAUD_RATE));
+ 321:usb.c         **** 
+ 322:usb.c         **** 	//DBG("Initialising USB stack\n");
+ 323:usb.c         **** 
+ 324:usb.c         **** 	// initialise stack
+ 325:usb.c         **** 	USBInit();
+ 480              		.loc 1 325 0
+ 481 0214 FEFFFFEB 		bl	USBInit
+ 326:usb.c         **** 
+ 327:usb.c         **** 	// register descriptors
+ 328:usb.c         **** 	USBRegisterDescriptors(abDescriptors);
+ 482              		.loc 1 328 0
+ 483 0218 8C009FE5 		ldr	r0, .L61
+ 484 021c FEFFFFEB 		bl	USBRegisterDescriptors
+ 329:usb.c         **** 
+ 330:usb.c         **** 	// register class request handler
+ 331:usb.c         **** 	USBRegisterRequestHandler(REQTYPE_TYPE_CLASS, HandleClassRequest, abClassReqData);
+ 485              		.loc 1 331 0
+ 486 0220 0100A0E3 		mov	r0, #1
+ 487 0224 84109FE5 		ldr	r1, .L61+4
+ 488 0228 84209FE5 		ldr	r2, .L61+8
+ 489 022c FEFFFFEB 		bl	USBRegisterRequestHandler
+ 332:usb.c         **** 
+ 333:usb.c         **** 	// register endpoint handlers
+ 334:usb.c         **** 	USBHwRegisterEPIntHandler(INT_IN_EP, NULL);
+ 490              		.loc 1 334 0
+ 491 0230 8100A0E3 		mov	r0, #129
+ 492 0234 0010A0E3 		mov	r1, #0
+ 493 0238 FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 335:usb.c         **** 	USBHwRegisterEPIntHandler(BULK_IN_EP, BulkIn);
+ 494              		.loc 1 335 0
+ 495 023c 8200A0E3 		mov	r0, #130
+ 496 0240 70109FE5 		ldr	r1, .L61+12
+ 497 0244 FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 336:usb.c         **** 	USBHwRegisterEPIntHandler(BULK_OUT_EP, BulkOut);
+ 498              		.loc 1 336 0
+ 499 0248 0500A0E3 		mov	r0, #5
+ 500 024c 68109FE5 		ldr	r1, .L61+16
+ 501 0250 FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 337:usb.c         **** 	
+ 338:usb.c         **** 	// register frame handler
+ 339:usb.c         **** 	USBHwRegisterFrameHandler(USBFrameHandler);
+ 502              		.loc 1 339 0
+ 503 0254 64009FE5 		ldr	r0, .L61+20
+ 504 0258 FEFFFFEB 		bl	USBHwRegisterFrameHandler
+ 340:usb.c         **** 
+ 341:usb.c         **** 	// enable bulk-in interrupts on NAKs
+ 342:usb.c         **** 	USBHwNakIntEnable(INACK_BI);
+ 505              		.loc 1 342 0
+ 506 025c 2000A0E3 		mov	r0, #32
+ 507 0260 FEFFFFEB 		bl	USBHwNakIntEnable
+ 343:usb.c         **** 
+ 344:usb.c         **** 	// initialise VCOM
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 16
+
+
+ 345:usb.c         **** 	VCOM_init();
+ 508              		.loc 1 345 0
+ 509 0264 FEFFFFEB 		bl	VCOM_init
+ 346:usb.c         **** 
+ 347:usb.c         **** 	//DBG("Starting USB communication\n");
+ 348:usb.c         **** 
+ 349:usb.c         **** 	// set up USB interrupt
+ 350:usb.c         **** 	VICIntSelect &= ~(1<<22);               // select IRQ for USB
+ 510              		.loc 1 350 0
+ 511 0268 0221A0E3 		mov	r2, #-2147483648
+ 512 026c C229A0E1 		mov	r2, r2, asr #19
+ 513 0270 0C3092E5 		ldr	r3, [r2, #12]
+ 514 0274 0135C3E3 		bic	r3, r3, #4194304
+ 515 0278 0C3082E5 		str	r3, [r2, #12]
+ 351:usb.c         **** 	VICIntEnable |= (1<<22);
+ 516              		.loc 1 351 0
+ 517 027c 103092E5 		ldr	r3, [r2, #16]
+ 518 0280 013583E3 		orr	r3, r3, #4194304
+ 519 0284 103082E5 		str	r3, [r2, #16]
+ 352:usb.c         **** 
+ 353:usb.c         **** 	(*(&VICVectCntl0+INT_VECT_NUM)) = 0x20 | 22; // choose highest priority ISR slot 	
+ 520              		.loc 1 353 0
+ 521 0288 3630A0E3 		mov	r3, #54
+ 522 028c 003282E5 		str	r3, [r2, #512]
+ 354:usb.c         **** 	(*(&VICVectAddr0+INT_VECT_NUM)) = (int)USBIntHandler;
+ 523              		.loc 1 354 0
+ 524 0290 2C309FE5 		ldr	r3, .L61+24
+ 525 0294 003182E5 		str	r3, [r2, #256]
+ 355:usb.c         **** 	
+ 356:usb.c         **** 	processorEnableInt(CPSR_MASK_IRQ);
+ 526              		.loc 1 356 0
+ 527 0298 8000A0E3 		mov	r0, #128
+ 528 029c FEFFFFEB 		bl	processorEnableInt
+ 357:usb.c         **** 	//enableIRQ();
+ 358:usb.c         **** 	
+ 359:usb.c         **** 	
+ 360:usb.c         **** 	// connect to bus
+ 361:usb.c         **** 	USBHwConnect(TRUE);
+ 529              		.loc 1 361 0
+ 530 02a0 FF00A0E3 		mov	r0, #255
+ 531 02a4 FEFFFFEB 		bl	USBHwConnect
+ 362:usb.c         **** }
+ 532              		.loc 1 362 0
+ 533 02a8 04F09DE4 		ldr	pc, [sp], #4
+ 534              	.L62:
+ 535              		.align	2
+ 536              	.L61:
+ 537 02ac 00000000 		.word	abDescriptors
+ 538 02b0 D8000000 		.word	HandleClassRequest
+ 539 02b4 C0000000 		.word	abClassReqData
+ 540 02b8 68000000 		.word	BulkIn
+ 541 02bc 00000000 		.word	BulkOut
+ 542 02c0 EC010000 		.word	USBFrameHandler
+ 543 02c4 CC010000 		.word	USBIntHandler
+ 544              	.LFE10:
+ 545              		.size	usbSetup, .-usbSetup
+ 546              		.bss
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 17
+
+
+ 547              	uartRxData:
+ 548 0000 00000000 		.space	64
+ 548      00000000 
+ 548      00000000 
+ 548      00000000 
+ 548      00000000 
+ 549              	uartTxData:
+ 550 0040 00000000 		.space	64
+ 550      00000000 
+ 550      00000000 
+ 550      00000000 
+ 550      00000000 
+ 551              	abBulkBuf:
+ 552 0080 00000000 		.space	64
+ 552      00000000 
+ 552      00000000 
+ 552      00000000 
+ 552      00000000 
+ 553              	abClassReqData:
+ 554 00c0 00000000 		.space	8
+ 554      00000000 
+ 555              		.comm	uartRxBuffer,12,4
+ 556              		.comm	uartTxBuffer,12,4
+ 557              		.comm	uartRxOverflow,2,2
+ 558              		.section	.debug_frame,"",%progbits
+ 559              	.Lframe0:
+ 560 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+ 561              	.LSCIE0:
+ 562 0004 FFFFFFFF 		.4byte	0xffffffff
+ 563 0008 01       		.byte	0x1
+ 564 0009 00       		.ascii	"\000"
+ 565 000a 01       		.uleb128 0x1
+ 566 000b 7C       		.sleb128 -4
+ 567 000c 0E       		.byte	0xe
+ 568 000d 0C       		.byte	0xc
+ 569 000e 0D       		.uleb128 0xd
+ 570 000f 00       		.uleb128 0x0
+ 571              		.align	2
+ 572              	.LECIE0:
+ 573              	.LSFDE0:
+ 574 0010 18000000 		.4byte	.LEFDE0-.LASFDE0
+ 575              	.LASFDE0:
+ 576 0014 00000000 		.4byte	.Lframe0
+ 577 0018 00000000 		.4byte	.LFB2
+ 578 001c 68000000 		.4byte	.LFE2-.LFB2
+ 579 0020 44       		.byte	0x4
+ 580              		.4byte	.LCFI0-.LFB2
+ 581 0021 0E       		.byte	0xe
+ 582 0022 0C       		.uleb128 0xc
+ 583 0023 8E       		.byte	0x8e
+ 584 0024 01       		.uleb128 0x1
+ 585 0025 85       		.byte	0x85
+ 586 0026 02       		.uleb128 0x2
+ 587 0027 84       		.byte	0x84
+ 588 0028 03       		.uleb128 0x3
+ 589 0029 000000   		.align	2
+ 590              	.LEFDE0:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 18
+
+
+ 591              	.LSFDE2:
+ 592 002c 18000000 		.4byte	.LEFDE2-.LASFDE2
+ 593              	.LASFDE2:
+ 594 0030 00000000 		.4byte	.Lframe0
+ 595 0034 68000000 		.4byte	.LFB3
+ 596 0038 70000000 		.4byte	.LFE3-.LFB3
+ 597 003c 44       		.byte	0x4
+ 598              		.4byte	.LCFI1-.LFB3
+ 599 003d 0E       		.byte	0xe
+ 600 003e 10       		.uleb128 0x10
+ 601 003f 8E       		.byte	0x8e
+ 602 0040 01       		.uleb128 0x1
+ 603 0041 86       		.byte	0x86
+ 604 0042 02       		.uleb128 0x2
+ 605 0043 85       		.byte	0x85
+ 606 0044 03       		.uleb128 0x3
+ 607 0045 84       		.byte	0x84
+ 608 0046 04       		.uleb128 0x4
+ 609 0047 00       		.align	2
+ 610              	.LEFDE2:
+ 611              	.LSFDE4:
+ 612 0048 18000000 		.4byte	.LEFDE4-.LASFDE4
+ 613              	.LASFDE4:
+ 614 004c 00000000 		.4byte	.Lframe0
+ 615 0050 D8000000 		.4byte	.LFB4
+ 616 0054 68000000 		.4byte	.LFE4-.LFB4
+ 617 0058 44       		.byte	0x4
+ 618              		.4byte	.LCFI2-.LFB4
+ 619 0059 0E       		.byte	0xe
+ 620 005a 0C       		.uleb128 0xc
+ 621 005b 8E       		.byte	0x8e
+ 622 005c 01       		.uleb128 0x1
+ 623 005d 85       		.byte	0x85
+ 624 005e 02       		.uleb128 0x2
+ 625 005f 84       		.byte	0x84
+ 626 0060 03       		.uleb128 0x3
+ 627 0061 000000   		.align	2
+ 628              	.LEFDE4:
+ 629              	.LSFDE6:
+ 630 0064 14000000 		.4byte	.LEFDE6-.LASFDE6
+ 631              	.LASFDE6:
+ 632 0068 00000000 		.4byte	.Lframe0
+ 633 006c 40010000 		.4byte	.LFB5
+ 634 0070 38000000 		.4byte	.LFE5-.LFB5
+ 635 0074 44       		.byte	0x4
+ 636              		.4byte	.LCFI3-.LFB5
+ 637 0075 0E       		.byte	0xe
+ 638 0076 04       		.uleb128 0x4
+ 639 0077 8E       		.byte	0x8e
+ 640 0078 01       		.uleb128 0x1
+ 641 0079 000000   		.align	2
+ 642              	.LEFDE6:
+ 643              	.LSFDE8:
+ 644 007c 18000000 		.4byte	.LEFDE8-.LASFDE8
+ 645              	.LASFDE8:
+ 646 0080 00000000 		.4byte	.Lframe0
+ 647 0084 78010000 		.4byte	.LFB6
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 19
+
+
+ 648 0088 40000000 		.4byte	.LFE6-.LFB6
+ 649 008c 44       		.byte	0x4
+ 650              		.4byte	.LCFI4-.LFB6
+ 651 008d 0E       		.byte	0xe
+ 652 008e 0C       		.uleb128 0xc
+ 653 008f 8E       		.byte	0x8e
+ 654 0090 01       		.uleb128 0x1
+ 655 0091 85       		.byte	0x85
+ 656 0092 02       		.uleb128 0x2
+ 657 0093 84       		.byte	0x84
+ 658 0094 03       		.uleb128 0x3
+ 659 0095 000000   		.align	2
+ 660              	.LEFDE8:
+ 661              	.LSFDE10:
+ 662 0098 14000000 		.4byte	.LEFDE10-.LASFDE10
+ 663              	.LASFDE10:
+ 664 009c 00000000 		.4byte	.Lframe0
+ 665 00a0 B8010000 		.4byte	.LFB7
+ 666 00a4 14000000 		.4byte	.LFE7-.LFB7
+ 667 00a8 44       		.byte	0x4
+ 668              		.4byte	.LCFI5-.LFB7
+ 669 00a9 0E       		.byte	0xe
+ 670 00aa 04       		.uleb128 0x4
+ 671 00ab 8E       		.byte	0x8e
+ 672 00ac 01       		.uleb128 0x1
+ 673 00ad 000000   		.align	2
+ 674              	.LEFDE10:
+ 675              	.LSFDE12:
+ 676 00b0 1C000000 		.4byte	.LEFDE12-.LASFDE12
+ 677              	.LASFDE12:
+ 678 00b4 00000000 		.4byte	.Lframe0
+ 679 00b8 CC010000 		.4byte	.LFB8
+ 680 00bc 20000000 		.4byte	.LFE8-.LFB8
+ 681 00c0 48       		.byte	0x4
+ 682              		.4byte	.LCFI6-.LFB8
+ 683 00c1 0E       		.byte	0xe
+ 684 00c2 18       		.uleb128 0x18
+ 685 00c3 8E       		.byte	0x8e
+ 686 00c4 01       		.uleb128 0x1
+ 687 00c5 8C       		.byte	0x8c
+ 688 00c6 02       		.uleb128 0x2
+ 689 00c7 83       		.byte	0x83
+ 690 00c8 03       		.uleb128 0x3
+ 691 00c9 82       		.byte	0x82
+ 692 00ca 04       		.uleb128 0x4
+ 693 00cb 81       		.byte	0x81
+ 694 00cc 05       		.uleb128 0x5
+ 695 00cd 80       		.byte	0x80
+ 696 00ce 06       		.uleb128 0x6
+ 697 00cf 00       		.align	2
+ 698              	.LEFDE12:
+ 699              	.LSFDE14:
+ 700 00d0 14000000 		.4byte	.LEFDE14-.LASFDE14
+ 701              	.LASFDE14:
+ 702 00d4 00000000 		.4byte	.Lframe0
+ 703 00d8 EC010000 		.4byte	.LFB9
+ 704 00dc 24000000 		.4byte	.LFE9-.LFB9
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 20
+
+
+ 705 00e0 44       		.byte	0x4
+ 706              		.4byte	.LCFI7-.LFB9
+ 707 00e1 0E       		.byte	0xe
+ 708 00e2 04       		.uleb128 0x4
+ 709 00e3 8E       		.byte	0x8e
+ 710 00e4 01       		.uleb128 0x1
+ 711 00e5 000000   		.align	2
+ 712              	.LEFDE14:
+ 713              	.LSFDE16:
+ 714 00e8 14000000 		.4byte	.LEFDE16-.LASFDE16
+ 715              	.LASFDE16:
+ 716 00ec 00000000 		.4byte	.Lframe0
+ 717 00f0 10020000 		.4byte	.LFB10
+ 718 00f4 B8000000 		.4byte	.LFE10-.LFB10
+ 719 00f8 44       		.byte	0x4
+ 720              		.4byte	.LCFI8-.LFB10
+ 721 00f9 0E       		.byte	0xe
+ 722 00fa 04       		.uleb128 0x4
+ 723 00fb 8E       		.byte	0x8e
+ 724 00fc 01       		.uleb128 0x1
+ 725 00fd 000000   		.align	2
+ 726              	.LEFDE16:
+ 727              		.file 2 "C:/WinARM/armlib/armlibtypes.h"
+ 728              		.file 3 "usbstruct.h"
+ 729              		.file 4 "C:/WinARM/armlib/buffer.h"
+ 730              		.text
+ 731              	.Letext0:
+ 732              		.section	.debug_loc,"",%progbits
+ 733              	.Ldebug_loc0:
+ 734              	.LLST0:
+ 735 0000 00000000 		.4byte	.LVL0-.Ltext0
+ 736 0004 0C000000 		.4byte	.LVL1-.Ltext0
+ 737 0008 0100     		.2byte	0x1
+ 738 000a 50       		.byte	0x50
+ 739 000b 0C000000 		.4byte	.LVL1-.Ltext0
+ 740 000f 38000000 		.4byte	.LVL4-.Ltext0
+ 741 0013 0100     		.2byte	0x1
+ 742 0015 54       		.byte	0x54
+ 743 0016 00000000 		.4byte	0x0
+ 744 001a 00000000 		.4byte	0x0
+ 745              	.LLST1:
+ 746 001e 00000000 		.4byte	.LVL0-.Ltext0
+ 747 0022 10000000 		.4byte	.LVL2-.Ltext0
+ 748 0026 0100     		.2byte	0x1
+ 749 0028 51       		.byte	0x51
+ 750 0029 00000000 		.4byte	0x0
+ 751 002d 00000000 		.4byte	0x0
+ 752              	.LLST2:
+ 753 0031 30000000 		.4byte	.LVL3-.Ltext0
+ 754 0035 40000000 		.4byte	.LVL5-.Ltext0
+ 755 0039 0100     		.2byte	0x1
+ 756 003b 50       		.byte	0x50
+ 757 003c 00000000 		.4byte	0x0
+ 758 0040 00000000 		.4byte	0x0
+ 759              	.LLST3:
+ 760 0044 68000000 		.4byte	.LVL6-.Ltext0
+ 761 0048 74000000 		.4byte	.LVL7-.Ltext0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 21
+
+
+ 762 004c 0100     		.2byte	0x1
+ 763 004e 50       		.byte	0x50
+ 764 004f 74000000 		.4byte	.LVL7-.Ltext0
+ 765 0053 D8000000 		.4byte	.LFE3-.Ltext0
+ 766 0057 0100     		.2byte	0x1
+ 767 0059 56       		.byte	0x56
+ 768 005a 00000000 		.4byte	0x0
+ 769 005e 00000000 		.4byte	0x0
+ 770              	.LLST4:
+ 771 0062 68000000 		.4byte	.LVL6-.Ltext0
+ 772 0066 78000000 		.4byte	.LVL8-.Ltext0
+ 773 006a 0100     		.2byte	0x1
+ 774 006c 51       		.byte	0x51
+ 775 006d 00000000 		.4byte	0x0
+ 776 0071 00000000 		.4byte	0x0
+ 777              	.LLST5:
+ 778 0075 D8000000 		.4byte	.LVL10-.Ltext0
+ 779 0079 F4000000 		.4byte	.LVL12-.Ltext0
+ 780 007d 0100     		.2byte	0x1
+ 781 007f 50       		.byte	0x50
+ 782 0080 24010000 		.4byte	.LVL14-.Ltext0
+ 783 0084 38010000 		.4byte	.LVL15-.Ltext0
+ 784 0088 0100     		.2byte	0x1
+ 785 008a 50       		.byte	0x50
+ 786 008b 00000000 		.4byte	0x0
+ 787 008f 00000000 		.4byte	0x0
+ 788              	.LLST6:
+ 789 0093 D8000000 		.4byte	.LVL10-.Ltext0
+ 790 0097 EC000000 		.4byte	.LVL11-.Ltext0
+ 791 009b 0100     		.2byte	0x1
+ 792 009d 51       		.byte	0x51
+ 793 009e EC000000 		.4byte	.LVL11-.Ltext0
+ 794 00a2 40010000 		.4byte	.LFE4-.Ltext0
+ 795 00a6 0100     		.2byte	0x1
+ 796 00a8 55       		.byte	0x55
+ 797 00a9 00000000 		.4byte	0x0
+ 798 00ad 00000000 		.4byte	0x0
+ 799              	.LLST7:
+ 800 00b1 D8000000 		.4byte	.LVL10-.Ltext0
+ 801 00b5 14010000 		.4byte	.LVL13-.Ltext0
+ 802 00b9 0100     		.2byte	0x1
+ 803 00bb 52       		.byte	0x52
+ 804 00bc 24010000 		.4byte	.LVL14-.Ltext0
+ 805 00c0 40010000 		.4byte	.LFE4-.Ltext0
+ 806 00c4 0100     		.2byte	0x1
+ 807 00c6 52       		.byte	0x52
+ 808 00c7 00000000 		.4byte	0x0
+ 809 00cb 00000000 		.4byte	0x0
+ 810              	.LLST8:
+ 811 00cf 78010000 		.4byte	.LVL17-.Ltext0
+ 812 00d3 84010000 		.4byte	.LVL18-.Ltext0
+ 813 00d7 0100     		.2byte	0x1
+ 814 00d9 50       		.byte	0x50
+ 815 00da 84010000 		.4byte	.LVL18-.Ltext0
+ 816 00de B8010000 		.4byte	.LFE6-.Ltext0
+ 817 00e2 0100     		.2byte	0x1
+ 818 00e4 55       		.byte	0x55
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 22
+
+
+ 819 00e5 00000000 		.4byte	0x0
+ 820 00e9 00000000 		.4byte	0x0
+ 821              	.LLST9:
+ 822 00ed EC010000 		.4byte	.LVL21-.Ltext0
+ 823 00f1 F4010000 		.4byte	.LVL22-.Ltext0
+ 824 00f5 0100     		.2byte	0x1
+ 825 00f7 50       		.byte	0x50
+ 826 00f8 00000000 		.4byte	0x0
+ 827 00fc 00000000 		.4byte	0x0
+ 828              		.section	.debug_info
+ 829 0000 2F040000 		.4byte	0x42f
+ 830 0004 0200     		.2byte	0x2
+ 831 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 832 000a 04       		.byte	0x4
+ 833 000b 01       		.uleb128 0x1
+ 834 000c 00000000 		.4byte	.Ldebug_line0
+ 835 0010 C8020000 		.4byte	.Letext0
+ 836 0014 00000000 		.4byte	.Ltext0
+ 837 0018 06010000 		.4byte	.LASF49
+ 838 001c 01       		.byte	0x1
+ 839 001d EC000000 		.4byte	.LASF50
+ 840 0021 58010000 		.4byte	.LASF51
+ 841 0025 02       		.uleb128 0x2
+ 842 0026 75303800 		.ascii	"u08\000"
+ 843 002a 02       		.byte	0x2
+ 844 002b 20       		.byte	0x20
+ 845 002c 30000000 		.4byte	0x30
+ 846 0030 03       		.uleb128 0x3
+ 847 0031 6D020000 		.4byte	.LASF0
+ 848 0035 01       		.byte	0x1
+ 849 0036 08       		.byte	0x8
+ 850 0037 03       		.uleb128 0x3
+ 851 0038 8A020000 		.4byte	.LASF1
+ 852 003c 01       		.byte	0x1
+ 853 003d 06       		.byte	0x6
+ 854 003e 02       		.uleb128 0x2
+ 855 003f 75313600 		.ascii	"u16\000"
+ 856 0043 02       		.byte	0x2
+ 857 0044 22       		.byte	0x22
+ 858 0045 49000000 		.4byte	0x49
+ 859 0049 03       		.uleb128 0x3
+ 860 004a 96020000 		.4byte	.LASF2
+ 861 004e 02       		.byte	0x2
+ 862 004f 07       		.byte	0x7
+ 863 0050 03       		.uleb128 0x3
+ 864 0051 36000000 		.4byte	.LASF3
+ 865 0055 02       		.byte	0x2
+ 866 0056 05       		.byte	0x5
+ 867 0057 02       		.uleb128 0x2
+ 868 0058 75333200 		.ascii	"u32\000"
+ 869 005c 02       		.byte	0x2
+ 870 005d 24       		.byte	0x24
+ 871 005e 62000000 		.4byte	0x62
+ 872 0062 03       		.uleb128 0x3
+ 873 0063 51020000 		.4byte	.LASF4
+ 874 0067 04       		.byte	0x4
+ 875 0068 07       		.byte	0x7
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 23
+
+
+ 876 0069 03       		.uleb128 0x3
+ 877 006a 12020000 		.4byte	.LASF5
+ 878 006e 04       		.byte	0x4
+ 879 006f 05       		.byte	0x5
+ 880 0070 03       		.uleb128 0x3
+ 881 0071 7A000000 		.4byte	.LASF6
+ 882 0075 08       		.byte	0x8
+ 883 0076 07       		.byte	0x7
+ 884 0077 03       		.uleb128 0x3
+ 885 0078 25010000 		.4byte	.LASF7
+ 886 007c 08       		.byte	0x8
+ 887 007d 05       		.byte	0x5
+ 888 007e 04       		.uleb128 0x4
+ 889 007f 75000000 		.4byte	.LASF8
+ 890 0083 02       		.byte	0x2
+ 891 0084 3A       		.byte	0x3a
+ 892 0085 30000000 		.4byte	0x30
+ 893 0089 03       		.uleb128 0x3
+ 894 008a 11000000 		.4byte	.LASF9
+ 895 008e 04       		.byte	0x4
+ 896 008f 07       		.byte	0x7
+ 897 0090 03       		.uleb128 0x3
+ 898 0091 01010000 		.4byte	.LASF10
+ 899 0095 01       		.byte	0x1
+ 900 0096 08       		.byte	0x8
+ 901 0097 05       		.uleb128 0x5
+ 902 0098 696E7400 		.ascii	"int\000"
+ 903 009c 04       		.byte	0x4
+ 904 009d 05       		.byte	0x5
+ 905 009e 03       		.uleb128 0x3
+ 906 009f 51020000 		.4byte	.LASF4
+ 907 00a3 04       		.byte	0x4
+ 908 00a4 07       		.byte	0x7
+ 909 00a5 06       		.uleb128 0x6
+ 910 00a6 EA000000 		.4byte	0xea
+ 911 00aa F2000000 		.4byte	.LASF52
+ 912 00ae 0C       		.byte	0xc
+ 913 00af 04       		.byte	0x4
+ 914 00b0 2A       		.byte	0x2a
+ 915 00b1 07       		.uleb128 0x7
+ 916 00b2 DB010000 		.4byte	.LASF11
+ 917 00b6 04       		.byte	0x4
+ 918 00b7 2B       		.byte	0x2b
+ 919 00b8 EA000000 		.4byte	0xea
+ 920 00bc 02       		.byte	0x2
+ 921 00bd 23       		.byte	0x23
+ 922 00be 00       		.uleb128 0x0
+ 923 00bf 07       		.uleb128 0x7
+ 924 00c0 33010000 		.4byte	.LASF12
+ 925 00c4 04       		.byte	0x4
+ 926 00c5 2C       		.byte	0x2c
+ 927 00c6 49000000 		.4byte	0x49
+ 928 00ca 02       		.byte	0x2
+ 929 00cb 23       		.byte	0x23
+ 930 00cc 04       		.uleb128 0x4
+ 931 00cd 07       		.uleb128 0x7
+ 932 00ce 91000000 		.4byte	.LASF13
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 24
+
+
+ 933 00d2 04       		.byte	0x4
+ 934 00d3 2D       		.byte	0x2d
+ 935 00d4 49000000 		.4byte	0x49
+ 936 00d8 02       		.byte	0x2
+ 937 00d9 23       		.byte	0x23
+ 938 00da 06       		.uleb128 0x6
+ 939 00db 07       		.uleb128 0x7
+ 940 00dc D1010000 		.4byte	.LASF14
+ 941 00e0 04       		.byte	0x4
+ 942 00e1 2E       		.byte	0x2e
+ 943 00e2 49000000 		.4byte	0x49
+ 944 00e6 02       		.byte	0x2
+ 945 00e7 23       		.byte	0x23
+ 946 00e8 08       		.uleb128 0x8
+ 947 00e9 00       		.byte	0x0
+ 948 00ea 08       		.uleb128 0x8
+ 949 00eb 04       		.byte	0x4
+ 950 00ec 30000000 		.4byte	0x30
+ 951 00f0 04       		.uleb128 0x4
+ 952 00f1 82020000 		.4byte	.LASF15
+ 953 00f5 04       		.byte	0x4
+ 954 00f6 2F       		.byte	0x2f
+ 955 00f7 A5000000 		.4byte	0xa5
+ 956 00fb 09       		.uleb128 0x9
+ 957 00fc 4A010000 		.4byte	0x14a
+ 958 0100 08       		.byte	0x8
+ 959 0101 03       		.byte	0x3
+ 960 0102 31       		.byte	0x31
+ 961 0103 07       		.uleb128 0x7
+ 962 0104 23020000 		.4byte	.LASF16
+ 963 0108 03       		.byte	0x3
+ 964 0109 2C       		.byte	0x2c
+ 965 010a 25000000 		.4byte	0x25
+ 966 010e 02       		.byte	0x2
+ 967 010f 23       		.byte	0x23
+ 968 0110 00       		.uleb128 0x0
+ 969 0111 07       		.uleb128 0x7
+ 970 0112 31020000 		.4byte	.LASF17
+ 971 0116 03       		.byte	0x3
+ 972 0117 2D       		.byte	0x2d
+ 973 0118 25000000 		.4byte	0x25
+ 974 011c 02       		.byte	0x2
+ 975 011d 23       		.byte	0x23
+ 976 011e 01       		.uleb128 0x1
+ 977 011f 07       		.uleb128 0x7
+ 978 0120 59000000 		.4byte	.LASF18
+ 979 0124 03       		.byte	0x3
+ 980 0125 2E       		.byte	0x2e
+ 981 0126 3E000000 		.4byte	0x3e
+ 982 012a 02       		.byte	0x2
+ 983 012b 23       		.byte	0x23
+ 984 012c 02       		.uleb128 0x2
+ 985 012d 07       		.uleb128 0x7
+ 986 012e B0000000 		.4byte	.LASF19
+ 987 0132 03       		.byte	0x3
+ 988 0133 2F       		.byte	0x2f
+ 989 0134 3E000000 		.4byte	0x3e
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 25
+
+
+ 990 0138 02       		.byte	0x2
+ 991 0139 23       		.byte	0x23
+ 992 013a 04       		.uleb128 0x4
+ 993 013b 07       		.uleb128 0x7
+ 994 013c 1B020000 		.4byte	.LASF20
+ 995 0140 03       		.byte	0x3
+ 996 0141 30       		.byte	0x30
+ 997 0142 3E000000 		.4byte	0x3e
+ 998 0146 02       		.byte	0x2
+ 999 0147 23       		.byte	0x23
+ 1000 0148 06       		.uleb128 0x6
+ 1001 0149 00       		.byte	0x0
+ 1002 014a 04       		.uleb128 0x4
+ 1003 014b DF000000 		.4byte	.LASF21
+ 1004 014f 03       		.byte	0x3
+ 1005 0150 31       		.byte	0x31
+ 1006 0151 FB000000 		.4byte	0xfb
+ 1007 0155 08       		.uleb128 0x8
+ 1008 0156 04       		.byte	0x4
+ 1009 0157 4A010000 		.4byte	0x14a
+ 1010 015b 08       		.uleb128 0x8
+ 1011 015c 04       		.byte	0x4
+ 1012 015d 97000000 		.4byte	0x97
+ 1013 0161 08       		.uleb128 0x8
+ 1014 0162 04       		.byte	0x4
+ 1015 0163 67010000 		.4byte	0x167
+ 1016 0167 08       		.uleb128 0x8
+ 1017 0168 04       		.byte	0x4
+ 1018 0169 25000000 		.4byte	0x25
+ 1019 016d 09       		.uleb128 0x9
+ 1020 016e AE010000 		.4byte	0x1ae
+ 1021 0172 08       		.byte	0x8
+ 1022 0173 01       		.byte	0x1
+ 1023 0174 13       		.byte	0x13
+ 1024 0175 07       		.uleb128 0x7
+ 1025 0176 60000000 		.4byte	.LASF22
+ 1026 017a 01       		.byte	0x1
+ 1027 017b 0F       		.byte	0xf
+ 1028 017c 57000000 		.4byte	0x57
+ 1029 0180 02       		.byte	0x2
+ 1030 0181 23       		.byte	0x23
+ 1031 0182 00       		.uleb128 0x0
+ 1032 0183 07       		.uleb128 0x7
+ 1033 0184 E3010000 		.4byte	.LASF23
+ 1034 0188 01       		.byte	0x1
+ 1035 0189 10       		.byte	0x10
+ 1036 018a 25000000 		.4byte	0x25
+ 1037 018e 02       		.byte	0x2
+ 1038 018f 23       		.byte	0x23
+ 1039 0190 04       		.uleb128 0x4
+ 1040 0191 07       		.uleb128 0x7
+ 1041 0192 3F010000 		.4byte	.LASF24
+ 1042 0196 01       		.byte	0x1
+ 1043 0197 11       		.byte	0x11
+ 1044 0198 25000000 		.4byte	0x25
+ 1045 019c 02       		.byte	0x2
+ 1046 019d 23       		.byte	0x23
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 26
+
+
+ 1047 019e 05       		.uleb128 0x5
+ 1048 019f 07       		.uleb128 0x7
+ 1049 01a0 63020000 		.4byte	.LASF25
+ 1050 01a4 01       		.byte	0x1
+ 1051 01a5 12       		.byte	0x12
+ 1052 01a6 25000000 		.4byte	0x25
+ 1053 01aa 02       		.byte	0x2
+ 1054 01ab 23       		.byte	0x23
+ 1055 01ac 06       		.uleb128 0x6
+ 1056 01ad 00       		.byte	0x0
+ 1057 01ae 04       		.uleb128 0x4
+ 1058 01af 9C000000 		.4byte	.LASF26
+ 1059 01b3 01       		.byte	0x1
+ 1060 01b4 13       		.byte	0x13
+ 1061 01b5 6D010000 		.4byte	0x16d
+ 1062 01b9 0A       		.uleb128 0xa
+ 1063 01ba 07020000 		.4byte	0x207
+ 1064 01be A8000000 		.4byte	.LASF29
+ 1065 01c2 01       		.byte	0x1
+ 1066 01c3 96       		.byte	0x96
+ 1067 01c4 01       		.byte	0x1
+ 1068 01c5 00000000 		.4byte	.LFB2
+ 1069 01c9 68000000 		.4byte	.LFE2
+ 1070 01cd 02       		.byte	0x2
+ 1071 01ce 7D       		.byte	0x7d
+ 1072 01cf 00       		.sleb128 0
+ 1073 01d0 0B       		.uleb128 0xb
+ 1074 01d1 62455000 		.ascii	"bEP\000"
+ 1075 01d5 01       		.byte	0x1
+ 1076 01d6 95       		.byte	0x95
+ 1077 01d7 25000000 		.4byte	0x25
+ 1078 01db 00000000 		.4byte	.LLST0
+ 1079 01df 0C       		.uleb128 0xc
+ 1080 01e0 D5000000 		.4byte	.LASF27
+ 1081 01e4 01       		.byte	0x1
+ 1082 01e5 95       		.byte	0x95
+ 1083 01e6 25000000 		.4byte	0x25
+ 1084 01ea 1E000000 		.4byte	.LLST1
+ 1085 01ee 0D       		.uleb128 0xd
+ 1086 01ef 6900     		.ascii	"i\000"
+ 1087 01f1 01       		.byte	0x1
+ 1088 01f2 97       		.byte	0x97
+ 1089 01f3 97000000 		.4byte	0x97
+ 1090 01f7 0E       		.uleb128 0xe
+ 1091 01f8 20010000 		.4byte	.LASF28
+ 1092 01fc 01       		.byte	0x1
+ 1093 01fd 97       		.byte	0x97
+ 1094 01fe 97000000 		.4byte	0x97
+ 1095 0202 31000000 		.4byte	.LLST2
+ 1096 0206 00       		.byte	0x0
+ 1097 0207 0A       		.uleb128 0xa
+ 1098 0208 5C020000 		.4byte	0x25c
+ 1099 020c 38010000 		.4byte	.LASF30
+ 1100 0210 01       		.byte	0x1
+ 1101 0211 B5       		.byte	0xb5
+ 1102 0212 01       		.byte	0x1
+ 1103 0213 68000000 		.4byte	.LFB3
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 27
+
+
+ 1104 0217 D8000000 		.4byte	.LFE3
+ 1105 021b 02       		.byte	0x2
+ 1106 021c 7D       		.byte	0x7d
+ 1107 021d 00       		.sleb128 0
+ 1108 021e 0B       		.uleb128 0xb
+ 1109 021f 62455000 		.ascii	"bEP\000"
+ 1110 0223 01       		.byte	0x1
+ 1111 0224 B4       		.byte	0xb4
+ 1112 0225 25000000 		.4byte	0x25
+ 1113 0229 44000000 		.4byte	.LLST3
+ 1114 022d 0C       		.uleb128 0xc
+ 1115 022e D5000000 		.4byte	.LASF27
+ 1116 0232 01       		.byte	0x1
+ 1117 0233 B4       		.byte	0xb4
+ 1118 0234 25000000 		.4byte	0x25
+ 1119 0238 62000000 		.4byte	.LLST4
+ 1120 023c 0F       		.uleb128 0xf
+ 1121 023d 6900     		.ascii	"i\000"
+ 1122 023f 01       		.byte	0x1
+ 1123 0240 B6       		.byte	0xb6
+ 1124 0241 97000000 		.4byte	0x97
+ 1125 0245 01       		.byte	0x1
+ 1126 0246 54       		.byte	0x54
+ 1127 0247 10       		.uleb128 0x10
+ 1128 0248 20010000 		.4byte	.LASF28
+ 1129 024c 01       		.byte	0x1
+ 1130 024d B6       		.byte	0xb6
+ 1131 024e 97000000 		.4byte	0x97
+ 1132 0252 0D       		.uleb128 0xd
+ 1133 0253 6300     		.ascii	"c\000"
+ 1134 0255 01       		.byte	0x1
+ 1135 0256 B7       		.byte	0xb7
+ 1136 0257 30000000 		.4byte	0x30
+ 1137 025b 00       		.byte	0x0
+ 1138 025c 11       		.uleb128 0x11
+ 1139 025d A5020000 		.4byte	0x2a5
+ 1140 0261 FF010000 		.4byte	.LASF31
+ 1141 0265 01       		.byte	0x1
+ 1142 0266 DB       		.byte	0xdb
+ 1143 0267 01       		.byte	0x1
+ 1144 0268 7E000000 		.4byte	0x7e
+ 1145 026c D8000000 		.4byte	.LFB4
+ 1146 0270 40010000 		.4byte	.LFE4
+ 1147 0274 02       		.byte	0x2
+ 1148 0275 7D       		.byte	0x7d
+ 1149 0276 00       		.sleb128 0
+ 1150 0277 0C       		.uleb128 0xc
+ 1151 0278 7B020000 		.4byte	.LASF32
+ 1152 027c 01       		.byte	0x1
+ 1153 027d DA       		.byte	0xda
+ 1154 027e 55010000 		.4byte	0x155
+ 1155 0282 75000000 		.4byte	.LLST5
+ 1156 0286 0C       		.uleb128 0xc
+ 1157 0287 CF000000 		.4byte	.LASF33
+ 1158 028b 01       		.byte	0x1
+ 1159 028c DA       		.byte	0xda
+ 1160 028d 5B010000 		.4byte	0x15b
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 28
+
+
+ 1161 0291 93000000 		.4byte	.LLST6
+ 1162 0295 0C       		.uleb128 0xc
+ 1163 0296 00000000 		.4byte	.LASF34
+ 1164 029a 01       		.byte	0x1
+ 1165 029b DA       		.byte	0xda
+ 1166 029c 61010000 		.4byte	0x161
+ 1167 02a0 B1000000 		.4byte	.LLST7
+ 1168 02a4 00       		.byte	0x0
+ 1169 02a5 12       		.uleb128 0x12
+ 1170 02a6 01       		.byte	0x1
+ 1171 02a7 47020000 		.4byte	.LASF35
+ 1172 02ab 01       		.byte	0x1
+ 1173 02ac 0301     		.2byte	0x103
+ 1174 02ae 01       		.byte	0x1
+ 1175 02af 40010000 		.4byte	.LFB5
+ 1176 02b3 78010000 		.4byte	.LFE5
+ 1177 02b7 02       		.byte	0x2
+ 1178 02b8 7D       		.byte	0x7d
+ 1179 02b9 00       		.sleb128 0
+ 1180 02ba 13       		.uleb128 0x13
+ 1181 02bb E6020000 		.4byte	0x2e6
+ 1182 02bf 01       		.byte	0x1
+ 1183 02c0 3A020000 		.4byte	.LASF53
+ 1184 02c4 01       		.byte	0x1
+ 1185 02c5 1401     		.2byte	0x114
+ 1186 02c7 01       		.byte	0x1
+ 1187 02c8 97000000 		.4byte	0x97
+ 1188 02cc 78010000 		.4byte	.LFB6
+ 1189 02d0 B8010000 		.4byte	.LFE6
+ 1190 02d4 02       		.byte	0x2
+ 1191 02d5 7D       		.byte	0x7d
+ 1192 02d6 00       		.sleb128 0
+ 1193 02d7 14       		.uleb128 0x14
+ 1194 02d8 6300     		.ascii	"c\000"
+ 1195 02da 01       		.byte	0x1
+ 1196 02db 1301     		.2byte	0x113
+ 1197 02dd 97000000 		.4byte	0x97
+ 1198 02e1 CF000000 		.4byte	.LLST8
+ 1199 02e5 00       		.byte	0x0
+ 1200 02e6 15       		.uleb128 0x15
+ 1201 02e7 01       		.byte	0x1
+ 1202 02e8 29000000 		.4byte	.LASF36
+ 1203 02ec 01       		.byte	0x1
+ 1204 02ed 2101     		.2byte	0x121
+ 1205 02ef 01       		.byte	0x1
+ 1206 02f0 97000000 		.4byte	0x97
+ 1207 02f4 B8010000 		.4byte	.LFB7
+ 1208 02f8 CC010000 		.4byte	.LFE7
+ 1209 02fc 02       		.byte	0x2
+ 1210 02fd 7D       		.byte	0x7d
+ 1211 02fe 00       		.sleb128 0
+ 1212 02ff 16       		.uleb128 0x16
+ 1213 0300 B0020000 		.4byte	.LASF54
+ 1214 0304 01       		.byte	0x1
+ 1215 0305 2D01     		.2byte	0x12d
+ 1216 0307 01       		.byte	0x1
+ 1217 0308 CC010000 		.4byte	.LFB8
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 29
+
+
+ 1218 030c EC010000 		.4byte	.LFE8
+ 1219 0310 02       		.byte	0x2
+ 1220 0311 7D       		.byte	0x7d
+ 1221 0312 00       		.sleb128 0
+ 1222 0313 17       		.uleb128 0x17
+ 1223 0314 3C030000 		.4byte	0x33c
+ 1224 0318 EF010000 		.4byte	.LASF37
+ 1225 031c 01       		.byte	0x1
+ 1226 031d 3401     		.2byte	0x134
+ 1227 031f 01       		.byte	0x1
+ 1228 0320 EC010000 		.4byte	.LFB9
+ 1229 0324 10020000 		.4byte	.LFE9
+ 1230 0328 02       		.byte	0x2
+ 1231 0329 7D       		.byte	0x7d
+ 1232 032a 00       		.sleb128 0
+ 1233 032b 18       		.uleb128 0x18
+ 1234 032c A9020000 		.4byte	.LASF38
+ 1235 0330 01       		.byte	0x1
+ 1236 0331 3301     		.2byte	0x133
+ 1237 0333 3E000000 		.4byte	0x3e
+ 1238 0337 ED000000 		.4byte	.LLST9
+ 1239 033b 00       		.byte	0x0
+ 1240 033c 12       		.uleb128 0x12
+ 1241 033d 01       		.byte	0x1
+ 1242 033e 08000000 		.4byte	.LASF39
+ 1243 0342 01       		.byte	0x1
+ 1244 0343 3D01     		.2byte	0x13d
+ 1245 0345 01       		.byte	0x1
+ 1246 0346 10020000 		.4byte	.LFB10
+ 1247 034a C8020000 		.4byte	.LFE10
+ 1248 034e 02       		.byte	0x2
+ 1249 034f 7D       		.byte	0x7d
+ 1250 0350 00       		.sleb128 0
+ 1251 0351 19       		.uleb128 0x19
+ 1252 0352 61030000 		.4byte	0x361
+ 1253 0356 30000000 		.4byte	0x30
+ 1254 035a 1A       		.uleb128 0x1a
+ 1255 035b 9E000000 		.4byte	0x9e
+ 1256 035f 3F       		.byte	0x3f
+ 1257 0360 00       		.byte	0x0
+ 1258 0361 1B       		.uleb128 0x1b
+ 1259 0362 1E000000 		.4byte	.LASF40
+ 1260 0366 01       		.byte	0x1
+ 1261 0367 07       		.byte	0x7
+ 1262 0368 51030000 		.4byte	0x351
+ 1263 036c 05       		.byte	0x5
+ 1264 036d 03       		.byte	0x3
+ 1265 036e 00000000 		.4byte	uartRxData
+ 1266 0372 1B       		.uleb128 0x1b
+ 1267 0373 B7000000 		.4byte	.LASF41
+ 1268 0377 01       		.byte	0x1
+ 1269 0378 08       		.byte	0x8
+ 1270 0379 51030000 		.4byte	0x351
+ 1271 037d 05       		.byte	0x5
+ 1272 037e 03       		.byte	0x3
+ 1273 037f 40000000 		.4byte	uartTxData
+ 1274 0383 1B       		.uleb128 0x1b
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 30
+
+
+ 1275 0384 6A000000 		.4byte	.LASF42
+ 1276 0388 01       		.byte	0x1
+ 1277 0389 16       		.byte	0x16
+ 1278 038a AE010000 		.4byte	0x1ae
+ 1279 038e 05       		.byte	0x5
+ 1280 038f 03       		.byte	0x3
+ 1281 0390 00000000 		.4byte	LineCoding
+ 1282 0394 19       		.uleb128 0x19
+ 1283 0395 A4030000 		.4byte	0x3a4
+ 1284 0399 25000000 		.4byte	0x25
+ 1285 039d 1A       		.uleb128 0x1a
+ 1286 039e 9E000000 		.4byte	0x9e
+ 1287 03a2 3F       		.byte	0x3f
+ 1288 03a3 00       		.byte	0x0
+ 1289 03a4 1B       		.uleb128 0x1b
+ 1290 03a5 40000000 		.4byte	.LASF43
+ 1291 03a9 01       		.byte	0x1
+ 1292 03aa 17       		.byte	0x17
+ 1293 03ab 94030000 		.4byte	0x394
+ 1294 03af 05       		.byte	0x5
+ 1295 03b0 03       		.byte	0x3
+ 1296 03b1 80000000 		.4byte	abBulkBuf
+ 1297 03b5 19       		.uleb128 0x19
+ 1298 03b6 C5030000 		.4byte	0x3c5
+ 1299 03ba 25000000 		.4byte	0x25
+ 1300 03be 1A       		.uleb128 0x1a
+ 1301 03bf 9E000000 		.4byte	0x9e
+ 1302 03c3 07       		.byte	0x7
+ 1303 03c4 00       		.byte	0x0
+ 1304 03c5 1B       		.uleb128 0x1b
+ 1305 03c6 BE020000 		.4byte	.LASF44
+ 1306 03ca 01       		.byte	0x1
+ 1307 03cb 18       		.byte	0x18
+ 1308 03cc B5030000 		.4byte	0x3b5
+ 1309 03d0 05       		.byte	0x5
+ 1310 03d1 03       		.byte	0x3
+ 1311 03d2 C0000000 		.4byte	abClassReqData
+ 1312 03d6 19       		.uleb128 0x19
+ 1313 03d7 E6030000 		.4byte	0x3e6
+ 1314 03db 25000000 		.4byte	0x25
+ 1315 03df 1A       		.uleb128 0x1a
+ 1316 03e0 9E000000 		.4byte	0x9e
+ 1317 03e4 8D       		.byte	0x8d
+ 1318 03e5 00       		.byte	0x0
+ 1319 03e6 1B       		.uleb128 0x1b
+ 1320 03e7 12010000 		.4byte	.LASF45
+ 1321 03eb 01       		.byte	0x1
+ 1322 03ec 1E       		.byte	0x1e
+ 1323 03ed F7030000 		.4byte	0x3f7
+ 1324 03f1 05       		.byte	0x5
+ 1325 03f2 03       		.byte	0x3
+ 1326 03f3 00000000 		.4byte	abDescriptors
+ 1327 03f7 1C       		.uleb128 0x1c
+ 1328 03f8 D6030000 		.4byte	0x3d6
+ 1329 03fc 1D       		.uleb128 0x1d
+ 1330 03fd 4B010000 		.4byte	.LASF46
+ 1331 0401 01       		.byte	0x1
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 31
+
+
+ 1332 0402 09       		.byte	0x9
+ 1333 0403 F0000000 		.4byte	0xf0
+ 1334 0407 01       		.byte	0x1
+ 1335 0408 05       		.byte	0x5
+ 1336 0409 03       		.byte	0x3
+ 1337 040a 00000000 		.4byte	uartRxBuffer
+ 1338 040e 1D       		.uleb128 0x1d
+ 1339 040f C2000000 		.4byte	.LASF47
+ 1340 0413 01       		.byte	0x1
+ 1341 0414 0A       		.byte	0xa
+ 1342 0415 F0000000 		.4byte	0xf0
+ 1343 0419 01       		.byte	0x1
+ 1344 041a 05       		.byte	0x5
+ 1345 041b 03       		.byte	0x3
+ 1346 041c 00000000 		.4byte	uartTxBuffer
+ 1347 0420 1D       		.uleb128 0x1d
+ 1348 0421 4A000000 		.4byte	.LASF48
+ 1349 0425 01       		.byte	0x1
+ 1350 0426 0B       		.byte	0xb
+ 1351 0427 49000000 		.4byte	0x49
+ 1352 042b 01       		.byte	0x1
+ 1353 042c 05       		.byte	0x5
+ 1354 042d 03       		.byte	0x3
+ 1355 042e 00000000 		.4byte	uartRxOverflow
+ 1356 0432 00       		.byte	0x0
+ 1357              		.section	.debug_abbrev
+ 1358 0000 01       		.uleb128 0x1
+ 1359 0001 11       		.uleb128 0x11
+ 1360 0002 01       		.byte	0x1
+ 1361 0003 10       		.uleb128 0x10
+ 1362 0004 06       		.uleb128 0x6
+ 1363 0005 12       		.uleb128 0x12
+ 1364 0006 01       		.uleb128 0x1
+ 1365 0007 11       		.uleb128 0x11
+ 1366 0008 01       		.uleb128 0x1
+ 1367 0009 25       		.uleb128 0x25
+ 1368 000a 0E       		.uleb128 0xe
+ 1369 000b 13       		.uleb128 0x13
+ 1370 000c 0B       		.uleb128 0xb
+ 1371 000d 03       		.uleb128 0x3
+ 1372 000e 0E       		.uleb128 0xe
+ 1373 000f 1B       		.uleb128 0x1b
+ 1374 0010 0E       		.uleb128 0xe
+ 1375 0011 00       		.byte	0x0
+ 1376 0012 00       		.byte	0x0
+ 1377 0013 02       		.uleb128 0x2
+ 1378 0014 16       		.uleb128 0x16
+ 1379 0015 00       		.byte	0x0
+ 1380 0016 03       		.uleb128 0x3
+ 1381 0017 08       		.uleb128 0x8
+ 1382 0018 3A       		.uleb128 0x3a
+ 1383 0019 0B       		.uleb128 0xb
+ 1384 001a 3B       		.uleb128 0x3b
+ 1385 001b 0B       		.uleb128 0xb
+ 1386 001c 49       		.uleb128 0x49
+ 1387 001d 13       		.uleb128 0x13
+ 1388 001e 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 32
+
+
+ 1389 001f 00       		.byte	0x0
+ 1390 0020 03       		.uleb128 0x3
+ 1391 0021 24       		.uleb128 0x24
+ 1392 0022 00       		.byte	0x0
+ 1393 0023 03       		.uleb128 0x3
+ 1394 0024 0E       		.uleb128 0xe
+ 1395 0025 0B       		.uleb128 0xb
+ 1396 0026 0B       		.uleb128 0xb
+ 1397 0027 3E       		.uleb128 0x3e
+ 1398 0028 0B       		.uleb128 0xb
+ 1399 0029 00       		.byte	0x0
+ 1400 002a 00       		.byte	0x0
+ 1401 002b 04       		.uleb128 0x4
+ 1402 002c 16       		.uleb128 0x16
+ 1403 002d 00       		.byte	0x0
+ 1404 002e 03       		.uleb128 0x3
+ 1405 002f 0E       		.uleb128 0xe
+ 1406 0030 3A       		.uleb128 0x3a
+ 1407 0031 0B       		.uleb128 0xb
+ 1408 0032 3B       		.uleb128 0x3b
+ 1409 0033 0B       		.uleb128 0xb
+ 1410 0034 49       		.uleb128 0x49
+ 1411 0035 13       		.uleb128 0x13
+ 1412 0036 00       		.byte	0x0
+ 1413 0037 00       		.byte	0x0
+ 1414 0038 05       		.uleb128 0x5
+ 1415 0039 24       		.uleb128 0x24
+ 1416 003a 00       		.byte	0x0
+ 1417 003b 03       		.uleb128 0x3
+ 1418 003c 08       		.uleb128 0x8
+ 1419 003d 0B       		.uleb128 0xb
+ 1420 003e 0B       		.uleb128 0xb
+ 1421 003f 3E       		.uleb128 0x3e
+ 1422 0040 0B       		.uleb128 0xb
+ 1423 0041 00       		.byte	0x0
+ 1424 0042 00       		.byte	0x0
+ 1425 0043 06       		.uleb128 0x6
+ 1426 0044 13       		.uleb128 0x13
+ 1427 0045 01       		.byte	0x1
+ 1428 0046 01       		.uleb128 0x1
+ 1429 0047 13       		.uleb128 0x13
+ 1430 0048 03       		.uleb128 0x3
+ 1431 0049 0E       		.uleb128 0xe
+ 1432 004a 0B       		.uleb128 0xb
+ 1433 004b 0B       		.uleb128 0xb
+ 1434 004c 3A       		.uleb128 0x3a
+ 1435 004d 0B       		.uleb128 0xb
+ 1436 004e 3B       		.uleb128 0x3b
+ 1437 004f 0B       		.uleb128 0xb
+ 1438 0050 00       		.byte	0x0
+ 1439 0051 00       		.byte	0x0
+ 1440 0052 07       		.uleb128 0x7
+ 1441 0053 0D       		.uleb128 0xd
+ 1442 0054 00       		.byte	0x0
+ 1443 0055 03       		.uleb128 0x3
+ 1444 0056 0E       		.uleb128 0xe
+ 1445 0057 3A       		.uleb128 0x3a
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 33
+
+
+ 1446 0058 0B       		.uleb128 0xb
+ 1447 0059 3B       		.uleb128 0x3b
+ 1448 005a 0B       		.uleb128 0xb
+ 1449 005b 49       		.uleb128 0x49
+ 1450 005c 13       		.uleb128 0x13
+ 1451 005d 38       		.uleb128 0x38
+ 1452 005e 0A       		.uleb128 0xa
+ 1453 005f 00       		.byte	0x0
+ 1454 0060 00       		.byte	0x0
+ 1455 0061 08       		.uleb128 0x8
+ 1456 0062 0F       		.uleb128 0xf
+ 1457 0063 00       		.byte	0x0
+ 1458 0064 0B       		.uleb128 0xb
+ 1459 0065 0B       		.uleb128 0xb
+ 1460 0066 49       		.uleb128 0x49
+ 1461 0067 13       		.uleb128 0x13
+ 1462 0068 00       		.byte	0x0
+ 1463 0069 00       		.byte	0x0
+ 1464 006a 09       		.uleb128 0x9
+ 1465 006b 13       		.uleb128 0x13
+ 1466 006c 01       		.byte	0x1
+ 1467 006d 01       		.uleb128 0x1
+ 1468 006e 13       		.uleb128 0x13
+ 1469 006f 0B       		.uleb128 0xb
+ 1470 0070 0B       		.uleb128 0xb
+ 1471 0071 3A       		.uleb128 0x3a
+ 1472 0072 0B       		.uleb128 0xb
+ 1473 0073 3B       		.uleb128 0x3b
+ 1474 0074 0B       		.uleb128 0xb
+ 1475 0075 00       		.byte	0x0
+ 1476 0076 00       		.byte	0x0
+ 1477 0077 0A       		.uleb128 0xa
+ 1478 0078 2E       		.uleb128 0x2e
+ 1479 0079 01       		.byte	0x1
+ 1480 007a 01       		.uleb128 0x1
+ 1481 007b 13       		.uleb128 0x13
+ 1482 007c 03       		.uleb128 0x3
+ 1483 007d 0E       		.uleb128 0xe
+ 1484 007e 3A       		.uleb128 0x3a
+ 1485 007f 0B       		.uleb128 0xb
+ 1486 0080 3B       		.uleb128 0x3b
+ 1487 0081 0B       		.uleb128 0xb
+ 1488 0082 27       		.uleb128 0x27
+ 1489 0083 0C       		.uleb128 0xc
+ 1490 0084 11       		.uleb128 0x11
+ 1491 0085 01       		.uleb128 0x1
+ 1492 0086 12       		.uleb128 0x12
+ 1493 0087 01       		.uleb128 0x1
+ 1494 0088 40       		.uleb128 0x40
+ 1495 0089 0A       		.uleb128 0xa
+ 1496 008a 00       		.byte	0x0
+ 1497 008b 00       		.byte	0x0
+ 1498 008c 0B       		.uleb128 0xb
+ 1499 008d 05       		.uleb128 0x5
+ 1500 008e 00       		.byte	0x0
+ 1501 008f 03       		.uleb128 0x3
+ 1502 0090 08       		.uleb128 0x8
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 34
+
+
+ 1503 0091 3A       		.uleb128 0x3a
+ 1504 0092 0B       		.uleb128 0xb
+ 1505 0093 3B       		.uleb128 0x3b
+ 1506 0094 0B       		.uleb128 0xb
+ 1507 0095 49       		.uleb128 0x49
+ 1508 0096 13       		.uleb128 0x13
+ 1509 0097 02       		.uleb128 0x2
+ 1510 0098 06       		.uleb128 0x6
+ 1511 0099 00       		.byte	0x0
+ 1512 009a 00       		.byte	0x0
+ 1513 009b 0C       		.uleb128 0xc
+ 1514 009c 05       		.uleb128 0x5
+ 1515 009d 00       		.byte	0x0
+ 1516 009e 03       		.uleb128 0x3
+ 1517 009f 0E       		.uleb128 0xe
+ 1518 00a0 3A       		.uleb128 0x3a
+ 1519 00a1 0B       		.uleb128 0xb
+ 1520 00a2 3B       		.uleb128 0x3b
+ 1521 00a3 0B       		.uleb128 0xb
+ 1522 00a4 49       		.uleb128 0x49
+ 1523 00a5 13       		.uleb128 0x13
+ 1524 00a6 02       		.uleb128 0x2
+ 1525 00a7 06       		.uleb128 0x6
+ 1526 00a8 00       		.byte	0x0
+ 1527 00a9 00       		.byte	0x0
+ 1528 00aa 0D       		.uleb128 0xd
+ 1529 00ab 34       		.uleb128 0x34
+ 1530 00ac 00       		.byte	0x0
+ 1531 00ad 03       		.uleb128 0x3
+ 1532 00ae 08       		.uleb128 0x8
+ 1533 00af 3A       		.uleb128 0x3a
+ 1534 00b0 0B       		.uleb128 0xb
+ 1535 00b1 3B       		.uleb128 0x3b
+ 1536 00b2 0B       		.uleb128 0xb
+ 1537 00b3 49       		.uleb128 0x49
+ 1538 00b4 13       		.uleb128 0x13
+ 1539 00b5 00       		.byte	0x0
+ 1540 00b6 00       		.byte	0x0
+ 1541 00b7 0E       		.uleb128 0xe
+ 1542 00b8 34       		.uleb128 0x34
+ 1543 00b9 00       		.byte	0x0
+ 1544 00ba 03       		.uleb128 0x3
+ 1545 00bb 0E       		.uleb128 0xe
+ 1546 00bc 3A       		.uleb128 0x3a
+ 1547 00bd 0B       		.uleb128 0xb
+ 1548 00be 3B       		.uleb128 0x3b
+ 1549 00bf 0B       		.uleb128 0xb
+ 1550 00c0 49       		.uleb128 0x49
+ 1551 00c1 13       		.uleb128 0x13
+ 1552 00c2 02       		.uleb128 0x2
+ 1553 00c3 06       		.uleb128 0x6
+ 1554 00c4 00       		.byte	0x0
+ 1555 00c5 00       		.byte	0x0
+ 1556 00c6 0F       		.uleb128 0xf
+ 1557 00c7 34       		.uleb128 0x34
+ 1558 00c8 00       		.byte	0x0
+ 1559 00c9 03       		.uleb128 0x3
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 35
+
+
+ 1560 00ca 08       		.uleb128 0x8
+ 1561 00cb 3A       		.uleb128 0x3a
+ 1562 00cc 0B       		.uleb128 0xb
+ 1563 00cd 3B       		.uleb128 0x3b
+ 1564 00ce 0B       		.uleb128 0xb
+ 1565 00cf 49       		.uleb128 0x49
+ 1566 00d0 13       		.uleb128 0x13
+ 1567 00d1 02       		.uleb128 0x2
+ 1568 00d2 0A       		.uleb128 0xa
+ 1569 00d3 00       		.byte	0x0
+ 1570 00d4 00       		.byte	0x0
+ 1571 00d5 10       		.uleb128 0x10
+ 1572 00d6 34       		.uleb128 0x34
+ 1573 00d7 00       		.byte	0x0
+ 1574 00d8 03       		.uleb128 0x3
+ 1575 00d9 0E       		.uleb128 0xe
+ 1576 00da 3A       		.uleb128 0x3a
+ 1577 00db 0B       		.uleb128 0xb
+ 1578 00dc 3B       		.uleb128 0x3b
+ 1579 00dd 0B       		.uleb128 0xb
+ 1580 00de 49       		.uleb128 0x49
+ 1581 00df 13       		.uleb128 0x13
+ 1582 00e0 00       		.byte	0x0
+ 1583 00e1 00       		.byte	0x0
+ 1584 00e2 11       		.uleb128 0x11
+ 1585 00e3 2E       		.uleb128 0x2e
+ 1586 00e4 01       		.byte	0x1
+ 1587 00e5 01       		.uleb128 0x1
+ 1588 00e6 13       		.uleb128 0x13
+ 1589 00e7 03       		.uleb128 0x3
+ 1590 00e8 0E       		.uleb128 0xe
+ 1591 00e9 3A       		.uleb128 0x3a
+ 1592 00ea 0B       		.uleb128 0xb
+ 1593 00eb 3B       		.uleb128 0x3b
+ 1594 00ec 0B       		.uleb128 0xb
+ 1595 00ed 27       		.uleb128 0x27
+ 1596 00ee 0C       		.uleb128 0xc
+ 1597 00ef 49       		.uleb128 0x49
+ 1598 00f0 13       		.uleb128 0x13
+ 1599 00f1 11       		.uleb128 0x11
+ 1600 00f2 01       		.uleb128 0x1
+ 1601 00f3 12       		.uleb128 0x12
+ 1602 00f4 01       		.uleb128 0x1
+ 1603 00f5 40       		.uleb128 0x40
+ 1604 00f6 0A       		.uleb128 0xa
+ 1605 00f7 00       		.byte	0x0
+ 1606 00f8 00       		.byte	0x0
+ 1607 00f9 12       		.uleb128 0x12
+ 1608 00fa 2E       		.uleb128 0x2e
+ 1609 00fb 00       		.byte	0x0
+ 1610 00fc 3F       		.uleb128 0x3f
+ 1611 00fd 0C       		.uleb128 0xc
+ 1612 00fe 03       		.uleb128 0x3
+ 1613 00ff 0E       		.uleb128 0xe
+ 1614 0100 3A       		.uleb128 0x3a
+ 1615 0101 0B       		.uleb128 0xb
+ 1616 0102 3B       		.uleb128 0x3b
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 36
+
+
+ 1617 0103 05       		.uleb128 0x5
+ 1618 0104 27       		.uleb128 0x27
+ 1619 0105 0C       		.uleb128 0xc
+ 1620 0106 11       		.uleb128 0x11
+ 1621 0107 01       		.uleb128 0x1
+ 1622 0108 12       		.uleb128 0x12
+ 1623 0109 01       		.uleb128 0x1
+ 1624 010a 40       		.uleb128 0x40
+ 1625 010b 0A       		.uleb128 0xa
+ 1626 010c 00       		.byte	0x0
+ 1627 010d 00       		.byte	0x0
+ 1628 010e 13       		.uleb128 0x13
+ 1629 010f 2E       		.uleb128 0x2e
+ 1630 0110 01       		.byte	0x1
+ 1631 0111 01       		.uleb128 0x1
+ 1632 0112 13       		.uleb128 0x13
+ 1633 0113 3F       		.uleb128 0x3f
+ 1634 0114 0C       		.uleb128 0xc
+ 1635 0115 03       		.uleb128 0x3
+ 1636 0116 0E       		.uleb128 0xe
+ 1637 0117 3A       		.uleb128 0x3a
+ 1638 0118 0B       		.uleb128 0xb
+ 1639 0119 3B       		.uleb128 0x3b
+ 1640 011a 05       		.uleb128 0x5
+ 1641 011b 27       		.uleb128 0x27
+ 1642 011c 0C       		.uleb128 0xc
+ 1643 011d 49       		.uleb128 0x49
+ 1644 011e 13       		.uleb128 0x13
+ 1645 011f 11       		.uleb128 0x11
+ 1646 0120 01       		.uleb128 0x1
+ 1647 0121 12       		.uleb128 0x12
+ 1648 0122 01       		.uleb128 0x1
+ 1649 0123 40       		.uleb128 0x40
+ 1650 0124 0A       		.uleb128 0xa
+ 1651 0125 00       		.byte	0x0
+ 1652 0126 00       		.byte	0x0
+ 1653 0127 14       		.uleb128 0x14
+ 1654 0128 05       		.uleb128 0x5
+ 1655 0129 00       		.byte	0x0
+ 1656 012a 03       		.uleb128 0x3
+ 1657 012b 08       		.uleb128 0x8
+ 1658 012c 3A       		.uleb128 0x3a
+ 1659 012d 0B       		.uleb128 0xb
+ 1660 012e 3B       		.uleb128 0x3b
+ 1661 012f 05       		.uleb128 0x5
+ 1662 0130 49       		.uleb128 0x49
+ 1663 0131 13       		.uleb128 0x13
+ 1664 0132 02       		.uleb128 0x2
+ 1665 0133 06       		.uleb128 0x6
+ 1666 0134 00       		.byte	0x0
+ 1667 0135 00       		.byte	0x0
+ 1668 0136 15       		.uleb128 0x15
+ 1669 0137 2E       		.uleb128 0x2e
+ 1670 0138 00       		.byte	0x0
+ 1671 0139 3F       		.uleb128 0x3f
+ 1672 013a 0C       		.uleb128 0xc
+ 1673 013b 03       		.uleb128 0x3
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 37
+
+
+ 1674 013c 0E       		.uleb128 0xe
+ 1675 013d 3A       		.uleb128 0x3a
+ 1676 013e 0B       		.uleb128 0xb
+ 1677 013f 3B       		.uleb128 0x3b
+ 1678 0140 05       		.uleb128 0x5
+ 1679 0141 27       		.uleb128 0x27
+ 1680 0142 0C       		.uleb128 0xc
+ 1681 0143 49       		.uleb128 0x49
+ 1682 0144 13       		.uleb128 0x13
+ 1683 0145 11       		.uleb128 0x11
+ 1684 0146 01       		.uleb128 0x1
+ 1685 0147 12       		.uleb128 0x12
+ 1686 0148 01       		.uleb128 0x1
+ 1687 0149 40       		.uleb128 0x40
+ 1688 014a 0A       		.uleb128 0xa
+ 1689 014b 00       		.byte	0x0
+ 1690 014c 00       		.byte	0x0
+ 1691 014d 16       		.uleb128 0x16
+ 1692 014e 2E       		.uleb128 0x2e
+ 1693 014f 00       		.byte	0x0
+ 1694 0150 03       		.uleb128 0x3
+ 1695 0151 0E       		.uleb128 0xe
+ 1696 0152 3A       		.uleb128 0x3a
+ 1697 0153 0B       		.uleb128 0xb
+ 1698 0154 3B       		.uleb128 0x3b
+ 1699 0155 05       		.uleb128 0x5
+ 1700 0156 27       		.uleb128 0x27
+ 1701 0157 0C       		.uleb128 0xc
+ 1702 0158 11       		.uleb128 0x11
+ 1703 0159 01       		.uleb128 0x1
+ 1704 015a 12       		.uleb128 0x12
+ 1705 015b 01       		.uleb128 0x1
+ 1706 015c 40       		.uleb128 0x40
+ 1707 015d 0A       		.uleb128 0xa
+ 1708 015e 00       		.byte	0x0
+ 1709 015f 00       		.byte	0x0
+ 1710 0160 17       		.uleb128 0x17
+ 1711 0161 2E       		.uleb128 0x2e
+ 1712 0162 01       		.byte	0x1
+ 1713 0163 01       		.uleb128 0x1
+ 1714 0164 13       		.uleb128 0x13
+ 1715 0165 03       		.uleb128 0x3
+ 1716 0166 0E       		.uleb128 0xe
+ 1717 0167 3A       		.uleb128 0x3a
+ 1718 0168 0B       		.uleb128 0xb
+ 1719 0169 3B       		.uleb128 0x3b
+ 1720 016a 05       		.uleb128 0x5
+ 1721 016b 27       		.uleb128 0x27
+ 1722 016c 0C       		.uleb128 0xc
+ 1723 016d 11       		.uleb128 0x11
+ 1724 016e 01       		.uleb128 0x1
+ 1725 016f 12       		.uleb128 0x12
+ 1726 0170 01       		.uleb128 0x1
+ 1727 0171 40       		.uleb128 0x40
+ 1728 0172 0A       		.uleb128 0xa
+ 1729 0173 00       		.byte	0x0
+ 1730 0174 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 38
+
+
+ 1731 0175 18       		.uleb128 0x18
+ 1732 0176 05       		.uleb128 0x5
+ 1733 0177 00       		.byte	0x0
+ 1734 0178 03       		.uleb128 0x3
+ 1735 0179 0E       		.uleb128 0xe
+ 1736 017a 3A       		.uleb128 0x3a
+ 1737 017b 0B       		.uleb128 0xb
+ 1738 017c 3B       		.uleb128 0x3b
+ 1739 017d 05       		.uleb128 0x5
+ 1740 017e 49       		.uleb128 0x49
+ 1741 017f 13       		.uleb128 0x13
+ 1742 0180 02       		.uleb128 0x2
+ 1743 0181 06       		.uleb128 0x6
+ 1744 0182 00       		.byte	0x0
+ 1745 0183 00       		.byte	0x0
+ 1746 0184 19       		.uleb128 0x19
+ 1747 0185 01       		.uleb128 0x1
+ 1748 0186 01       		.byte	0x1
+ 1749 0187 01       		.uleb128 0x1
+ 1750 0188 13       		.uleb128 0x13
+ 1751 0189 49       		.uleb128 0x49
+ 1752 018a 13       		.uleb128 0x13
+ 1753 018b 00       		.byte	0x0
+ 1754 018c 00       		.byte	0x0
+ 1755 018d 1A       		.uleb128 0x1a
+ 1756 018e 21       		.uleb128 0x21
+ 1757 018f 00       		.byte	0x0
+ 1758 0190 49       		.uleb128 0x49
+ 1759 0191 13       		.uleb128 0x13
+ 1760 0192 2F       		.uleb128 0x2f
+ 1761 0193 0B       		.uleb128 0xb
+ 1762 0194 00       		.byte	0x0
+ 1763 0195 00       		.byte	0x0
+ 1764 0196 1B       		.uleb128 0x1b
+ 1765 0197 34       		.uleb128 0x34
+ 1766 0198 00       		.byte	0x0
+ 1767 0199 03       		.uleb128 0x3
+ 1768 019a 0E       		.uleb128 0xe
+ 1769 019b 3A       		.uleb128 0x3a
+ 1770 019c 0B       		.uleb128 0xb
+ 1771 019d 3B       		.uleb128 0x3b
+ 1772 019e 0B       		.uleb128 0xb
+ 1773 019f 49       		.uleb128 0x49
+ 1774 01a0 13       		.uleb128 0x13
+ 1775 01a1 02       		.uleb128 0x2
+ 1776 01a2 0A       		.uleb128 0xa
+ 1777 01a3 00       		.byte	0x0
+ 1778 01a4 00       		.byte	0x0
+ 1779 01a5 1C       		.uleb128 0x1c
+ 1780 01a6 26       		.uleb128 0x26
+ 1781 01a7 00       		.byte	0x0
+ 1782 01a8 49       		.uleb128 0x49
+ 1783 01a9 13       		.uleb128 0x13
+ 1784 01aa 00       		.byte	0x0
+ 1785 01ab 00       		.byte	0x0
+ 1786 01ac 1D       		.uleb128 0x1d
+ 1787 01ad 34       		.uleb128 0x34
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 39
+
+
+ 1788 01ae 00       		.byte	0x0
+ 1789 01af 03       		.uleb128 0x3
+ 1790 01b0 0E       		.uleb128 0xe
+ 1791 01b1 3A       		.uleb128 0x3a
+ 1792 01b2 0B       		.uleb128 0xb
+ 1793 01b3 3B       		.uleb128 0x3b
+ 1794 01b4 0B       		.uleb128 0xb
+ 1795 01b5 49       		.uleb128 0x49
+ 1796 01b6 13       		.uleb128 0x13
+ 1797 01b7 3F       		.uleb128 0x3f
+ 1798 01b8 0C       		.uleb128 0xc
+ 1799 01b9 02       		.uleb128 0x2
+ 1800 01ba 0A       		.uleb128 0xa
+ 1801 01bb 00       		.byte	0x0
+ 1802 01bc 00       		.byte	0x0
+ 1803 01bd 00       		.byte	0x0
+ 1804              		.section	.debug_pubnames,"",%progbits
+ 1805 0000 80000000 		.4byte	0x80
+ 1806 0004 0200     		.2byte	0x2
+ 1807 0006 00000000 		.4byte	.Ldebug_info0
+ 1808 000a 33040000 		.4byte	0x433
+ 1809 000e A5020000 		.4byte	0x2a5
+ 1810 0012 56434F4D 		.ascii	"VCOM_init\000"
+ 1810      5F696E69 
+ 1810      7400
+ 1811 001c BA020000 		.4byte	0x2ba
+ 1812 0020 56434F4D 		.ascii	"VCOM_putchar\000"
+ 1812      5F707574 
+ 1812      63686172 
+ 1812      00
+ 1813 002d E6020000 		.4byte	0x2e6
+ 1814 0031 56434F4D 		.ascii	"VCOM_getchar\000"
+ 1814      5F676574 
+ 1814      63686172 
+ 1814      00
+ 1815 003e 3C030000 		.4byte	0x33c
+ 1816 0042 75736253 		.ascii	"usbSetup\000"
+ 1816      65747570 
+ 1816      00
+ 1817 004b FC030000 		.4byte	0x3fc
+ 1818 004f 75617274 		.ascii	"uartRxBuffer\000"
+ 1818      52784275 
+ 1818      66666572 
+ 1818      00
+ 1819 005c 0E040000 		.4byte	0x40e
+ 1820 0060 75617274 		.ascii	"uartTxBuffer\000"
+ 1820      54784275 
+ 1820      66666572 
+ 1820      00
+ 1821 006d 20040000 		.4byte	0x420
+ 1822 0071 75617274 		.ascii	"uartRxOverflow\000"
+ 1822      52784F76 
+ 1822      6572666C 
+ 1822      6F7700
+ 1823 0080 00000000 		.4byte	0x0
+ 1824              		.section	.debug_aranges,"",%progbits
+ 1825 0000 1C000000 		.4byte	0x1c
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 40
+
+
+ 1826 0004 0200     		.2byte	0x2
+ 1827 0006 00000000 		.4byte	.Ldebug_info0
+ 1828 000a 04       		.byte	0x4
+ 1829 000b 00       		.byte	0x0
+ 1830 000c 0000     		.2byte	0x0
+ 1831 000e 0000     		.2byte	0x0
+ 1832 0010 00000000 		.4byte	.Ltext0
+ 1833 0014 C8020000 		.4byte	.Letext0-.Ltext0
+ 1834 0018 00000000 		.4byte	0x0
+ 1835 001c 00000000 		.4byte	0x0
+ 1836              		.section	.debug_str,"MS",%progbits,1
+ 1837              	.LASF34:
+ 1838 0000 70706244 		.ascii	"ppbData\000"
+ 1838      61746100 
+ 1839              	.LASF39:
+ 1840 0008 75736253 		.ascii	"usbSetup\000"
+ 1840      65747570 
+ 1840      00
+ 1841              	.LASF9:
+ 1842 0011 756E7369 		.ascii	"unsigned int\000"
+ 1842      676E6564 
+ 1842      20696E74 
+ 1842      00
+ 1843              	.LASF40:
+ 1844 001e 75617274 		.ascii	"uartRxData\000"
+ 1844      52784461 
+ 1844      746100
+ 1845              	.LASF36:
+ 1846 0029 56434F4D 		.ascii	"VCOM_getchar\000"
+ 1846      5F676574 
+ 1846      63686172 
+ 1846      00
+ 1847              	.LASF3:
+ 1848 0036 73686F72 		.ascii	"short int\000"
+ 1848      7420696E 
+ 1848      7400
+ 1849              	.LASF43:
+ 1850 0040 61624275 		.ascii	"abBulkBuf\000"
+ 1850      6C6B4275 
+ 1850      6600
+ 1851              	.LASF48:
+ 1852 004a 75617274 		.ascii	"uartRxOverflow\000"
+ 1852      52784F76 
+ 1852      6572666C 
+ 1852      6F7700
+ 1853              	.LASF18:
+ 1854 0059 7756616C 		.ascii	"wValue\000"
+ 1854      756500
+ 1855              	.LASF22:
+ 1856 0060 64774454 		.ascii	"dwDTERate\000"
+ 1856      45526174 
+ 1856      6500
+ 1857              	.LASF42:
+ 1858 006a 4C696E65 		.ascii	"LineCoding\000"
+ 1858      436F6469 
+ 1858      6E6700
+ 1859              	.LASF8:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 41
+
+
+ 1860 0075 424F4F4C 		.ascii	"BOOL\000"
+ 1860      00
+ 1861              	.LASF6:
+ 1862 007a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1862      206C6F6E 
+ 1862      6720756E 
+ 1862      7369676E 
+ 1862      65642069 
+ 1863              	.LASF13:
+ 1864 0091 64617461 		.ascii	"datalength\000"
+ 1864      6C656E67 
+ 1864      746800
+ 1865              	.LASF26:
+ 1866 009c 544C696E 		.ascii	"TLineCoding\000"
+ 1866      65436F64 
+ 1866      696E6700 
+ 1867              	.LASF29:
+ 1868 00a8 42756C6B 		.ascii	"BulkOut\000"
+ 1868      4F757400 
+ 1869              	.LASF19:
+ 1870 00b0 77496E64 		.ascii	"wIndex\000"
+ 1870      657800
+ 1871              	.LASF41:
+ 1872 00b7 75617274 		.ascii	"uartTxData\000"
+ 1872      54784461 
+ 1872      746100
+ 1873              	.LASF47:
+ 1874 00c2 75617274 		.ascii	"uartTxBuffer\000"
+ 1874      54784275 
+ 1874      66666572 
+ 1874      00
+ 1875              	.LASF33:
+ 1876 00cf 70694C65 		.ascii	"piLen\000"
+ 1876      6E00
+ 1877              	.LASF27:
+ 1878 00d5 62455053 		.ascii	"bEPStatus\000"
+ 1878      74617475 
+ 1878      7300
+ 1879              	.LASF21:
+ 1880 00df 54536574 		.ascii	"TSetupPacket\000"
+ 1880      75705061 
+ 1880      636B6574 
+ 1880      00
+ 1881              	.LASF50:
+ 1882 00ec 7573622E 		.ascii	"usb.c\000"
+ 1882      6300
+ 1883              	.LASF52:
+ 1884 00f2 73747275 		.ascii	"struct_cBuffer\000"
+ 1884      63745F63 
+ 1884      42756666 
+ 1884      657200
+ 1885              	.LASF10:
+ 1886 0101 63686172 		.ascii	"char\000"
+ 1886      00
+ 1887              	.LASF49:
+ 1888 0106 474E5520 		.ascii	"GNU C 4.0.2\000"
+ 1888      4320342E 
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 42
+
+
+ 1888      302E3200 
+ 1889              	.LASF45:
+ 1890 0112 61624465 		.ascii	"abDescriptors\000"
+ 1890      73637269 
+ 1890      70746F72 
+ 1890      7300
+ 1891              	.LASF28:
+ 1892 0120 694C656E 		.ascii	"iLen\000"
+ 1892      00
+ 1893              	.LASF7:
+ 1894 0125 6C6F6E67 		.ascii	"long long int\000"
+ 1894      206C6F6E 
+ 1894      6720696E 
+ 1894      7400
+ 1895              	.LASF12:
+ 1896 0133 73697A65 		.ascii	"size\000"
+ 1896      00
+ 1897              	.LASF30:
+ 1898 0138 42756C6B 		.ascii	"BulkIn\000"
+ 1898      496E00
+ 1899              	.LASF24:
+ 1900 013f 62506172 		.ascii	"bParityType\000"
+ 1900      69747954 
+ 1900      79706500 
+ 1901              	.LASF46:
+ 1902 014b 75617274 		.ascii	"uartRxBuffer\000"
+ 1902      52784275 
+ 1902      66666572 
+ 1902      00
+ 1903              	.LASF51:
+ 1904 0158 2F637967 		.ascii	"/cygdrive/c/Documents and Settings/Phelps Williams/"
+ 1904      64726976 
+ 1904      652F632F 
+ 1904      446F6375 
+ 1904      6D656E74 
+ 1905 018b 4465736B 		.ascii	"Desktop/cornell/molecubes_sf/trunk/software/control"
+ 1905      746F702F 
+ 1905      636F726E 
+ 1905      656C6C2F 
+ 1905      6D6F6C65 
+ 1906 01be 6C65722F 		.ascii	"ler/filesystemTest\000"
+ 1906      66696C65 
+ 1906      73797374 
+ 1906      656D5465 
+ 1906      737400
+ 1907              	.LASF14:
+ 1908 01d1 64617461 		.ascii	"dataindex\000"
+ 1908      696E6465 
+ 1908      7800
+ 1909              	.LASF11:
+ 1910 01db 64617461 		.ascii	"dataptr\000"
+ 1910      70747200 
+ 1911              	.LASF23:
+ 1912 01e3 62436861 		.ascii	"bCharFormat\000"
+ 1912      72466F72 
+ 1912      6D617400 
+ 1913              	.LASF37:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 43
+
+
+ 1914 01ef 55534246 		.ascii	"USBFrameHandler\000"
+ 1914      72616D65 
+ 1914      48616E64 
+ 1914      6C657200 
+ 1915              	.LASF31:
+ 1916 01ff 48616E64 		.ascii	"HandleClassRequest\000"
+ 1916      6C65436C 
+ 1916      61737352 
+ 1916      65717565 
+ 1916      737400
+ 1917              	.LASF5:
+ 1918 0212 6C6F6E67 		.ascii	"long int\000"
+ 1918      20696E74 
+ 1918      00
+ 1919              	.LASF20:
+ 1920 021b 774C656E 		.ascii	"wLength\000"
+ 1920      67746800 
+ 1921              	.LASF16:
+ 1922 0223 626D5265 		.ascii	"bmRequestType\000"
+ 1922      71756573 
+ 1922      74547970 
+ 1922      6500
+ 1923              	.LASF17:
+ 1924 0231 62526571 		.ascii	"bRequest\000"
+ 1924      75657374 
+ 1924      00
+ 1925              	.LASF53:
+ 1926 023a 56434F4D 		.ascii	"VCOM_putchar\000"
+ 1926      5F707574 
+ 1926      63686172 
+ 1926      00
+ 1927              	.LASF35:
+ 1928 0247 56434F4D 		.ascii	"VCOM_init\000"
+ 1928      5F696E69 
+ 1928      7400
+ 1929              	.LASF4:
+ 1930 0251 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1930      20756E73 
+ 1930      69676E65 
+ 1930      6420696E 
+ 1930      7400
+ 1931              	.LASF25:
+ 1932 0263 62446174 		.ascii	"bDataBits\000"
+ 1932      61426974 
+ 1932      7300
+ 1933              	.LASF0:
+ 1934 026d 756E7369 		.ascii	"unsigned char\000"
+ 1934      676E6564 
+ 1934      20636861 
+ 1934      7200
+ 1935              	.LASF32:
+ 1936 027b 70536574 		.ascii	"pSetup\000"
+ 1936      757000
+ 1937              	.LASF15:
+ 1938 0282 63427566 		.ascii	"cBuffer\000"
+ 1938      66657200 
+ 1939              	.LASF1:
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 44
+
+
+ 1940 028a 7369676E 		.ascii	"signed char\000"
+ 1940      65642063 
+ 1940      68617200 
+ 1941              	.LASF2:
+ 1942 0296 73686F72 		.ascii	"short unsigned int\000"
+ 1942      7420756E 
+ 1942      7369676E 
+ 1942      65642069 
+ 1942      6E7400
+ 1943              	.LASF38:
+ 1944 02a9 77467261 		.ascii	"wFrame\000"
+ 1944      6D6500
+ 1945              	.LASF54:
+ 1946 02b0 55534249 		.ascii	"USBIntHandler\000"
+ 1946      6E744861 
+ 1946      6E646C65 
+ 1946      7200
+ 1947              	.LASF44:
+ 1948 02be 6162436C 		.ascii	"abClassReqData\000"
+ 1948      61737352 
+ 1948      65714461 
+ 1948      746100
+ 1949              		.ident	"GCC: (GNU) 4.0.2"
+ARM GAS  /cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s 			page 45
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usb.c
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:14     .data:00000000 LineCoding
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:15     .data:00000000 $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:23     .rodata:00000000 abDescriptors
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:169    .text:00000000 BulkOut
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:176    .text:00000000 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:216    .text:00000060 $d
+                            *COM*:0000000c uartRxBuffer
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:551    .bss:00000080 abBulkBuf
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:222    .text:00000068 BulkIn
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:228    .text:00000068 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:274    .text:000000d0 $d
+                            *COM*:0000000c uartTxBuffer
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:280    .text:000000d8 HandleClassRequest
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:286    .text:000000d8 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:327    .text:0000013c $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:333    .text:00000140 VCOM_init
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:339    .text:00000140 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:356    .text:00000168 $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:549    .bss:00000040 uartTxData
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:547    .bss:00000000 uartRxData
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:365    .text:00000178 VCOM_putchar
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:371    .text:00000178 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:395    .text:000001b4 $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:401    .text:000001b8 VCOM_getchar
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:407    .text:000001b8 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:417    .text:000001c8 $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:422    .text:000001cc USBIntHandler
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:429    .text:000001cc $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:445    .text:000001ec USBFrameHandler
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:466    .text:0000020c $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:472    .text:00000210 usbSetup
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:478    .text:00000210 $a
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:537    .text:000002ac $d
+/cygdrive/c/DOCUME~1/PHELPS~1/LOCALS~1/Temp/cccwBzib.s:553    .bss:000000c0 abClassReqData
+                            *COM*:00000002 uartRxOverflow
+
+UNDEFINED SYMBOLS
+bufferIsNotFull
+USBHwEPRead
+bufferAddToEnd
+USBHwNakIntEnable
+bufferGetFromFront
+USBHwEPWrite
+memcpy
+bufferInit
+USBHwISR
+USBInit
+USBRegisterDescriptors
+USBRegisterRequestHandler
+USBHwRegisterEPIntHandler
+USBHwRegisterFrameHandler
+processorEnableInt
+USBHwConnect

@@ -1,0 +1,2364 @@
+Archive member included because of file (symbol)
+
+usbstack.a(usbhw_lpc.o)       usb.o (USBHwRegisterEPIntHandler)
+usbstack.a(usbcontrol.o)      usb.o (USBRegisterRequestHandler)
+usbstack.a(usbstdreq.o)       usb.o (USBRegisterDescriptors)
+usbstack.a(usbinit.o)         usb.o (USBInit)
+libefsl.a(efs.o)              main_serial.o (efs_init)
+libefsl.a(disc.o)             libefsl.a(efs.o) (disc_initDisc)
+libefsl.a(partition.o)        libefsl.a(efs.o) (part_initPartition)
+libefsl.a(fs.o)               libefsl.a(efs.o) (fs_initFs)
+libefsl.a(fat.o)              libefsl.a(fs.o) (fat_getNextClusterAddress)
+libefsl.a(file.o)             libefsl.a(fs.o) (file_normalToFatName)
+libefsl.a(dir.o)              libefsl.a(file.o) (dir_getFileStructure)
+libefsl.a(ioman.o)            libefsl.a(partition.o) (ioman_flushRange)
+libefsl.a(ui.o)               main_serial.o (rmfile)
+libefsl.a(extract.o)          libefsl.a(fs.o) (ex_getb16)
+libefsl.a(lpc2000_spi.o)      libefsl.a(partition.o) (if_readBuf)
+libefsl.a(plibc.o)            libefsl.a(dir.o) (strMatch)
+libefsl.a(time.o)             libefsl.a(file.o) (fs_hasTimeSupport)
+libefsl.a(sd.o)               libefsl.a(lpc2000_spi.o) (sd_writeSector)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                              C:\WinARM\armlib/rprintf.o (__udivsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+                              libefsl.a(fs.o) (__divsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                              C:\WinARM\armlib/rprintf.o (__umodsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                              C:\WinARM\armlib/buffer.o (__modsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o) (__div0)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+                              sequenceExec.o (__ctype_ptr)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+                              hostPacketInjection.o (malloc)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o) (_malloc_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                              usb.o (memcpy)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o) (__malloc_lock)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+                              morphology.o (realloc)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o) (_realloc_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o) (_sbrk_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o) (_sbrk)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o) (__errno)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o) (__sinit)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o) (_free_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o) (_fwalk)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o) (_global_impure_ptr)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o) (memmove)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o) (memset)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o) (errno)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o) (__sread)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o) (strlen)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o) (_write_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o) (_close_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o) (fclose)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o) (fflush)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o) (_lseek_r)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o) (_read_r)
+
+Allocating common symbols
+Common symbol       size              file
+
+buttonsEnabled      0x1               buttons.o
+list                0x34              main_serial.o
+cubemorph           0x10              main_serial.o
+errno               0x4               c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+Timer0OverflowCount
+                    0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+int_busRxPkt        0x84              main_serial.o
+cmdBuffer           0xc               main_serial.o
+uartRxBuffer        0x18              C:\WinARM\armlib/arch/lpc2000/uartintr.o
+efs                 0x2c4             main_serial.o
+cmdBufferData       0x80              main_serial.o
+button2             0x1               buttons.o
+cmesh               0x4               main_serial.o
+Timer1OverflowCount
+                    0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+execute             0x1               sequenceExec.o
+Timer0Pause         0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+filer               0x50              main_serial.o
+filew               0x50              main_serial.o
+button1             0x1               buttons.o
+uartTxBuffer        0x18              C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uartRxOverflow      0x2               usb.o
+ext_busRxPkt        0x84              main_serial.o
+TimeStep            0x4               sequenceExec.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x00000000         0x00080000
+ram              0x40000200         0x00007e00
+ram_iap_rsvd1    0x40000120         0x000000df         a
+ram_iap_rsvd2    0x40007fe0         0x00000020         a
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+LOAD main_serial.o
+LOAD commands.o
+LOAD hostPacketInjection.o
+LOAD sequenceExec.o
+LOAD buttons.o
+LOAD bluetooth.o
+LOAD usb.o
+LOAD queue.o
+LOAD molecubePacket.o
+LOAD morphology.o
+LOAD C:\WinARM\armlib/rprintf.o
+LOAD C:\WinARM\armlib/buffer.o
+LOAD C:\WinARM\armlib/arch/lpc2000/processor.o
+LOAD C:\WinARM\armlib/arch/lpc2000/timer.o
+LOAD C:\WinARM\armlib/arch/lpc2000/uartintr.o
+LOAD usbstack.a
+LOAD libefsl.a
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libm.a
+START GROUP
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a
+END GROUP
+                0x40007fdc                __stack_end__ = 0x40007fdc
+                0x00000000                . = 0x0
+
+startup         0x00000000       0x20
+ *(.startup)
+ .startup       0x00000000       0x20 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+prog            0x00000020     0xdd0c
+ *(.text)
+ .text          0x00000020       0xcc C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+                0x00000020                start
+                0x000000d0                endless_loop
+ .text          0x000000ec      0x560 main_serial.o
+                0x000002ac                controllerMenu
+                0x00000104                initController
+                0x000005f8                main
+                0x000001a0                executeCreatemorphology
+                0x000000ec                executeSequenceProcess
+ .text          0x0000064c      0x484 commands.o
+                0x00000910                setServoAngleTracking
+                0x00000808                setLEDs
+                0x0000064c                printCommandErrorCode
+                0x000009e4                setServoSpeedAndAngle
+ .text          0x00000ad0      0x1c0 hostPacketInjection.o
+                0x00000ae0                directCommandInjection_GetResponse
+                0x00000bc8                getByteFromUser
+                0x00000ad0                sendByteToUser
+                0x00000bdc                directCommandInjection_SendCommand
+                0x00000c68                directCommandInjection
+ .text          0x00000c90      0xe08 sequenceExec.o
+                0x00000e80                resetExecute
+                0x0000129c                readSequenceFile
+                0x00001160                printHeader
+                0x00000cb8                isMsfFile
+                0x00001550                loadSequenceFile
+                0x00000ca4                disableSequenceExec
+                0x00001574                runSequence
+                0x00001960                sequenceExecProcess
+                0x00000e3c                incTimestep
+                0x00000e20                validateHeaderChecksum
+                0x00000df8                calcHeaderChecksum
+                0x00000e6c                resetTimestep
+                0x00000d94                calcPacketChecksum
+                0x00000e94                printCommand
+                0x00000c90                enableSequenceExec
+                0x00001268                discardCommand
+                0x00000d7c                initCubeState
+ .text          0x00001a98      0x250 buttons.o
+                0x00001b7c                buttonDetach
+                0x00001b60                buttonAttach
+                0x00001c58                buttonPressService
+                0x00001a98                EINT1_routine
+                0x00001b9c                initButtons
+                0x00001b38                enableButtons
+                0x00001b4c                disableButtons
+                0x00001ae8                EINT2_routine
+ .text          0x00001ce8       0x74 bluetooth.o
+                0x00001ce8                initBluetooth
+ .text          0x00001d5c      0x388 usb.o
+                0x00001ea4                VCOM_putchar
+                0x00001ecc                SendData2Host
+                0x00002028                usbSetup
+                0x00001d90                VCOM_getchar
+                0x00001fd0                VCOM_init
+ .text          0x000020e4      0x17c queue.o
+                0x00002178                getHead
+                0x00002190                getQueueID
+                0x00002188                getNodePtr
+                0x00002100                initQueueArray
+                0x000020e4                initQueue
+                0x00002198                setQueueID
+                0x000021a0                findQueueWithAddress
+                0x00002130                enqueue
+                0x00002180                getTail
+                0x000021fc                dequeue
+ .text          0x00002260      0x830 molecubePacket.o
+                0x000027e0                cmd_Flush
+                0x0000230c                packetRxProcess_NoAddrClassCheck
+                0x0000299c                cmd_Init
+                0x000029bc                HD232_Init
+                0x000028f8                cmd_AddByteToEnd
+                0x000027f4                cmd_Execute
+                0x000022bc                cmd_PrintPacket
+                0x00002524                packetRxProcess
+                0x00002260                cmd_PrintRxPacket
+                0x00002910                cmd_BuildPacket
+ .text          0x00002a90     0x22f0 morphology.o
+                0x00002fe0                state_checksum_generator
+                0x000032c4                buildMorphologyFromFile
+                0x00003ca8                enableAngleTracking
+                0x00003d9c                insertNewLinkEntry
+                0x00002d3c                getCubeLink
+                0x00002bf4                getInitialState
+                0x000047d8                broadcastGetOrientationPins
+                0x00002cd4                getCubeState
+                0x00004520                setInitialState
+                0x000048d4                broadcastGetOrientationPins_AR
+                0x00003800                writeMorphologyToFile
+                0x0000322c                deleteMorphology
+                0x00004590                getOrientationPins
+                0x00004698                getOrientationPins_AR
+                0x00002ae8                processGetOrientationPins
+                0x0000479c                broadcastSetAddressWithOrientationPin_AR
+                0x00002efc                cube_checksum_generator
+                0x00002ec4                checksum_calc
+                0x00003070                printOrientationErrorCode
+                0x00004258                setOrientationPin
+                0x000040ac                insertInitialState
+                0x00002d9c                getPinOrientation
+                0x000043f0                getMeasuredAngle
+                0x00004918                buildMorphology
+                0x0000438c                setOrientationPin_AR
+                0x000044d4                getMeasuredAngle_AR
+                0x0000400c                insertNewCubeEntry
+                0x000046ec                broadcastSetAddressWithOrientationPin
+                0x00002a90                bitCount
+                0x00002c70                getCube
+                0x000041a4                printExternalCommand
+ .text          0x00004d80      0x408 C:\WinARM\armlib/rprintf.o
+                0x0000503c                rprintf1RamRom
+                0x00004e9c                rprintfu08
+                0x00004edc                rprintfu32
+                0x00004dc4                rprintfStr
+                0x00004df4                rprintfStrLen
+                0x00004eb8                rprintfu16
+                0x00004d80                rprintfInit
+                0x00004d90                rprintfChar
+                0x00004e68                rprintfCRLF
+                0x00004e80                rprintfu04
+                0x00004efc                rprintfNum
+ .text          0x00005188      0x200 C:\WinARM\armlib/buffer.o
+                0x000051a8                bufferIsNotFull
+                0x000052e4                bufferGetFromFront
+                0x0000523c                bufferGetAtIndex
+                0x00005280                bufferDumpFromFront
+                0x00005350                bufferInit
+                0x000051d8                bufferAddToEnd
+                0x00005188                bufferFlush
+ .text          0x00005388      0x16c C:\WinARM\armlib/arch/lpc2000/processor.o
+                0x000054d4                processorVicDetach
+                0x000053bc                processorRestoreInt
+                0x000053a0                processorEnableInt
+                0x000053d8                processorVicInit
+                0x00005494                processorVicAttach
+                0x00005420                processorInit
+                0x00005388                processorDisableInt
+ .text          0x000054f4      0x604 C:\WinARM\armlib/arch/lpc2000/timer.o
+                0x000056b8                timer0Match1Set
+                0x00005624                timerDetach
+                0x000058ac                timer0Service
+                0x00005684                timer1ClearOverflowCount
+                0x00005838                timer1Capture1Init
+                0x000056a8                timer0Match0Set
+                0x00005520                timer0Init
+                0x00005698                timer1GetOverflowCount
+                0x000056e8                timer0Capture0Init
+                0x000056c8                timer1Match0Set
+                0x00005674                timer0GetOverflowCount
+                0x000056d8                timer1Match1Set
+                0x00005ac8                timerInit
+                0x000059c8                timer1Service
+                0x0000550c                timer0PrescalerSet
+                0x00005660                timer0ClearOverflowCount
+                0x000054f4                delay
+                0x000055ac                timer1Init
+                0x0000575c                timer0Capture1Init
+                0x00005598                timer1PrescalerSet
+                0x0000560c                timerAttach
+                0x000057c4                timer1Capture0Init
+                0x00005640                timerPause
+ .text          0x00005af8      0x3a8 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                0x00005d50                uart0InitBuffers
+                0x00005af8                uart0GetRxBuffer
+                0x00005cdc                uart1GetByte
+                0x00005b74                uart1Service
+                0x00005d08                uart0GetByte
+                0x00005e08                uart0Init
+                0x00005d70                uart1Init
+                0x00005b04                uart1GetRxBuffer
+                0x00005b2c                uart0SendByte
+                0x00005b50                uart1SendByte
+                0x00005b10                uartGetRxBuffer
+                0x00005d30                uart1InitBuffers
+                0x00005c30                uart0Service
+ .text          0x00005ea0      0x5cc usbstack.a(usbhw_lpc.o)
+                0x00006180                USBHwEPRead
+                0x0000630c                USBHwISR
+                0x00006228                USBHwEPWrite
+                0x00006110                USBHwEPConfig
+                0x00006100                USBHwSetAddress
+                0x000060f0                USBHwConnect
+                0x00005fe0                USBHwEPStall
+                0x00005ef0                USBHwRegisterDevIntHandler
+                0x00005ea0                USBHwRegisterEPIntHandler
+                0x00005fd0                USBHwConfigDevice
+                0x00006000                USBHwNakIntEnable
+                0x0000600c                USBHwInit
+                0x00005f14                USBHwRegisterFrameHandler
+                0x0000644c                USBHwEPGetStatus
+ .text          0x0000646c      0x208 usbstack.a(usbcontrol.o)
+                0x00006514                USBHandleControlTransfer
+                0x00006658                USBRegisterRequestHandler
+ .text          0x00006674      0x314 usbstack.a(usbstdreq.o)
+                0x00006684                USBGetDescriptor
+                0x00006978                USBRegisterCustomReqHandler
+                0x00006674                USBRegisterDescriptors
+                0x00006704                USBHandleStandardRequest
+ .text          0x00006988       0x70 usbstack.a(usbinit.o)
+                0x0000698c                USBInit
+ .text          0x000069f8       0xa4 libefsl.a(efs.o)
+                0x000069f8                efs_init
+ .text          0x00006a9c       0x6c libefsl.a(disc.o)
+                0x00006af8                disc_initDisc
+                0x00006a9c                disc_loadMBR
+ .text          0x00006b08      0x1b4 libefsl.a(partition.o)
+                0x00006c14                part_getSect
+                0x00006bb4                part_readBuf
+                0x00006b80                part_getRealLBA
+                0x00006b44                part_initPartition
+                0x00006c64                part_directSectorRead
+                0x00006b08                part_isFatPart
+                0x00006be4                part_writeBuf
+                0x00006b98                part_relSect
+                0x00006c34                part_flushPart
+                0x00006c90                part_directSectorWrite
+ .text          0x00006cbc      0x8f8 libefsl.a(fs.o)
+                0x00006d6c                fs_countDataSectors
+                0x00006ec8                fs_loadVolumeId
+                0x00006fd0                fs_sectorToCluster
+                0x00006df8                fs_determineFatType
+                0x00007318                fs_initFs
+                0x00006f9c                fs_clusterToSector
+                0x00007388                fs_findFile
+                0x00007504                fs_findFreeFile
+                0x00007100                fs_setFirstClusterInDirEntry
+                0x00006f84                fs_getFirstClusterRootDir
+                0x00007110                fs_flushFs
+                0x00007130                fs_umount
+                0x00007068                fs_giveFreeClusterHint
+                0x00007070                fs_getLastCluster
+                0x00006e3c                fs_findFirstSectorRootDir
+                0x00007268                fs_setFsInfo
+                0x00007024                fs_getNextFreeCluster
+                0x00006cbc                fs_verifySanity
+                0x000071ac                fs_getFsInfo
+                0x000070e0                fs_initClusterChain
+                0x00007300                fs_initCurrentDir
+                0x00007144                fs_clearCluster
+                0x00006e78                fs_isValidFat
+ .text          0x000075b4      0xa50 libefsl.a(fat.o)
+                0x00007ac0                fat_getNextClusterChain
+                0x000079b0                fat_setNextClusterAddressWBuf
+                0x000075b4                fat_getSectorAddressFatEntry
+                0x000078f0                fat_getNextClusterAddressWBuf
+                0x00007bc4                fat_LogicToDiscCluster
+                0x00007710                fat_setNextClusterAddress
+                0x00007da8                fat_countFreeClusters
+                0x00007614                fat_getNextClusterAddress
+                0x00007d38                fat_DiscToLogicCluster
+                0x00007868                fat_isEocMarker
+                0x00007df0                fat_allocClusterChain
+                0x000078b8                fat_giveEocMarker
+                0x00007cdc                fat_countClustersInChain
+                0x00007c60                fat_unlinkClusterChain
+ .text          0x00008004      0xa44 libefsl.a(file.o)
+                0x000085e4                file_write
+                0x0000812c                file_normalToFatName
+                0x00008224                file_requiredCluster
+                0x00008004                file_getAttr
+                0x000080a4                file_validateChar
+                0x0000869c                file_fopen
+                0x00008410                file_read
+                0x000082c4                file_fread
+                0x00008080                file_setAttr
+                0x0000860c                file_fclose
+                0x00008018                file_setpos
+                0x00008034                file_initFile
+                0x00008438                file_fwrite
+ .text          0x00008a48      0x5dc libefsl.a(dir.o)
+                0x00008bb0                dir_updateDirectoryEntry
+                0x00008d3c                dir_findinCluster
+                0x00008eac                dir_findinDir
+                0x00008b28                dir_setFirstCluster
+                0x00008d14                dir_findinBuf
+                0x00008fc4                dir_addCluster
+                0x00008dfc                dir_findinRootArea
+                0x00008a98                dir_createDirectoryEntry
+                0x00008ae0                dir_createDefaultEntry
+                0x00008bfc                dir_findFileinBuf
+                0x00008b74                dir_setFileSize
+                0x00008f44                dir_getFatFileName
+                0x00008a48                dir_getFileStructure
+                0x00008c98                dir_findFreeEntryinBuf
+ .text          0x00009024      0xe84 libefsl.a(ioman.o)
+                0x000095f0                ioman_putSectorInCache
+                0x0000970c                ioman_flushRange
+                0x00009404                ioman_getPtr
+                0x00009364                ioman_push
+                0x000095a0                ioman_findFreeSpot
+                0x0000915c                ioman_getUseCnt
+                0x000099cc                ioman_printStatus
+                0x0000966c                ioman_flushSector
+                0x00009488                ioman_readSector
+                0x00009acc                ioman_findUnusedSpot
+                0x00009c1c                ioman_getSector
+                0x0000953c                ioman_findSectorInCache
+                0x00009a08                ioman_findOverallocableSpot
+                0x0000902c                ioman_reset
+                0x00009284                ioman_decRefCnt
+                0x00009430                ioman_getBp
+                0x000091c0                ioman_decUseCnt
+                0x00009024                ioman_getBuffer
+                0x000094c0                ioman_writeSector
+                0x00009de0                ioman_releaseSector
+                0x000098e8                ioman_directSectorWrite
+                0x00009e7c                ioman_init
+                0x000097bc                ioman_flushAll
+                0x0000924c                ioman_incRefCnt
+                0x000090d0                ioman_setAttr
+                0x0000983c                ioman_directSectorRead
+                0x000092e4                ioman_pop
+                0x00009120                ioman_getAttr
+                0x000091f8                ioman_resetUseCnt
+                0x00009220                ioman_getRefCnt
+                0x000092bc                ioman_resetRefCnt
+                0x00009188                ioman_incUseCnt
+                0x000094fc                ioman_resetCacheItem
+ .text          0x00009ea8      0x45c libefsl.a(ui.o)
+                0x0000a030                rmfile
+                0x00009ea8                listFiles
+                0x0000a0e4                mkdir
+ .text          0x0000a304       0xfc libefsl.a(extract.o)
+                0x0000a38c                ex_getPartitionField
+                0x0000a304                ex_getb16
+                0x0000a364                ex_setb32
+                0x0000a320                ex_getb32
+                0x0000a3fc                ex_setPartitionField
+                0x0000a350                ex_setb16
+ .text          0x0000a400      0x220 libefsl.a(lpc2000_spi.o)
+                0x0000a494                if_spiInit
+                0x0000a448                if_setPos
+                0x0000a450                if_spiSend
+                0x0000a434                if_writeBuf
+                0x0000a41c                if_readBuf
+                0x0000a400                if_spiSetSpeed
+                0x0000a590                if_initInterface
+ .text          0x0000a620       0xc4 libefsl.a(plibc.o)
+                0x0000a6c0                memSet
+                0x0000a69c                memClr
+                0x0000a668                memCpy
+                0x0000a620                strMatch
+ .text          0x0000a6e4       0x18 libefsl.a(time.o)
+                0x0000a6e4                fs_makeDate
+                0x0000a6ec                fs_makeTime
+                0x0000a6f4                fs_hasTimeSupport
+ .text          0x0000a6fc      0x3e8 libefsl.a(sd.o)
+                0x0000a878                sd_getDriveSize
+                0x0000aa24                sd_readSector
+                0x0000a6fc                sd_Resp8bError
+                0x0000a730                sd_Command
+                0x0000a700                sd_Resp8b
+                0x0000a7e4                sd_writeSector
+                0x0000a7b4                sd_Resp16b
+                0x0000a9f4                sd_State
+                0x0000a950                sd_Init
+ .text          0x0000aae4      0x110 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                0x0000aae4                __udivsi3
+                0x0000aae4                __aeabi_uidiv
+                0x0000abdc                __aeabi_uidivmod
+ .text          0x0000abf4      0x140 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+                0x0000abf4                __aeabi_idiv
+                0x0000abf4                __divsi3
+                0x0000ad1c                __aeabi_idivmod
+ .text          0x0000ad34       0xcc c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                0x0000ad34                __umodsi3
+ .text          0x0000ae00       0xe4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                0x0000ae00                __modsi3
+ .text          0x0000aee4        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                0x0000aee4                __aeabi_ldiv0
+                0x0000aee4                __div0
+                0x0000aee4                __aeabi_idiv0
+ .text          0x0000aee8       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+                0x0000aee8                malloc
+                0x0000aefc                free
+ .text          0x0000af10      0x784 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                0x0000af10                _malloc_r
+ .text          0x0000b694       0xac c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                0x0000b694                memcpy
+ .text          0x0000b740        0x8 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+                0x0000b744                __malloc_unlock
+                0x0000b740                __malloc_lock
+ .text          0x0000b748       0x1c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+                0x0000b748                realloc
+ .text          0x0000b764      0x518 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                0x0000b764                _realloc_r
+ .text          0x0000bc7c       0x38 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+                0x0000bc7c                _sbrk_r
+ .text          0x0000bcb4      0x70c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                0x0000bd60                _getpid
+                0x0000be7c                initialise_monitor_handles
+                0x0000be3c                isatty
+                0x0000bdbc                _fstat
+                0x0000c1e4                _open
+                0x0000bd68                _sbrk
+                0x0000bdfc                _raise
+                0x0000be00                _times
+                0x0000c204                _stat
+                0x0000c12c                _lseek
+                0x0000bdec                _link
+                0x0000c054                _swiwrite
+                0x0000be64                _rename
+                0x0000bf74                _swilseek
+                0x0000c090                _swiclose
+                0x0000c13c                _swiopen
+                0x0000bdf4                _unlink
+                0x0000c254                _write
+                0x0000c350                _kill
+                0x0000c378                _gettimeofday
+                0x0000c2c4                _read
+                0x0000c32c                _exit
+                0x0000be44                _system
+                0x0000bf38                _swiread
+                0x0000c11c                _close
+ .text          0x0000c3c0       0x10 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+                0x0000c3c0                __errno
+ .text          0x0000c3d0      0x274 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                0x0000c4a4                __sinit
+                0x0000c42c                __sfmoreglue
+                0x0000c48c                _cleanup
+                0x0000c480                _cleanup_r
+                0x0000c614                __fp_lock_all
+                0x0000c478                __sfp_lock_acquire
+                0x0000c51c                __sfp
+                0x0000c4a0                __sinit_lock_release
+                0x0000c62c                __fp_unlock_all
+                0x0000c47c                __sfp_lock_release
+                0x0000c49c                __sinit_lock_acquire
+ .text          0x0000c644      0x394 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                0x0000c740                _free_r
+                0x0000c644                _malloc_trim_r
+ .text          0x0000c9d8      0x10c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+                0x0000c9d8                _fwalk
+                0x0000ca5c                _fwalk_reent
+ .text          0x0000cae4      0x108 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+                0x0000cae4                memmove
+ .text          0x0000cbec       0xa0 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+                0x0000cbec                memset
+ .text          0x0000cc8c      0x178 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                0x0000cc8c                cleanup_glue
+                0x0000ccb4                _reclaim_reent
+                0x0000cd8c                _wrapup_reent
+ .text          0x0000ce04      0x100 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                0x0000cea8                __sseek
+                0x0000ce04                __sread
+                0x0000cef0                __sclose
+                0x0000ce48                __swrite
+ .text          0x0000cf04       0xa4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+                0x0000cf04                strlen
+ .text          0x0000cfa8       0x40 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+                0x0000cfa8                _write_r
+ .text          0x0000cfe8       0x38 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+                0x0000cfe8                _close_r
+ .text          0x0000d020      0x128 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                0x0000d020                _fclose_r
+                0x0000d134                fclose
+ .text          0x0000d148       0xe8 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                0x0000d148                fflush
+ .text          0x0000d230       0x40 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+                0x0000d230                _lseek_r
+ .text          0x0000d270       0x40 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+                0x0000d270                _read_r
+ *(.rodata)
+ .rodata        0x0000d2b0       0x8e usb.o
+ *fill*         0x0000d33e        0x2 00
+ .rodata        0x0000d340       0x14 C:\WinARM\armlib/rprintf.o
+ .rodata        0x0000d354      0x101 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+                0x0000d354                _ctype_
+ *fill*         0x0000d455        0x3 00
+ .rodata        0x0000d458        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                0x0000d458                _global_impure_ptr
+ *(.rodata*)
+ .rodata.str1.4
+                0x0000d45c      0x16e main_serial.o
+                                0x174 (size before relaxing)
+ *fill*         0x0000d5ca        0x2 00
+ .rodata.str1.4
+                0x0000d5cc      0x22c commands.o
+ .rodata.str1.4
+                0x0000d7f8      0x1ee sequenceExec.o
+                                0x200 (size before relaxing)
+ *fill*         0x0000d9e6        0x2 00
+ .rodata.str1.4
+                0x0000d9e8        0xb molecubePacket.o
+                                  0xc (size before relaxing)
+ *fill*         0x0000d9f3        0x1 00
+ .rodata.str1.4
+                0x0000d9f4      0x318 morphology.o
+ .rodata.str1.4
+                0x0000dd0c       0x18 libefsl.a(ui.o)
+ .rodata.str1.4
+                0x0000dd24        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .rodata.str1.4
+                0x0000dd28        0x2 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                                  0x4 (size before relaxing)
+ *(.glue_7)
+ *fill*         0x0000dd2a        0x2 00
+ *(.glue_7t)
+                0x0000dd2c                __end_of_text__ = .
+
+.data           0x40000200      0x820 load address 0x0000dd2c
+                0x40000200                __data_beg__ = .
+                0x0000dd2c                __data_beg_src__ = __end_of_text__
+ *(.data)
+ .data          0x40000200        0x8 usb.o
+ .data          0x40000208        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+                0x40000208                __ctype_ptr
+ .data          0x4000020c      0x410 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                0x4000020c                __malloc_sbrk_base
+                0x40000214                __malloc_av_
+                0x40000210                __malloc_trim_threshold
+ .data          0x4000061c      0x404 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                0x40000a1c                _impure_ptr
+                0x40000a20                __data_end__ = .
+
+.bss            0x40000a20      0x91c
+                0x40000a20                __bss_beg__ = .
+ *(.bss)
+ .bss           0x40000a20        0x8 buttons.o
+ .bss           0x40000a28       0xca usb.o
+ *fill*         0x40000af2        0x2 00
+ .bss           0x40000af4        0x4 C:\WinARM\armlib/rprintf.o
+ .bss           0x40000af8       0x40 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .bss           0x40000b38      0x100 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .bss           0x40000c38       0x48 usbstack.a(usbhw_lpc.o)
+ .bss           0x40000c80       0x34 usbstack.a(usbcontrol.o)
+ .bss           0x40000cb4        0xc usbstack.a(usbstdreq.o)
+ .bss           0x40000cc0        0x8 usbstack.a(usbinit.o)
+ .bss           0x40000cc8       0x34 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                0x40000cf8                __malloc_top_pad
+                0x40000cf4                __malloc_max_sbrked_mem
+                0x40000cc8                __malloc_current_mallinfo
+                0x40000cf0                __malloc_max_total_mem
+ .bss           0x40000cfc       0xb0 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ COMMON         0x40000dac      0x540 main_serial.o
+                0x40000dac                list
+                0x40000de0                cubemorph
+                0x40000df0                int_busRxPkt
+                0x40000e74                cmdBuffer
+                0x40000e80                efs
+                0x40001144                cmdBufferData
+                0x400011c4                cmesh
+                0x400011c8                filer
+                0x40001218                filew
+                0x40001268                ext_busRxPkt
+ COMMON         0x400012ec        0x8 sequenceExec.o
+                0x400012ec                execute
+                0x400012f0                TimeStep
+ COMMON         0x400012f4        0x3 buttons.o
+                0x400012f4                buttonsEnabled
+                0x400012f5                button2
+                0x400012f6                button1
+ *fill*         0x400012f7        0x1 00
+ COMMON         0x400012f8        0x2 usb.o
+                0x400012f8                uartRxOverflow
+ *fill*         0x400012fa        0x2 00
+ COMMON         0x400012fc        0xc C:\WinARM\armlib/arch/lpc2000/timer.o
+                0x400012fc                Timer0OverflowCount
+                0x40001300                Timer1OverflowCount
+                0x40001304                Timer0Pause
+ COMMON         0x40001308       0x30 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                0x40001308                uartRxBuffer
+                0x40001320                uartTxBuffer
+ COMMON         0x40001338        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                0x40001338                errno
+                0x4000133c                . = ALIGN (0x4)
+                0x4000133c                . = ALIGN (0x4)
+                0x4000133c                _end = .
+                0x4000133c                _bss_end__ = .
+                0x4000133c                __bss_end__ = .
+                0x4000133c                __end__ = .
+                0x4000133c                PROVIDE (end, .)
+                0x000000d0                PROVIDE (undefined_instruction_exception, endless_loop)
+                0x000000d0                PROVIDE (software_interrupt_exception, endless_loop)
+                0x000000d0                PROVIDE (prefetch_abort_exception, endless_loop)
+                0x000000d0                PROVIDE (data_abort_exception, endless_loop)
+                0x000000d0                PROVIDE (reserved_exception, endless_loop)
+                0x000000d0                PROVIDE (interrupt_exception, endless_loop)
+                0x000000d0                PROVIDE (fast_interrupt_exception, endless_loop)
+                0xe002c000                PROVIDE (PINSEL0, 0xe002c000)
+                0xe0028008                PROVIDE (IODIR, 0xe0028008)
+                0xe002800c                PROVIDE (IOCLR, 0xe002800c)
+                0xe0028004                PROVIDE (IOSET, 0xe0028004)
+                0xe000c000                PROVIDE (U0RBR, 0xe000c000)
+                0xe000c000                PROVIDE (U0THR, 0xe000c000)
+                0xe000c004                PROVIDE (U0IER, 0xe000c004)
+                0xe000c008                PROVIDE (U0IIR, 0xe000c008)
+                0xe000c008                PROVIDE (U0FCR, 0xe000c008)
+                0xe000c00c                PROVIDE (U0LCR, 0xe000c00c)
+                0xe000c014                PROVIDE (U0LSR, 0xe000c014)
+                0xe000c01c                PROVIDE (U0SCR, 0xe000c01c)
+                0xe000c000                PROVIDE (U0DLL, 0xe000c000)
+                0xe000c004                PROVIDE (U0DLM, 0xe000c004)
+                0xe000c028                PROVIDE (U0FDR, 0xe000c028)
+                0xe01fc080                PROVIDE (PLLCON, 0xe01fc080)
+                0xe01fc084                PROVIDE (PLLCFG, 0xe01fc084)
+                0xe01fc088                PROVIDE (PLLSTAT, 0xe01fc088)
+                0xe01fc08c                PROVIDE (PLLFEED, 0xe01fc08c)
+                0xe01fc000                PROVIDE (MAMCR, 0xe01fc000)
+                0xe01fc004                PROVIDE (MAMTIM, 0xe01fc004)
+                0xe01fc100                PROVIDE (VPBDIV, 0xe01fc100)
+                0xe0004000                PROVIDE (T0IR, 0xe0004000)
+                0xe0004004                PROVIDE (T0TCR, 0xe0004004)
+                0xe0004008                PROVIDE (T0TC, 0xe0004008)
+                0xe000400c                PROVIDE (T0PR, 0xe000400c)
+                0xe0004010                PROVIDE (T0PC, 0xe0004010)
+                0xe0004014                PROVIDE (T0MCR, 0xe0004014)
+                0xe0004018                PROVIDE (T0MR0, 0xe0004018)
+                0xe000401c                PROVIDE (T0MR1, 0xe000401c)
+                0xe0004020                PROVIDE (T0MR2, 0xe0004020)
+                0xe0004024                PROVIDE (T0MR3, 0xe0004024)
+                0xe0004028                PROVIDE (T0CCR, 0xe0004028)
+                0xe000402c                PROVIDE (T0CR0, 0xe000402c)
+                0xe0004030                PROVIDE (T0CR1, 0xe0004030)
+                0xe0004034                PROVIDE (T0CR2, 0xe0004034)
+                0xe000403c                PROVIDE (T0EMR, 0xe000403c)
+OUTPUT(main_serial.elf elf32-littlearm)
+
+.stab           0x00000000      0x2a0
+ .stab          0x00000000      0x2a0 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+.stabstr        0x00000000       0x59
+ .stabstr       0x00000000       0x59 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+.debug_abbrev   0x00000000     0x55f1
+ .debug_abbrev  0x00000000      0x160 main_serial.o
+ .debug_abbrev  0x00000160      0x146 commands.o
+ .debug_abbrev  0x000002a6      0x171 hostPacketInjection.o
+ .debug_abbrev  0x00000417      0x2bb sequenceExec.o
+ .debug_abbrev  0x000006d2       0xdd buttons.o
+ .debug_abbrev  0x000007af       0xbf bluetooth.o
+ .debug_abbrev  0x0000086e      0x223 usb.o
+ .debug_abbrev  0x00000a91      0x143 queue.o
+ .debug_abbrev  0x00000bd4      0x1cf molecubePacket.o
+ .debug_abbrev  0x00000da3      0x252 morphology.o
+ .debug_abbrev  0x00000ff5      0x181 C:\WinARM\armlib/rprintf.o
+ .debug_abbrev  0x00001176       0xdd C:\WinARM\armlib/buffer.o
+ .debug_abbrev  0x00001253       0xce C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_abbrev  0x00001321      0x171 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_abbrev  0x00001492      0x154 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_abbrev  0x000015e6      0x1f3 usbstack.a(usbhw_lpc.o)
+ .debug_abbrev  0x000017d9      0x135 usbstack.a(usbcontrol.o)
+ .debug_abbrev  0x0000190e      0x1fa usbstack.a(usbstdreq.o)
+ .debug_abbrev  0x00001b08       0xa0 usbstack.a(usbinit.o)
+ .debug_abbrev  0x00001ba8       0xb6 libefsl.a(efs.o)
+ .debug_abbrev  0x00001c5e       0xd6 libefsl.a(disc.o)
+ .debug_abbrev  0x00001d34      0x146 libefsl.a(partition.o)
+ .debug_abbrev  0x00001e7a      0x256 libefsl.a(fs.o)
+ .debug_abbrev  0x000020d0      0x245 libefsl.a(fat.o)
+ .debug_abbrev  0x00002315      0x23a libefsl.a(file.o)
+ .debug_abbrev  0x0000254f      0x1d0 libefsl.a(dir.o)
+ .debug_abbrev  0x0000271f      0x226 libefsl.a(ioman.o)
+ .debug_abbrev  0x00002945      0x115 libefsl.a(ui.o)
+ .debug_abbrev  0x00002a5a       0xe8 libefsl.a(extract.o)
+ .debug_abbrev  0x00002b42      0x1bd libefsl.a(lpc2000_spi.o)
+ .debug_abbrev  0x00002cff       0xbf libefsl.a(plibc.o)
+ .debug_abbrev  0x00002dbe       0x45 libefsl.a(time.o)
+ .debug_abbrev  0x00002e03      0x1c9 libefsl.a(sd.o)
+ .debug_abbrev  0x00002fcc       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x00002fe0       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+ .debug_abbrev  0x00002ff4       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_abbrev  0x00003008       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_abbrev  0x0000301c       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x00003030       0x52 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+ .debug_abbrev  0x00003082      0x187 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_abbrev  0x00003209      0x223 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_abbrev  0x0000342c       0x99 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_abbrev  0x000034c5      0x16a c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_abbrev  0x0000362f      0x17f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_abbrev  0x000037ae      0x1c3 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_abbrev  0x00003971      0x18e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_abbrev  0x00003aff      0x3ba c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_abbrev  0x00003eb9      0x15f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_abbrev  0x00004018      0x244 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_abbrev  0x0000425c      0x1e8 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_abbrev  0x00004444      0x1ec c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_abbrev  0x00004630      0x157 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+ .debug_abbrev  0x00004787       0x99 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_abbrev  0x00004820       0xa9 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_abbrev  0x000048c9      0x1e7 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_abbrev  0x00004ab0      0x19b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_abbrev  0x00004c4b       0x8b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_abbrev  0x00004cd6      0x184 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_abbrev  0x00004e5a      0x17f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_abbrev  0x00004fd9      0x18e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_abbrev  0x00005167      0x17f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_abbrev  0x000052e6      0x18c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_abbrev  0x00005472      0x17f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_info     0x00000000    0x1bcd5
+ .debug_info    0x00000000      0xca5 main_serial.o
+ .debug_info    0x00000ca5      0xbde commands.o
+ .debug_info    0x00001883      0xb67 hostPacketInjection.o
+ .debug_info    0x000023ea     0x102d sequenceExec.o
+ .debug_info    0x00003417      0x1c5 buttons.o
+ .debug_info    0x000035dc      0x1b0 bluetooth.o
+ .debug_info    0x0000378c      0xd86 usb.o
+ .debug_info    0x00004512      0x320 queue.o
+ .debug_info    0x00004832      0x4eb molecubePacket.o
+ .debug_info    0x00004d1d     0x187f morphology.o
+ .debug_info    0x0000659c      0x38b C:\WinARM\armlib/rprintf.o
+ .debug_info    0x00006927      0x2c3 C:\WinARM\armlib/buffer.o
+ .debug_info    0x00006bea      0x1c8 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_info    0x00006db2      0x3e6 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_info    0x00007198      0x342 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_info    0x000074da      0x612 usbstack.a(usbhw_lpc.o)
+ .debug_info    0x00007aec      0x2df usbstack.a(usbcontrol.o)
+ .debug_info    0x00007dcb      0x46e usbstack.a(usbstdreq.o)
+ .debug_info    0x00008239       0xbc usbstack.a(usbinit.o)
+ .debug_info    0x000082f5      0x525 libefsl.a(efs.o)
+ .debug_info    0x0000881a      0x355 libefsl.a(disc.o)
+ .debug_info    0x00008b6f      0x5f9 libefsl.a(partition.o)
+ .debug_info    0x00009168      0xc7e libefsl.a(fs.o)
+ .debug_info    0x00009de6      0xb29 libefsl.a(fat.o)
+ .debug_info    0x0000a90f      0xc53 libefsl.a(file.o)
+ .debug_info    0x0000b562      0xbad libefsl.a(dir.o)
+ .debug_info    0x0000c10f      0xc2a libefsl.a(ioman.o)
+ .debug_info    0x0000cd39      0x875 libefsl.a(ui.o)
+ .debug_info    0x0000d5ae      0x27d libefsl.a(extract.o)
+ .debug_info    0x0000d82b      0x311 libefsl.a(lpc2000_spi.o)
+ .debug_info    0x0000db3c      0x1a2 libefsl.a(plibc.o)
+ .debug_info    0x0000dcde       0xb9 libefsl.a(time.o)
+ .debug_info    0x0000dd97      0x442 libefsl.a(sd.o)
+ .debug_info    0x0000e1d9       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_info    0x0000e24d       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+ .debug_info    0x0000e2c1       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_info    0x0000e335       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_info    0x0000e3a9       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x0000e41d       0x79 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+ .debug_info    0x0000e496      0x955 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_info    0x0000edeb      0xcbb c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_info    0x0000faa6      0x10d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_info    0x0000fbb3      0x93e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_info    0x000104f1      0x93b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_info    0x00010e2c      0xb83 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_info    0x000119af      0x951 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_info    0x00012300     0x158b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_info    0x0001388b      0x914 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_info    0x0001419f      0xb67 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_info    0x00014d06      0xbaf c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_info    0x000158b5      0xad7 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_info    0x0001638c      0x922 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+ .debug_info    0x00016cae      0x13e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_info    0x00016dec      0x10f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_info    0x00016efb      0x9fc c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_info    0x000178f7      0xa6e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_info    0x00018365       0xd5 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_info    0x0001843a      0x980 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_info    0x00018dba      0x945 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_info    0x000196ff      0x980 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_info    0x0001a07f      0x973 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_info    0x0001a9f2      0x96a c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_info    0x0001b35c      0x979 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_line     0x00000000     0x4ce8
+ .debug_line    0x00000000      0x183 main_serial.o
+ .debug_line    0x00000183      0x15c commands.o
+ .debug_line    0x000002df      0x147 hostPacketInjection.o
+ .debug_line    0x00000426      0x273 sequenceExec.o
+ .debug_line    0x00000699       0x91 buttons.o
+ .debug_line    0x0000072a       0x82 bluetooth.o
+ .debug_line    0x000007ac      0x16b usb.o
+ .debug_line    0x00000917       0x96 queue.o
+ .debug_line    0x000009ad      0x135 molecubePacket.o
+ .debug_line    0x00000ae2      0x3ae morphology.o
+ .debug_line    0x00000e90       0xee C:\WinARM\armlib/rprintf.o
+ .debug_line    0x00000f7e       0x96 C:\WinARM\armlib/buffer.o
+ .debug_line    0x00001014       0x80 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_line    0x00001094       0xfe C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_line    0x00001192      0x149 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_line    0x000012db      0x169 usbstack.a(usbhw_lpc.o)
+ .debug_line    0x00001444       0xb2 usbstack.a(usbcontrol.o)
+ .debug_line    0x000014f6       0xec usbstack.a(usbstdreq.o)
+ .debug_line    0x000015e2       0x4e usbstack.a(usbinit.o)
+ .debug_line    0x00001630      0x154 libefsl.a(efs.o)
+ .debug_line    0x00001784       0xff libefsl.a(disc.o)
+ .debug_line    0x00001883      0x14a libefsl.a(partition.o)
+ .debug_line    0x000019cd      0x29a libefsl.a(fs.o)
+ .debug_line    0x00001c67      0x2ae libefsl.a(fat.o)
+ .debug_line    0x00001f15      0x2a1 libefsl.a(file.o)
+ .debug_line    0x000021b6      0x212 libefsl.a(dir.o)
+ .debug_line    0x000023c8      0x332 libefsl.a(ioman.o)
+ .debug_line    0x000026fa      0x1e6 libefsl.a(ui.o)
+ .debug_line    0x000028e0      0x11f libefsl.a(extract.o)
+ .debug_line    0x000029ff      0x12c libefsl.a(lpc2000_spi.o)
+ .debug_line    0x00002b2b       0x87 libefsl.a(plibc.o)
+ .debug_line    0x00002bb2       0x6a libefsl.a(time.o)
+ .debug_line    0x00002c1c      0x15d libefsl.a(sd.o)
+ .debug_line    0x00002d79       0x8c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_line    0x00002e05       0x98 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+ .debug_line    0x00002e9d       0x75 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_line    0x00002f12       0x7b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_line    0x00002f8d       0x60 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x00002fed       0x55 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+ .debug_line    0x00003042       0xf5 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_line    0x00003137      0x222 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_line    0x00003359       0xc9 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_line    0x00003422       0xef c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_line    0x00003511       0xf2 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_line    0x00003603      0x1a3 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_line    0x000037a6       0xf2 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_line    0x00003898      0x2ca c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_line    0x00003b62       0xec c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_line    0x00003c4e      0x1b5 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_line    0x00003e03      0x197 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_line    0x00003f9a      0x147 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_line    0x000040e1       0xdd c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+ .debug_line    0x000041be       0xd5 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_line    0x00004293       0xcf c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_line    0x00004362      0x11e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_line    0x00004480      0x160 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_line    0x000045e0       0xab c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_line    0x0000468b       0xf3 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_line    0x0000477e       0xf3 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_line    0x00004871      0x144 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_line    0x000049b5      0x14e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_line    0x00004b03       0xf3 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_line    0x00004bf6       0xf2 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_frame    0x00000000     0x2b24
+ .debug_frame   0x00000000       0x8c main_serial.o
+ .debug_frame   0x0000008c       0x88 commands.o
+ .debug_frame   0x00000114       0x9c hostPacketInjection.o
+ .debug_frame   0x000001b0      0x198 sequenceExec.o
+ .debug_frame   0x00000348       0xb8 buttons.o
+ .debug_frame   0x00000400       0x20 bluetooth.o
+ .debug_frame   0x00000420      0x144 usb.o
+ .debug_frame   0x00000564       0xcc queue.o
+ .debug_frame   0x00000630      0x134 molecubePacket.o
+ .debug_frame   0x00000764      0x3bc morphology.o
+ .debug_frame   0x00000b20      0x138 C:\WinARM\armlib/rprintf.o
+ .debug_frame   0x00000c58       0xd0 C:\WinARM\armlib/buffer.o
+ .debug_frame   0x00000d28       0x88 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_frame   0x00000db0      0x198 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_frame   0x00000f48      0x148 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_frame   0x00001090      0x164 usbstack.a(usbhw_lpc.o)
+ .debug_frame   0x000011f4       0x8c usbstack.a(usbcontrol.o)
+ .debug_frame   0x00001280       0x6c usbstack.a(usbstdreq.o)
+ .debug_frame   0x000012ec       0x38 usbstack.a(usbinit.o)
+ .debug_frame   0x00001324       0x30 libefsl.a(efs.o)
+ .debug_frame   0x00001354       0x40 libefsl.a(disc.o)
+ .debug_frame   0x00001394       0xec libefsl.a(partition.o)
+ .debug_frame   0x00001480      0x238 libefsl.a(fs.o)
+ .debug_frame   0x000016b8      0x19c libefsl.a(fat.o)
+ .debug_frame   0x00001854      0x16c libefsl.a(file.o)
+ .debug_frame   0x000019c0      0x1c0 libefsl.a(dir.o)
+ .debug_frame   0x00001b80      0x33c libefsl.a(ioman.o)
+ .debug_frame   0x00001ebc       0x80 libefsl.a(ui.o)
+ .debug_frame   0x00001f3c       0x8c libefsl.a(extract.o)
+ .debug_frame   0x00001fc8       0x9c libefsl.a(lpc2000_spi.o)
+ .debug_frame   0x00002064       0x64 libefsl.a(plibc.o)
+ .debug_frame   0x000020c8       0x40 libefsl.a(time.o)
+ .debug_frame   0x00002108      0x108 libefsl.a(sd.o)
+ .debug_frame   0x00002210       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_frame   0x00002238       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+ .debug_frame   0x00002260       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_frame   0x00002288       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_frame   0x000022b0       0x30 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_frame   0x000022e0       0x38 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_frame   0x00002318       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_frame   0x00002340       0x30 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_frame   0x00002370       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_frame   0x00002390       0x38 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_frame   0x000023c8       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_frame   0x000023f4      0x2f4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_frame   0x000026e8       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_frame   0x00002708      0x114 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_frame   0x0000281c       0x54 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_frame   0x00002870       0x58 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_frame   0x000028c8       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_frame   0x000028f4       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_frame   0x00002914       0x68 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_frame   0x0000297c       0x70 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_frame   0x000029ec       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_frame   0x00002a0c       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_frame   0x00002a38       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_frame   0x00002a64       0x3c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_frame   0x00002aa0       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_frame   0x00002acc       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_frame   0x00002af8       0x2c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_loc      0x00000000     0x90df
+ .debug_loc     0x00000000      0x117 main_serial.o
+ .debug_loc     0x00000117      0x2cc commands.o
+ .debug_loc     0x000003e3      0x198 hostPacketInjection.o
+ .debug_loc     0x0000057b      0x401 sequenceExec.o
+ .debug_loc     0x0000097c       0x7c buttons.o
+ .debug_loc     0x000009f8      0x2af usb.o
+ .debug_loc     0x00000ca7      0x147 queue.o
+ .debug_loc     0x00000dee      0x561 molecubePacket.o
+ .debug_loc     0x0000134f     0x12e8 morphology.o
+ .debug_loc     0x00002637      0x3c4 C:\WinARM\armlib/rprintf.o
+ .debug_loc     0x000029fb      0x254 C:\WinARM\armlib/buffer.o
+ .debug_loc     0x00002c4f       0xa4 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_loc     0x00002cf3       0x83 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_loc     0x00002d76      0x1e3 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_loc     0x00002f59      0x2ea usbstack.a(usbhw_lpc.o)
+ .debug_loc     0x00003243      0x13d usbstack.a(usbcontrol.o)
+ .debug_loc     0x00003380      0x27d usbstack.a(usbstdreq.o)
+ .debug_loc     0x000035fd       0x31 libefsl.a(efs.o)
+ .debug_loc     0x0000362e       0x44 libefsl.a(disc.o)
+ .debug_loc     0x00003672      0x1de libefsl.a(partition.o)
+ .debug_loc     0x00003850      0x6f4 libefsl.a(fs.o)
+ .debug_loc     0x00003f44      0x94f libefsl.a(fat.o)
+ .debug_loc     0x00004893      0x744 libefsl.a(file.o)
+ .debug_loc     0x00004fd7      0x8f2 libefsl.a(dir.o)
+ .debug_loc     0x000058c9      0xc0c libefsl.a(ioman.o)
+ .debug_loc     0x000064d5      0x237 libefsl.a(ui.o)
+ .debug_loc     0x0000670c       0x75 libefsl.a(extract.o)
+ .debug_loc     0x00006781      0x133 libefsl.a(lpc2000_spi.o)
+ .debug_loc     0x000068b4       0x8b libefsl.a(plibc.o)
+ .debug_loc     0x0000693f      0x2d4 libefsl.a(sd.o)
+ .debug_loc     0x00006c13       0x3c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_loc     0x00006c4f      0x803 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_loc     0x00007452       0xfb c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_loc     0x0000754d       0x3c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_loc     0x00007589      0x6f7 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_loc     0x00007c80       0x44 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_loc     0x00007cc4      0x675 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_loc     0x00008339      0x17b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_loc     0x000084b4      0x351 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_loc     0x00008805       0xeb c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_loc     0x000088f0      0x1a0 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_loc     0x00008a90       0xbf c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_loc     0x00008b4f      0x114 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_loc     0x00008c63      0x147 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_loc     0x00008daa       0x47 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_loc     0x00008df1       0x8b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_loc     0x00008e7c       0x44 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_loc     0x00008ec0       0x83 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_loc     0x00008f43       0x99 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_loc     0x00008fdc       0x78 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_loc     0x00009054       0x8b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_pubnames
+                0x00000000     0x2639
+ .debug_pubnames
+                0x00000000       0xf7 main_serial.o
+ .debug_pubnames
+                0x000000f7       0xdd commands.o
+ .debug_pubnames
+                0x000001d4      0x113 hostPacketInjection.o
+ .debug_pubnames
+                0x000002e7      0x1ed sequenceExec.o
+ .debug_pubnames
+                0x000004d4       0xcf buttons.o
+ .debug_pubnames
+                0x000005a3       0x66 bluetooth.o
+ .debug_pubnames
+                0x00000609       0xc5 usb.o
+ .debug_pubnames
+                0x000006ce       0xa9 queue.o
+ .debug_pubnames
+                0x00000777      0x11a molecubePacket.o
+ .debug_pubnames
+                0x00000891      0x38c morphology.o
+ .debug_pubnames
+                0x00000c1d       0xc1 C:\WinARM\armlib/rprintf.o
+ .debug_pubnames
+                0x00000cde       0x9c C:\WinARM\armlib/buffer.o
+ .debug_pubnames
+                0x00000d7a       0xae C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_pubnames
+                0x00000e28      0x225 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_pubnames
+                0x0000104d      0x120 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_pubnames
+                0x0000116d      0x132 usbstack.a(usbhw_lpc.o)
+ .debug_pubnames
+                0x0000129f       0x4d usbstack.a(usbcontrol.o)
+ .debug_pubnames
+                0x000012ec       0x7f usbstack.a(usbstdreq.o)
+ .debug_pubnames
+                0x0000136b       0x1e usbstack.a(usbinit.o)
+ .debug_pubnames
+                0x00001389       0x1f libefsl.a(efs.o)
+ .debug_pubnames
+                0x000013a8       0x35 libefsl.a(disc.o)
+ .debug_pubnames
+                0x000013dd       0xdd libefsl.a(partition.o)
+ .debug_pubnames
+                0x000014ba      0x205 libefsl.a(fs.o)
+ .debug_pubnames
+                0x000016bf      0x19b libefsl.a(fat.o)
+ .debug_pubnames
+                0x0000185a       0xf9 libefsl.a(file.o)
+ .debug_pubnames
+                0x00001953      0x158 libefsl.a(dir.o)
+ .debug_pubnames
+                0x00001aab      0x2cd libefsl.a(ioman.o)
+ .debug_pubnames
+                0x00001d78       0x35 libefsl.a(ui.o)
+ .debug_pubnames
+                0x00001dad       0x7c libefsl.a(extract.o)
+ .debug_pubnames
+                0x00001e29       0x85 libefsl.a(lpc2000_spi.o)
+ .debug_pubnames
+                0x00001eae       0x40 libefsl.a(plibc.o)
+ .debug_pubnames
+                0x00001eee       0x48 libefsl.a(time.o)
+ .debug_pubnames
+                0x00001f36       0xa3 libefsl.a(sd.o)
+ .debug_pubnames
+                0x00001fd9       0x2e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+ .debug_pubnames
+                0x00002007       0x26 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_pubnames
+                0x0000202d       0xce c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_pubnames
+                0x000020fb       0x1d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_pubnames
+                0x00002118       0x38 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_pubnames
+                0x00002150       0x1e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_pubnames
+                0x0000216e       0x21 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_pubnames
+                0x0000218f       0x1e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_pubnames
+                0x000021ad      0x14a c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_pubnames
+                0x000022f7       0x1e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_pubnames
+                0x00002315       0xdb c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_pubnames
+                0x000023f0       0x31 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_pubnames
+                0x00002421       0x2e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_pubnames
+                0x0000244f       0x39 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+ .debug_pubnames
+                0x00002488       0x1e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_pubnames
+                0x000024a6       0x1d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_pubnames
+                0x000024c3       0x52 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_pubnames
+                0x00002515       0x44 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_pubnames
+                0x00002559       0x1d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_pubnames
+                0x00002576       0x1f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_pubnames
+                0x00002595       0x1f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_pubnames
+                0x000025b4       0x2b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_pubnames
+                0x000025df       0x1d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_pubnames
+                0x000025fc       0x1f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_pubnames
+                0x0000261b       0x1e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_aranges  0x00000000      0x7a0
+ .debug_aranges
+                0x00000000       0x20 main_serial.o
+ .debug_aranges
+                0x00000020       0x20 commands.o
+ .debug_aranges
+                0x00000040       0x20 hostPacketInjection.o
+ .debug_aranges
+                0x00000060       0x20 sequenceExec.o
+ .debug_aranges
+                0x00000080       0x20 buttons.o
+ .debug_aranges
+                0x000000a0       0x20 bluetooth.o
+ .debug_aranges
+                0x000000c0       0x20 usb.o
+ .debug_aranges
+                0x000000e0       0x20 queue.o
+ .debug_aranges
+                0x00000100       0x20 molecubePacket.o
+ .debug_aranges
+                0x00000120       0x20 morphology.o
+ .debug_aranges
+                0x00000140       0x20 C:\WinARM\armlib/rprintf.o
+ .debug_aranges
+                0x00000160       0x20 C:\WinARM\armlib/buffer.o
+ .debug_aranges
+                0x00000180       0x20 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_aranges
+                0x000001a0       0x20 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_aranges
+                0x000001c0       0x20 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_aranges
+                0x000001e0       0x20 usbstack.a(usbhw_lpc.o)
+ .debug_aranges
+                0x00000200       0x20 usbstack.a(usbcontrol.o)
+ .debug_aranges
+                0x00000220       0x20 usbstack.a(usbstdreq.o)
+ .debug_aranges
+                0x00000240       0x20 usbstack.a(usbinit.o)
+ .debug_aranges
+                0x00000260       0x20 libefsl.a(efs.o)
+ .debug_aranges
+                0x00000280       0x20 libefsl.a(disc.o)
+ .debug_aranges
+                0x000002a0       0x20 libefsl.a(partition.o)
+ .debug_aranges
+                0x000002c0       0x20 libefsl.a(fs.o)
+ .debug_aranges
+                0x000002e0       0x20 libefsl.a(fat.o)
+ .debug_aranges
+                0x00000300       0x20 libefsl.a(file.o)
+ .debug_aranges
+                0x00000320       0x20 libefsl.a(dir.o)
+ .debug_aranges
+                0x00000340       0x20 libefsl.a(ioman.o)
+ .debug_aranges
+                0x00000360       0x20 libefsl.a(ui.o)
+ .debug_aranges
+                0x00000380       0x20 libefsl.a(extract.o)
+ .debug_aranges
+                0x000003a0       0x20 libefsl.a(lpc2000_spi.o)
+ .debug_aranges
+                0x000003c0       0x20 libefsl.a(plibc.o)
+ .debug_aranges
+                0x000003e0       0x20 libefsl.a(time.o)
+ .debug_aranges
+                0x00000400       0x20 libefsl.a(sd.o)
+ .debug_aranges
+                0x00000420       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x00000440       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+ .debug_aranges
+                0x00000460       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_aranges
+                0x00000480       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_aranges
+                0x000004a0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_aranges
+                0x000004c0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .debug_aranges
+                0x000004e0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_aranges
+                0x00000500       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .debug_aranges
+                0x00000520       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .debug_aranges
+                0x00000540       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .debug_aranges
+                0x00000560       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_aranges
+                0x00000580       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .debug_aranges
+                0x000005a0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .debug_aranges
+                0x000005c0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .debug_aranges
+                0x000005e0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .debug_aranges
+                0x00000600       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .debug_aranges
+                0x00000620       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .debug_aranges
+                0x00000640       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .debug_aranges
+                0x00000660       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .debug_aranges
+                0x00000680       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .debug_aranges
+                0x000006a0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .debug_aranges
+                0x000006c0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .debug_aranges
+                0x000006e0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .debug_aranges
+                0x00000700       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .debug_aranges
+                0x00000720       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .debug_aranges
+                0x00000740       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .debug_aranges
+                0x00000760       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .debug_aranges
+                0x00000780       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_str      0x00000000     0x399f
+ .debug_str     0x00000000      0x5cb main_serial.o
+                                0x74d (size before relaxing)
+ .debug_str     0x000005cb       0x80 commands.o
+                                0x66d (size before relaxing)
+ .debug_str     0x0000064b       0x9a hostPacketInjection.o
+                                0x67c (size before relaxing)
+ .debug_str     0x000006e5      0x20c sequenceExec.o
+                                0x814 (size before relaxing)
+ .debug_str     0x000008f1       0xc9 buttons.o
+                                0x198 (size before relaxing)
+ .debug_str     0x000009ba       0x1a bluetooth.o
+                                0x173 (size before relaxing)
+ .debug_str     0x000009d4      0x1c3 usb.o
+                                0x774 (size before relaxing)
+ .debug_str     0x00000b97       0x84 queue.o
+                                0x189 (size before relaxing)
+ .debug_str     0x00000c1b      0x120 molecubePacket.o
+                                0x28f (size before relaxing)
+ .debug_str     0x00000d3b      0x38b morphology.o
+                                0xabe (size before relaxing)
+ .debug_str     0x000010c6      0x12a C:\WinARM\armlib/rprintf.o
+                                0x1d6 (size before relaxing)
+ .debug_str     0x000011f0       0xa8 C:\WinARM\armlib/buffer.o
+                                0x1c1 (size before relaxing)
+ .debug_str     0x00001298       0xc6 C:\WinARM\armlib/arch/lpc2000/processor.o
+                                0x1a3 (size before relaxing)
+ .debug_str     0x0000135e      0x20a C:\WinARM\armlib/arch/lpc2000/timer.o
+                                0x2f4 (size before relaxing)
+ .debug_str     0x00001568      0x123 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                0x24f (size before relaxing)
+ .debug_str     0x0000168b      0x2b6 usbstack.a(usbhw_lpc.o)
+                                0x30d (size before relaxing)
+ .debug_str     0x00001941       0xab usbstack.a(usbcontrol.o)
+                                0x1d7 (size before relaxing)
+ .debug_str     0x000019ec      0x160 usbstack.a(usbstdreq.o)
+                                0x26c (size before relaxing)
+ .debug_str     0x00001b4c       0x2e usbstack.a(usbinit.o)
+                                 0xe5 (size before relaxing)
+ .debug_str     0x00001b7a       0x7a libefsl.a(efs.o)
+                                0x365 (size before relaxing)
+ .debug_str     0x00001bf4       0x26 libefsl.a(disc.o)
+                                0x1e3 (size before relaxing)
+ .debug_str     0x00001c1a       0xd0 libefsl.a(partition.o)
+                                0x2c0 (size before relaxing)
+ .debug_str     0x00001cea      0x21f libefsl.a(fs.o)
+                                0x68a (size before relaxing)
+ .debug_str     0x00001f09      0x1da libefsl.a(fat.o)
+                                0x57b (size before relaxing)
+ .debug_str     0x000020e3      0x14b libefsl.a(file.o)
+                                0x5d8 (size before relaxing)
+ .debug_str     0x0000222e      0x15c libefsl.a(dir.o)
+                                0x5e9 (size before relaxing)
+ .debug_str     0x0000238a      0x27c libefsl.a(ioman.o)
+                                0x40e (size before relaxing)
+ .debug_str     0x00002606       0x5f libefsl.a(ui.o)
+                                0x4fc (size before relaxing)
+ .debug_str     0x00002665       0x60 libefsl.a(extract.o)
+                                0x186 (size before relaxing)
+ .debug_str     0x000026c5       0x8f libefsl.a(lpc2000_spi.o)
+                                0x1ac (size before relaxing)
+ .debug_str     0x00002754       0x35 libefsl.a(plibc.o)
+                                0x125 (size before relaxing)
+ .debug_str     0x00002789       0x35 libefsl.a(time.o)
+                                0x103 (size before relaxing)
+ .debug_str     0x000027be       0xd8 libefsl.a(sd.o)
+                                0x202 (size before relaxing)
+ .debug_str     0x00002896       0x6e c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+                                 0x9d (size before relaxing)
+ .debug_str     0x00002904      0x39d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+                                0x4b1 (size before relaxing)
+ .debug_str     0x00002ca1      0x200 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                0x692 (size before relaxing)
+ .debug_str     0x00002ea1       0x96 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                                 0xc9 (size before relaxing)
+ .debug_str     0x00002f37       0x6b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+                                0x4b8 (size before relaxing)
+ .debug_str     0x00002fa2       0x42 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+                                0x4a9 (size before relaxing)
+ .debug_str     0x00002fe4       0x5c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                0x564 (size before relaxing)
+ .debug_str     0x00003040       0x7c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+                                0x4ac (size before relaxing)
+ .debug_str     0x000030bc      0x315 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                0x79f (size before relaxing)
+ .debug_str     0x000033d1       0x6d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+                                0x497 (size before relaxing)
+ .debug_str     0x0000343e      0x13b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                0x595 (size before relaxing)
+ .debug_str     0x00003579       0x3c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                0x5e4 (size before relaxing)
+ .debug_str     0x000035b5       0x5c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+                                0x4d6 (size before relaxing)
+ .debug_str     0x00003611       0x44 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                                0x4af (size before relaxing)
+ .debug_str     0x00003655       0x54 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+                                0x132 (size before relaxing)
+ .debug_str     0x000036a9       0x4d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+                                0x113 (size before relaxing)
+ .debug_str     0x000036f6       0x71 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                                0x4d4 (size before relaxing)
+ .debug_str     0x00003767       0x67 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                0x4de (size before relaxing)
+ .debug_str     0x000037ce       0x40 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+                                0x112 (size before relaxing)
+ .debug_str     0x0000380e       0x4a c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+                                0x4af (size before relaxing)
+ .debug_str     0x00003858       0x41 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+                                0x49f (size before relaxing)
+ .debug_str     0x00003899       0x47 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                0x4b7 (size before relaxing)
+ .debug_str     0x000038e0       0x3f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                0x4bb (size before relaxing)
+ .debug_str     0x0000391f       0x41 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+                                0x4ad (size before relaxing)
+ .debug_str     0x00003960       0x3f c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+                                0x4ad (size before relaxing)
+
+.comment        0x00000000      0x49b
+ .comment       0x00000000       0x1b main_serial.o
+ .comment       0x0000001b       0x1b commands.o
+ .comment       0x00000036       0x1b hostPacketInjection.o
+ .comment       0x00000051       0x1b sequenceExec.o
+ .comment       0x0000006c       0x1b buttons.o
+ .comment       0x00000087       0x1b bluetooth.o
+ .comment       0x000000a2       0x1b usb.o
+ .comment       0x000000bd       0x1b queue.o
+ .comment       0x000000d8       0x1b molecubePacket.o
+ .comment       0x000000f3       0x1b morphology.o
+ .comment       0x0000010e       0x1b C:\WinARM\armlib/rprintf.o
+ .comment       0x00000129       0x1b C:\WinARM\armlib/buffer.o
+ .comment       0x00000144       0x1b C:\WinARM\armlib/arch/lpc2000/processor.o
+ .comment       0x0000015f       0x1b C:\WinARM\armlib/arch/lpc2000/timer.o
+ .comment       0x0000017a       0x1b C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .comment       0x00000195       0x12 usbstack.a(usbhw_lpc.o)
+ .comment       0x000001a7       0x12 usbstack.a(usbcontrol.o)
+ .comment       0x000001b9       0x12 usbstack.a(usbstdreq.o)
+ .comment       0x000001cb       0x12 usbstack.a(usbinit.o)
+ .comment       0x000001dd       0x12 libefsl.a(efs.o)
+ .comment       0x000001ef       0x12 libefsl.a(disc.o)
+ .comment       0x00000201       0x12 libefsl.a(partition.o)
+ .comment       0x00000213       0x12 libefsl.a(fs.o)
+ .comment       0x00000225       0x12 libefsl.a(fat.o)
+ .comment       0x00000237       0x12 libefsl.a(file.o)
+ .comment       0x00000249       0x12 libefsl.a(dir.o)
+ .comment       0x0000025b       0x12 libefsl.a(ioman.o)
+ .comment       0x0000026d       0x12 libefsl.a(ui.o)
+ .comment       0x0000027f       0x12 libefsl.a(extract.o)
+ .comment       0x00000291       0x12 libefsl.a(lpc2000_spi.o)
+ .comment       0x000002a3       0x12 libefsl.a(plibc.o)
+ .comment       0x000002b5       0x12 libefsl.a(time.o)
+ .comment       0x000002c7       0x12 libefsl.a(sd.o)
+ .comment       0x000002d9       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+ .comment       0x000002eb       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+ .comment       0x000002fd       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .comment       0x0000030f       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+ .comment       0x00000321       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+ .comment       0x00000333       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+ .comment       0x00000345       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .comment       0x00000357       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ .comment       0x00000369       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+ .comment       0x0000037b       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+ .comment       0x0000038d       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+ .comment       0x0000039f       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+ .comment       0x000003b1       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+ .comment       0x000003c3       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+ .comment       0x000003d5       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+ .comment       0x000003e7       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+ .comment       0x000003f9       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+ .comment       0x0000040b       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+ .comment       0x0000041d       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+ .comment       0x0000042f       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+ .comment       0x00000441       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+ .comment       0x00000453       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+ .comment       0x00000465       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+ .comment       0x00000477       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+ .comment       0x00000489       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+
+.debug_ranges   0x00000000      0x1b0
+ .debug_ranges  0x00000000       0x18 sequenceExec.o
+ .debug_ranges  0x00000018       0x30 morphology.o
+ .debug_ranges  0x00000048       0x18 usbstack.a(usbstdreq.o)
+ .debug_ranges  0x00000060       0x18 libefsl.a(lpc2000_spi.o)
+ .debug_ranges  0x00000078       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+ .debug_ranges  0x00000098       0xb0 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+ .debug_ranges  0x00000148       0x68 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+
+.debug_macinfo  0x00000000     0xfb06
+ .debug_macinfo
+                0x00000000     0x1638 libefsl.a(efs.o)
+ .debug_macinfo
+                0x00001638     0x11c6 libefsl.a(disc.o)
+ .debug_macinfo
+                0x000027fe     0x1240 libefsl.a(partition.o)
+ .debug_macinfo
+                0x00003a3e     0x161f libefsl.a(fs.o)
+ .debug_macinfo
+                0x0000505d     0x13a3 libefsl.a(fat.o)
+ .debug_macinfo
+                0x00006400     0x1617 libefsl.a(file.o)
+ .debug_macinfo
+                0x00007a17     0x161b libefsl.a(dir.o)
+ .debug_macinfo
+                0x00009032     0x1101 libefsl.a(ioman.o)
+ .debug_macinfo
+                0x0000a133     0x1627 libefsl.a(ui.o)
+ .debug_macinfo
+                0x0000b75a     0x11c6 libefsl.a(extract.o)
+ .debug_macinfo
+                0x0000c920     0x1611 libefsl.a(lpc2000_spi.o)
+ .debug_macinfo
+                0x0000df31      0x8f8 libefsl.a(plibc.o)
+ .debug_macinfo
+                0x0000e829      0x982 libefsl.a(time.o)
+ .debug_macinfo
+                0x0000f1ab      0x95b libefsl.a(sd.o)
+
+Cross Reference Table
+
+Symbol                                            File
+EINT1_routine                                     buttons.o
+EINT2_routine                                     buttons.o
+HD232_Init                                        molecubePacket.o
+                                                  main_serial.o
+SendData2Host                                     usb.o
+TimeStep                                          sequenceExec.o
+Timer0OverflowCount                               C:\WinARM\armlib/arch/lpc2000/timer.o
+Timer0Pause                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+Timer1OverflowCount                               C:\WinARM\armlib/arch/lpc2000/timer.o
+USBGetDescriptor                                  usbstack.a(usbstdreq.o)
+USBHandleControlTransfer                          usbstack.a(usbcontrol.o)
+                                                  usbstack.a(usbinit.o)
+USBHandleStandardRequest                          usbstack.a(usbstdreq.o)
+                                                  usbstack.a(usbinit.o)
+USBHwConfigDevice                                 usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwConnect                                      usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwEPConfig                                     usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwEPGetStatus                                  usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwEPRead                                       usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbcontrol.o)
+                                                  usb.o
+USBHwEPStall                                      usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+                                                  usbstack.a(usbcontrol.o)
+USBHwEPWrite                                      usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbcontrol.o)
+                                                  usb.o
+USBHwISR                                          usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwInit                                         usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+USBHwNakIntEnable                                 usbstack.a(usbhw_lpc.o)
+USBHwRegisterDevIntHandler                        usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+USBHwRegisterEPIntHandler                         usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+USBHwRegisterFrameHandler                         usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwSetAddress                                   usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBInit                                           usbstack.a(usbinit.o)
+                                                  usb.o
+USBRegisterCustomReqHandler                       usbstack.a(usbstdreq.o)
+USBRegisterDescriptors                            usbstack.a(usbstdreq.o)
+                                                  usb.o
+USBRegisterRequestHandler                         usbstack.a(usbcontrol.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+VCOM_getchar                                      usb.o
+VCOM_init                                         usb.o
+VCOM_putchar                                      usb.o
+__aeabi_idiv                                      c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+__aeabi_idiv0                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+__aeabi_idivmod                                   c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+__aeabi_ldiv0                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+__aeabi_uidiv                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__aeabi_uidivmod                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__bss_beg__                                       C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__bss_end__                                       C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__ctype_ptr                                       c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+                                                  sequenceExec.o
+__data_beg__                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__data_beg_src__                                  C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__data_end__                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__div0                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__divsi3                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_divsi3.o)
+                                                  libefsl.a(fs.o)
+__errno                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+__fp_lock_all                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__fp_unlock_all                                   c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__malloc_av_                                      c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+__malloc_current_mallinfo                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+__malloc_lock                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+__malloc_max_sbrked_mem                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+__malloc_max_total_mem                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+__malloc_sbrk_base                                c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+__malloc_top_pad                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+__malloc_trim_threshold                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+__malloc_unlock                                   c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mlock.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+__modsi3                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                                                  C:\WinARM\armlib/buffer.o
+__sclose                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sfmoreglue                                      c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sfp                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sfp_lock_acquire                                c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+__sfp_lock_release                                c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+__sinit                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+__sinit_lock_acquire                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sinit_lock_release                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sread                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__sseek                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__stack_end__                                     C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__swrite                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+__udivsi3                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                                                  libefsl.a(ioman.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fs.o)
+                                                  C:\WinARM\armlib/rprintf.o
+__umodsi3                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fs.o)
+                                                  C:\WinARM\armlib/rprintf.o
+_cleanup                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+_cleanup_r                                        c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+_close                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+_close_r                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+_ctype_                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(ctype_.o)
+_exit                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_fclose_r                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+_free_r                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+_fstat                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_fwalk                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+_fwalk_reent                                      c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fwalk.o)
+_getpid                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_gettimeofday                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_global_impure_ptr                                c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+_impure_ptr                                       c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(impure.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(errno.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+_kill                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_link                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_lseek                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+_lseek_r                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+_malloc_r                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+_malloc_trim_r                                    c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+_open                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_raise                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_read                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+_read_r                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+_realloc_r                                        c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+_reclaim_reent                                    c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+_rename                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_sbrk                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+_sbrk_r                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(freer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(mallocr.o)
+_stat                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_swiclose                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_swilseek                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_swiopen                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_swiread                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_swiwrite                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_system                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_times                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_unlink                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+_wrapup_reent                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+_write                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+_write_r                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(stdio.o)
+bitCount                                          morphology.o
+broadcastGetOrientationPins                       morphology.o
+broadcastGetOrientationPins_AR                    morphology.o
+broadcastSetAddressWithOrientationPin             morphology.o
+broadcastSetAddressWithOrientationPin_AR          morphology.o
+bufferAddToEnd                                    C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferDumpFromFront                               C:\WinARM\armlib/buffer.o
+bufferFlush                                       C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+bufferGetAtIndex                                  C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+bufferGetFromFront                                C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferInit                                        C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferIsNotFull                                   C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+                                                  usb.o
+buildMorphology                                   morphology.o
+                                                  main_serial.o
+buildMorphologyFromFile                           morphology.o
+                                                  main_serial.o
+button1                                           buttons.o
+button2                                           buttons.o
+buttonAttach                                      buttons.o
+                                                  main_serial.o
+buttonDetach                                      buttons.o
+buttonPressService                                buttons.o
+                                                  main_serial.o
+buttonsEnabled                                    buttons.o
+calcHeaderChecksum                                sequenceExec.o
+calcPacketChecksum                                sequenceExec.o
+checksum_calc                                     morphology.o
+cleanup_glue                                      c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+cmdBuffer                                         morphology.o
+                                                  molecubePacket.o
+                                                  bluetooth.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+cmdBufferData                                     morphology.o
+                                                  molecubePacket.o
+                                                  bluetooth.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+cmd_AddByteToEnd                                  molecubePacket.o
+cmd_BuildPacket                                   molecubePacket.o
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+cmd_Execute                                       molecubePacket.o
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+cmd_Flush                                         molecubePacket.o
+cmd_Init                                          molecubePacket.o
+                                                  main_serial.o
+cmd_PrintPacket                                   molecubePacket.o
+cmd_PrintRxPacket                                 molecubePacket.o
+                                                  sequenceExec.o
+cmesh                                             morphology.o
+                                                  usb.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+controllerMenu                                    main_serial.o
+cube_checksum_generator                           morphology.o
+cubemorph                                         morphology.o
+                                                  main_serial.o
+data_abort_exception                              C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+delay                                             C:\WinARM\armlib/arch/lpc2000/timer.o
+deleteMorphology                                  morphology.o
+dequeue                                           queue.o
+                                                  sequenceExec.o
+dir_addCluster                                    libefsl.a(dir.o)
+                                                  libefsl.a(fs.o)
+dir_createDefaultEntry                            libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+dir_createDirectoryEntry                          libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+dir_findFileinBuf                                 libefsl.a(dir.o)
+dir_findFreeEntryinBuf                            libefsl.a(dir.o)
+dir_findinBuf                                     libefsl.a(dir.o)
+dir_findinCluster                                 libefsl.a(dir.o)
+dir_findinDir                                     libefsl.a(dir.o)
+                                                  libefsl.a(fs.o)
+dir_findinRootArea                                libefsl.a(dir.o)
+dir_getFatFileName                                libefsl.a(dir.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fs.o)
+dir_getFileStructure                              libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+dir_setFileSize                                   libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+dir_setFirstCluster                               libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+dir_updateDirectoryEntry                          libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+directCommandInjection                            hostPacketInjection.o
+                                                  main_serial.o
+directCommandInjection_GetResponse                hostPacketInjection.o
+directCommandInjection_SendCommand                hostPacketInjection.o
+disableButtons                                    buttons.o
+disableSequenceExec                               sequenceExec.o
+                                                  main_serial.o
+disc_initDisc                                     libefsl.a(disc.o)
+                                                  libefsl.a(efs.o)
+disc_loadMBR                                      libefsl.a(disc.o)
+discardCommand                                    sequenceExec.o
+efs                                               morphology.o
+                                                  usb.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+efs_init                                          libefsl.a(efs.o)
+                                                  main_serial.o
+enableAngleTracking                               morphology.o
+enableButtons                                     buttons.o
+                                                  main_serial.o
+enableSequenceExec                                sequenceExec.o
+                                                  main_serial.o
+end                                               c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+endless_loop                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+enqueue                                           queue.o
+                                                  sequenceExec.o
+errno                                             c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(readr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(lseekr.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(closer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(writer.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reent.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(sbrkr.o)
+ex_getPartitionField                              libefsl.a(extract.o)
+                                                  libefsl.a(disc.o)
+ex_getb16                                         libefsl.a(extract.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(fs.o)
+ex_getb32                                         libefsl.a(extract.o)
+                                                  libefsl.a(fs.o)
+ex_setPartitionField                              libefsl.a(extract.o)
+ex_setb16                                         libefsl.a(extract.o)
+ex_setb32                                         libefsl.a(extract.o)
+                                                  libefsl.a(fs.o)
+execute                                           sequenceExec.o
+executeCreatemorphology                           main_serial.o
+executeSequenceProcess                            main_serial.o
+ext_busRxPkt                                      morphology.o
+                                                  molecubePacket.o
+                                                  bluetooth.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+fast_interrupt_exception                          C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+fat_DiscToLogicCluster                            libefsl.a(fat.o)
+fat_LogicToDiscCluster                            libefsl.a(fat.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+fat_allocClusterChain                             libefsl.a(fat.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+fat_countClustersInChain                          libefsl.a(fat.o)
+                                                  libefsl.a(file.o)
+fat_countFreeClusters                             libefsl.a(fat.o)
+                                                  libefsl.a(fs.o)
+fat_getNextClusterAddress                         libefsl.a(fat.o)
+                                                  libefsl.a(fs.o)
+fat_getNextClusterAddressWBuf                     libefsl.a(fat.o)
+fat_getNextClusterChain                           libefsl.a(fat.o)
+                                                  libefsl.a(fs.o)
+fat_getSectorAddressFatEntry                      libefsl.a(fat.o)
+fat_giveEocMarker                                 libefsl.a(fat.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fat_isEocMarker                                   libefsl.a(fat.o)
+fat_setNextClusterAddress                         libefsl.a(fat.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fat_setNextClusterAddressWBuf                     libefsl.a(fat.o)
+fat_unlinkClusterChain                            libefsl.a(fat.o)
+                                                  libefsl.a(ui.o)
+fclose                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+fflush                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fflush.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(fclose.o)
+file_fclose                                       libefsl.a(file.o)
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  main_serial.o
+file_fopen                                        libefsl.a(file.o)
+                                                  morphology.o
+                                                  sequenceExec.o
+file_fread                                        libefsl.a(file.o)
+                                                  libefsl.a(ui.o)
+file_fwrite                                       libefsl.a(file.o)
+file_getAttr                                      libefsl.a(file.o)
+file_initFile                                     libefsl.a(file.o)
+file_normalToFatName                              libefsl.a(file.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(fs.o)
+file_read                                         libefsl.a(file.o)
+                                                  morphology.o
+                                                  sequenceExec.o
+file_requiredCluster                              libefsl.a(file.o)
+file_setAttr                                      libefsl.a(file.o)
+file_setpos                                       libefsl.a(file.o)
+file_validateChar                                 libefsl.a(file.o)
+file_write                                        libefsl.a(file.o)
+                                                  morphology.o
+filer                                             morphology.o
+                                                  usb.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+filew                                             morphology.o
+                                                  usb.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+findQueueWithAddress                              queue.o
+                                                  sequenceExec.o
+free                                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+                                                  morphology.o
+                                                  queue.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+fs_clearCluster                                   libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(dir.o)
+fs_clusterToSector                                libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+fs_countDataSectors                               libefsl.a(fs.o)
+fs_determineFatType                               libefsl.a(fs.o)
+fs_findFile                                       libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fs_findFirstSectorRootDir                         libefsl.a(fs.o)
+fs_findFreeFile                                   libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fs_flushFs                                        libefsl.a(fs.o)
+fs_getFirstClusterRootDir                         libefsl.a(fs.o)
+fs_getFsInfo                                      libefsl.a(fs.o)
+fs_getLastCluster                                 libefsl.a(fs.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(fat.o)
+fs_getNextFreeCluster                             libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fs_giveFreeClusterHint                            libefsl.a(fs.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(file.o)
+fs_hasTimeSupport                                 libefsl.a(time.o)
+                                                  libefsl.a(file.o)
+fs_initClusterChain                               libefsl.a(fs.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+fs_initCurrentDir                                 libefsl.a(fs.o)
+fs_initFs                                         libefsl.a(fs.o)
+                                                  libefsl.a(efs.o)
+fs_isValidFat                                     libefsl.a(fs.o)
+fs_loadVolumeId                                   libefsl.a(fs.o)
+fs_makeDate                                       libefsl.a(time.o)
+fs_makeTime                                       libefsl.a(time.o)
+fs_sectorToCluster                                libefsl.a(fs.o)
+fs_setFirstClusterInDirEntry                      libefsl.a(fs.o)
+                                                  libefsl.a(file.o)
+fs_setFsInfo                                      libefsl.a(fs.o)
+fs_umount                                         libefsl.a(fs.o)
+fs_verifySanity                                   libefsl.a(fs.o)
+getByteFromUser                                   hostPacketInjection.o
+getCube                                           morphology.o
+getCubeLink                                       morphology.o
+getCubeState                                      morphology.o
+getHead                                           queue.o
+                                                  sequenceExec.o
+getInitialState                                   morphology.o
+getMeasuredAngle                                  morphology.o
+getMeasuredAngle_AR                               morphology.o
+getNodePtr                                        queue.o
+getOrientationPins                                morphology.o
+getOrientationPins_AR                             morphology.o
+getPinOrientation                                 morphology.o
+getQueueID                                        queue.o
+getTail                                           queue.o
+if_initInterface                                  libefsl.a(lpc2000_spi.o)
+                                                  libefsl.a(efs.o)
+if_readBuf                                        libefsl.a(lpc2000_spi.o)
+                                                  libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+if_setPos                                         libefsl.a(lpc2000_spi.o)
+if_spiInit                                        libefsl.a(lpc2000_spi.o)
+if_spiSend                                        libefsl.a(lpc2000_spi.o)
+                                                  libefsl.a(sd.o)
+if_spiSetSpeed                                    libefsl.a(lpc2000_spi.o)
+if_writeBuf                                       libefsl.a(lpc2000_spi.o)
+                                                  libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+incTimestep                                       sequenceExec.o
+                                                  main_serial.o
+initBluetooth                                     bluetooth.o
+                                                  main_serial.o
+initButtons                                       buttons.o
+                                                  main_serial.o
+initController                                    main_serial.o
+initCubeState                                     sequenceExec.o
+initQueue                                         queue.o
+initQueueArray                                    queue.o
+                                                  sequenceExec.o
+initialise_monitor_handles                        c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+insertInitialState                                morphology.o
+insertNewCubeEntry                                morphology.o
+insertNewLinkEntry                                morphology.o
+int_busRxPkt                                      morphology.o
+                                                  molecubePacket.o
+                                                  bluetooth.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+ioman_decRefCnt                                   libefsl.a(ioman.o)
+ioman_decUseCnt                                   libefsl.a(ioman.o)
+ioman_directSectorRead                            libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+ioman_directSectorWrite                           libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+ioman_findFreeSpot                                libefsl.a(ioman.o)
+ioman_findOverallocableSpot                       libefsl.a(ioman.o)
+ioman_findSectorInCache                           libefsl.a(ioman.o)
+ioman_findUnusedSpot                              libefsl.a(ioman.o)
+ioman_flushAll                                    libefsl.a(ioman.o)
+ioman_flushRange                                  libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+ioman_flushSector                                 libefsl.a(ioman.o)
+ioman_getAttr                                     libefsl.a(ioman.o)
+ioman_getBp                                       libefsl.a(ioman.o)
+ioman_getBuffer                                   libefsl.a(ioman.o)
+ioman_getPtr                                      libefsl.a(ioman.o)
+ioman_getRefCnt                                   libefsl.a(ioman.o)
+ioman_getSector                                   libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+                                                  libefsl.a(disc.o)
+ioman_getUseCnt                                   libefsl.a(ioman.o)
+ioman_incRefCnt                                   libefsl.a(ioman.o)
+ioman_incUseCnt                                   libefsl.a(ioman.o)
+ioman_init                                        libefsl.a(ioman.o)
+                                                  libefsl.a(efs.o)
+ioman_pop                                         libefsl.a(ioman.o)
+ioman_printStatus                                 libefsl.a(ioman.o)
+ioman_push                                        libefsl.a(ioman.o)
+ioman_putSectorInCache                            libefsl.a(ioman.o)
+ioman_readSector                                  libefsl.a(ioman.o)
+ioman_releaseSector                               libefsl.a(ioman.o)
+                                                  libefsl.a(partition.o)
+                                                  libefsl.a(disc.o)
+ioman_reset                                       libefsl.a(ioman.o)
+ioman_resetCacheItem                              libefsl.a(ioman.o)
+ioman_resetRefCnt                                 libefsl.a(ioman.o)
+ioman_resetUseCnt                                 libefsl.a(ioman.o)
+ioman_setAttr                                     libefsl.a(ioman.o)
+ioman_writeSector                                 libefsl.a(ioman.o)
+isMsfFile                                         sequenceExec.o
+isatty                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+list                                              morphology.o
+                                                  usb.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+                                                  main_serial.o
+listFiles                                         libefsl.a(ui.o)
+loadSequenceFile                                  sequenceExec.o
+main                                              main_serial.o
+                                                  C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+malloc                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(malloc.o)
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+memClr                                            libefsl.a(plibc.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(ioman.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fs.o)
+memCpy                                            libefsl.a(plibc.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(ioman.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+memSet                                            libefsl.a(plibc.o)
+memcpy                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                                                  usb.o
+memmove                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memmove.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(reallocr.o)
+memset                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memset.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(findfp.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+mkdir                                             libefsl.a(ui.o)
+packetRxProcess                                   molecubePacket.o
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+packetRxProcess_NoAddrClassCheck                  molecubePacket.o
+                                                  morphology.o
+part_directSectorRead                             libefsl.a(partition.o)
+                                                  libefsl.a(file.o)
+part_directSectorWrite                            libefsl.a(partition.o)
+                                                  libefsl.a(file.o)
+part_flushPart                                    libefsl.a(partition.o)
+                                                  libefsl.a(fs.o)
+part_getRealLBA                                   libefsl.a(partition.o)
+part_getSect                                      libefsl.a(partition.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fat.o)
+                                                  libefsl.a(fs.o)
+part_initPartition                                libefsl.a(partition.o)
+                                                  libefsl.a(efs.o)
+part_isFatPart                                    libefsl.a(partition.o)
+part_readBuf                                      libefsl.a(partition.o)
+                                                  libefsl.a(ui.o)
+part_relSect                                      libefsl.a(partition.o)
+                                                  libefsl.a(ui.o)
+                                                  libefsl.a(dir.o)
+                                                  libefsl.a(file.o)
+                                                  libefsl.a(fat.o)
+                                                  libefsl.a(fs.o)
+part_writeBuf                                     libefsl.a(partition.o)
+prefetch_abort_exception                          C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+printCommand                                      sequenceExec.o
+printCommandErrorCode                             commands.o
+                                                  morphology.o
+printExternalCommand                              morphology.o
+printHeader                                       sequenceExec.o
+printOrientationErrorCode                         morphology.o
+                                                  main_serial.o
+processGetOrientationPins                         morphology.o
+processorDisableInt                               C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/buffer.o
+processorEnableInt                                C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  usb.o
+processorInit                                     C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  main_serial.o
+processorRestoreInt                               C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/buffer.o
+processorVicAttach                                C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+processorVicDetach                                C:\WinARM\armlib/arch/lpc2000/processor.o
+processorVicInit                                  C:\WinARM\armlib/arch/lpc2000/processor.o
+readSequenceFile                                  sequenceExec.o
+realloc                                           c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(realloc.o)
+                                                  morphology.o
+reserved_exception                                C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+resetExecute                                      sequenceExec.o
+resetTimestep                                     sequenceExec.o
+                                                  main_serial.o
+rmfile                                            libefsl.a(ui.o)
+                                                  main_serial.o
+rprintf1RamRom                                    C:\WinARM\armlib/rprintf.o
+                                                  morphology.o
+                                                  molecubePacket.o
+                                                  sequenceExec.o
+                                                  commands.o
+                                                  main_serial.o
+rprintfCRLF                                       C:\WinARM\armlib/rprintf.o
+                                                  morphology.o
+                                                  molecubePacket.o
+                                                  sequenceExec.o
+                                                  main_serial.o
+rprintfChar                                       C:\WinARM\armlib/rprintf.o
+                                                  main_serial.o
+rprintfInit                                       C:\WinARM\armlib/rprintf.o
+                                                  main_serial.o
+rprintfNum                                        C:\WinARM\armlib/rprintf.o
+                                                  sequenceExec.o
+                                                  main_serial.o
+rprintfStr                                        C:\WinARM\armlib/rprintf.o
+                                                  sequenceExec.o
+                                                  main_serial.o
+rprintfStrLen                                     C:\WinARM\armlib/rprintf.o
+rprintfu04                                        C:\WinARM\armlib/rprintf.o
+rprintfu08                                        C:\WinARM\armlib/rprintf.o
+                                                  morphology.o
+                                                  molecubePacket.o
+                                                  sequenceExec.o
+rprintfu16                                        C:\WinARM\armlib/rprintf.o
+rprintfu32                                        C:\WinARM\armlib/rprintf.o
+runSequence                                       sequenceExec.o
+sd_Command                                        libefsl.a(sd.o)
+sd_Init                                           libefsl.a(sd.o)
+                                                  libefsl.a(lpc2000_spi.o)
+sd_Resp16b                                        libefsl.a(sd.o)
+sd_Resp8b                                         libefsl.a(sd.o)
+sd_Resp8bError                                    libefsl.a(sd.o)
+sd_State                                          libefsl.a(sd.o)
+                                                  libefsl.a(lpc2000_spi.o)
+sd_getDriveSize                                   libefsl.a(sd.o)
+                                                  libefsl.a(lpc2000_spi.o)
+sd_readSector                                     libefsl.a(sd.o)
+                                                  libefsl.a(lpc2000_spi.o)
+sd_writeSector                                    libefsl.a(sd.o)
+                                                  libefsl.a(lpc2000_spi.o)
+sendByteToUser                                    hostPacketInjection.o
+sequenceExecProcess                               sequenceExec.o
+                                                  main_serial.o
+setInitialState                                   morphology.o
+setLEDs                                           commands.o
+setOrientationPin                                 morphology.o
+setOrientationPin_AR                              morphology.o
+setQueueID                                        queue.o
+                                                  sequenceExec.o
+setServoAngleTracking                             commands.o
+                                                  morphology.o
+setServoSpeedAndAngle                             commands.o
+                                                  morphology.o
+software_interrupt_exception                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+start                                             C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+state_checksum_generator                          morphology.o
+strMatch                                          libefsl.a(plibc.o)
+                                                  libefsl.a(dir.o)
+strlen                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(strlen.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(syscalls.o)
+timer0Capture0Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Capture1Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0ClearOverflowCount                          C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0GetOverflowCount                            C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Init                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Match0Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Match1Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0PrescalerSet                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Service                                     C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Capture0Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Capture1Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1ClearOverflowCount                          C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1GetOverflowCount                            C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Init                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Match0Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+timer1Match1Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1PrescalerSet                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Service                                     C:\WinARM\armlib/arch/lpc2000/timer.o
+timerAttach                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+timerDetach                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+timerInit                                         C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+timerPause                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+uart0GetByte                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  hostPacketInjection.o
+                                                  main_serial.o
+uart0GetRxBuffer                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart0Init                                         C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart0InitBuffers                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart0SendByte                                     C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  hostPacketInjection.o
+                                                  main_serial.o
+uart0Service                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1GetByte                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1GetRxBuffer                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1Init                                         C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart1InitBuffers                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1SendByte                                     C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart1Service                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uartGetRxBuffer                                   C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  morphology.o
+                                                  sequenceExec.o
+                                                  hostPacketInjection.o
+                                                  commands.o
+uartRxBuffer                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  usb.o
+uartRxOverflow                                    usb.o
+uartTxBuffer                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  usb.o
+undefined_instruction_exception                   C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+usbSetup                                          usb.o
+validateHeaderChecksum                            sequenceExec.o
+writeMorphologyToFile                             morphology.o
+                                                  main_serial.o

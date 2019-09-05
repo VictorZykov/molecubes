@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "avr_response_test", "avr_response_test.vcproj", "{9FA1BBD4-A315-4A17-8201-19B265EA7B29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FA1BBD4-A315-4A17-8201-19B265EA7B29}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FA1BBD4-A315-4A17-8201-19B265EA7B29}.Debug|Win32.Build.0 = Debug|Win32
+		{9FA1BBD4-A315-4A17-8201-19B265EA7B29}.Release|Win32.ActiveCfg = Release|Win32
+		{9FA1BBD4-A315-4A17-8201-19B265EA7B29}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

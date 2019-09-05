@@ -1,0 +1,2309 @@
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 1
+
+
+   1               		.file	"molecubePacket.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.global __do_copy_data
+   8               		.global __do_clear_bss
+   9               		.section	.debug_abbrev,"",@progbits
+  10               	.Ldebug_abbrev0:
+  11               		.section	.debug_info,"",@progbits
+  12               	.Ldebug_info0:
+  13               		.section	.debug_line,"",@progbits
+  14               	.Ldebug_line0:
+  15               		.text
+  16               	.Ltext0:
+  17               	.global	delay_micro
+  18               		.type	delay_micro, @function
+  19               	delay_micro:
+  20               	.LFB8:
+  21               	.LM1:
+  22               	/* prologue: frame size=0 */
+  23               	/* prologue end (size=0) */
+  24               	.LVL0:
+  25               	.LM2:
+  26 0000 93E0      		ldi r25,lo8(3)
+  27 0002 899F      		mul r24,r25
+  28 0004 A001      		movw r20,r0
+  29 0006 1124      		clr r1
+  30 0008 20E0      		ldi r18,lo8(0)
+  31 000a 30E0      		ldi r19,hi8(0)
+  32 000c 00C0      		rjmp .L2
+  33               	.LVL1:
+  34               	.L3:
+  35               	.LM3:
+  36 000e 2D9A      		sbi 37-0x20,5
+  37               	.LM4:
+  38 0010 2D98      		cbi 37-0x20,5
+  39               	.LVL2:
+  40               	.L2:
+  41               	.LM5:
+  42 0012 822F      		mov r24,r18
+  43               	.LVL3:
+  44 0014 90E0      		ldi r25,lo8(0)
+  45 0016 2F5F      		subi r18,lo8(-(1))
+  46 0018 3F4F      		sbci r19,hi8(-(1))
+  47 001a 8417      		cp r24,r20
+  48 001c 9507      		cpc r25,r21
+  49 001e 04F0      		brlt .L3
+  50               	/* epilogue: frame size=0 */
+  51 0020 0895      		ret
+  52               	/* epilogue end (size=1) */
+  53               	/* function delay_micro size 17 (16) */
+  54               	.LFE8:
+  55               		.size	delay_micro, .-delay_micro
+  56               	.global	cmd_Flush
+  57               		.type	cmd_Flush, @function
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 2
+
+
+  58               	cmd_Flush:
+  59               	.LFB5:
+  60               	.LM6:
+  61               	/* prologue: frame size=0 */
+  62               	/* prologue end (size=0) */
+  63               	.LM7:
+  64 0022 80E0      		ldi r24,lo8(cmdBuffer)
+  65 0024 90E0      		ldi r25,hi8(cmdBuffer)
+  66 0026 0E94 0000 		call bufferFlush
+  67               	/* epilogue: frame size=0 */
+  68 002a 0895      		ret
+  69               	/* epilogue end (size=1) */
+  70               	/* function cmd_Flush size 5 (4) */
+  71               	.LFE5:
+  72               		.size	cmd_Flush, .-cmd_Flush
+  73               	.global	cmd_Execute
+  74               		.type	cmd_Execute, @function
+  75               	cmd_Execute:
+  76               	.LFB6:
+  77               	.LM8:
+  78               	/* prologue: frame size=0 */
+  79 002c EF92      		push r14
+  80 002e FF92      		push r15
+  81 0030 0F93      		push r16
+  82 0032 1F93      		push r17
+  83 0034 CF93      		push r28
+  84 0036 DF93      		push r29
+  85               	/* prologue end (size=6) */
+  86               	.LVL4:
+  87 0038 E82E      		mov r14,r24
+  88               	.LM9:
+  89 003a 8823      		tst r24
+  90 003c 01F4      		brne .L9
+  91               	.LM10:
+  92 003e 2998      		cbi 37-0x20,1
+  93               	.LM11:
+  94 0040 2A9A      		sbi 37-0x20,2
+  95 0042 00E0      		ldi r16,lo8(gs(uart0SendByte))
+  96 0044 10E0      		ldi r17,hi8(gs(uart0SendByte))
+  97               	.LVL5:
+  98 0046 00C0      		rjmp .L11
+  99               	.LVL6:
+ 100               	.L9:
+ 101               	.LM12:
+ 102 0048 5D98      		cbi 43-0x20,5
+ 103               	.LM13:
+ 104 004a 5C9A      		sbi 43-0x20,4
+ 105 004c 00E0      		ldi r16,lo8(gs(uart1SendByte))
+ 106 004e 10E0      		ldi r17,hi8(gs(uart1SendByte))
+ 107               	.LVL7:
+ 108               	.L11:
+ 109               	.LM14:
+ 110 0050 FFB6      		in r15,95-0x20
+ 111               	.LVL8:
+ 112               	/* #APP */
+ 113 0052 F894      		cli
+ 114               	/* #NOAPP */
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 3
+
+
+ 115 0054 C0E0      		ldi r28,lo8(cmdBuffer)
+ 116 0056 D0E0      		ldi r29,hi8(cmdBuffer)
+ 117 0058 00C0      		rjmp .L12
+ 118               	.LVL9:
+ 119               	.L13:
+ 120               	.LM15:
+ 121 005a CE01      		movw r24,r28
+ 122 005c 0E94 0000 		call bufferGetFromFront
+ 123               	.LM16:
+ 124 0060 F801      		movw r30,r16
+ 125 0062 0995      		icall
+ 126               	.LVL10:
+ 127               	.L12:
+ 128               	.LM17:
+ 129 0064 CE01      		movw r24,r28
+ 130 0066 0E94 0000 		call bufferIsNotFull
+ 131 006a 8038      		cpi r24,128
+ 132 006c 9105      		cpc r25,__zero_reg__
+ 133 006e 01F4      		brne .L13
+ 134               	.LM18:
+ 135 0070 FFBE      		out 95-0x20,r15
+ 136               	.LM19:
+ 137 0072 EE20      		tst r14
+ 138 0074 01F4      		brne .L15
+ 139               	.LM20:
+ 140 0076 84E1      		ldi r24,lo8(20)
+ 141 0078 0E94 0000 		call delay_micro
+ 142               	.LM21:
+ 143 007c 2A98      		cbi 37-0x20,2
+ 144               	.LM22:
+ 145 007e 299A      		sbi 37-0x20,1
+ 146 0080 00C0      		rjmp .L17
+ 147               	.L15:
+ 148               	.LM23:
+ 149 0082 84E1      		ldi r24,lo8(20)
+ 150 0084 0E94 0000 		call delay_micro
+ 151               	.LM24:
+ 152 0088 5C98      		cbi 43-0x20,4
+ 153               	.LM25:
+ 154 008a 5D9A      		sbi 43-0x20,5
+ 155               	.L17:
+ 156               	.LM26:
+ 157 008c 0E94 0000 		call cmd_Flush
+ 158               	/* epilogue: frame size=0 */
+ 159 0090 DF91      		pop r29
+ 160 0092 CF91      		pop r28
+ 161 0094 1F91      		pop r17
+ 162 0096 0F91      		pop r16
+ 163 0098 FF90      		pop r15
+ 164 009a EF90      		pop r14
+ 165 009c 0895      		ret
+ 166               	/* epilogue end (size=7) */
+ 167               	/* function cmd_Execute size 58 (45) */
+ 168               	.LFE6:
+ 169               		.size	cmd_Execute, .-cmd_Execute
+ 170               	.global	cmd_AddByteToEnd
+ 171               		.type	cmd_AddByteToEnd, @function
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 4
+
+
+ 172               	cmd_AddByteToEnd:
+ 173               	.LFB4:
+ 174               	.LM27:
+ 175               	/* prologue: frame size=0 */
+ 176               	/* prologue end (size=0) */
+ 177               	.LVL11:
+ 178               	.LM28:
+ 179 009e 682F      		mov r22,r24
+ 180 00a0 80E0      		ldi r24,lo8(cmdBuffer)
+ 181 00a2 90E0      		ldi r25,hi8(cmdBuffer)
+ 182               	.LVL12:
+ 183 00a4 0E94 0000 		call bufferAddToEnd
+ 184               	.LVL13:
+ 185               	.LM29:
+ 186 00a8 90E0      		ldi r25,lo8(0)
+ 187               	/* epilogue: frame size=0 */
+ 188 00aa 0895      		ret
+ 189               	/* epilogue end (size=1) */
+ 190               	/* function cmd_AddByteToEnd size 7 (6) */
+ 191               	.LFE4:
+ 192               		.size	cmd_AddByteToEnd, .-cmd_AddByteToEnd
+ 193               	.global	cmd_BuildPacket
+ 194               		.type	cmd_BuildPacket, @function
+ 195               	cmd_BuildPacket:
+ 196               	.LFB7:
+ 197               	.LM30:
+ 198               	/* prologue: frame size=0 */
+ 199 00ac CF92      		push r12
+ 200 00ae DF92      		push r13
+ 201 00b0 EF92      		push r14
+ 202 00b2 FF92      		push r15
+ 203 00b4 0F93      		push r16
+ 204 00b6 1F93      		push r17
+ 205 00b8 CF93      		push r28
+ 206 00ba DF93      		push r29
+ 207               	/* prologue end (size=8) */
+ 208               	.LVL14:
+ 209 00bc D82E      		mov r13,r24
+ 210 00be F62E      		mov r15,r22
+ 211 00c0 E42E      		mov r14,r20
+ 212 00c2 C22E      		mov r12,r18
+ 213 00c4 E801      		movw r28,r16
+ 214               	.LM31:
+ 215 00c6 0E94 0000 		call cmd_Flush
+ 216               	.LVL15:
+ 217               	.LM32:
+ 218 00ca 8FEF      		ldi r24,lo8(-1)
+ 219 00cc 0E94 0000 		call cmd_AddByteToEnd
+ 220               	.LM33:
+ 221 00d0 8D2D      		mov r24,r13
+ 222 00d2 0E94 0000 		call cmd_AddByteToEnd
+ 223               	.LM34:
+ 224 00d6 8F2D      		mov r24,r15
+ 225 00d8 0E94 0000 		call cmd_AddByteToEnd
+ 226               	.LM35:
+ 227 00dc 8FEF      		ldi r24,lo8(-1)
+ 228 00de D816      		cp r13,r24
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 5
+
+
+ 229 00e0 01F4      		brne .L22
+ 230               	.LVL16:
+ 231               	.LM36:
+ 232 00e2 8E2D      		mov r24,r14
+ 233 00e4 8E5F      		subi r24,lo8(-(2))
+ 234 00e6 00C0      		rjmp .L35
+ 235               	.L22:
+ 236               	.LM37:
+ 237 00e8 8E2D      		mov r24,r14
+ 238               	.L35:
+ 239 00ea 0E94 0000 		call cmd_AddByteToEnd
+ 240               	.LM38:
+ 241 00ee 8C2D      		mov r24,r12
+ 242 00f0 0E94 0000 		call cmd_AddByteToEnd
+ 243               	.LM39:
+ 244 00f4 8FEF      		ldi r24,lo8(-1)
+ 245 00f6 D816      		cp r13,r24
+ 246 00f8 01F4      		brne .L25
+ 247 00fa 6F2D      		mov r22,r15
+ 248               	.LVL17:
+ 249 00fc 6E5F      		subi r22,lo8(-(2))
+ 250 00fe 6E0D      		add r22,r14
+ 251 0100 00C0      		rjmp .L27
+ 252               	.LVL18:
+ 253               	.L25:
+ 254               	.LM40:
+ 255 0102 6E2D      		mov r22,r14
+ 256               	.LVL19:
+ 257 0104 6F0D      		add r22,r15
+ 258               	.L27:
+ 259               	.LM41:
+ 260 0106 162F      		mov r17,r22
+ 261 0108 1C0D      		add r17,r12
+ 262               	.LVL20:
+ 263 010a 00E0      		ldi r16,lo8(0)
+ 264               	.LVL21:
+ 265 010c 00C0      		rjmp .L28
+ 266               	.L29:
+ 267               	.LM42:
+ 268 010e 8881      		ld r24,Y
+ 269               	.LVL22:
+ 270 0110 0E94 0000 		call cmd_AddByteToEnd
+ 271               	.LM43:
+ 272 0114 8991      		ld r24,Y+
+ 273 0116 180F      		add r17,r24
+ 274               	.LM44:
+ 275 0118 0F5F      		subi r16,lo8(-(1))
+ 276               	.LVL23:
+ 277               	.L28:
+ 278 011a 0E15      		cp r16,r14
+ 279 011c 01F4      		brne .L29
+ 280               	.LM45:
+ 281 011e 8FEF      		ldi r24,lo8(-1)
+ 282 0120 D816      		cp r13,r24
+ 283 0122 01F4      		brne .L31
+ 284 0124 812F      		mov r24,r17
+ 285 0126 8095      		com r24
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 6
+
+
+ 286 0128 00C0      		rjmp .L36
+ 287               	.L31:
+ 288               	.LM46:
+ 289 012a 812F      		mov r24,r17
+ 290               	.L36:
+ 291 012c 0E94 0000 		call cmd_AddByteToEnd
+ 292               	/* epilogue: frame size=0 */
+ 293 0130 DF91      		pop r29
+ 294 0132 CF91      		pop r28
+ 295 0134 1F91      		pop r17
+ 296 0136 0F91      		pop r16
+ 297 0138 FF90      		pop r15
+ 298 013a EF90      		pop r14
+ 299 013c DF90      		pop r13
+ 300 013e CF90      		pop r12
+ 301 0140 0895      		ret
+ 302               	/* epilogue end (size=9) */
+ 303               	/* function cmd_BuildPacket size 75 (58) */
+ 304               	.LFE7:
+ 305               		.size	cmd_BuildPacket, .-cmd_BuildPacket
+ 306               	.global	cmd_Init
+ 307               		.type	cmd_Init, @function
+ 308               	cmd_Init:
+ 309               	.LFB3:
+ 310               	.LM47:
+ 311               	/* prologue: frame size=0 */
+ 312               	/* prologue end (size=0) */
+ 313               	.LM48:
+ 314 0142 40E8      		ldi r20,lo8(128)
+ 315 0144 50E0      		ldi r21,hi8(128)
+ 316 0146 60E0      		ldi r22,lo8(cmdBufferData)
+ 317 0148 70E0      		ldi r23,hi8(cmdBufferData)
+ 318 014a 80E0      		ldi r24,lo8(cmdBuffer)
+ 319 014c 90E0      		ldi r25,hi8(cmdBuffer)
+ 320 014e 0E94 0000 		call bufferInit
+ 321               	/* epilogue: frame size=0 */
+ 322 0152 0895      		ret
+ 323               	/* epilogue end (size=1) */
+ 324               	/* function cmd_Init size 9 (8) */
+ 325               	.LFE3:
+ 326               		.size	cmd_Init, .-cmd_Init
+ 327               	.global	configCommBuses
+ 328               		.type	configCommBuses, @function
+ 329               	configCommBuses:
+ 330               	.LFB2:
+ 331               	.LM49:
+ 332               	/* prologue: frame size=0 */
+ 333               	/* prologue end (size=0) */
+ 334               	.LM50:
+ 335 0154 219A      		sbi 36-0x20,1
+ 336               	.LM51:
+ 337 0156 229A      		sbi 36-0x20,2
+ 338               	.LM52:
+ 339 0158 2A98      		cbi 37-0x20,2
+ 340               	.LM53:
+ 341 015a 2998      		cbi 37-0x20,1
+ 342               	.LM54:
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 7
+
+
+ 343 015c 559A      		sbi 42-0x20,5
+ 344               	.LM55:
+ 345 015e 549A      		sbi 42-0x20,4
+ 346               	.LM56:
+ 347 0160 5C98      		cbi 43-0x20,4
+ 348               	.LM57:
+ 349 0162 5D98      		cbi 43-0x20,5
+ 350               	.LM58:
+ 351 0164 0E94 0000 		call uartInit
+ 352               	.LM59:
+ 353 0168 40E0      		ldi r20,lo8(115200)
+ 354 016a 52EC      		ldi r21,hi8(115200)
+ 355 016c 61E0      		ldi r22,hlo8(115200)
+ 356 016e 70E0      		ldi r23,hhi8(115200)
+ 357 0170 80E0      		ldi r24,lo8(0)
+ 358 0172 0E94 0000 		call uartSetBaudRate
+ 359               	.LM60:
+ 360 0176 40E0      		ldi r20,lo8(115200)
+ 361 0178 52EC      		ldi r21,hi8(115200)
+ 362 017a 61E0      		ldi r22,hlo8(115200)
+ 363 017c 70E0      		ldi r23,hhi8(115200)
+ 364 017e 81E0      		ldi r24,lo8(1)
+ 365 0180 0E94 0000 		call uartSetBaudRate
+ 366               	.LM61:
+ 367 0184 1092 C000 		sts 192,__zero_reg__
+ 368               	.LM62:
+ 369 0188 1092 C500 		sts 197,__zero_reg__
+ 370               	.LM63:
+ 371 018c 82E0      		ldi r24,lo8(2)
+ 372 018e 8093 C400 		sts 196,r24
+ 373               	.LM64:
+ 374 0192 1092 C800 		sts 200,__zero_reg__
+ 375               	.LM65:
+ 376 0196 1092 CD00 		sts 205,__zero_reg__
+ 377               	.LM66:
+ 378 019a 8093 CC00 		sts 204,r24
+ 379               	/* epilogue: frame size=0 */
+ 380 019e 0895      		ret
+ 381               	/* epilogue end (size=1) */
+ 382               	/* function configCommBuses size 38 (37) */
+ 383               	.LFE2:
+ 384               		.size	configCommBuses, .-configCommBuses
+ 385               		.comm CalibP1,2,1
+ 386               		.comm CalibP2,2,1
+ 387               		.comm CalibP3,2,1
+ 388               		.comm CalibP4,2,1
+ 389               		.comm CalibP5,2,1
+ 390               		.comm CalibP6,2,1
+ 391               		.comm GripperCorrection,2,1
+ 392               		.comm MainPotAngle,2,1
+ 393               		.comm ServoAngle,2,1
+ 394               		.comm HallSensor,1,1
+ 395               		.comm myClass,1,1
+ 396               		.comm myAddress,1,1
+ 397               		.comm OutputPinSet,1,1
+ 398               		.comm cmdBufferData,128,1
+ 399               		.comm cmdBuffer,8,1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 8
+
+
+ 400               		.comm timeout_length,2,1
+ 401               		.comm timeout_tics,2,1
+ 402               		.section	.debug_frame,"",@progbits
+ 403               	.Lframe0:
+ 404 0000 0C00 0000 		.long	.LECIE0-.LSCIE0
+ 405               	.LSCIE0:
+ 406 0004 FFFF FFFF 		.long	0xffffffff
+ 407 0008 01        		.byte	0x1
+ 408 0009 00        		.string	""
+ 409 000a 01        		.uleb128 0x1
+ 410 000b 7F        		.sleb128 -1
+ 411 000c 24        		.byte	0x24
+ 412 000d 0C        		.byte	0xc
+ 413 000e 20        		.uleb128 0x20
+ 414 000f 00        		.uleb128 0x0
+ 415               		.p2align	2
+ 416               	.LECIE0:
+ 417               	.LSFDE0:
+ 418 0010 0C00 0000 		.long	.LEFDE0-.LASFDE0
+ 419               	.LASFDE0:
+ 420 0014 0000 0000 		.long	.Lframe0
+ 421 0018 0000 0000 		.long	.LFB8
+ 422 001c 2200 0000 		.long	.LFE8-.LFB8
+ 423               		.p2align	2
+ 424               	.LEFDE0:
+ 425               	.LSFDE2:
+ 426 0020 0C00 0000 		.long	.LEFDE2-.LASFDE2
+ 427               	.LASFDE2:
+ 428 0024 0000 0000 		.long	.Lframe0
+ 429 0028 0000 0000 		.long	.LFB5
+ 430 002c 0A00 0000 		.long	.LFE5-.LFB5
+ 431               		.p2align	2
+ 432               	.LEFDE2:
+ 433               	.LSFDE4:
+ 434 0030 0C00 0000 		.long	.LEFDE4-.LASFDE4
+ 435               	.LASFDE4:
+ 436 0034 0000 0000 		.long	.Lframe0
+ 437 0038 0000 0000 		.long	.LFB6
+ 438 003c 7200 0000 		.long	.LFE6-.LFB6
+ 439               		.p2align	2
+ 440               	.LEFDE4:
+ 441               	.LSFDE6:
+ 442 0040 0C00 0000 		.long	.LEFDE6-.LASFDE6
+ 443               	.LASFDE6:
+ 444 0044 0000 0000 		.long	.Lframe0
+ 445 0048 0000 0000 		.long	.LFB4
+ 446 004c 0E00 0000 		.long	.LFE4-.LFB4
+ 447               		.p2align	2
+ 448               	.LEFDE6:
+ 449               	.LSFDE8:
+ 450 0050 0C00 0000 		.long	.LEFDE8-.LASFDE8
+ 451               	.LASFDE8:
+ 452 0054 0000 0000 		.long	.Lframe0
+ 453 0058 0000 0000 		.long	.LFB7
+ 454 005c 9600 0000 		.long	.LFE7-.LFB7
+ 455               		.p2align	2
+ 456               	.LEFDE8:
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 9
+
+
+ 457               	.LSFDE10:
+ 458 0060 0C00 0000 		.long	.LEFDE10-.LASFDE10
+ 459               	.LASFDE10:
+ 460 0064 0000 0000 		.long	.Lframe0
+ 461 0068 0000 0000 		.long	.LFB3
+ 462 006c 1200 0000 		.long	.LFE3-.LFB3
+ 463               		.p2align	2
+ 464               	.LEFDE10:
+ 465               	.LSFDE12:
+ 466 0070 0C00 0000 		.long	.LEFDE12-.LASFDE12
+ 467               	.LASFDE12:
+ 468 0074 0000 0000 		.long	.Lframe0
+ 469 0078 0000 0000 		.long	.LFB2
+ 470 007c 4C00 0000 		.long	.LFE2-.LFB2
+ 471               		.p2align	2
+ 472               	.LEFDE12:
+ 473               		.text
+ 474               	.Letext0:
+ 475               		.section	.debug_loc,"",@progbits
+ 476               	.Ldebug_loc0:
+ 477               	.LLST1:
+ 478 0000 0000 0000 		.long	.LVL0-.Ltext0
+ 479 0004 0E00 0000 		.long	.LVL1-.Ltext0
+ 480 0008 0100      		.word	0x1
+ 481 000a 68        		.byte	0x68
+ 482 000b 1200 0000 		.long	.LVL2-.Ltext0
+ 483 000f 1400 0000 		.long	.LVL3-.Ltext0
+ 484 0013 0100      		.word	0x1
+ 485 0015 68        		.byte	0x68
+ 486 0016 0000 0000 		.long	0x0
+ 487 001a 0000 0000 		.long	0x0
+ 488               	.LLST4:
+ 489 001e 3800 0000 		.long	.LVL4-.Ltext0
+ 490 0022 5A00 0000 		.long	.LVL9-.Ltext0
+ 491 0026 0100      		.word	0x1
+ 492 0028 68        		.byte	0x68
+ 493 0029 5A00 0000 		.long	.LVL9-.Ltext0
+ 494 002d 9E00 0000 		.long	.LFE6-.Ltext0
+ 495 0031 0100      		.word	0x1
+ 496 0033 5E        		.byte	0x5e
+ 497 0034 0000 0000 		.long	0x0
+ 498 0038 0000 0000 		.long	0x0
+ 499               	.LLST5:
+ 500 003c 4600 0000 		.long	.LVL5-.Ltext0
+ 501 0040 4800 0000 		.long	.LVL6-.Ltext0
+ 502 0044 0600      		.word	0x6
+ 503 0046 60        		.byte	0x60
+ 504 0047 93        		.byte	0x93
+ 505 0048 01        		.uleb128 0x1
+ 506 0049 61        		.byte	0x61
+ 507 004a 93        		.byte	0x93
+ 508 004b 01        		.uleb128 0x1
+ 509 004c 5000 0000 		.long	.LVL7-.Ltext0
+ 510 0050 9E00 0000 		.long	.LFE6-.Ltext0
+ 511 0054 0600      		.word	0x6
+ 512 0056 60        		.byte	0x60
+ 513 0057 93        		.byte	0x93
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 10
+
+
+ 514 0058 01        		.uleb128 0x1
+ 515 0059 61        		.byte	0x61
+ 516 005a 93        		.byte	0x93
+ 517 005b 01        		.uleb128 0x1
+ 518 005c 0000 0000 		.long	0x0
+ 519 0060 0000 0000 		.long	0x0
+ 520               	.LLST7:
+ 521 0064 9E00 0000 		.long	.LVL11-.Ltext0
+ 522 0068 A400 0000 		.long	.LVL12-.Ltext0
+ 523 006c 0100      		.word	0x1
+ 524 006e 68        		.byte	0x68
+ 525 006f A400 0000 		.long	.LVL12-.Ltext0
+ 526 0073 A800 0000 		.long	.LVL13-.Ltext0
+ 527 0077 0100      		.word	0x1
+ 528 0079 66        		.byte	0x66
+ 529 007a 0000 0000 		.long	0x0
+ 530 007e 0000 0000 		.long	0x0
+ 531               	.LLST9:
+ 532 0082 BC00 0000 		.long	.LVL14-.Ltext0
+ 533 0086 CA00 0000 		.long	.LVL15-.Ltext0
+ 534 008a 0100      		.word	0x1
+ 535 008c 68        		.byte	0x68
+ 536 008d CA00 0000 		.long	.LVL15-.Ltext0
+ 537 0091 4201 0000 		.long	.LFE7-.Ltext0
+ 538 0095 0100      		.word	0x1
+ 539 0097 5D        		.byte	0x5d
+ 540 0098 0000 0000 		.long	0x0
+ 541 009c 0000 0000 		.long	0x0
+ 542               	.LLST10:
+ 543 00a0 BC00 0000 		.long	.LVL14-.Ltext0
+ 544 00a4 CA00 0000 		.long	.LVL15-.Ltext0
+ 545 00a8 0100      		.word	0x1
+ 546 00aa 66        		.byte	0x66
+ 547 00ab CA00 0000 		.long	.LVL15-.Ltext0
+ 548 00af 4201 0000 		.long	.LFE7-.Ltext0
+ 549 00b3 0100      		.word	0x1
+ 550 00b5 5F        		.byte	0x5f
+ 551 00b6 0000 0000 		.long	0x0
+ 552 00ba 0000 0000 		.long	0x0
+ 553               	.LLST11:
+ 554 00be BC00 0000 		.long	.LVL14-.Ltext0
+ 555 00c2 CA00 0000 		.long	.LVL15-.Ltext0
+ 556 00c6 0100      		.word	0x1
+ 557 00c8 64        		.byte	0x64
+ 558 00c9 CA00 0000 		.long	.LVL15-.Ltext0
+ 559 00cd 4201 0000 		.long	.LFE7-.Ltext0
+ 560 00d1 0100      		.word	0x1
+ 561 00d3 5E        		.byte	0x5e
+ 562 00d4 0000 0000 		.long	0x0
+ 563 00d8 0000 0000 		.long	0x0
+ 564               	.LLST12:
+ 565 00dc BC00 0000 		.long	.LVL14-.Ltext0
+ 566 00e0 CA00 0000 		.long	.LVL15-.Ltext0
+ 567 00e4 0100      		.word	0x1
+ 568 00e6 62        		.byte	0x62
+ 569 00e7 CA00 0000 		.long	.LVL15-.Ltext0
+ 570 00eb 4201 0000 		.long	.LFE7-.Ltext0
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 11
+
+
+ 571 00ef 0100      		.word	0x1
+ 572 00f1 5C        		.byte	0x5c
+ 573 00f2 0000 0000 		.long	0x0
+ 574 00f6 0000 0000 		.long	0x0
+ 575               	.LLST13:
+ 576 00fa BC00 0000 		.long	.LVL14-.Ltext0
+ 577 00fe E200 0000 		.long	.LVL16-.Ltext0
+ 578 0102 0600      		.word	0x6
+ 579 0104 60        		.byte	0x60
+ 580 0105 93        		.byte	0x93
+ 581 0106 01        		.uleb128 0x1
+ 582 0107 61        		.byte	0x61
+ 583 0108 93        		.byte	0x93
+ 584 0109 01        		.uleb128 0x1
+ 585 010a E200 0000 		.long	.LVL16-.Ltext0
+ 586 010e 1001 0000 		.long	.LVL22-.Ltext0
+ 587 0112 0600      		.word	0x6
+ 588 0114 6C        		.byte	0x6c
+ 589 0115 93        		.byte	0x93
+ 590 0116 01        		.uleb128 0x1
+ 591 0117 6D        		.byte	0x6d
+ 592 0118 93        		.byte	0x93
+ 593 0119 01        		.uleb128 0x1
+ 594 011a 1A01 0000 		.long	.LVL23-.Ltext0
+ 595 011e 4201 0000 		.long	.LFE7-.Ltext0
+ 596 0122 0600      		.word	0x6
+ 597 0124 6C        		.byte	0x6c
+ 598 0125 93        		.byte	0x93
+ 599 0126 01        		.uleb128 0x1
+ 600 0127 6D        		.byte	0x6d
+ 601 0128 93        		.byte	0x93
+ 602 0129 01        		.uleb128 0x1
+ 603 012a 0000 0000 		.long	0x0
+ 604 012e 0000 0000 		.long	0x0
+ 605               	.LLST14:
+ 606 0132 FC00 0000 		.long	.LVL17-.Ltext0
+ 607 0136 0201 0000 		.long	.LVL18-.Ltext0
+ 608 013a 0100      		.word	0x1
+ 609 013c 66        		.byte	0x66
+ 610 013d 0401 0000 		.long	.LVL19-.Ltext0
+ 611 0141 0A01 0000 		.long	.LVL20-.Ltext0
+ 612 0145 0100      		.word	0x1
+ 613 0147 66        		.byte	0x66
+ 614 0148 0A01 0000 		.long	.LVL20-.Ltext0
+ 615 014c 4201 0000 		.long	.LFE7-.Ltext0
+ 616 0150 0100      		.word	0x1
+ 617 0152 61        		.byte	0x61
+ 618 0153 0000 0000 		.long	0x0
+ 619 0157 0000 0000 		.long	0x0
+ 620               		.section	.debug_info
+ 621 0000 9803 0000 		.long	0x398
+ 622 0004 0200      		.word	0x2
+ 623 0006 0000 0000 		.long	.Ldebug_abbrev0
+ 624 000a 04        		.byte	0x4
+ 625 000b 01        		.uleb128 0x1
+ 626 000c 0000 0000 		.long	.LASF45
+ 627 0010 01        		.byte	0x1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 12
+
+
+ 628 0011 0000 0000 		.long	.LASF46
+ 629 0015 0000 0000 		.long	.LASF47
+ 630 0019 0000 0000 		.long	.Ltext0
+ 631 001d 0000 0000 		.long	.Letext0
+ 632 0021 0000 0000 		.long	.Ldebug_line0
+ 633 0025 02        		.uleb128 0x2
+ 634 0026 02        		.byte	0x2
+ 635 0027 07        		.byte	0x7
+ 636 0028 0000 0000 		.long	.LASF0
+ 637 002c 02        		.uleb128 0x2
+ 638 002d 01        		.byte	0x1
+ 639 002e 06        		.byte	0x6
+ 640 002f 0000 0000 		.long	.LASF1
+ 641 0033 02        		.uleb128 0x2
+ 642 0034 01        		.byte	0x1
+ 643 0035 08        		.byte	0x8
+ 644 0036 0000 0000 		.long	.LASF2
+ 645 003a 03        		.uleb128 0x3
+ 646 003b 02        		.byte	0x2
+ 647 003c 05        		.byte	0x5
+ 648 003d 696E 7400 		.string	"int"
+ 649 0041 02        		.uleb128 0x2
+ 650 0042 04        		.byte	0x4
+ 651 0043 05        		.byte	0x5
+ 652 0044 0000 0000 		.long	.LASF3
+ 653 0048 02        		.uleb128 0x2
+ 654 0049 04        		.byte	0x4
+ 655 004a 07        		.byte	0x7
+ 656 004b 0000 0000 		.long	.LASF4
+ 657 004f 02        		.uleb128 0x2
+ 658 0050 08        		.byte	0x8
+ 659 0051 05        		.byte	0x5
+ 660 0052 0000 0000 		.long	.LASF5
+ 661 0056 02        		.uleb128 0x2
+ 662 0057 08        		.byte	0x8
+ 663 0058 07        		.byte	0x7
+ 664 0059 0000 0000 		.long	.LASF6
+ 665 005d 04        		.uleb128 0x4
+ 666 005e 7530 3800 		.string	"u08"
+ 667 0062 02        		.byte	0x2
+ 668 0063 20        		.byte	0x20
+ 669 0064 3300 0000 		.long	0x33
+ 670 0068 04        		.uleb128 0x4
+ 671 0069 7531 3600 		.string	"u16"
+ 672 006d 02        		.byte	0x2
+ 673 006e 22        		.byte	0x22
+ 674 006f 7300 0000 		.long	0x73
+ 675 0073 02        		.uleb128 0x2
+ 676 0074 02        		.byte	0x2
+ 677 0075 07        		.byte	0x7
+ 678 0076 0000 0000 		.long	.LASF7
+ 679 007a 02        		.uleb128 0x2
+ 680 007b 02        		.byte	0x2
+ 681 007c 05        		.byte	0x5
+ 682 007d 0000 0000 		.long	.LASF8
+ 683 0081 02        		.uleb128 0x2
+ 684 0082 01        		.byte	0x1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 13
+
+
+ 685 0083 06        		.byte	0x6
+ 686 0084 0000 0000 		.long	.LASF9
+ 687 0088 05        		.uleb128 0x5
+ 688 0089 0000 0000 		.long	.LASF48
+ 689 008d 08        		.byte	0x8
+ 690 008e 03        		.byte	0x3
+ 691 008f 2A        		.byte	0x2a
+ 692 0090 CD00 0000 		.long	0xcd
+ 693 0094 06        		.uleb128 0x6
+ 694 0095 0000 0000 		.long	.LASF10
+ 695 0099 03        		.byte	0x3
+ 696 009a 2B        		.byte	0x2b
+ 697 009b CD00 0000 		.long	0xcd
+ 698 009f 02        		.byte	0x2
+ 699 00a0 23        		.byte	0x23
+ 700 00a1 00        		.uleb128 0x0
+ 701 00a2 06        		.uleb128 0x6
+ 702 00a3 0000 0000 		.long	.LASF11
+ 703 00a7 03        		.byte	0x3
+ 704 00a8 2C        		.byte	0x2c
+ 705 00a9 7300 0000 		.long	0x73
+ 706 00ad 02        		.byte	0x2
+ 707 00ae 23        		.byte	0x23
+ 708 00af 02        		.uleb128 0x2
+ 709 00b0 06        		.uleb128 0x6
+ 710 00b1 0000 0000 		.long	.LASF12
+ 711 00b5 03        		.byte	0x3
+ 712 00b6 2D        		.byte	0x2d
+ 713 00b7 7300 0000 		.long	0x73
+ 714 00bb 02        		.byte	0x2
+ 715 00bc 23        		.byte	0x23
+ 716 00bd 04        		.uleb128 0x4
+ 717 00be 06        		.uleb128 0x6
+ 718 00bf 0000 0000 		.long	.LASF13
+ 719 00c3 03        		.byte	0x3
+ 720 00c4 2E        		.byte	0x2e
+ 721 00c5 7300 0000 		.long	0x73
+ 722 00c9 02        		.byte	0x2
+ 723 00ca 23        		.byte	0x23
+ 724 00cb 06        		.uleb128 0x6
+ 725 00cc 00        		.byte	0x0
+ 726 00cd 07        		.uleb128 0x7
+ 727 00ce 02        		.byte	0x2
+ 728 00cf 3300 0000 		.long	0x33
+ 729 00d3 08        		.uleb128 0x8
+ 730 00d4 0000 0000 		.long	.LASF14
+ 731 00d8 03        		.byte	0x3
+ 732 00d9 2F        		.byte	0x2f
+ 733 00da 8800 0000 		.long	0x88
+ 734 00de 09        		.uleb128 0x9
+ 735 00df 01        		.byte	0x1
+ 736 00e0 0000 0000 		.long	.LASF15
+ 737 00e4 01        		.byte	0x1
+ 738 00e5 C4        		.byte	0xc4
+ 739 00e6 01        		.byte	0x1
+ 740 00e7 0000 0000 		.long	.LFB8
+ 741 00eb 0000 0000 		.long	.LFE8
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 14
+
+
+ 742 00ef 02        		.byte	0x2
+ 743 00f0 90        		.byte	0x90
+ 744 00f1 20        		.uleb128 0x20
+ 745 00f2 0E01 0000 		.long	0x10e
+ 746 00f6 0A        		.uleb128 0xa
+ 747 00f7 7573 00   		.string	"us"
+ 748 00fa 01        		.byte	0x1
+ 749 00fb C3        		.byte	0xc3
+ 750 00fc 5D00 0000 		.long	0x5d
+ 751 0100 0000 0000 		.long	.LLST1
+ 752 0104 0B        		.uleb128 0xb
+ 753 0105 6900      		.string	"i"
+ 754 0107 01        		.byte	0x1
+ 755 0108 C5        		.byte	0xc5
+ 756 0109 5D00 0000 		.long	0x5d
+ 757 010d 00        		.byte	0x0
+ 758 010e 0C        		.uleb128 0xc
+ 759 010f 01        		.byte	0x1
+ 760 0110 0000 0000 		.long	.LASF25
+ 761 0114 01        		.byte	0x1
+ 762 0115 47        		.byte	0x47
+ 763 0116 01        		.byte	0x1
+ 764 0117 0000 0000 		.long	.LFB5
+ 765 011b 0000 0000 		.long	.LFE5
+ 766 011f 02        		.byte	0x2
+ 767 0120 90        		.byte	0x90
+ 768 0121 20        		.uleb128 0x20
+ 769 0122 09        		.uleb128 0x9
+ 770 0123 01        		.byte	0x1
+ 771 0124 0000 0000 		.long	.LASF16
+ 772 0128 01        		.byte	0x1
+ 773 0129 4B        		.byte	0x4b
+ 774 012a 01        		.byte	0x1
+ 775 012b 0000 0000 		.long	.LFB6
+ 776 012f 0000 0000 		.long	.LFE6
+ 777 0133 02        		.byte	0x2
+ 778 0134 90        		.byte	0x90
+ 779 0135 20        		.uleb128 0x20
+ 780 0136 6F01 0000 		.long	0x16f
+ 781 013a 0D        		.uleb128 0xd
+ 782 013b 0000 0000 		.long	.LASF17
+ 783 013f 01        		.byte	0x1
+ 784 0140 4B        		.byte	0x4b
+ 785 0141 5D00 0000 		.long	0x5d
+ 786 0145 0000 0000 		.long	.LLST4
+ 787 0149 0E        		.uleb128 0xe
+ 788 014a 0000 0000 		.long	.LASF18
+ 789 014e 01        		.byte	0x1
+ 790 014f 4C        		.byte	0x4c
+ 791 0150 7B01 0000 		.long	0x17b
+ 792 0154 0000 0000 		.long	.LLST5
+ 793 0158 0B        		.uleb128 0xb
+ 794 0159 6300      		.string	"c"
+ 795 015b 01        		.byte	0x1
+ 796 015c 4E        		.byte	0x4e
+ 797 015d 5D00 0000 		.long	0x5d
+ 798 0161 0F        		.uleb128 0xf
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 15
+
+
+ 799 0162 0000 0000 		.long	.LASF19
+ 800 0166 01        		.byte	0x1
+ 801 0167 67        		.byte	0x67
+ 802 0168 3300 0000 		.long	0x33
+ 803 016c 01        		.byte	0x1
+ 804 016d 5F        		.byte	0x5f
+ 805 016e 00        		.byte	0x0
+ 806 016f 10        		.uleb128 0x10
+ 807 0170 01        		.byte	0x1
+ 808 0171 7B01 0000 		.long	0x17b
+ 809 0175 11        		.uleb128 0x11
+ 810 0176 3300 0000 		.long	0x33
+ 811 017a 00        		.byte	0x0
+ 812 017b 07        		.uleb128 0x7
+ 813 017c 02        		.byte	0x2
+ 814 017d 6F01 0000 		.long	0x16f
+ 815 0181 12        		.uleb128 0x12
+ 816 0182 01        		.byte	0x1
+ 817 0183 0000 0000 		.long	.LASF49
+ 818 0187 01        		.byte	0x1
+ 819 0188 43        		.byte	0x43
+ 820 0189 01        		.byte	0x1
+ 821 018a 5D00 0000 		.long	0x5d
+ 822 018e 0000 0000 		.long	.LFB4
+ 823 0192 0000 0000 		.long	.LFE4
+ 824 0196 02        		.byte	0x2
+ 825 0197 90        		.byte	0x90
+ 826 0198 20        		.uleb128 0x20
+ 827 0199 AB01 0000 		.long	0x1ab
+ 828 019d 0A        		.uleb128 0xa
+ 829 019e 6200      		.string	"b"
+ 830 01a0 01        		.byte	0x1
+ 831 01a1 43        		.byte	0x43
+ 832 01a2 5D00 0000 		.long	0x5d
+ 833 01a6 0000 0000 		.long	.LLST7
+ 834 01aa 00        		.byte	0x0
+ 835 01ab 09        		.uleb128 0x9
+ 836 01ac 01        		.byte	0x1
+ 837 01ad 0000 0000 		.long	.LASF20
+ 838 01b1 01        		.byte	0x1
+ 839 01b2 9A        		.byte	0x9a
+ 840 01b3 01        		.byte	0x1
+ 841 01b4 0000 0000 		.long	.LFB7
+ 842 01b8 0000 0000 		.long	.LFE7
+ 843 01bc 02        		.byte	0x2
+ 844 01bd 90        		.byte	0x90
+ 845 01be 20        		.uleb128 0x20
+ 846 01bf 2802 0000 		.long	0x228
+ 847 01c3 0D        		.uleb128 0xd
+ 848 01c4 0000 0000 		.long	.LASF21
+ 849 01c8 01        		.byte	0x1
+ 850 01c9 99        		.byte	0x99
+ 851 01ca 5D00 0000 		.long	0x5d
+ 852 01ce 0000 0000 		.long	.LLST9
+ 853 01d2 0A        		.uleb128 0xa
+ 854 01d3 6964 00   		.string	"id"
+ 855 01d6 01        		.byte	0x1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 16
+
+
+ 856 01d7 99        		.byte	0x99
+ 857 01d8 5D00 0000 		.long	0x5d
+ 858 01dc 0000 0000 		.long	.LLST10
+ 859 01e0 0D        		.uleb128 0xd
+ 860 01e1 0000 0000 		.long	.LASF22
+ 861 01e5 01        		.byte	0x1
+ 862 01e6 99        		.byte	0x99
+ 863 01e7 5D00 0000 		.long	0x5d
+ 864 01eb 0000 0000 		.long	.LLST11
+ 865 01ef 0A        		.uleb128 0xa
+ 866 01f0 636D 6400 		.string	"cmd"
+ 867 01f4 01        		.byte	0x1
+ 868 01f5 99        		.byte	0x99
+ 869 01f6 5D00 0000 		.long	0x5d
+ 870 01fa 0000 0000 		.long	.LLST12
+ 871 01fe 0D        		.uleb128 0xd
+ 872 01ff 0000 0000 		.long	.LASF23
+ 873 0203 01        		.byte	0x1
+ 874 0204 99        		.byte	0x99
+ 875 0205 2802 0000 		.long	0x228
+ 876 0209 0000 0000 		.long	.LLST13
+ 877 020d 13        		.uleb128 0x13
+ 878 020e 6900      		.string	"i"
+ 879 0210 01        		.byte	0x1
+ 880 0211 9C        		.byte	0x9c
+ 881 0212 5D00 0000 		.long	0x5d
+ 882 0216 01        		.byte	0x1
+ 883 0217 60        		.byte	0x60
+ 884 0218 0E        		.uleb128 0xe
+ 885 0219 0000 0000 		.long	.LASF24
+ 886 021d 01        		.byte	0x1
+ 887 021e 9C        		.byte	0x9c
+ 888 021f 5D00 0000 		.long	0x5d
+ 889 0223 0000 0000 		.long	.LLST14
+ 890 0227 00        		.byte	0x0
+ 891 0228 07        		.uleb128 0x7
+ 892 0229 02        		.byte	0x2
+ 893 022a 5D00 0000 		.long	0x5d
+ 894 022e 0C        		.uleb128 0xc
+ 895 022f 01        		.byte	0x1
+ 896 0230 0000 0000 		.long	.LASF26
+ 897 0234 01        		.byte	0x1
+ 898 0235 3F        		.byte	0x3f
+ 899 0236 01        		.byte	0x1
+ 900 0237 0000 0000 		.long	.LFB3
+ 901 023b 0000 0000 		.long	.LFE3
+ 902 023f 02        		.byte	0x2
+ 903 0240 90        		.byte	0x90
+ 904 0241 20        		.uleb128 0x20
+ 905 0242 0C        		.uleb128 0xc
+ 906 0243 01        		.byte	0x1
+ 907 0244 0000 0000 		.long	.LASF27
+ 908 0248 01        		.byte	0x1
+ 909 0249 18        		.byte	0x18
+ 910 024a 01        		.byte	0x1
+ 911 024b 0000 0000 		.long	.LFB2
+ 912 024f 0000 0000 		.long	.LFE2
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 17
+
+
+ 913 0253 02        		.byte	0x2
+ 914 0254 90        		.byte	0x90
+ 915 0255 20        		.uleb128 0x20
+ 916 0256 14        		.uleb128 0x14
+ 917 0257 0000 0000 		.long	.LASF28
+ 918 025b 04        		.byte	0x4
+ 919 025c 36        		.byte	0x36
+ 920 025d 6800 0000 		.long	0x68
+ 921 0261 01        		.byte	0x1
+ 922 0262 05        		.byte	0x5
+ 923 0263 03        		.byte	0x3
+ 924 0264 0000 0000 		.long	CalibP1
+ 925 0268 14        		.uleb128 0x14
+ 926 0269 0000 0000 		.long	.LASF29
+ 927 026d 04        		.byte	0x4
+ 928 026e 37        		.byte	0x37
+ 929 026f 6800 0000 		.long	0x68
+ 930 0273 01        		.byte	0x1
+ 931 0274 05        		.byte	0x5
+ 932 0275 03        		.byte	0x3
+ 933 0276 0000 0000 		.long	CalibP2
+ 934 027a 14        		.uleb128 0x14
+ 935 027b 0000 0000 		.long	.LASF30
+ 936 027f 04        		.byte	0x4
+ 937 0280 38        		.byte	0x38
+ 938 0281 6800 0000 		.long	0x68
+ 939 0285 01        		.byte	0x1
+ 940 0286 05        		.byte	0x5
+ 941 0287 03        		.byte	0x3
+ 942 0288 0000 0000 		.long	CalibP3
+ 943 028c 14        		.uleb128 0x14
+ 944 028d 0000 0000 		.long	.LASF31
+ 945 0291 04        		.byte	0x4
+ 946 0292 39        		.byte	0x39
+ 947 0293 6800 0000 		.long	0x68
+ 948 0297 01        		.byte	0x1
+ 949 0298 05        		.byte	0x5
+ 950 0299 03        		.byte	0x3
+ 951 029a 0000 0000 		.long	CalibP4
+ 952 029e 14        		.uleb128 0x14
+ 953 029f 0000 0000 		.long	.LASF32
+ 954 02a3 04        		.byte	0x4
+ 955 02a4 3A        		.byte	0x3a
+ 956 02a5 6800 0000 		.long	0x68
+ 957 02a9 01        		.byte	0x1
+ 958 02aa 05        		.byte	0x5
+ 959 02ab 03        		.byte	0x3
+ 960 02ac 0000 0000 		.long	CalibP5
+ 961 02b0 14        		.uleb128 0x14
+ 962 02b1 0000 0000 		.long	.LASF33
+ 963 02b5 04        		.byte	0x4
+ 964 02b6 3B        		.byte	0x3b
+ 965 02b7 6800 0000 		.long	0x68
+ 966 02bb 01        		.byte	0x1
+ 967 02bc 05        		.byte	0x5
+ 968 02bd 03        		.byte	0x3
+ 969 02be 0000 0000 		.long	CalibP6
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 18
+
+
+ 970 02c2 14        		.uleb128 0x14
+ 971 02c3 0000 0000 		.long	.LASF34
+ 972 02c7 04        		.byte	0x4
+ 973 02c8 3D        		.byte	0x3d
+ 974 02c9 6800 0000 		.long	0x68
+ 975 02cd 01        		.byte	0x1
+ 976 02ce 05        		.byte	0x5
+ 977 02cf 03        		.byte	0x3
+ 978 02d0 0000 0000 		.long	GripperCorrection
+ 979 02d4 14        		.uleb128 0x14
+ 980 02d5 0000 0000 		.long	.LASF35
+ 981 02d9 04        		.byte	0x4
+ 982 02da 43        		.byte	0x43
+ 983 02db 6800 0000 		.long	0x68
+ 984 02df 01        		.byte	0x1
+ 985 02e0 05        		.byte	0x5
+ 986 02e1 03        		.byte	0x3
+ 987 02e2 0000 0000 		.long	MainPotAngle
+ 988 02e6 14        		.uleb128 0x14
+ 989 02e7 0000 0000 		.long	.LASF36
+ 990 02eb 04        		.byte	0x4
+ 991 02ec 44        		.byte	0x44
+ 992 02ed 6800 0000 		.long	0x68
+ 993 02f1 01        		.byte	0x1
+ 994 02f2 05        		.byte	0x5
+ 995 02f3 03        		.byte	0x3
+ 996 02f4 0000 0000 		.long	ServoAngle
+ 997 02f8 14        		.uleb128 0x14
+ 998 02f9 0000 0000 		.long	.LASF37
+ 999 02fd 04        		.byte	0x4
+ 1000 02fe 45        		.byte	0x45
+ 1001 02ff 5D00 0000 		.long	0x5d
+ 1002 0303 01        		.byte	0x1
+ 1003 0304 05        		.byte	0x5
+ 1004 0305 03        		.byte	0x3
+ 1005 0306 0000 0000 		.long	HallSensor
+ 1006 030a 14        		.uleb128 0x14
+ 1007 030b 0000 0000 		.long	.LASF38
+ 1008 030f 04        		.byte	0x4
+ 1009 0310 47        		.byte	0x47
+ 1010 0311 5D00 0000 		.long	0x5d
+ 1011 0315 01        		.byte	0x1
+ 1012 0316 05        		.byte	0x5
+ 1013 0317 03        		.byte	0x3
+ 1014 0318 0000 0000 		.long	myClass
+ 1015 031c 14        		.uleb128 0x14
+ 1016 031d 0000 0000 		.long	.LASF39
+ 1017 0321 04        		.byte	0x4
+ 1018 0322 48        		.byte	0x48
+ 1019 0323 5D00 0000 		.long	0x5d
+ 1020 0327 01        		.byte	0x1
+ 1021 0328 05        		.byte	0x5
+ 1022 0329 03        		.byte	0x3
+ 1023 032a 0000 0000 		.long	myAddress
+ 1024 032e 14        		.uleb128 0x14
+ 1025 032f 0000 0000 		.long	.LASF40
+ 1026 0333 04        		.byte	0x4
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 19
+
+
+ 1027 0334 4B        		.byte	0x4b
+ 1028 0335 5D00 0000 		.long	0x5d
+ 1029 0339 01        		.byte	0x1
+ 1030 033a 05        		.byte	0x5
+ 1031 033b 03        		.byte	0x3
+ 1032 033c 0000 0000 		.long	OutputPinSet
+ 1033 0340 15        		.uleb128 0x15
+ 1034 0341 3300 0000 		.long	0x33
+ 1035 0345 5003 0000 		.long	0x350
+ 1036 0349 16        		.uleb128 0x16
+ 1037 034a 5003 0000 		.long	0x350
+ 1038 034e 7F        		.byte	0x7f
+ 1039 034f 00        		.byte	0x0
+ 1040 0350 17        		.uleb128 0x17
+ 1041 0351 02        		.byte	0x2
+ 1042 0352 07        		.byte	0x7
+ 1043 0353 14        		.uleb128 0x14
+ 1044 0354 0000 0000 		.long	.LASF41
+ 1045 0358 05        		.byte	0x5
+ 1046 0359 21        		.byte	0x21
+ 1047 035a 4003 0000 		.long	0x340
+ 1048 035e 01        		.byte	0x1
+ 1049 035f 05        		.byte	0x5
+ 1050 0360 03        		.byte	0x3
+ 1051 0361 0000 0000 		.long	cmdBufferData
+ 1052 0365 14        		.uleb128 0x14
+ 1053 0366 0000 0000 		.long	.LASF42
+ 1054 036a 05        		.byte	0x5
+ 1055 036b 22        		.byte	0x22
+ 1056 036c D300 0000 		.long	0xd3
+ 1057 0370 01        		.byte	0x1
+ 1058 0371 05        		.byte	0x5
+ 1059 0372 03        		.byte	0x3
+ 1060 0373 0000 0000 		.long	cmdBuffer
+ 1061 0377 14        		.uleb128 0x14
+ 1062 0378 0000 0000 		.long	.LASF43
+ 1063 037c 01        		.byte	0x1
+ 1064 037d 13        		.byte	0x13
+ 1065 037e 6800 0000 		.long	0x68
+ 1066 0382 01        		.byte	0x1
+ 1067 0383 05        		.byte	0x5
+ 1068 0384 03        		.byte	0x3
+ 1069 0385 0000 0000 		.long	timeout_length
+ 1070 0389 14        		.uleb128 0x14
+ 1071 038a 0000 0000 		.long	.LASF44
+ 1072 038e 01        		.byte	0x1
+ 1073 038f 14        		.byte	0x14
+ 1074 0390 6800 0000 		.long	0x68
+ 1075 0394 01        		.byte	0x1
+ 1076 0395 05        		.byte	0x5
+ 1077 0396 03        		.byte	0x3
+ 1078 0397 0000 0000 		.long	timeout_tics
+ 1079 039b 00        		.byte	0x0
+ 1080               		.section	.debug_abbrev
+ 1081 0000 01        		.uleb128 0x1
+ 1082 0001 11        		.uleb128 0x11
+ 1083 0002 01        		.byte	0x1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 20
+
+
+ 1084 0003 25        		.uleb128 0x25
+ 1085 0004 0E        		.uleb128 0xe
+ 1086 0005 13        		.uleb128 0x13
+ 1087 0006 0B        		.uleb128 0xb
+ 1088 0007 03        		.uleb128 0x3
+ 1089 0008 0E        		.uleb128 0xe
+ 1090 0009 1B        		.uleb128 0x1b
+ 1091 000a 0E        		.uleb128 0xe
+ 1092 000b 11        		.uleb128 0x11
+ 1093 000c 01        		.uleb128 0x1
+ 1094 000d 12        		.uleb128 0x12
+ 1095 000e 01        		.uleb128 0x1
+ 1096 000f 10        		.uleb128 0x10
+ 1097 0010 06        		.uleb128 0x6
+ 1098 0011 00        		.byte	0x0
+ 1099 0012 00        		.byte	0x0
+ 1100 0013 02        		.uleb128 0x2
+ 1101 0014 24        		.uleb128 0x24
+ 1102 0015 00        		.byte	0x0
+ 1103 0016 0B        		.uleb128 0xb
+ 1104 0017 0B        		.uleb128 0xb
+ 1105 0018 3E        		.uleb128 0x3e
+ 1106 0019 0B        		.uleb128 0xb
+ 1107 001a 03        		.uleb128 0x3
+ 1108 001b 0E        		.uleb128 0xe
+ 1109 001c 00        		.byte	0x0
+ 1110 001d 00        		.byte	0x0
+ 1111 001e 03        		.uleb128 0x3
+ 1112 001f 24        		.uleb128 0x24
+ 1113 0020 00        		.byte	0x0
+ 1114 0021 0B        		.uleb128 0xb
+ 1115 0022 0B        		.uleb128 0xb
+ 1116 0023 3E        		.uleb128 0x3e
+ 1117 0024 0B        		.uleb128 0xb
+ 1118 0025 03        		.uleb128 0x3
+ 1119 0026 08        		.uleb128 0x8
+ 1120 0027 00        		.byte	0x0
+ 1121 0028 00        		.byte	0x0
+ 1122 0029 04        		.uleb128 0x4
+ 1123 002a 16        		.uleb128 0x16
+ 1124 002b 00        		.byte	0x0
+ 1125 002c 03        		.uleb128 0x3
+ 1126 002d 08        		.uleb128 0x8
+ 1127 002e 3A        		.uleb128 0x3a
+ 1128 002f 0B        		.uleb128 0xb
+ 1129 0030 3B        		.uleb128 0x3b
+ 1130 0031 0B        		.uleb128 0xb
+ 1131 0032 49        		.uleb128 0x49
+ 1132 0033 13        		.uleb128 0x13
+ 1133 0034 00        		.byte	0x0
+ 1134 0035 00        		.byte	0x0
+ 1135 0036 05        		.uleb128 0x5
+ 1136 0037 13        		.uleb128 0x13
+ 1137 0038 01        		.byte	0x1
+ 1138 0039 03        		.uleb128 0x3
+ 1139 003a 0E        		.uleb128 0xe
+ 1140 003b 0B        		.uleb128 0xb
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 21
+
+
+ 1141 003c 0B        		.uleb128 0xb
+ 1142 003d 3A        		.uleb128 0x3a
+ 1143 003e 0B        		.uleb128 0xb
+ 1144 003f 3B        		.uleb128 0x3b
+ 1145 0040 0B        		.uleb128 0xb
+ 1146 0041 01        		.uleb128 0x1
+ 1147 0042 13        		.uleb128 0x13
+ 1148 0043 00        		.byte	0x0
+ 1149 0044 00        		.byte	0x0
+ 1150 0045 06        		.uleb128 0x6
+ 1151 0046 0D        		.uleb128 0xd
+ 1152 0047 00        		.byte	0x0
+ 1153 0048 03        		.uleb128 0x3
+ 1154 0049 0E        		.uleb128 0xe
+ 1155 004a 3A        		.uleb128 0x3a
+ 1156 004b 0B        		.uleb128 0xb
+ 1157 004c 3B        		.uleb128 0x3b
+ 1158 004d 0B        		.uleb128 0xb
+ 1159 004e 49        		.uleb128 0x49
+ 1160 004f 13        		.uleb128 0x13
+ 1161 0050 38        		.uleb128 0x38
+ 1162 0051 0A        		.uleb128 0xa
+ 1163 0052 00        		.byte	0x0
+ 1164 0053 00        		.byte	0x0
+ 1165 0054 07        		.uleb128 0x7
+ 1166 0055 0F        		.uleb128 0xf
+ 1167 0056 00        		.byte	0x0
+ 1168 0057 0B        		.uleb128 0xb
+ 1169 0058 0B        		.uleb128 0xb
+ 1170 0059 49        		.uleb128 0x49
+ 1171 005a 13        		.uleb128 0x13
+ 1172 005b 00        		.byte	0x0
+ 1173 005c 00        		.byte	0x0
+ 1174 005d 08        		.uleb128 0x8
+ 1175 005e 16        		.uleb128 0x16
+ 1176 005f 00        		.byte	0x0
+ 1177 0060 03        		.uleb128 0x3
+ 1178 0061 0E        		.uleb128 0xe
+ 1179 0062 3A        		.uleb128 0x3a
+ 1180 0063 0B        		.uleb128 0xb
+ 1181 0064 3B        		.uleb128 0x3b
+ 1182 0065 0B        		.uleb128 0xb
+ 1183 0066 49        		.uleb128 0x49
+ 1184 0067 13        		.uleb128 0x13
+ 1185 0068 00        		.byte	0x0
+ 1186 0069 00        		.byte	0x0
+ 1187 006a 09        		.uleb128 0x9
+ 1188 006b 2E        		.uleb128 0x2e
+ 1189 006c 01        		.byte	0x1
+ 1190 006d 3F        		.uleb128 0x3f
+ 1191 006e 0C        		.uleb128 0xc
+ 1192 006f 03        		.uleb128 0x3
+ 1193 0070 0E        		.uleb128 0xe
+ 1194 0071 3A        		.uleb128 0x3a
+ 1195 0072 0B        		.uleb128 0xb
+ 1196 0073 3B        		.uleb128 0x3b
+ 1197 0074 0B        		.uleb128 0xb
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 22
+
+
+ 1198 0075 27        		.uleb128 0x27
+ 1199 0076 0C        		.uleb128 0xc
+ 1200 0077 11        		.uleb128 0x11
+ 1201 0078 01        		.uleb128 0x1
+ 1202 0079 12        		.uleb128 0x12
+ 1203 007a 01        		.uleb128 0x1
+ 1204 007b 40        		.uleb128 0x40
+ 1205 007c 0A        		.uleb128 0xa
+ 1206 007d 01        		.uleb128 0x1
+ 1207 007e 13        		.uleb128 0x13
+ 1208 007f 00        		.byte	0x0
+ 1209 0080 00        		.byte	0x0
+ 1210 0081 0A        		.uleb128 0xa
+ 1211 0082 05        		.uleb128 0x5
+ 1212 0083 00        		.byte	0x0
+ 1213 0084 03        		.uleb128 0x3
+ 1214 0085 08        		.uleb128 0x8
+ 1215 0086 3A        		.uleb128 0x3a
+ 1216 0087 0B        		.uleb128 0xb
+ 1217 0088 3B        		.uleb128 0x3b
+ 1218 0089 0B        		.uleb128 0xb
+ 1219 008a 49        		.uleb128 0x49
+ 1220 008b 13        		.uleb128 0x13
+ 1221 008c 02        		.uleb128 0x2
+ 1222 008d 06        		.uleb128 0x6
+ 1223 008e 00        		.byte	0x0
+ 1224 008f 00        		.byte	0x0
+ 1225 0090 0B        		.uleb128 0xb
+ 1226 0091 34        		.uleb128 0x34
+ 1227 0092 00        		.byte	0x0
+ 1228 0093 03        		.uleb128 0x3
+ 1229 0094 08        		.uleb128 0x8
+ 1230 0095 3A        		.uleb128 0x3a
+ 1231 0096 0B        		.uleb128 0xb
+ 1232 0097 3B        		.uleb128 0x3b
+ 1233 0098 0B        		.uleb128 0xb
+ 1234 0099 49        		.uleb128 0x49
+ 1235 009a 13        		.uleb128 0x13
+ 1236 009b 00        		.byte	0x0
+ 1237 009c 00        		.byte	0x0
+ 1238 009d 0C        		.uleb128 0xc
+ 1239 009e 2E        		.uleb128 0x2e
+ 1240 009f 00        		.byte	0x0
+ 1241 00a0 3F        		.uleb128 0x3f
+ 1242 00a1 0C        		.uleb128 0xc
+ 1243 00a2 03        		.uleb128 0x3
+ 1244 00a3 0E        		.uleb128 0xe
+ 1245 00a4 3A        		.uleb128 0x3a
+ 1246 00a5 0B        		.uleb128 0xb
+ 1247 00a6 3B        		.uleb128 0x3b
+ 1248 00a7 0B        		.uleb128 0xb
+ 1249 00a8 27        		.uleb128 0x27
+ 1250 00a9 0C        		.uleb128 0xc
+ 1251 00aa 11        		.uleb128 0x11
+ 1252 00ab 01        		.uleb128 0x1
+ 1253 00ac 12        		.uleb128 0x12
+ 1254 00ad 01        		.uleb128 0x1
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 23
+
+
+ 1255 00ae 40        		.uleb128 0x40
+ 1256 00af 0A        		.uleb128 0xa
+ 1257 00b0 00        		.byte	0x0
+ 1258 00b1 00        		.byte	0x0
+ 1259 00b2 0D        		.uleb128 0xd
+ 1260 00b3 05        		.uleb128 0x5
+ 1261 00b4 00        		.byte	0x0
+ 1262 00b5 03        		.uleb128 0x3
+ 1263 00b6 0E        		.uleb128 0xe
+ 1264 00b7 3A        		.uleb128 0x3a
+ 1265 00b8 0B        		.uleb128 0xb
+ 1266 00b9 3B        		.uleb128 0x3b
+ 1267 00ba 0B        		.uleb128 0xb
+ 1268 00bb 49        		.uleb128 0x49
+ 1269 00bc 13        		.uleb128 0x13
+ 1270 00bd 02        		.uleb128 0x2
+ 1271 00be 06        		.uleb128 0x6
+ 1272 00bf 00        		.byte	0x0
+ 1273 00c0 00        		.byte	0x0
+ 1274 00c1 0E        		.uleb128 0xe
+ 1275 00c2 34        		.uleb128 0x34
+ 1276 00c3 00        		.byte	0x0
+ 1277 00c4 03        		.uleb128 0x3
+ 1278 00c5 0E        		.uleb128 0xe
+ 1279 00c6 3A        		.uleb128 0x3a
+ 1280 00c7 0B        		.uleb128 0xb
+ 1281 00c8 3B        		.uleb128 0x3b
+ 1282 00c9 0B        		.uleb128 0xb
+ 1283 00ca 49        		.uleb128 0x49
+ 1284 00cb 13        		.uleb128 0x13
+ 1285 00cc 02        		.uleb128 0x2
+ 1286 00cd 06        		.uleb128 0x6
+ 1287 00ce 00        		.byte	0x0
+ 1288 00cf 00        		.byte	0x0
+ 1289 00d0 0F        		.uleb128 0xf
+ 1290 00d1 34        		.uleb128 0x34
+ 1291 00d2 00        		.byte	0x0
+ 1292 00d3 03        		.uleb128 0x3
+ 1293 00d4 0E        		.uleb128 0xe
+ 1294 00d5 3A        		.uleb128 0x3a
+ 1295 00d6 0B        		.uleb128 0xb
+ 1296 00d7 3B        		.uleb128 0x3b
+ 1297 00d8 0B        		.uleb128 0xb
+ 1298 00d9 49        		.uleb128 0x49
+ 1299 00da 13        		.uleb128 0x13
+ 1300 00db 02        		.uleb128 0x2
+ 1301 00dc 0A        		.uleb128 0xa
+ 1302 00dd 00        		.byte	0x0
+ 1303 00de 00        		.byte	0x0
+ 1304 00df 10        		.uleb128 0x10
+ 1305 00e0 15        		.uleb128 0x15
+ 1306 00e1 01        		.byte	0x1
+ 1307 00e2 27        		.uleb128 0x27
+ 1308 00e3 0C        		.uleb128 0xc
+ 1309 00e4 01        		.uleb128 0x1
+ 1310 00e5 13        		.uleb128 0x13
+ 1311 00e6 00        		.byte	0x0
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 24
+
+
+ 1312 00e7 00        		.byte	0x0
+ 1313 00e8 11        		.uleb128 0x11
+ 1314 00e9 05        		.uleb128 0x5
+ 1315 00ea 00        		.byte	0x0
+ 1316 00eb 49        		.uleb128 0x49
+ 1317 00ec 13        		.uleb128 0x13
+ 1318 00ed 00        		.byte	0x0
+ 1319 00ee 00        		.byte	0x0
+ 1320 00ef 12        		.uleb128 0x12
+ 1321 00f0 2E        		.uleb128 0x2e
+ 1322 00f1 01        		.byte	0x1
+ 1323 00f2 3F        		.uleb128 0x3f
+ 1324 00f3 0C        		.uleb128 0xc
+ 1325 00f4 03        		.uleb128 0x3
+ 1326 00f5 0E        		.uleb128 0xe
+ 1327 00f6 3A        		.uleb128 0x3a
+ 1328 00f7 0B        		.uleb128 0xb
+ 1329 00f8 3B        		.uleb128 0x3b
+ 1330 00f9 0B        		.uleb128 0xb
+ 1331 00fa 27        		.uleb128 0x27
+ 1332 00fb 0C        		.uleb128 0xc
+ 1333 00fc 49        		.uleb128 0x49
+ 1334 00fd 13        		.uleb128 0x13
+ 1335 00fe 11        		.uleb128 0x11
+ 1336 00ff 01        		.uleb128 0x1
+ 1337 0100 12        		.uleb128 0x12
+ 1338 0101 01        		.uleb128 0x1
+ 1339 0102 40        		.uleb128 0x40
+ 1340 0103 0A        		.uleb128 0xa
+ 1341 0104 01        		.uleb128 0x1
+ 1342 0105 13        		.uleb128 0x13
+ 1343 0106 00        		.byte	0x0
+ 1344 0107 00        		.byte	0x0
+ 1345 0108 13        		.uleb128 0x13
+ 1346 0109 34        		.uleb128 0x34
+ 1347 010a 00        		.byte	0x0
+ 1348 010b 03        		.uleb128 0x3
+ 1349 010c 08        		.uleb128 0x8
+ 1350 010d 3A        		.uleb128 0x3a
+ 1351 010e 0B        		.uleb128 0xb
+ 1352 010f 3B        		.uleb128 0x3b
+ 1353 0110 0B        		.uleb128 0xb
+ 1354 0111 49        		.uleb128 0x49
+ 1355 0112 13        		.uleb128 0x13
+ 1356 0113 02        		.uleb128 0x2
+ 1357 0114 0A        		.uleb128 0xa
+ 1358 0115 00        		.byte	0x0
+ 1359 0116 00        		.byte	0x0
+ 1360 0117 14        		.uleb128 0x14
+ 1361 0118 34        		.uleb128 0x34
+ 1362 0119 00        		.byte	0x0
+ 1363 011a 03        		.uleb128 0x3
+ 1364 011b 0E        		.uleb128 0xe
+ 1365 011c 3A        		.uleb128 0x3a
+ 1366 011d 0B        		.uleb128 0xb
+ 1367 011e 3B        		.uleb128 0x3b
+ 1368 011f 0B        		.uleb128 0xb
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 25
+
+
+ 1369 0120 49        		.uleb128 0x49
+ 1370 0121 13        		.uleb128 0x13
+ 1371 0122 3F        		.uleb128 0x3f
+ 1372 0123 0C        		.uleb128 0xc
+ 1373 0124 02        		.uleb128 0x2
+ 1374 0125 0A        		.uleb128 0xa
+ 1375 0126 00        		.byte	0x0
+ 1376 0127 00        		.byte	0x0
+ 1377 0128 15        		.uleb128 0x15
+ 1378 0129 01        		.uleb128 0x1
+ 1379 012a 01        		.byte	0x1
+ 1380 012b 49        		.uleb128 0x49
+ 1381 012c 13        		.uleb128 0x13
+ 1382 012d 01        		.uleb128 0x1
+ 1383 012e 13        		.uleb128 0x13
+ 1384 012f 00        		.byte	0x0
+ 1385 0130 00        		.byte	0x0
+ 1386 0131 16        		.uleb128 0x16
+ 1387 0132 21        		.uleb128 0x21
+ 1388 0133 00        		.byte	0x0
+ 1389 0134 49        		.uleb128 0x49
+ 1390 0135 13        		.uleb128 0x13
+ 1391 0136 2F        		.uleb128 0x2f
+ 1392 0137 0B        		.uleb128 0xb
+ 1393 0138 00        		.byte	0x0
+ 1394 0139 00        		.byte	0x0
+ 1395 013a 17        		.uleb128 0x17
+ 1396 013b 24        		.uleb128 0x24
+ 1397 013c 00        		.byte	0x0
+ 1398 013d 0B        		.uleb128 0xb
+ 1399 013e 0B        		.uleb128 0xb
+ 1400 013f 3E        		.uleb128 0x3e
+ 1401 0140 0B        		.uleb128 0xb
+ 1402 0141 00        		.byte	0x0
+ 1403 0142 00        		.byte	0x0
+ 1404 0143 00        		.byte	0x0
+ 1405               		.section	.debug_pubnames,"",@progbits
+ 1406 0000 8201 0000 		.long	0x182
+ 1407 0004 0200      		.word	0x2
+ 1408 0006 0000 0000 		.long	.Ldebug_info0
+ 1409 000a 9C03 0000 		.long	0x39c
+ 1410 000e DE00 0000 		.long	0xde
+ 1411 0012 6465 6C61 		.string	"delay_micro"
+ 1411      795F 6D69 
+ 1411      6372 6F00 
+ 1412 001e 0E01 0000 		.long	0x10e
+ 1413 0022 636D 645F 		.string	"cmd_Flush"
+ 1413      466C 7573 
+ 1413      6800 
+ 1414 002c 2201 0000 		.long	0x122
+ 1415 0030 636D 645F 		.string	"cmd_Execute"
+ 1415      4578 6563 
+ 1415      7574 6500 
+ 1416 003c 8101 0000 		.long	0x181
+ 1417 0040 636D 645F 		.string	"cmd_AddByteToEnd"
+ 1417      4164 6442 
+ 1417      7974 6554 
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 26
+
+
+ 1417      6F45 6E64 
+ 1417      00
+ 1418 0051 AB01 0000 		.long	0x1ab
+ 1419 0055 636D 645F 		.string	"cmd_BuildPacket"
+ 1419      4275 696C 
+ 1419      6450 6163 
+ 1419      6B65 7400 
+ 1420 0065 2E02 0000 		.long	0x22e
+ 1421 0069 636D 645F 		.string	"cmd_Init"
+ 1421      496E 6974 
+ 1421      00
+ 1422 0072 4202 0000 		.long	0x242
+ 1423 0076 636F 6E66 		.string	"configCommBuses"
+ 1423      6967 436F 
+ 1423      6D6D 4275 
+ 1423      7365 7300 
+ 1424 0086 5602 0000 		.long	0x256
+ 1425 008a 4361 6C69 		.string	"CalibP1"
+ 1425      6250 3100 
+ 1426 0092 6802 0000 		.long	0x268
+ 1427 0096 4361 6C69 		.string	"CalibP2"
+ 1427      6250 3200 
+ 1428 009e 7A02 0000 		.long	0x27a
+ 1429 00a2 4361 6C69 		.string	"CalibP3"
+ 1429      6250 3300 
+ 1430 00aa 8C02 0000 		.long	0x28c
+ 1431 00ae 4361 6C69 		.string	"CalibP4"
+ 1431      6250 3400 
+ 1432 00b6 9E02 0000 		.long	0x29e
+ 1433 00ba 4361 6C69 		.string	"CalibP5"
+ 1433      6250 3500 
+ 1434 00c2 B002 0000 		.long	0x2b0
+ 1435 00c6 4361 6C69 		.string	"CalibP6"
+ 1435      6250 3600 
+ 1436 00ce C202 0000 		.long	0x2c2
+ 1437 00d2 4772 6970 		.string	"GripperCorrection"
+ 1437      7065 7243 
+ 1437      6F72 7265 
+ 1437      6374 696F 
+ 1437      6E00 
+ 1438 00e4 D402 0000 		.long	0x2d4
+ 1439 00e8 4D61 696E 		.string	"MainPotAngle"
+ 1439      506F 7441 
+ 1439      6E67 6C65 
+ 1439      00
+ 1440 00f5 E602 0000 		.long	0x2e6
+ 1441 00f9 5365 7276 		.string	"ServoAngle"
+ 1441      6F41 6E67 
+ 1441      6C65 00
+ 1442 0104 F802 0000 		.long	0x2f8
+ 1443 0108 4861 6C6C 		.string	"HallSensor"
+ 1443      5365 6E73 
+ 1443      6F72 00
+ 1444 0113 0A03 0000 		.long	0x30a
+ 1445 0117 6D79 436C 		.string	"myClass"
+ 1445      6173 7300 
+ 1446 011f 1C03 0000 		.long	0x31c
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 27
+
+
+ 1447 0123 6D79 4164 		.string	"myAddress"
+ 1447      6472 6573 
+ 1447      7300 
+ 1448 012d 2E03 0000 		.long	0x32e
+ 1449 0131 4F75 7470 		.string	"OutputPinSet"
+ 1449      7574 5069 
+ 1449      6E53 6574 
+ 1449      00
+ 1450 013e 5303 0000 		.long	0x353
+ 1451 0142 636D 6442 		.string	"cmdBufferData"
+ 1451      7566 6665 
+ 1451      7244 6174 
+ 1451      6100 
+ 1452 0150 6503 0000 		.long	0x365
+ 1453 0154 636D 6442 		.string	"cmdBuffer"
+ 1453      7566 6665 
+ 1453      7200 
+ 1454 015e 7703 0000 		.long	0x377
+ 1455 0162 7469 6D65 		.string	"timeout_length"
+ 1455      6F75 745F 
+ 1455      6C65 6E67 
+ 1455      7468 00
+ 1456 0171 8903 0000 		.long	0x389
+ 1457 0175 7469 6D65 		.string	"timeout_tics"
+ 1457      6F75 745F 
+ 1457      7469 6373 
+ 1457      00
+ 1458 0182 0000 0000 		.long	0x0
+ 1459               		.section	.debug_aranges,"",@progbits
+ 1460 0000 1C00 0000 		.long	0x1c
+ 1461 0004 0200      		.word	0x2
+ 1462 0006 0000 0000 		.long	.Ldebug_info0
+ 1463 000a 04        		.byte	0x4
+ 1464 000b 00        		.byte	0x0
+ 1465 000c 0000      		.word	0x0
+ 1466 000e 0000      		.word	0x0
+ 1467 0010 0000 0000 		.long	.Ltext0
+ 1468 0014 A001 0000 		.long	.Letext0-.Ltext0
+ 1469 0018 0000 0000 		.long	0x0
+ 1470 001c 0000 0000 		.long	0x0
+ 1471               		.section	.debug_line
+ 1472 0000 9D02 0000 		.long	.LELT0-.LSLT0
+ 1473               	.LSLT0:
+ 1474 0004 0200      		.word	0x2
+ 1475 0006 7200 0000 		.long	.LELTP0-.LASLTP0
+ 1476               	.LASLTP0:
+ 1477 000a 01        		.byte	0x1
+ 1478 000b 01        		.byte	0x1
+ 1479 000c F6        		.byte	0xf6
+ 1480 000d F5        		.byte	0xf5
+ 1481 000e 0A        		.byte	0xa
+ 1482 000f 00        		.byte	0x0
+ 1483 0010 01        		.byte	0x1
+ 1484 0011 01        		.byte	0x1
+ 1485 0012 01        		.byte	0x1
+ 1486 0013 01        		.byte	0x1
+ 1487 0014 00        		.byte	0x0
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 28
+
+
+ 1488 0015 00        		.byte	0x0
+ 1489 0016 00        		.byte	0x0
+ 1490 0017 01        		.byte	0x1
+ 1491 0018 443A 5C57 		.ascii	"D:\\WinAVR\\avrlib"
+ 1491      696E 4156 
+ 1491      525C 6176 
+ 1491      726C 6962 
+ 1492 0028 00        		.byte	0
+ 1493 0029 00        		.byte	0x0
+ 1494 002a 6D6F 6C65 		.string	"molecubePacket.c"
+ 1494      6375 6265 
+ 1494      5061 636B 
+ 1494      6574 2E63 
+ 1494      00
+ 1495 003b 00        		.uleb128 0x0
+ 1496 003c 00        		.uleb128 0x0
+ 1497 003d 00        		.uleb128 0x0
+ 1498 003e 6176 726C 		.string	"avrlibtypes.h"
+ 1498      6962 7479 
+ 1498      7065 732E 
+ 1498      6800 
+ 1499 004c 01        		.uleb128 0x1
+ 1500 004d 00        		.uleb128 0x0
+ 1501 004e 00        		.uleb128 0x0
+ 1502 004f 6275 6666 		.string	"buffer.h"
+ 1502      6572 2E68 
+ 1502      00
+ 1503 0058 01        		.uleb128 0x1
+ 1504 0059 00        		.uleb128 0x0
+ 1505 005a 00        		.uleb128 0x0
+ 1506 005b 676C 6F62 		.string	"global.h"
+ 1506      616C 2E68 
+ 1506      00
+ 1507 0064 00        		.uleb128 0x0
+ 1508 0065 00        		.uleb128 0x0
+ 1509 0066 00        		.uleb128 0x0
+ 1510 0067 6D6F 6C65 		.string	"molecubePacket.h"
+ 1510      6375 6265 
+ 1510      5061 636B 
+ 1510      6574 2E68 
+ 1510      00
+ 1511 0078 00        		.uleb128 0x0
+ 1512 0079 00        		.uleb128 0x0
+ 1513 007a 00        		.uleb128 0x0
+ 1514 007b 00        		.byte	0x0
+ 1515               	.LELTP0:
+ 1516 007c 00        		.byte	0x0
+ 1517 007d 05        		.uleb128 0x5
+ 1518 007e 02        		.byte	0x2
+ 1519 007f 0000 0000 		.long	.LM1
+ 1520 0083 D7        		.byte	0xd7
+ 1521 0084 00        		.byte	0x0
+ 1522 0085 05        		.uleb128 0x5
+ 1523 0086 02        		.byte	0x2
+ 1524 0087 0000 0000 		.long	.LM2
+ 1525 008b 16        		.byte	0x16
+ 1526 008c 00        		.byte	0x0
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 29
+
+
+ 1527 008d 05        		.uleb128 0x5
+ 1528 008e 02        		.byte	0x2
+ 1529 008f 0000 0000 		.long	.LM3
+ 1530 0093 16        		.byte	0x16
+ 1531 0094 00        		.byte	0x0
+ 1532 0095 05        		.uleb128 0x5
+ 1533 0096 02        		.byte	0x2
+ 1534 0097 0000 0000 		.long	.LM4
+ 1535 009b 15        		.byte	0x15
+ 1536 009c 00        		.byte	0x0
+ 1537 009d 05        		.uleb128 0x5
+ 1538 009e 02        		.byte	0x2
+ 1539 009f 0000 0000 		.long	.LM5
+ 1540 00a3 11        		.byte	0x11
+ 1541 00a4 00        		.byte	0x0
+ 1542 00a5 05        		.uleb128 0x5
+ 1543 00a6 02        		.byte	0x2
+ 1544 00a7 0000 0000 		.long	.LM6
+ 1545 00ab 03        		.byte	0x3
+ 1546 00ac 817F      		.sleb128 -127
+ 1547 00ae 01        		.byte	0x1
+ 1548 00af 00        		.byte	0x0
+ 1549 00b0 05        		.uleb128 0x5
+ 1550 00b1 02        		.byte	0x2
+ 1551 00b2 0000 0000 		.long	.LM7
+ 1552 00b6 15        		.byte	0x15
+ 1553 00b7 00        		.byte	0x0
+ 1554 00b8 05        		.uleb128 0x5
+ 1555 00b9 02        		.byte	0x2
+ 1556 00ba 0000 0000 		.long	.LM8
+ 1557 00be 17        		.byte	0x17
+ 1558 00bf 00        		.byte	0x0
+ 1559 00c0 05        		.uleb128 0x5
+ 1560 00c1 02        		.byte	0x2
+ 1561 00c2 0000 0000 		.long	.LM9
+ 1562 00c6 18        		.byte	0x18
+ 1563 00c7 00        		.byte	0x0
+ 1564 00c8 05        		.uleb128 0x5
+ 1565 00c9 02        		.byte	0x2
+ 1566 00ca 0000 0000 		.long	.LM10
+ 1567 00ce 18        		.byte	0x18
+ 1568 00cf 00        		.byte	0x0
+ 1569 00d0 05        		.uleb128 0x5
+ 1570 00d1 02        		.byte	0x2
+ 1571 00d2 0000 0000 		.long	.LM11
+ 1572 00d6 15        		.byte	0x15
+ 1573 00d7 00        		.byte	0x0
+ 1574 00d8 05        		.uleb128 0x5
+ 1575 00d9 02        		.byte	0x2
+ 1576 00da 0000 0000 		.long	.LM12
+ 1577 00de 18        		.byte	0x18
+ 1578 00df 00        		.byte	0x0
+ 1579 00e0 05        		.uleb128 0x5
+ 1580 00e1 02        		.byte	0x2
+ 1581 00e2 0000 0000 		.long	.LM13
+ 1582 00e6 15        		.byte	0x15
+ 1583 00e7 00        		.byte	0x0
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 30
+
+
+ 1584 00e8 05        		.uleb128 0x5
+ 1585 00e9 02        		.byte	0x2
+ 1586 00ea 0000 0000 		.long	.LM14
+ 1587 00ee 22        		.byte	0x22
+ 1588 00ef 00        		.byte	0x0
+ 1589 00f0 05        		.uleb128 0x5
+ 1590 00f1 02        		.byte	0x2
+ 1591 00f2 0000 0000 		.long	.LM15
+ 1592 00f6 18        		.byte	0x18
+ 1593 00f7 00        		.byte	0x0
+ 1594 00f8 05        		.uleb128 0x5
+ 1595 00f9 02        		.byte	0x2
+ 1596 00fa 0000 0000 		.long	.LM16
+ 1597 00fe 15        		.byte	0x15
+ 1598 00ff 00        		.byte	0x0
+ 1599 0100 05        		.uleb128 0x5
+ 1600 0101 02        		.byte	0x2
+ 1601 0102 0000 0000 		.long	.LM17
+ 1602 0106 11        		.byte	0x11
+ 1603 0107 00        		.byte	0x0
+ 1604 0108 05        		.uleb128 0x5
+ 1605 0109 02        		.byte	0x2
+ 1606 010a 0000 0000 		.long	.LM18
+ 1607 010e 1B        		.byte	0x1b
+ 1608 010f 00        		.byte	0x0
+ 1609 0110 05        		.uleb128 0x5
+ 1610 0111 02        		.byte	0x2
+ 1611 0112 0000 0000 		.long	.LM19
+ 1612 0116 2C        		.byte	0x2c
+ 1613 0117 00        		.byte	0x0
+ 1614 0118 05        		.uleb128 0x5
+ 1615 0119 02        		.byte	0x2
+ 1616 011a 0000 0000 		.long	.LM20
+ 1617 011e 16        		.byte	0x16
+ 1618 011f 00        		.byte	0x0
+ 1619 0120 05        		.uleb128 0x5
+ 1620 0121 02        		.byte	0x2
+ 1621 0122 0000 0000 		.long	.LM21
+ 1622 0126 15        		.byte	0x15
+ 1623 0127 00        		.byte	0x0
+ 1624 0128 05        		.uleb128 0x5
+ 1625 0129 02        		.byte	0x2
+ 1626 012a 0000 0000 		.long	.LM22
+ 1627 012e 15        		.byte	0x15
+ 1628 012f 00        		.byte	0x0
+ 1629 0130 05        		.uleb128 0x5
+ 1630 0131 02        		.byte	0x2
+ 1631 0132 0000 0000 		.long	.LM23
+ 1632 0136 16        		.byte	0x16
+ 1633 0137 00        		.byte	0x0
+ 1634 0138 05        		.uleb128 0x5
+ 1635 0139 02        		.byte	0x2
+ 1636 013a 0000 0000 		.long	.LM24
+ 1637 013e 15        		.byte	0x15
+ 1638 013f 00        		.byte	0x0
+ 1639 0140 05        		.uleb128 0x5
+ 1640 0141 02        		.byte	0x2
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 31
+
+
+ 1641 0142 0000 0000 		.long	.LM25
+ 1642 0146 15        		.byte	0x15
+ 1643 0147 00        		.byte	0x0
+ 1644 0148 05        		.uleb128 0x5
+ 1645 0149 02        		.byte	0x2
+ 1646 014a 0000 0000 		.long	.LM26
+ 1647 014e 1A        		.byte	0x1a
+ 1648 014f 00        		.byte	0x0
+ 1649 0150 05        		.uleb128 0x5
+ 1650 0151 02        		.byte	0x2
+ 1651 0152 0000 0000 		.long	.LM27
+ 1652 0156 03        		.byte	0x3
+ 1653 0157 AD7F      		.sleb128 -83
+ 1654 0159 01        		.byte	0x1
+ 1655 015a 00        		.byte	0x0
+ 1656 015b 05        		.uleb128 0x5
+ 1657 015c 02        		.byte	0x2
+ 1658 015d 0000 0000 		.long	.LM28
+ 1659 0161 15        		.byte	0x15
+ 1660 0162 00        		.byte	0x0
+ 1661 0163 05        		.uleb128 0x5
+ 1662 0164 02        		.byte	0x2
+ 1663 0165 0000 0000 		.long	.LM29
+ 1664 0169 15        		.byte	0x15
+ 1665 016a 00        		.byte	0x0
+ 1666 016b 05        		.uleb128 0x5
+ 1667 016c 02        		.byte	0x2
+ 1668 016d 0000 0000 		.long	.LM30
+ 1669 0171 69        		.byte	0x69
+ 1670 0172 00        		.byte	0x0
+ 1671 0173 05        		.uleb128 0x5
+ 1672 0174 02        		.byte	0x2
+ 1673 0175 0000 0000 		.long	.LM31
+ 1674 0179 17        		.byte	0x17
+ 1675 017a 00        		.byte	0x0
+ 1676 017b 05        		.uleb128 0x5
+ 1677 017c 02        		.byte	0x2
+ 1678 017d 0000 0000 		.long	.LM32
+ 1679 0181 16        		.byte	0x16
+ 1680 0182 00        		.byte	0x0
+ 1681 0183 05        		.uleb128 0x5
+ 1682 0184 02        		.byte	0x2
+ 1683 0185 0000 0000 		.long	.LM33
+ 1684 0189 15        		.byte	0x15
+ 1685 018a 00        		.byte	0x0
+ 1686 018b 05        		.uleb128 0x5
+ 1687 018c 02        		.byte	0x2
+ 1688 018d 0000 0000 		.long	.LM34
+ 1689 0191 15        		.byte	0x15
+ 1690 0192 00        		.byte	0x0
+ 1691 0193 05        		.uleb128 0x5
+ 1692 0194 02        		.byte	0x2
+ 1693 0195 0000 0000 		.long	.LM35
+ 1694 0199 16        		.byte	0x16
+ 1695 019a 00        		.byte	0x0
+ 1696 019b 05        		.uleb128 0x5
+ 1697 019c 02        		.byte	0x2
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 32
+
+
+ 1698 019d 0000 0000 		.long	.LM36
+ 1699 01a1 18        		.byte	0x18
+ 1700 01a2 00        		.byte	0x0
+ 1701 01a3 05        		.uleb128 0x5
+ 1702 01a4 02        		.byte	0x2
+ 1703 01a5 0000 0000 		.long	.LM37
+ 1704 01a9 19        		.byte	0x19
+ 1705 01aa 00        		.byte	0x0
+ 1706 01ab 05        		.uleb128 0x5
+ 1707 01ac 02        		.byte	0x2
+ 1708 01ad 0000 0000 		.long	.LM38
+ 1709 01b1 17        		.byte	0x17
+ 1710 01b2 00        		.byte	0x0
+ 1711 01b3 05        		.uleb128 0x5
+ 1712 01b4 02        		.byte	0x2
+ 1713 01b5 0000 0000 		.long	.LM39
+ 1714 01b9 18        		.byte	0x18
+ 1715 01ba 00        		.byte	0x0
+ 1716 01bb 05        		.uleb128 0x5
+ 1717 01bc 02        		.byte	0x2
+ 1718 01bd 0000 0000 		.long	.LM40
+ 1719 01c1 15        		.byte	0x15
+ 1720 01c2 00        		.byte	0x0
+ 1721 01c3 05        		.uleb128 0x5
+ 1722 01c4 02        		.byte	0x2
+ 1723 01c5 0000 0000 		.long	.LM41
+ 1724 01c9 16        		.byte	0x16
+ 1725 01ca 00        		.byte	0x0
+ 1726 01cb 05        		.uleb128 0x5
+ 1727 01cc 02        		.byte	0x2
+ 1728 01cd 0000 0000 		.long	.LM42
+ 1729 01d1 18        		.byte	0x18
+ 1730 01d2 00        		.byte	0x0
+ 1731 01d3 05        		.uleb128 0x5
+ 1732 01d4 02        		.byte	0x2
+ 1733 01d5 0000 0000 		.long	.LM43
+ 1734 01d9 15        		.byte	0x15
+ 1735 01da 00        		.byte	0x0
+ 1736 01db 05        		.uleb128 0x5
+ 1737 01dc 02        		.byte	0x2
+ 1738 01dd 0000 0000 		.long	.LM44
+ 1739 01e1 11        		.byte	0x11
+ 1740 01e2 00        		.byte	0x0
+ 1741 01e3 05        		.uleb128 0x5
+ 1742 01e4 02        		.byte	0x2
+ 1743 01e5 0000 0000 		.long	.LM45
+ 1744 01e9 1A        		.byte	0x1a
+ 1745 01ea 00        		.byte	0x0
+ 1746 01eb 05        		.uleb128 0x5
+ 1747 01ec 02        		.byte	0x2
+ 1748 01ed 0000 0000 		.long	.LM46
+ 1749 01f1 15        		.byte	0x15
+ 1750 01f2 00        		.byte	0x0
+ 1751 01f3 05        		.uleb128 0x5
+ 1752 01f4 02        		.byte	0x2
+ 1753 01f5 0000 0000 		.long	.LM47
+ 1754 01f9 03        		.byte	0x3
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 33
+
+
+ 1755 01fa 807F      		.sleb128 -128
+ 1756 01fc 01        		.byte	0x1
+ 1757 01fd 00        		.byte	0x0
+ 1758 01fe 05        		.uleb128 0x5
+ 1759 01ff 02        		.byte	0x2
+ 1760 0200 0000 0000 		.long	.LM48
+ 1761 0204 15        		.byte	0x15
+ 1762 0205 00        		.byte	0x0
+ 1763 0206 05        		.uleb128 0x5
+ 1764 0207 02        		.byte	0x2
+ 1765 0208 0000 0000 		.long	.LM49
+ 1766 020c 03        		.byte	0x3
+ 1767 020d 58        		.sleb128 -40
+ 1768 020e 01        		.byte	0x1
+ 1769 020f 00        		.byte	0x0
+ 1770 0210 05        		.uleb128 0x5
+ 1771 0211 02        		.byte	0x2
+ 1772 0212 0000 0000 		.long	.LM50
+ 1773 0216 16        		.byte	0x16
+ 1774 0217 00        		.byte	0x0
+ 1775 0218 05        		.uleb128 0x5
+ 1776 0219 02        		.byte	0x2
+ 1777 021a 0000 0000 		.long	.LM51
+ 1778 021e 15        		.byte	0x15
+ 1779 021f 00        		.byte	0x0
+ 1780 0220 05        		.uleb128 0x5
+ 1781 0221 02        		.byte	0x2
+ 1782 0222 0000 0000 		.long	.LM52
+ 1783 0226 15        		.byte	0x15
+ 1784 0227 00        		.byte	0x0
+ 1785 0228 05        		.uleb128 0x5
+ 1786 0229 02        		.byte	0x2
+ 1787 022a 0000 0000 		.long	.LM53
+ 1788 022e 15        		.byte	0x15
+ 1789 022f 00        		.byte	0x0
+ 1790 0230 05        		.uleb128 0x5
+ 1791 0231 02        		.byte	0x2
+ 1792 0232 0000 0000 		.long	.LM54
+ 1793 0236 17        		.byte	0x17
+ 1794 0237 00        		.byte	0x0
+ 1795 0238 05        		.uleb128 0x5
+ 1796 0239 02        		.byte	0x2
+ 1797 023a 0000 0000 		.long	.LM55
+ 1798 023e 15        		.byte	0x15
+ 1799 023f 00        		.byte	0x0
+ 1800 0240 05        		.uleb128 0x5
+ 1801 0241 02        		.byte	0x2
+ 1802 0242 0000 0000 		.long	.LM56
+ 1803 0246 15        		.byte	0x15
+ 1804 0247 00        		.byte	0x0
+ 1805 0248 05        		.uleb128 0x5
+ 1806 0249 02        		.byte	0x2
+ 1807 024a 0000 0000 		.long	.LM57
+ 1808 024e 15        		.byte	0x15
+ 1809 024f 00        		.byte	0x0
+ 1810 0250 05        		.uleb128 0x5
+ 1811 0251 02        		.byte	0x2
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 34
+
+
+ 1812 0252 0000 0000 		.long	.LM58
+ 1813 0256 17        		.byte	0x17
+ 1814 0257 00        		.byte	0x0
+ 1815 0258 05        		.uleb128 0x5
+ 1816 0259 02        		.byte	0x2
+ 1817 025a 0000 0000 		.long	.LM59
+ 1818 025e 16        		.byte	0x16
+ 1819 025f 00        		.byte	0x0
+ 1820 0260 05        		.uleb128 0x5
+ 1821 0261 02        		.byte	0x2
+ 1822 0262 0000 0000 		.long	.LM60
+ 1823 0266 15        		.byte	0x15
+ 1824 0267 00        		.byte	0x0
+ 1825 0268 05        		.uleb128 0x5
+ 1826 0269 02        		.byte	0x2
+ 1827 026a 0000 0000 		.long	.LM61
+ 1828 026e 18        		.byte	0x18
+ 1829 026f 00        		.byte	0x0
+ 1830 0270 05        		.uleb128 0x5
+ 1831 0271 02        		.byte	0x2
+ 1832 0272 0000 0000 		.long	.LM62
+ 1833 0276 15        		.byte	0x15
+ 1834 0277 00        		.byte	0x0
+ 1835 0278 05        		.uleb128 0x5
+ 1836 0279 02        		.byte	0x2
+ 1837 027a 0000 0000 		.long	.LM63
+ 1838 027e 17        		.byte	0x17
+ 1839 027f 00        		.byte	0x0
+ 1840 0280 05        		.uleb128 0x5
+ 1841 0281 02        		.byte	0x2
+ 1842 0282 0000 0000 		.long	.LM64
+ 1843 0286 1B        		.byte	0x1b
+ 1844 0287 00        		.byte	0x0
+ 1845 0288 05        		.uleb128 0x5
+ 1846 0289 02        		.byte	0x2
+ 1847 028a 0000 0000 		.long	.LM65
+ 1848 028e 15        		.byte	0x15
+ 1849 028f 00        		.byte	0x0
+ 1850 0290 05        		.uleb128 0x5
+ 1851 0291 02        		.byte	0x2
+ 1852 0292 0000 0000 		.long	.LM66
+ 1853 0296 17        		.byte	0x17
+ 1854 0297 00        		.byte	0x0
+ 1855 0298 05        		.uleb128 0x5
+ 1856 0299 02        		.byte	0x2
+ 1857 029a 0000 0000 		.long	.Letext0
+ 1858 029e 00        		.byte	0x0
+ 1859 029f 01        		.uleb128 0x1
+ 1860 02a0 01        		.byte	0x1
+ 1861               	.LELT0:
+ 1862 02a1 1900 0000 		.section	.debug_str,"MS",@progbits,1
+ 1862      0200 1300 
+ 1862      0000 0101 
+ 1862      FB0E 0D00 
+ 1862      0101 0101 
+ 1863               	.LASF28:
+ 1864 0000 4361 6C69 		.string	"CalibP1"
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 35
+
+
+ 1864      6250 3100 
+ 1865               	.LASF29:
+ 1866 0008 4361 6C69 		.string	"CalibP2"
+ 1866      6250 3200 
+ 1867               	.LASF30:
+ 1868 0010 4361 6C69 		.string	"CalibP3"
+ 1868      6250 3300 
+ 1869               	.LASF13:
+ 1870 0018 6461 7461 		.string	"dataindex"
+ 1870      696E 6465 
+ 1870      7800 
+ 1871               	.LASF32:
+ 1872 0022 4361 6C69 		.string	"CalibP5"
+ 1872      6250 3500 
+ 1873               	.LASF12:
+ 1874 002a 6461 7461 		.string	"datalength"
+ 1874      6C65 6E67 
+ 1874      7468 00
+ 1875               	.LASF43:
+ 1876 0035 7469 6D65 		.string	"timeout_length"
+ 1876      6F75 745F 
+ 1876      6C65 6E67 
+ 1876      7468 00
+ 1877               	.LASF40:
+ 1878 0044 4F75 7470 		.string	"OutputPinSet"
+ 1878      7574 5069 
+ 1878      6E53 6574 
+ 1878      00
+ 1879               	.LASF8:
+ 1880 0051 7368 6F72 		.string	"short int"
+ 1880      7420 696E 
+ 1880      7400 
+ 1881               	.LASF42:
+ 1882 005b 636D 6442 		.string	"cmdBuffer"
+ 1882      7566 6665 
+ 1882      7200 
+ 1883               	.LASF15:
+ 1884 0065 6465 6C61 		.string	"delay_micro"
+ 1884      795F 6D69 
+ 1884      6372 6F00 
+ 1885               	.LASF17:
+ 1886 0071 7561 7274 		.string	"uart"
+ 1886      00
+ 1887               	.LASF45:
+ 1888 0076 474E 5520 		.string	"GNU C 4.2.2 (WinAVR 20071221)"
+ 1888      4320 342E 
+ 1888      322E 3220 
+ 1888      2857 696E 
+ 1888      4156 5220 
+ 1889               	.LASF41:
+ 1890 0094 636D 6442 		.string	"cmdBufferData"
+ 1890      7566 6665 
+ 1890      7244 6174 
+ 1890      6100 
+ 1891               	.LASF39:
+ 1892 00a2 6D79 4164 		.string	"myAddress"
+ 1892      6472 6573 
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 36
+
+
+ 1892      7300 
+ 1893               	.LASF47:
+ 1894 00ac 653A 5C57 		.string	"e:\\Work\\MScubes\\SourceForge\\trunk\\software\\actuator\\basic_io"
+ 1894      6F72 6B5C 
+ 1894      4D53 6375 
+ 1894      6265 735C 
+ 1894      536F 7572 
+ 1895               	.LASF5:
+ 1896 00e9 6C6F 6E67 		.string	"long long int"
+ 1896      206C 6F6E 
+ 1896      6720 696E 
+ 1896      7400 
+ 1897               	.LASF19:
+ 1898 00f7 5F73 7265 		.string	"_sreg"
+ 1898      6700 
+ 1899               	.LASF3:
+ 1900 00fd 6C6F 6E67 		.string	"long int"
+ 1900      2069 6E74 
+ 1900      00
+ 1901               	.LASF23:
+ 1902 0106 7061 7261 		.string	"params"
+ 1902      6D73 00
+ 1903               	.LASF44:
+ 1904 010d 7469 6D65 		.string	"timeout_tics"
+ 1904      6F75 745F 
+ 1904      7469 6373 
+ 1904      00
+ 1905               	.LASF2:
+ 1906 011a 756E 7369 		.string	"unsigned char"
+ 1906      676E 6564 
+ 1906      2063 6861 
+ 1906      7200 
+ 1907               	.LASF37:
+ 1908 0128 4861 6C6C 		.string	"HallSensor"
+ 1908      5365 6E73 
+ 1908      6F72 00
+ 1909               	.LASF20:
+ 1910 0133 636D 645F 		.string	"cmd_BuildPacket"
+ 1910      4275 696C 
+ 1910      6450 6163 
+ 1910      6B65 7400 
+ 1911               	.LASF1:
+ 1912 0143 7369 676E 		.string	"signed char"
+ 1912      6564 2063 
+ 1912      6861 7200 
+ 1913               	.LASF6:
+ 1914 014f 6C6F 6E67 		.string	"long long unsigned int"
+ 1914      206C 6F6E 
+ 1914      6720 756E 
+ 1914      7369 676E 
+ 1914      6564 2069 
+ 1915               	.LASF49:
+ 1916 0166 636D 645F 		.string	"cmd_AddByteToEnd"
+ 1916      4164 6442 
+ 1916      7974 6554 
+ 1916      6F45 6E64 
+ 1916      00
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 37
+
+
+ 1917               	.LASF0:
+ 1918 0177 756E 7369 		.string	"unsigned int"
+ 1918      676E 6564 
+ 1918      2069 6E74 
+ 1918      00
+ 1919               	.LASF7:
+ 1920 0184 7368 6F72 		.string	"short unsigned int"
+ 1920      7420 756E 
+ 1920      7369 676E 
+ 1920      6564 2069 
+ 1920      6E74 00
+ 1921               	.LASF16:
+ 1922 0197 636D 645F 		.string	"cmd_Execute"
+ 1922      4578 6563 
+ 1922      7574 6500 
+ 1923               	.LASF9:
+ 1924 01a3 6368 6172 		.string	"char"
+ 1924      00
+ 1925               	.LASF26:
+ 1926 01a8 636D 645F 		.string	"cmd_Init"
+ 1926      496E 6974 
+ 1926      00
+ 1927               	.LASF24:
+ 1928 01b1 6368 6B73 		.string	"chksum"
+ 1928      756D 00
+ 1929               	.LASF25:
+ 1930 01b8 636D 645F 		.string	"cmd_Flush"
+ 1930      466C 7573 
+ 1930      6800 
+ 1931               	.LASF35:
+ 1932 01c2 4D61 696E 		.string	"MainPotAngle"
+ 1932      506F 7441 
+ 1932      6E67 6C65 
+ 1932      00
+ 1933               	.LASF38:
+ 1934 01cf 6D79 436C 		.string	"myClass"
+ 1934      6173 7300 
+ 1935               	.LASF34:
+ 1936 01d7 4772 6970 		.string	"GripperCorrection"
+ 1936      7065 7243 
+ 1936      6F72 7265 
+ 1936      6374 696F 
+ 1936      6E00 
+ 1937               	.LASF4:
+ 1938 01e9 6C6F 6E67 		.string	"long unsigned int"
+ 1938      2075 6E73 
+ 1938      6967 6E65 
+ 1938      6420 696E 
+ 1938      7400 
+ 1939               	.LASF36:
+ 1940 01fb 5365 7276 		.string	"ServoAngle"
+ 1940      6F41 6E67 
+ 1940      6C65 00
+ 1941               	.LASF11:
+ 1942 0206 7369 7A65 		.string	"size"
+ 1942      00
+ 1943               	.LASF48:
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 38
+
+
+ 1944 020b 7374 7275 		.string	"struct_cBuffer"
+ 1944      6374 5F63 
+ 1944      4275 6666 
+ 1944      6572 00
+ 1945               	.LASF14:
+ 1946 021a 6342 7566 		.string	"cBuffer"
+ 1946      6665 7200 
+ 1947               	.LASF33:
+ 1948 0222 4361 6C69 		.string	"CalibP6"
+ 1948      6250 3600 
+ 1949               	.LASF10:
+ 1950 022a 6461 7461 		.string	"dataptr"
+ 1950      7074 7200 
+ 1951               	.LASF31:
+ 1952 0232 4361 6C69 		.string	"CalibP4"
+ 1952      6250 3400 
+ 1953               	.LASF22:
+ 1954 023a 705F 636F 		.string	"p_count"
+ 1954      756E 7400 
+ 1955               	.LASF46:
+ 1956 0242 6D6F 6C65 		.string	"molecubePacket.c"
+ 1956      6375 6265 
+ 1956      5061 636B 
+ 1956      6574 2E63 
+ 1956      00
+ 1957               	.LASF21:
+ 1958 0253 6465 765F 		.string	"dev_class"
+ 1958      636C 6173 
+ 1958      7300 
+ 1959               	.LASF27:
+ 1960 025d 636F 6E66 		.string	"configCommBuses"
+ 1960      6967 436F 
+ 1960      6D6D 4275 
+ 1960      7365 7300 
+ 1961               	.LASF18:
+ 1962 026d 7561 7274 		.string	"uartSendFxn"
+ 1962      5365 6E64 
+ 1962      4678 6E00 
+ 1963               	/* File "molecubePacket.c": code  209 = 0x00d1 ( 174), prologues  14, epilogues  21 */
+GAS LISTING D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 molecubePacket.c
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:2      *ABS*:0000003f __SREG__
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:3      *ABS*:0000003e __SP_H__
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:4      *ABS*:0000003d __SP_L__
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:5      *ABS*:00000000 __tmp_reg__
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:6      *ABS*:00000001 __zero_reg__
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:19     .text:00000000 delay_micro
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:58     .text:00000022 cmd_Flush
+                            *COM*:00000008 cmdBuffer
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:75     .text:0000002c cmd_Execute
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:172    .text:0000009e cmd_AddByteToEnd
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:195    .text:000000ac cmd_BuildPacket
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:308    .text:00000142 cmd_Init
+                            *COM*:00000080 cmdBufferData
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccDag50g.s:329    .text:00000154 configCommBuses
+                            *COM*:00000002 CalibP1
+                            *COM*:00000002 CalibP2
+                            *COM*:00000002 CalibP3
+                            *COM*:00000002 CalibP4
+                            *COM*:00000002 CalibP5
+                            *COM*:00000002 CalibP6
+                            *COM*:00000002 GripperCorrection
+                            *COM*:00000002 MainPotAngle
+                            *COM*:00000002 ServoAngle
+                            *COM*:00000001 HallSensor
+                            *COM*:00000001 myClass
+                            *COM*:00000001 myAddress
+                            *COM*:00000001 OutputPinSet
+                            *COM*:00000002 timeout_length
+                            *COM*:00000002 timeout_tics
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+bufferFlush
+uart0SendByte
+uart1SendByte
+bufferGetFromFront
+bufferIsNotFull
+bufferAddToEnd
+bufferInit
+uartInit
+uartSetBaudRate

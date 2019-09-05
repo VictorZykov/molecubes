@@ -1,0 +1,1026 @@
+Archive member included because of file (symbol)
+
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+                              D:\WinAVR\avrlib/timer.o (__mulsi3)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+                              basiciotest.o (__udivmodhi4)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+                              D:\WinAVR\avrlib/i2c.o (__divmodhi4)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+                              D:\WinAVR\avrlib/uart2.o (__udivmodsi4)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+                              D:\WinAVR\avrlib/timer.o (__divmodsi4)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+                              d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o (exit)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+                              molecubePacket.o (__do_copy_data)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+                              molecubePacket.o (__do_clear_bss)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+                              basiciotest.o (__eeprom_read_word_1F2021)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+                              basiciotest.o (__eeprom_write_word_1F2021)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+                              d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o) (__eeprom_read_byte_1F2021)
+d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+                              d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o) (__eeprom_write_byte_1F2021)
+
+Allocating common symbols
+Common symbol       size              file
+
+uartReadyTx         0x2               D:\WinAVR\avrlib/uart2.o
+timeout_length      0x2               molecubePacket.o
+ServoAngle          0x2               molecubePacket.o
+CalibP2             0x2               molecubePacket.o
+CalibP4             0x2               molecubePacket.o
+HallSensor          0x1               molecubePacket.o
+int_busRxPkt        0x82              basiciotest.o
+cmdBuffer           0x8               molecubePacket.o
+Timer0Reg0          0x4               D:\WinAVR\avrlib/timer.o
+uartRxBuffer        0x10              D:\WinAVR\avrlib/uart2.o
+TimerPauseReg       0x4               D:\WinAVR\avrlib/timer.o
+Timer2Reg0          0x4               D:\WinAVR\avrlib/timer.o
+cmdBufferData       0x80              molecubePacket.o
+uartBufferedTx      0x2               D:\WinAVR\avrlib/uart2.o
+MainPotAngle        0x2               molecubePacket.o
+CalibP1             0x2               molecubePacket.o
+CalibP6             0x2               molecubePacket.o
+myClass             0x1               molecubePacket.o
+a2dCompleteFlag     0x1               D:\WinAVR\avrlib/a2d.o
+CalibP3             0x2               molecubePacket.o
+myAddress           0x1               molecubePacket.o
+timeout_tics        0x2               molecubePacket.o
+uartTxBuffer        0x10              D:\WinAVR\avrlib/uart2.o
+uartRxOverflow      0x4               D:\WinAVR\avrlib/uart2.o
+CalibP5             0x2               molecubePacket.o
+ext_busRxPkt        0x82              basiciotest.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+LOAD molecubePacket.o
+LOAD basiciotest.o
+LOAD D:\WinAVR\avrlib/buffer.o
+LOAD D:\WinAVR\avrlib/uart2.o
+LOAD D:\WinAVR\avrlib/timer.o
+LOAD D:\WinAVR\avrlib/i2c.o
+LOAD D:\WinAVR\avrlib/a2d.o
+LOAD d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libm.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x236e
+ *(.vectors)
+ .vectors       0x00000000       0x7c d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x0000007c       0x1c D:\WinAVR\avrlib/timer.o
+                0x00000088                TimerRTCPrescaleFactor
+                0x0000007c                TimerPrescaleFactor
+                0x00000098                . = ALIGN (0x2)
+                0x00000098                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000098        0x0 linker stubs
+ *(.trampolines*)
+                0x00000098                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000098                __ctors_start = .
+ *(.ctors)
+                0x00000098                __ctors_end = .
+                0x00000098                __dtors_start = .
+ *(.dtors)
+                0x00000098                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000098        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+                0x00000098                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000098        0xc d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000000a4       0x16 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+                0x000000a4                __do_copy_data
+ .init4         0x000000ba       0x10 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+                0x000000ba                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000ca        0x8 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+ *(.init9)
+ *(.text)
+ .text          0x000000d2        0x4 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+                0x000000d2                __vector_1
+                0x000000d2                __bad_interrupt
+                0x000000d2                __vector_6
+                0x000000d2                __vector_3
+                0x000000d2                __vector_23
+                0x000000d2                __vector_25
+                0x000000d2                __vector_17
+                0x000000d2                __vector_19
+                0x000000d2                __vector_7
+                0x000000d2                __vector_27
+                0x000000d2                __vector_5
+                0x000000d2                __vector_4
+                0x000000d2                __vector_2
+                0x000000d2                __vector_21
+                0x000000d2                __vector_29
+                0x000000d2                __vector_8
+                0x000000d2                __vector_10
+                0x000000d2                __vector_16
+ .text          0x000000d6      0x19a molecubePacket.o
+                0x000000f8                cmd_Flush
+                0x00000212                cmd_Init
+                0x0000016e                cmd_AddByteToEnd
+                0x00000102                cmd_Execute
+                0x00000224                configCommBuses
+                0x000000d6                delay_micro
+                0x0000017c                cmd_BuildPacket
+ .text          0x00000270      0xc26 basiciotest.o
+                0x00000ab2                CalibrateAngles
+                0x000004f2                GetResponse
+                0x000006cc                GetMainPotAngle
+                0x0000028c                turnMotorLEDoff
+                0x00000546                enterContinuousRotation
+                0x0000097a                RGB_LED_init
+                0x00000618                GetServoAngle
+                0x0000093e                RGB_LED_PWMx
+                0x00000326                packetRxProcess
+                0x000009ca                main
+                0x000005a0                SetServoSpeed
+                0x000002da                turnMotorLEDon
+                0x00000270                MagnetFound
+                0x0000077c                CalculateAngle
+ .text          0x00000e96      0x15a D:\WinAVR\avrlib/buffer.o
+                0x00000fcc                bufferIsNotFull
+                0x00000eb0                bufferGetFromFront
+                0x00000f50                bufferGetAtIndex
+                0x00000f0c                bufferDumpFromFront
+                0x00000e96                bufferInit
+                0x00000f7a                bufferAddToEnd
+                0x00000fe2                bufferFlush
+ .text          0x00000ff0      0x566 D:\WinAVR\avrlib/uart2.o
+                0x0000134e                __vector_22
+                0x00001142                __vector_28
+                0x00001398                uartSendTxBuffer
+                0x000010de                uartReceiveService
+                0x0000107a                uartSendByte
+                0x000014f4                uart0InitBuffers
+                0x00001406                uart1GetByte
+                0x000013c6                uartReceiveByte
+                0x000011d6                uartSendBuffer
+                0x00001304                __vector_30
+                0x00001446                uart0GetByte
+                0x0000127c                uartAddToTxBuffer
+                0x000012a6                uartTransmitService
+                0x00000ff0                uartSetRxHandler
+                0x00001516                uart0Init
+                0x000014be                uart1Init
+                0x00001486                uartFlushReceiveBuffer
+                0x0000154c                uartInit
+                0x000010a4                uart0SendByte
+                0x000010b8                uartReceiveBufferIsEmpty
+                0x00001006                uartSetBaudRate
+                0x000010ae                uart1SendByte
+                0x00001068                uartGetTxBuffer
+                0x00001056                uartGetRxBuffer
+                0x0000149c                uart1InitBuffers
+                0x0000129c                uart0AddToTxBuffer
+                0x00001292                uart1AddToTxBuffer
+                0x0000118c                __vector_20
+ .text          0x00001556      0x66a D:\WinAVR\avrlib/timer.o
+                0x00001794                timer2GetOverflowCount
+                0x0000164c                timerDetach
+                0x000015d4                timer1SetPrescaler
+                0x00001ab8                __vector_12
+                0x0000185e                timer1PWMBOff
+                0x0000161e                timer2GetPrescaler
+                0x00001558                timer0Init
+                0x0000184c                timer1PWMAOff
+                0x0000187a                timer1PWMBSet
+                0x00001984                __vector_11
+                0x000017ee                timer1PWMInitICR
+                0x00001a04                __vector_13
+                0x000015f0                timer0GetPrescaler
+                0x00001770                timer0GetOverflowCount
+                0x00001b6c                timerInit
+                0x000015e2                timer2SetPrescaler
+                0x00001828                timer1PWMAOn
+                0x000015ca                timer0SetPrescaler
+                0x00001556                delay_us
+                0x0000175e                timer0ClearOverflowCount
+                0x00001b12                __vector_9
+                0x0000157e                timer1Init
+                0x0000192a                __vector_15
+                0x000017a6                timer1PWMInit
+                0x0000183a                timer1PWMBOn
+                0x0000159e                timer2Init
+                0x00001870                timer1PWMASet
+                0x00001636                timerAttach
+                0x00001b96                timer1PWMOff
+                0x00001a5e                __vector_14
+                0x00001884                __vector_18
+                0x00001606                timer1GetPrescaler
+                0x00001782                timer2ClearOverflowCount
+                0x00001662                timerPause
+ .text          0x00001bc0      0x552 D:\WinAVR\avrlib/i2c.o
+                0x00001c00                i2cInit
+                0x00001c66                i2cSendStart
+                0x00001c82                i2cWaitForComplete
+                0x00001cba                i2cGetReceivedByte
+                0x00001dba                i2cMasterSend
+                0x00001d64                i2cMasterReceive
+                0x00001cd4                i2cMasterSendNI
+                0x00001c52                i2cSetSlaveReceiveHandler
+                0x00001cca                i2cGetState
+                0x00001cc2                i2cGetStatus
+                0x00001c8c                i2cSendByte
+                0x00001c5c                i2cSetSlaveTransmitHandler
+                0x00001c42                i2cSetLocalDeviceAddr
+                0x00002070                i2cMasterReceiveNI
+                0x00001e04                __vector_26
+                0x00001c9e                i2cReceiveByte
+                0x00001bc0                i2cSetBitrate
+                0x00001c74                i2cSendStop
+ .text          0x00002112      0x118 D:\WinAVR\avrlib/a2d.o
+                0x0000216a                a2dIsComplete
+                0x000021ba                a2dConvert8bit
+                0x000021ca                __vector_24
+                0x00002112                a2dOff
+                0x00002124                a2dSetPrescaler
+                0x00002176                a2dConvert10bit
+                0x000021e8                a2dInit
+                0x00002132                a2dSetReference
+                0x00002148                a2dSetChannel
+                0x00002158                a2dStartConvert
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+ .text          0x0000222a        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+                0x0000222a                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x0000222a       0x3e d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+                0x0000222a                __mulsi3
+ .text.libgcc   0x00002268       0x28 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+                0x00002268                __udivmodhi4
+ .text.libgcc   0x00002290       0x26 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+                0x00002290                __divmodhi4
+                0x00002290                _div
+ .text.libgcc   0x000022b6       0x44 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+                0x000022b6                __udivmodsi4
+ .text.libgcc   0x000022fa       0x36 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+                0x000022fa                __divmodsi4
+ .text.libgcc   0x00002330        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00002330        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00002330        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+ .text.eeprom   0x00002330        0xa d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+                0x00002330                __eeprom_read_word_1F2021
+ .text.eeprom   0x0000233a        0xa d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+                0x0000233a                __eeprom_write_word_1F2021
+ .text.eeprom   0x00002344       0x10 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+                0x00002344                __eeprom_read_byte_1F2021
+ .text.eeprom   0x00002354       0x18 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+                0x00002354                __eeprom_write_byte_1F2021
+                0x0000236c                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000236c        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+                0x0000236c                exit
+                0x0000236c                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000236c        0x2 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000236e                _etext = .
+
+.data           0x00800100        0x2 load address 0x0000236e
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800100        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+ .data          0x00800100        0x0 molecubePacket.o
+ .data          0x00800100        0x1 basiciotest.o
+                0x00800100                broadAddress
+ .data          0x00800101        0x0 D:\WinAVR\avrlib/buffer.o
+ .data          0x00800101        0x0 D:\WinAVR\avrlib/uart2.o
+ .data          0x00800101        0x0 D:\WinAVR\avrlib/timer.o
+ .data          0x00800101        0x0 D:\WinAVR\avrlib/i2c.o
+ .data          0x00800101        0x0 D:\WinAVR\avrlib/a2d.o
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+ .data          0x00800101        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800102                . = ALIGN (0x2)
+ *fill*         0x00800101        0x1 00
+                0x00800102                _edata = .
+                0x00800102                PROVIDE (__data_end, .)
+
+.bss            0x00800102      0x355 load address 0x00002370
+                0x00800102                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800102        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+ .bss           0x00800102        0x0 molecubePacket.o
+ .bss           0x00800102        0x0 basiciotest.o
+ .bss           0x00800102        0x0 D:\WinAVR\avrlib/buffer.o
+ .bss           0x00800102      0x124 D:\WinAVR\avrlib/uart2.o
+ .bss           0x00800226        0xe D:\WinAVR\avrlib/timer.o
+ .bss           0x00800234       0x4b D:\WinAVR\avrlib/i2c.o
+ .bss           0x0080027f        0x0 D:\WinAVR\avrlib/a2d.o
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+ .bss           0x0080027f        0x0 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x0080027f       0x9f molecubePacket.o
+                0x0080027f                timeout_length
+                0x00800281                ServoAngle
+                0x00800283                CalibP2
+                0x00800285                CalibP4
+                0x00800287                HallSensor
+                0x00800288                cmdBuffer
+                0x00800290                cmdBufferData
+                0x00800310                MainPotAngle
+                0x00800312                CalibP1
+                0x00800314                CalibP6
+                0x00800316                myClass
+                0x00800317                CalibP3
+                0x00800319                myAddress
+                0x0080031a                timeout_tics
+                0x0080031c                CalibP5
+ COMMON         0x0080031e      0x104 basiciotest.o
+                0x0080031e                int_busRxPkt
+                0x008003a0                ext_busRxPkt
+ COMMON         0x00800422       0x28 D:\WinAVR\avrlib/uart2.o
+                0x00800422                uartReadyTx
+                0x00800424                uartRxBuffer
+                0x00800434                uartBufferedTx
+                0x00800436                uartTxBuffer
+                0x00800446                uartRxOverflow
+ COMMON         0x0080044a        0xc D:\WinAVR\avrlib/timer.o
+                0x0080044a                Timer0Reg0
+                0x0080044e                TimerPauseReg
+                0x00800452                Timer2Reg0
+ COMMON         0x00800456        0x1 D:\WinAVR\avrlib/a2d.o
+                0x00800456                a2dCompleteFlag
+                0x00800457                PROVIDE (__bss_end, .)
+                0x0000236e                __data_load_start = LOADADDR (.data)
+                0x00002370                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800457        0x0
+                0x00800457                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800457                PROVIDE (__noinit_end, .)
+                0x00800457                _end = .
+                0x00800457                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab           0x00000000      0x378
+ *(.stab)
+ .stab          0x00000000      0x378 d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+
+.stabstr        0x00000000       0x5f
+ *(.stabstr)
+ .stabstr       0x00000000       0x5f d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xe0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 molecubePacket.o
+ .debug_aranges
+                0x00000020       0x20 basiciotest.o
+ .debug_aranges
+                0x00000040       0x20 D:\WinAVR\avrlib/buffer.o
+ .debug_aranges
+                0x00000060       0x20 D:\WinAVR\avrlib/uart2.o
+ .debug_aranges
+                0x00000080       0x20 D:\WinAVR\avrlib/timer.o
+ .debug_aranges
+                0x000000a0       0x20 D:\WinAVR\avrlib/i2c.o
+ .debug_aranges
+                0x000000c0       0x20 D:\WinAVR\avrlib/a2d.o
+
+.debug_pubnames
+                0x00000000      0xe9a
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x15f molecubePacket.o
+ .debug_pubnames
+                0x0000015f      0x1f7 basiciotest.o
+ .debug_pubnames
+                0x00000356      0x12d D:\WinAVR\avrlib/buffer.o
+ .debug_pubnames
+                0x00000483      0x31d D:\WinAVR\avrlib/uart2.o
+ .debug_pubnames
+                0x000007a0      0x388 D:\WinAVR\avrlib/timer.o
+ .debug_pubnames
+                0x00000b28      0x20d D:\WinAVR\avrlib/i2c.o
+ .debug_pubnames
+                0x00000d35      0x165 D:\WinAVR\avrlib/a2d.o
+
+.debug_info     0x00000000     0x2a9c
+ *(.debug_info)
+ .debug_info    0x00000000      0x36b molecubePacket.o
+ .debug_info    0x0000036b      0xa5b basiciotest.o
+ .debug_info    0x00000dc6      0x3ad D:\WinAVR\avrlib/buffer.o
+ .debug_info    0x00001173      0x77a D:\WinAVR\avrlib/uart2.o
+ .debug_info    0x000018ed      0x7cd D:\WinAVR\avrlib/timer.o
+ .debug_info    0x000020ba      0x71f D:\WinAVR\avrlib/i2c.o
+ .debug_info    0x000027d9      0x2c3 D:\WinAVR\avrlib/a2d.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0xbbe
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x135 molecubePacket.o
+ .debug_abbrev  0x00000135      0x273 basiciotest.o
+ .debug_abbrev  0x000003a8       0xf5 D:\WinAVR\avrlib/buffer.o
+ .debug_abbrev  0x0000049d      0x1ae D:\WinAVR\avrlib/uart2.o
+ .debug_abbrev  0x0000064b      0x219 D:\WinAVR\avrlib/timer.o
+ .debug_abbrev  0x00000864      0x252 D:\WinAVR\avrlib/i2c.o
+ .debug_abbrev  0x00000ab6      0x108 D:\WinAVR\avrlib/a2d.o
+
+.debug_line     0x00000000     0x1cf7
+ *(.debug_line)
+ .debug_line    0x00000000      0x2bd molecubePacket.o
+ .debug_line    0x000002bd      0x894 basiciotest.o
+ .debug_line    0x00000b51      0x1ff D:\WinAVR\avrlib/buffer.o
+ .debug_line    0x00000d50      0x421 D:\WinAVR\avrlib/uart2.o
+ .debug_line    0x00001171      0x4d0 D:\WinAVR\avrlib/timer.o
+ .debug_line    0x00001641      0x511 D:\WinAVR\avrlib/i2c.o
+ .debug_line    0x00001b52      0x1a5 D:\WinAVR\avrlib/a2d.o
+
+.debug_frame    0x00000000      0x7d0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x80 molecubePacket.o
+ .debug_frame   0x00000080       0xf0 basiciotest.o
+ .debug_frame   0x00000170       0x80 D:\WinAVR\avrlib/buffer.o
+ .debug_frame   0x000001f0      0x1d0 D:\WinAVR\avrlib/uart2.o
+ .debug_frame   0x000003c0      0x230 D:\WinAVR\avrlib/timer.o
+ .debug_frame   0x000005f0      0x130 D:\WinAVR\avrlib/i2c.o
+ .debug_frame   0x00000720       0xb0 D:\WinAVR\avrlib/a2d.o
+
+.debug_str      0x00000000      0xd9e
+ *(.debug_str)
+ .debug_str     0x00000000      0x1ef molecubePacket.o
+                                0x254 (size before relaxing)
+ .debug_str     0x000001ef      0x22d basiciotest.o
+                                0x3f4 (size before relaxing)
+ .debug_str     0x0000041c       0xad D:\WinAVR\avrlib/buffer.o
+                                0x23b (size before relaxing)
+ .debug_str     0x000004c9      0x293 D:\WinAVR\avrlib/uart2.o
+                                0x421 (size before relaxing)
+ .debug_str     0x0000075c      0x303 D:\WinAVR\avrlib/timer.o
+                                0x455 (size before relaxing)
+ .debug_str     0x00000a5f      0x292 D:\WinAVR\avrlib/i2c.o
+                                0x3e7 (size before relaxing)
+ .debug_str     0x00000cf1       0xad D:\WinAVR\avrlib/a2d.o
+                                0x1ff (size before relaxing)
+
+.debug_loc      0x00000000     0x1037
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x15b molecubePacket.o
+ .debug_loc     0x0000015b      0x5df basiciotest.o
+ .debug_loc     0x0000073a      0x1a2 D:\WinAVR\avrlib/buffer.o
+ .debug_loc     0x000008dc      0x3be D:\WinAVR\avrlib/uart2.o
+ .debug_loc     0x00000c9a       0xf5 D:\WinAVR\avrlib/timer.o
+ .debug_loc     0x00000d8f      0x25c D:\WinAVR\avrlib/i2c.o
+ .debug_loc     0x00000feb       0x4c D:\WinAVR\avrlib/a2d.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(basiciotest.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+CalculateAngle                                    basiciotest.o
+CalibP1                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibP2                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibP3                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibP4                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibP5                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibP6                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+CalibrateAngles                                   basiciotest.o
+GetMainPotAngle                                   basiciotest.o
+GetResponse                                       basiciotest.o
+GetServoAngle                                     basiciotest.o
+HallSensor                                        D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+MagnetFound                                       basiciotest.o
+MainPotAngle                                      D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+RGB_LED_PWMx                                      basiciotest.o
+RGB_LED_init                                      basiciotest.o
+ServoAngle                                        D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+SetServoSpeed                                     basiciotest.o
+Timer0Reg0                                        D:\WinAVR\avrlib/timer.o
+Timer2Reg0                                        D:\WinAVR\avrlib/timer.o
+TimerPauseReg                                     D:\WinAVR\avrlib/timer.o
+TimerPrescaleFactor                               D:\WinAVR\avrlib/timer.o
+TimerRTCPrescaleFactor                            D:\WinAVR\avrlib/timer.o
+__bad_interrupt                                   d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__bss_end                                         d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+__bss_start                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+__data_end                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+__data_load_start                                 d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+__data_start                                      d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+__divmodhi4                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+                                                  D:\WinAVR\avrlib/i2c.o
+__divmodsi4                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+__do_clear_bss                                    d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_clear_bss.o)
+                                                  D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+__do_copy_data                                    d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_copy_data.o)
+                                                  D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+__eeprom_read_byte_1F2021                         d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rb.1F2021.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+__eeprom_read_word_1F2021                         d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_rw.1F2021.o)
+                                                  basiciotest.o
+__eeprom_write_byte_1F2021                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_wb.1F2021.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+__eeprom_write_word_1F2021                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5\libc.a(ee_ww.1F2021.o)
+                                                  basiciotest.o
+__heap_end                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__init                                            d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__mulsi3                                          d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_mulsi3.o)
+                                                  D:\WinAVR\avrlib/timer.o
+__stack                                           d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__udivmodhi4                                      d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodhi4.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+__udivmodsi4                                      d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_udivmodsi4.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodsi4.o)
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+__vector_1                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_10                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_11                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_12                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_13                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_14                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_15                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_16                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_17                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_18                                       D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_19                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_2                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_20                                       D:\WinAVR\avrlib/uart2.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_21                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_22                                       D:\WinAVR\avrlib/uart2.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_23                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_24                                       D:\WinAVR\avrlib/a2d.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_25                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_26                                       D:\WinAVR\avrlib/i2c.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_27                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_28                                       D:\WinAVR\avrlib/uart2.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_29                                       d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_3                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_30                                       D:\WinAVR\avrlib/uart2.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_4                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_5                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_6                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_7                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_8                                        d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_9                                        D:\WinAVR\avrlib/timer.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vector_default                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+__vectors                                         d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+_div                                              d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_divmodhi4.o)
+_exit                                             d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+a2dCompleteFlag                                   D:\WinAVR\avrlib/a2d.o
+a2dConvert10bit                                   D:\WinAVR\avrlib/a2d.o
+a2dConvert8bit                                    D:\WinAVR\avrlib/a2d.o
+a2dInit                                           D:\WinAVR\avrlib/a2d.o
+                                                  basiciotest.o
+a2dIsComplete                                     D:\WinAVR\avrlib/a2d.o
+a2dOff                                            D:\WinAVR\avrlib/a2d.o
+a2dSetChannel                                     D:\WinAVR\avrlib/a2d.o
+a2dSetPrescaler                                   D:\WinAVR\avrlib/a2d.o
+a2dSetReference                                   D:\WinAVR\avrlib/a2d.o
+a2dStartConvert                                   D:\WinAVR\avrlib/a2d.o
+broadAddress                                      basiciotest.o
+bufferAddToEnd                                    D:\WinAVR\avrlib/buffer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+bufferDumpFromFront                               D:\WinAVR\avrlib/buffer.o
+bufferFlush                                       D:\WinAVR\avrlib/buffer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+bufferGetAtIndex                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+bufferGetFromFront                                D:\WinAVR\avrlib/buffer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+bufferInit                                        D:\WinAVR\avrlib/buffer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+bufferIsNotFull                                   D:\WinAVR\avrlib/buffer.o
+                                                  molecubePacket.o
+cmdBuffer                                         basiciotest.o
+                                                  molecubePacket.o
+cmdBufferData                                     basiciotest.o
+                                                  molecubePacket.o
+cmd_AddByteToEnd                                  molecubePacket.o
+cmd_BuildPacket                                   molecubePacket.o
+                                                  basiciotest.o
+cmd_Execute                                       molecubePacket.o
+                                                  basiciotest.o
+cmd_Flush                                         molecubePacket.o
+cmd_Init                                          molecubePacket.o
+                                                  basiciotest.o
+configCommBuses                                   molecubePacket.o
+                                                  basiciotest.o
+delay_micro                                       molecubePacket.o
+delay_us                                          D:\WinAVR\avrlib/timer.o
+enterContinuousRotation                           basiciotest.o
+exit                                              d:/winavr/bin/../lib/gcc/avr/4.2.2/avr5\libgcc.a(_exit.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+ext_busRxPkt                                      basiciotest.o
+i2cGetReceivedByte                                D:\WinAVR\avrlib/i2c.o
+i2cGetState                                       D:\WinAVR\avrlib/i2c.o
+i2cGetStatus                                      D:\WinAVR\avrlib/i2c.o
+i2cInit                                           D:\WinAVR\avrlib/i2c.o
+                                                  basiciotest.o
+i2cMasterReceive                                  D:\WinAVR\avrlib/i2c.o
+i2cMasterReceiveNI                                D:\WinAVR\avrlib/i2c.o
+i2cMasterSend                                     D:\WinAVR\avrlib/i2c.o
+                                                  basiciotest.o
+i2cMasterSendNI                                   D:\WinAVR\avrlib/i2c.o
+i2cReceiveByte                                    D:\WinAVR\avrlib/i2c.o
+i2cSendByte                                       D:\WinAVR\avrlib/i2c.o
+i2cSendStart                                      D:\WinAVR\avrlib/i2c.o
+i2cSendStop                                       D:\WinAVR\avrlib/i2c.o
+i2cSetBitrate                                     D:\WinAVR\avrlib/i2c.o
+i2cSetLocalDeviceAddr                             D:\WinAVR\avrlib/i2c.o
+i2cSetSlaveReceiveHandler                         D:\WinAVR\avrlib/i2c.o
+i2cSetSlaveTransmitHandler                        D:\WinAVR\avrlib/i2c.o
+i2cWaitForComplete                                D:\WinAVR\avrlib/i2c.o
+int_busRxPkt                                      basiciotest.o
+main                                              basiciotest.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.2.2/../../../../avr/lib/avr5/crtm324p.o
+myAddress                                         D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+myClass                                           D:\WinAVR\avrlib/a2d.o
+                                                  D:\WinAVR\avrlib/i2c.o
+                                                  D:\WinAVR\avrlib/timer.o
+                                                  D:\WinAVR\avrlib/uart2.o
+                                                  D:\WinAVR\avrlib/buffer.o
+                                                  basiciotest.o
+                                                  molecubePacket.o
+packetRxProcess                                   basiciotest.o
+timeout_length                                    molecubePacket.o
+timeout_tics                                      molecubePacket.o
+timer0ClearOverflowCount                          D:\WinAVR\avrlib/timer.o
+timer0GetOverflowCount                            D:\WinAVR\avrlib/timer.o
+timer0GetPrescaler                                D:\WinAVR\avrlib/timer.o
+timer0Init                                        D:\WinAVR\avrlib/timer.o
+timer0SetPrescaler                                D:\WinAVR\avrlib/timer.o
+timer1GetPrescaler                                D:\WinAVR\avrlib/timer.o
+timer1Init                                        D:\WinAVR\avrlib/timer.o
+timer1PWMAOff                                     D:\WinAVR\avrlib/timer.o
+timer1PWMAOn                                      D:\WinAVR\avrlib/timer.o
+timer1PWMASet                                     D:\WinAVR\avrlib/timer.o
+timer1PWMBOff                                     D:\WinAVR\avrlib/timer.o
+timer1PWMBOn                                      D:\WinAVR\avrlib/timer.o
+timer1PWMBSet                                     D:\WinAVR\avrlib/timer.o
+timer1PWMInit                                     D:\WinAVR\avrlib/timer.o
+timer1PWMInitICR                                  D:\WinAVR\avrlib/timer.o
+timer1PWMOff                                      D:\WinAVR\avrlib/timer.o
+timer1SetPrescaler                                D:\WinAVR\avrlib/timer.o
+timer2ClearOverflowCount                          D:\WinAVR\avrlib/timer.o
+timer2GetOverflowCount                            D:\WinAVR\avrlib/timer.o
+timer2GetPrescaler                                D:\WinAVR\avrlib/timer.o
+timer2Init                                        D:\WinAVR\avrlib/timer.o
+timer2SetPrescaler                                D:\WinAVR\avrlib/timer.o
+timerAttach                                       D:\WinAVR\avrlib/timer.o
+timerDetach                                       D:\WinAVR\avrlib/timer.o
+timerInit                                         D:\WinAVR\avrlib/timer.o
+                                                  basiciotest.o
+timerPause                                        D:\WinAVR\avrlib/timer.o
+turnMotorLEDoff                                   basiciotest.o
+turnMotorLEDon                                    basiciotest.o
+uart0AddToTxBuffer                                D:\WinAVR\avrlib/uart2.o
+uart0GetByte                                      D:\WinAVR\avrlib/uart2.o
+uart0Init                                         D:\WinAVR\avrlib/uart2.o
+uart0InitBuffers                                  D:\WinAVR\avrlib/uart2.o
+uart0SendByte                                     D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+uart1AddToTxBuffer                                D:\WinAVR\avrlib/uart2.o
+uart1GetByte                                      D:\WinAVR\avrlib/uart2.o
+uart1Init                                         D:\WinAVR\avrlib/uart2.o
+uart1InitBuffers                                  D:\WinAVR\avrlib/uart2.o
+uart1SendByte                                     D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+uartAddToTxBuffer                                 D:\WinAVR\avrlib/uart2.o
+uartBufferedTx                                    D:\WinAVR\avrlib/uart2.o
+uartFlushReceiveBuffer                            D:\WinAVR\avrlib/uart2.o
+uartGetRxBuffer                                   D:\WinAVR\avrlib/uart2.o
+                                                  basiciotest.o
+uartGetTxBuffer                                   D:\WinAVR\avrlib/uart2.o
+uartInit                                          D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+uartReadyTx                                       D:\WinAVR\avrlib/uart2.o
+uartReceiveBufferIsEmpty                          D:\WinAVR\avrlib/uart2.o
+uartReceiveByte                                   D:\WinAVR\avrlib/uart2.o
+uartReceiveService                                D:\WinAVR\avrlib/uart2.o
+uartRxBuffer                                      D:\WinAVR\avrlib/uart2.o
+uartRxOverflow                                    D:\WinAVR\avrlib/uart2.o
+uartSendBuffer                                    D:\WinAVR\avrlib/uart2.o
+uartSendByte                                      D:\WinAVR\avrlib/uart2.o
+uartSendTxBuffer                                  D:\WinAVR\avrlib/uart2.o
+uartSetBaudRate                                   D:\WinAVR\avrlib/uart2.o
+                                                  molecubePacket.o
+uartSetRxHandler                                  D:\WinAVR\avrlib/uart2.o
+uartTransmitService                               D:\WinAVR\avrlib/uart2.o
+uartTxBuffer                                      D:\WinAVR\avrlib/uart2.o

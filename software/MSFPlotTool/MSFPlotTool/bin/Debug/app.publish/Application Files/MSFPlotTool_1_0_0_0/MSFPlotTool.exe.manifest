@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="MSFPlotTool.exe" version="1.0.0.0" publicKeyToken="dc70cf9348762b49" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="MSFPlotTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="MSFPlotTool.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSFPlotTool.exe" size="71680">
+      <assemblyIdentity name="MSFPlotTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>Q3zPp/x8wuBwOZZB/QpyXHoaRi8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ZedGraph.dll" size="307200">
+      <assemblyIdentity name="ZedGraph" version="5.1.4.31904" publicKeyToken="02A83CBD123FCD60" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>DOPd3H0xnm4jSUJ3cPCAYy5TCyU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=HAMMERWIN\Phelps Williams" issuerKeyHash="1e17adfa847060dc28ff44d0f2c3c78a2a22a411" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>wglLPDZSIsw0TsLO0TvrQ4JSS3Y=</DigestValue></Reference></SignedInfo><SignatureValue>v3W1eeu7fsp8A66x+eqeNocZwyoSy6LxCUvqMS8b8syCLh3lhAdgYYXymJq1e+Cd/a+5NkXxKms9o332FKKLYu/OacOm1Q+WQ9HlX5IUq1LV5vAn/q2/SDpoQBLMoRPRkyElPSWzJaUsaMqon0JxlQGTqfPLUhcJfgLfRCWuqsw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>x/YEs9rOmXZ+2h6jtZW8S1rpe6Q7+jLvXP23aa3vivOXL0cAiy8FYHsqN/bwekQgcSGuXW6hqXJkc7t2uPazJYmgXEH5T/2vOBCslt1x8UDF5ehW0BlYFld3aPf12uzhF+JyfNqvhQ+U/rfn21pGwEn5UP35Ijz7dBhziNQpvjE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="764b528243eb3bd1cec24e34cc2252363c4b09c2" Description="" Url=""><as:assemblyIdentity name="MSFPlotTool.exe" version="1.0.0.0" publicKeyToken="dc70cf9348762b49" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=HAMMERWIN\Phelps Williams</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>M2JEYR1+tVjg+0kLkwVaAuKLzpo=</DigestValue></Reference></SignedInfo><SignatureValue>s0gQuwZVlfoVZzoSgdWAJwZoYYez/+0dcsnzyBK4asbYLKh6DK+oEFiDHDj8+mz69CsYm+to3n8YX82Tm4D45KDGM0D2elLx0Av6yB48zYkF+ntA6scpTE4Zh09K+mVQi57nqJfz+PkWy1pbF0j7Ui4un/sCZBhazDGszSRI5FE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>x/YEs9rOmXZ+2h6jtZW8S1rpe6Q7+jLvXP23aa3vivOXL0cAiy8FYHsqN/bwekQgcSGuXW6hqXJkc7t2uPazJYmgXEH5T/2vOBCslt1x8UDF5ehW0BlYFld3aPf12uzhF+JyfNqvhQ+U/rfn21pGwEn5UP35Ijz7dBhziNQpvjE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAWKgAwIBAgIQutlNMqGuuKBPoDtXUEloRjAJBgUrDgMCHQUAMD0xOzA5BgNVBAMeMgBIAEEATQBNAEUAUgBXAEkATgBcAFAAaABlAGwAcABzACAAVwBpAGwAbABpAGEAbQBzMB4XDTA4MDMwOTA1MTA1N1oXDTA5MDMwOTExMTA1N1owPTE7MDkGA1UEAx4yAEgAQQBNAE0ARQBSAFcASQBOAFwAUABoAGUAbABwAHMAIABXAGkAbABsAGkAYQBtAHMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMf2BLPazpl2ftoeo7WVvEta6XukO/oy71z9t2mt74rzly9HAIsvBWB7Kjf28HpEIHEhrl1uoalyZHO7drj2syWJoFxB+U/9rzgQrJbdcfFAxeXoVtAZWBZXd2j39drs4Rficnzar4UPlP6359taRsBJ+VD9+SI8+3QYc4jUKb4xAgMBAAEwCQYFKw4DAh0FAAOBgQCBtOZo9z1YmokP1AJxz8YbsD45v1yqpLUq7EE90wljab6OkVIRD0GuGMjXZyH2Husbf4QJT3SXzitGLEKaM9x21jcbQwzH1Tdyey8dKLVsYEGiKdYFKneXHqdeaEf4OrVrgNVNHZeHbt8kx6UMFshFUrOnbaNGx4iFtVvT+tzVHA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

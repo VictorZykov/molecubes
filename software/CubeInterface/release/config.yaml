@@ -1,0 +1,8 @@
+# Graphics
+device:dx9
+width:1024
+height:768
+depth:16
+aa:0
+vsync:No
+fullscreen:No

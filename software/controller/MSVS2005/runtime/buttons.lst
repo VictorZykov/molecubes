@@ -1,0 +1,1378 @@
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 1
+
+
+   1              		.file	"buttons.c"
+   2              		.section	.debug_abbrev,"",%progbits
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,"",%progbits
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,"",%progbits
+   7              	.Ldebug_line0:
+   8 0000 8D000000 		.text
+   8      02003F00 
+   8      00000201 
+   8      FB0E0A00 
+   8      01010101 
+   9              	.Ltext0:
+  10              		.align	2
+  11              		.global	EINT1_routine
+  12              		.type	EINT1_routine, %function
+  13              	EINT1_routine:
+  14              	.LFB2:
+  15              		.file 1 "buttons.c"
+   1:buttons.c     **** #include "global.h"
+   2:buttons.c     **** #include "buttons.h"
+   3:buttons.c     **** 
+   4:buttons.c     **** #include "lpc2000.h"
+   5:buttons.c     **** #include "processor.h"
+   6:buttons.c     **** 
+   7:buttons.c     **** u08 button1, button2, buttonsEnabled;
+   8:buttons.c     **** 
+   9:buttons.c     **** typedef void (*voidFuncPtr)(void);
+  10:buttons.c     **** volatile static voidFuncPtr ButtonIntrFunc[BUTTON_NUM_INTERRUPTS];
+  11:buttons.c     **** 
+  12:buttons.c     **** // Interrupt Function Declaration
+  13:buttons.c     **** void __attribute__ ((interrupt("IRQ"))) EINT1_routine(void);
+  14:buttons.c     **** void __attribute__ ((interrupt("IRQ"))) EINT2_routine(void);
+  15:buttons.c     **** 
+  16:buttons.c     **** void __attribute__ ((interrupt("IRQ"))) EINT1_routine(void)
+  17:buttons.c     **** {
+  16              		.loc 1 17 0
+  17              		@ Interrupt Service Routine.
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 0, uses_anonymous_args = 0
+  20              		@ link register save eliminated.
+  21 0000 0E002DE9 		stmfd	sp!, {r1, r2, r3}
+  22              	.LCFI0:
+  23              		@ lr needed for prologue
+  18:buttons.c     **** 	VICIntEnClear |= (1<<VIC_EINT1);
+  24              		.loc 1 18 0
+  25 0004 0F1CE0E3 		mvn	r1, #3840
+  26 0008 EB3011E5 		ldr	r3, [r1, #-235]
+  27 000c 023983E3 		orr	r3, r3, #32768
+  28 0010 EB3001E5 		str	r3, [r1, #-235]
+  19:buttons.c     **** 
+  20:buttons.c     **** 	button1 = TRUE;
+  29              		.loc 1 20 0
+  30 0014 0020E0E3 		mvn	r2, #0
+  31 0018 2C309FE5 		ldr	r3, .L3
+  32 001c 0020C3E5 		strb	r2, [r3, #0]
+  21:buttons.c     **** 
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 2
+
+
+  22:buttons.c     **** 	EXTINT=0x02; //Clear EINT1 interrupt flag
+  33              		.loc 1 22 0
+  34 0020 032082E2 		add	r2, r2, #3
+  35 0024 0E32A0E3 		mov	r3, #-536870912
+  36 0028 7F3983E2 		add	r3, r3, #2080768
+  37 002c 4021C3E5 		strb	r2, [r3, #320]
+  23:buttons.c     **** 	VICIntEnable |= (1<<VIC_EINT1);
+  38              		.loc 1 23 0
+  39 0030 EF3011E5 		ldr	r3, [r1, #-239]
+  40 0034 023983E3 		orr	r3, r3, #32768
+  41 0038 EF3001E5 		str	r3, [r1, #-239]
+  24:buttons.c     **** 	VICVectAddr=0; //Dummy write to signal end of interrupt
+  42              		.loc 1 24 0
+  43 003c 0030A0E3 		mov	r3, #0
+  44 0040 CF3001E5 		str	r3, [r1, #-207]
+  25:buttons.c     **** }
+  45              		.loc 1 25 0
+  46 0044 0E00BDE8 		ldmfd	sp!, {r1, r2, r3}
+  47 0048 04F05EE2 		subs	pc, lr, #4
+  48              	.L4:
+  49              		.align	2
+  50              	.L3:
+  51 004c 00000000 		.word	button1
+  52              	.LFE2:
+  53              		.size	EINT1_routine, .-EINT1_routine
+  54              		.align	2
+  55              		.global	EINT2_routine
+  56              		.type	EINT2_routine, %function
+  57              	EINT2_routine:
+  58              	.LFB3:
+  26:buttons.c     **** 
+  27:buttons.c     **** void __attribute__ ((interrupt("IRQ"))) EINT2_routine(void)
+  28:buttons.c     **** {
+  59              		.loc 1 28 0
+  60              		@ Interrupt Service Routine.
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		@ link register save eliminated.
+  64 0050 0E002DE9 		stmfd	sp!, {r1, r2, r3}
+  65              	.LCFI1:
+  66              		@ lr needed for prologue
+  29:buttons.c     **** 	VICIntEnClear |= (1<<VIC_EINT2);
+  67              		.loc 1 29 0
+  68 0054 0F1CE0E3 		mvn	r1, #3840
+  69 0058 EB3011E5 		ldr	r3, [r1, #-235]
+  70 005c 013883E3 		orr	r3, r3, #65536
+  71 0060 EB3001E5 		str	r3, [r1, #-235]
+  30:buttons.c     **** 
+  31:buttons.c     **** 	button2 = TRUE;
+  72              		.loc 1 31 0
+  73 0064 0020E0E3 		mvn	r2, #0
+  74 0068 2C309FE5 		ldr	r3, .L7
+  75 006c 0020C3E5 		strb	r2, [r3, #0]
+  32:buttons.c     **** 
+  33:buttons.c     **** 	EXTINT=0x04; //Clear EINT1 interrupt flag
+  76              		.loc 1 33 0
+  77 0070 052082E2 		add	r2, r2, #5
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 3
+
+
+  78 0074 0E32A0E3 		mov	r3, #-536870912
+  79 0078 7F3983E2 		add	r3, r3, #2080768
+  80 007c 4021C3E5 		strb	r2, [r3, #320]
+  34:buttons.c     **** 	VICIntEnable |= (1<<VIC_EINT2);
+  81              		.loc 1 34 0
+  82 0080 EF3011E5 		ldr	r3, [r1, #-239]
+  83 0084 013883E3 		orr	r3, r3, #65536
+  84 0088 EF3001E5 		str	r3, [r1, #-239]
+  35:buttons.c     **** 	VICVectAddr=0; //Dummy write to signal end of interrupt
+  85              		.loc 1 35 0
+  86 008c 0030A0E3 		mov	r3, #0
+  87 0090 CF3001E5 		str	r3, [r1, #-207]
+  36:buttons.c     **** }
+  88              		.loc 1 36 0
+  89 0094 0E00BDE8 		ldmfd	sp!, {r1, r2, r3}
+  90 0098 04F05EE2 		subs	pc, lr, #4
+  91              	.L8:
+  92              		.align	2
+  93              	.L7:
+  94 009c 00000000 		.word	button2
+  95              	.LFE3:
+  96              		.size	EINT2_routine, .-EINT2_routine
+  97              		.align	2
+  98              		.global	enableButtons
+  99              		.type	enableButtons, %function
+ 100              	enableButtons:
+ 101              	.LFB5:
+  37:buttons.c     **** 
+  38:buttons.c     **** void initButtons(void)
+  39:buttons.c     **** {
+  40:buttons.c     **** 	// Button pins
+  41:buttons.c     **** 	// P0.3 EINT1
+  42:buttons.c     **** 	// P0.7 EINT2
+  43:buttons.c     **** 	// catch falling edge
+  44:buttons.c     **** 	
+  45:buttons.c     **** 	PINSEL0 |= 0x000000C0; // set P0.3 to EINT1
+  46:buttons.c     **** 	PINSEL0 |= 0x0000C000; // set P0.7 to EINT2
+  47:buttons.c     **** 
+  48:buttons.c     **** 	// Catch falling edge on both buttons
+  49:buttons.c     **** 	EXTMODE = 0x06;
+  50:buttons.c     **** 	EXTINT = 0x06;
+  51:buttons.c     **** 	
+  52:buttons.c     **** 	// setup EINT1 for IRQ
+  53:buttons.c     **** 	// set interrupt as IRQ
+  54:buttons.c     **** 	VICIntSelect &= ~(1<<VIC_EINT1 || 1<<VIC_EINT2);
+  55:buttons.c     **** 	// assign VIC slot
+  56:buttons.c     **** 	VICVectCntl12 = VIC_ENABLE | VIC_EINT1;
+  57:buttons.c     **** 	VICVectAddr12 = (u32)EINT1_routine;
+  58:buttons.c     **** 	VICVectCntl13 = VIC_ENABLE | VIC_EINT2;
+  59:buttons.c     **** 	VICVectAddr13 = (u32)EINT2_routine;
+  60:buttons.c     **** 	// enable interrupt
+  61:buttons.c     **** 	VICIntEnable |= (1<<VIC_EINT1);
+  62:buttons.c     **** 	VICIntEnable |= (1<<VIC_EINT2);
+  63:buttons.c     **** 
+  64:buttons.c     **** 	button1 = FALSE;
+  65:buttons.c     **** 	button2 = FALSE;
+  66:buttons.c     **** 	buttonsEnabled = FALSE;
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 4
+
+
+  67:buttons.c     **** 
+  68:buttons.c     **** 	buttonDetach(BUTTON1);
+  69:buttons.c     **** 	buttonDetach(BUTTON2);
+  70:buttons.c     **** }
+  71:buttons.c     **** 
+  72:buttons.c     **** void enableButtons(void)
+  73:buttons.c     **** {
+ 102              		.loc 1 73 0
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+ 106              		@ lr needed for prologue
+  74:buttons.c     **** 	buttonsEnabled = TRUE;
+ 107              		.loc 1 74 0
+ 108 00a0 0020E0E3 		mvn	r2, #0
+ 109 00a4 04309FE5 		ldr	r3, .L11
+ 110 00a8 0020C3E5 		strb	r2, [r3, #0]
+  75:buttons.c     **** }
+ 111              		.loc 1 75 0
+ 112 00ac 1EFF2FE1 		bx	lr
+ 113              	.L12:
+ 114              		.align	2
+ 115              	.L11:
+ 116 00b0 00000000 		.word	buttonsEnabled
+ 117              	.LFE5:
+ 118              		.size	enableButtons, .-enableButtons
+ 119              		.align	2
+ 120              		.global	disableButtons
+ 121              		.type	disableButtons, %function
+ 122              	disableButtons:
+ 123              	.LFB6:
+  76:buttons.c     **** 
+  77:buttons.c     **** void disableButtons(void)
+  78:buttons.c     **** {
+ 124              		.loc 1 78 0
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 127              		@ link register save eliminated.
+ 128              		@ lr needed for prologue
+  79:buttons.c     **** 	buttonsEnabled = FALSE;
+ 129              		.loc 1 79 0
+ 130 00b4 0020A0E3 		mov	r2, #0
+ 131 00b8 04309FE5 		ldr	r3, .L15
+ 132 00bc 0020C3E5 		strb	r2, [r3, #0]
+  80:buttons.c     **** }
+ 133              		.loc 1 80 0
+ 134 00c0 1EFF2FE1 		bx	lr
+ 135              	.L16:
+ 136              		.align	2
+ 137              	.L15:
+ 138 00c4 00000000 		.word	buttonsEnabled
+ 139              	.LFE6:
+ 140              		.size	disableButtons, .-disableButtons
+ 141              		.align	2
+ 142              		.global	buttonAttach
+ 143              		.type	buttonAttach, %function
+ 144              	buttonAttach:
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 5
+
+
+ 145              	.LFB7:
+  81:buttons.c     **** 
+  82:buttons.c     **** void buttonAttach(u08 buttonNum, void (*userFunc)(void) )
+  83:buttons.c     **** {
+ 146              		.loc 1 83 0
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              		@ link register save eliminated.
+ 150              	.LVL0:
+ 151              		@ lr needed for prologue
+ 152 00c8 FF0000E2 		and	r0, r0, #255
+  84:buttons.c     **** 	// make sure the interrupt number is within bounds
+  85:buttons.c     **** 	if(buttonNum < BUTTON_NUM_INTERRUPTS)
+ 153              		.loc 1 85 0
+ 154 00cc 010050E3 		cmp	r0, #1
+  86:buttons.c     **** 	{
+  87:buttons.c     **** 		// set the interrupt function to run
+  88:buttons.c     **** 		// the supplied user's function
+  89:buttons.c     **** 		ButtonIntrFunc[buttonNum] = userFunc;
+ 155              		.loc 1 89 0
+ 156 00d0 0021A091 		movls	r2, r0, asl #2
+ 157 00d4 04309F95 		ldrls	r3, .L21
+ 158 00d8 03108297 		strls	r1, [r2, r3]
+ 159 00dc 1EFF2FE1 		bx	lr
+ 160              	.L22:
+ 161              		.align	2
+ 162              	.L21:
+ 163 00e0 00000000 		.word	ButtonIntrFunc
+ 164              	.LFE7:
+ 165              		.size	buttonAttach, .-buttonAttach
+ 166              		.align	2
+ 167              		.global	buttonDetach
+ 168              		.type	buttonDetach, %function
+ 169              	buttonDetach:
+ 170              	.LFB8:
+  90:buttons.c     **** 	}
+  91:buttons.c     **** }
+  92:buttons.c     **** 
+  93:buttons.c     **** void buttonDetach(u08 buttonNum)
+  94:buttons.c     **** {
+ 171              		.loc 1 94 0
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 175              	.LVL1:
+ 176              		@ lr needed for prologue
+ 177 00e4 FF0000E2 		and	r0, r0, #255
+  95:buttons.c     **** 	// make sure the interrupt number is within bounds
+  96:buttons.c     **** 	if(buttonNum < BUTTON_NUM_INTERRUPTS)
+ 178              		.loc 1 96 0
+ 179 00e8 010050E3 		cmp	r0, #1
+  97:buttons.c     **** 	{
+  98:buttons.c     **** 		// set the interrupt function to run nothing
+  99:buttons.c     **** 		ButtonIntrFunc[buttonNum] = 0;
+ 180              		.loc 1 99 0
+ 181 00ec 0011A091 		movls	r1, r0, asl #2
+ 182 00f0 0020A093 		movls	r2, #0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 6
+
+
+ 183 00f4 04309F95 		ldrls	r3, .L27
+ 184 00f8 03208197 		strls	r2, [r1, r3]
+ 185 00fc 1EFF2FE1 		bx	lr
+ 186              	.L28:
+ 187              		.align	2
+ 188              	.L27:
+ 189 0100 00000000 		.word	ButtonIntrFunc
+ 190              	.LFE8:
+ 191              		.size	buttonDetach, .-buttonDetach
+ 192              		.align	2
+ 193              		.global	initButtons
+ 194              		.type	initButtons, %function
+ 195              	initButtons:
+ 196              	.LFB4:
+ 197              		.loc 1 39 0
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200 0104 04E02DE5 		str	lr, [sp, #-4]!
+ 201              	.LCFI2:
+ 202              		.loc 1 45 0
+ 203 0108 0E12A0E3 		mov	r1, #-536870912
+ 204 010c 0B2981E2 		add	r2, r1, #180224
+ 205 0110 003092E5 		ldr	r3, [r2, #0]
+ 206 0114 C03083E3 		orr	r3, r3, #192
+ 207 0118 003082E5 		str	r3, [r2, #0]
+ 208              		.loc 1 46 0
+ 209 011c 003092E5 		ldr	r3, [r2, #0]
+ 210 0120 033983E3 		orr	r3, r3, #49152
+ 211 0124 003082E5 		str	r3, [r2, #0]
+ 212              		.loc 1 49 0
+ 213 0128 7F1981E2 		add	r1, r1, #2080768
+ 214 012c 0630A0E3 		mov	r3, #6
+ 215 0130 4831C1E5 		strb	r3, [r1, #328]
+ 216              		.loc 1 50 0
+ 217 0134 4031C1E5 		strb	r3, [r1, #320]
+ 218              		.loc 1 54 0
+ 219 0138 0F2CE0E3 		mvn	r2, #3840
+ 220 013c F33012E5 		ldr	r3, [r2, #-243]
+ 221 0140 0130C3E3 		bic	r3, r3, #1
+ 222 0144 F33002E5 		str	r3, [r2, #-243]
+ 223              		.loc 1 56 0
+ 224 0148 2F30A0E3 		mov	r3, #47
+ 225 014c 313182E5 		str	r3, [r2, #305]
+ 226              		.loc 1 57 0
+ 227 0150 54309FE5 		ldr	r3, .L31
+ 228 0154 313082E5 		str	r3, [r2, #49]
+ 229              		.loc 1 58 0
+ 230 0158 3030A0E3 		mov	r3, #48
+ 231 015c 353182E5 		str	r3, [r2, #309]
+ 232              		.loc 1 59 0
+ 233 0160 48309FE5 		ldr	r3, .L31+4
+ 234 0164 353082E5 		str	r3, [r2, #53]
+ 235              		.loc 1 61 0
+ 236 0168 EF3012E5 		ldr	r3, [r2, #-239]
+ 237 016c 023983E3 		orr	r3, r3, #32768
+ 238 0170 EF3002E5 		str	r3, [r2, #-239]
+ 239              		.loc 1 62 0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 7
+
+
+ 240 0174 EF3012E5 		ldr	r3, [r2, #-239]
+ 241 0178 013883E3 		orr	r3, r3, #65536
+ 242 017c EF3002E5 		str	r3, [r2, #-239]
+ 243              		.loc 1 64 0
+ 244 0180 0000A0E3 		mov	r0, #0
+ 245 0184 28309FE5 		ldr	r3, .L31+8
+ 246 0188 0000C3E5 		strb	r0, [r3, #0]
+ 247              		.loc 1 65 0
+ 248 018c 24309FE5 		ldr	r3, .L31+12
+ 249 0190 0000C3E5 		strb	r0, [r3, #0]
+ 250              		.loc 1 66 0
+ 251 0194 20309FE5 		ldr	r3, .L31+16
+ 252 0198 0000C3E5 		strb	r0, [r3, #0]
+ 253              		.loc 1 68 0
+ 254 019c FEFFFFEB 		bl	buttonDetach
+ 255              		.loc 1 69 0
+ 256 01a0 0100A0E3 		mov	r0, #1
+ 257 01a4 FEFFFFEB 		bl	buttonDetach
+ 258              		.loc 1 70 0
+ 259 01a8 04F09DE4 		ldr	pc, [sp], #4
+ 260              	.L32:
+ 261              		.align	2
+ 262              	.L31:
+ 263 01ac 00000000 		.word	EINT1_routine
+ 264 01b0 00000000 		.word	EINT2_routine
+ 265 01b4 00000000 		.word	button1
+ 266 01b8 00000000 		.word	button2
+ 267 01bc 00000000 		.word	buttonsEnabled
+ 268              	.LFE4:
+ 269              		.size	initButtons, .-initButtons
+ 270              		.align	2
+ 271              		.global	buttonPressService
+ 272              		.type	buttonPressService, %function
+ 273              	buttonPressService:
+ 274              	.LFB9:
+ 100:buttons.c     **** 	}
+ 101:buttons.c     **** }
+ 102:buttons.c     **** 
+ 103:buttons.c     **** void buttonPressService(void)
+ 104:buttons.c     **** {
+ 275              		.loc 1 104 0
+ 276              		@ args = 0, pretend = 0, frame = 0
+ 277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 278 01c0 04E02DE5 		str	lr, [sp, #-4]!
+ 279              	.LCFI3:
+ 105:buttons.c     **** 	if(buttonsEnabled)
+ 280              		.loc 1 105 0
+ 281 01c4 74309FE5 		ldr	r3, .L44
+ 282 01c8 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 283 01cc 000053E3 		cmp	r3, #0
+ 284 01d0 04F09D04 		ldreq	pc, [sp], #4
+ 106:buttons.c     **** 	{
+ 107:buttons.c     **** 		if(button1)
+ 285              		.loc 1 107 0
+ 286 01d4 68309FE5 		ldr	r3, .L44+4
+ 287 01d8 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 288 01dc 000053E3 		cmp	r3, #0
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 8
+
+
+ 289 01e0 8000000A 		beq	.L36
+ 108:buttons.c     **** 		{
+ 109:buttons.c     **** 			// if a user function is defined, execute it
+ 110:buttons.c     **** 			if(ButtonIntrFunc[BUTTON1])
+ 290              		.loc 1 110 0
+ 291 01e4 5C209FE5 		ldr	r2, .L44+8
+ 292 01e8 003092E5 		ldr	r3, [r2, #0]
+ 293 01ec 000053E3 		cmp	r3, #0
+ 111:buttons.c     **** 				ButtonIntrFunc[BUTTON1]();
+ 294              		.loc 1 111 0
+ 295 01f0 00309215 		ldrne	r3, [r2, #0]
+ 296 01f4 0FE0A011 		movne	lr, pc
+ 297 01f8 13FF2F11 		bxne	r3
+ 298              	.L38:
+ 112:buttons.c     **** 			button1 = FALSE;
+ 299              		.loc 1 112 0
+ 300 01fc 0020A0E3 		mov	r2, #0
+ 301 0200 3C309FE5 		ldr	r3, .L44+4
+ 302 0204 0020C3E5 		strb	r2, [r3, #0]
+ 303              	.L36:
+ 113:buttons.c     **** 		}
+ 114:buttons.c     **** 		if(button2)
+ 304              		.loc 1 114 0
+ 305 0208 3C309FE5 		ldr	r3, .L44+12
+ 306 020c 0030D3E5 		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 307 0210 000053E3 		cmp	r3, #0
+ 308 0214 04F09D04 		ldreq	pc, [sp], #4
+ 115:buttons.c     **** 		{
+ 116:buttons.c     **** 			// if a user function is defined, execute it
+ 117:buttons.c     **** 			if(ButtonIntrFunc[BUTTON2])
+ 309              		.loc 1 117 0
+ 310 0218 28209FE5 		ldr	r2, .L44+8
+ 311 021c 043092E5 		ldr	r3, [r2, #4]
+ 312 0220 000053E3 		cmp	r3, #0
+ 118:buttons.c     **** 				ButtonIntrFunc[BUTTON2]();
+ 313              		.loc 1 118 0
+ 314 0224 04309215 		ldrne	r3, [r2, #4]
+ 315 0228 0FE0A011 		movne	lr, pc
+ 316 022c 13FF2F11 		bxne	r3
+ 317              	.L41:
+ 119:buttons.c     **** 			button2 = FALSE;
+ 318              		.loc 1 119 0
+ 319 0230 0020A0E3 		mov	r2, #0
+ 320 0234 10309FE5 		ldr	r3, .L44+12
+ 321 0238 0020C3E5 		strb	r2, [r3, #0]
+ 322 023c 04F09DE4 		ldr	pc, [sp], #4
+ 323              	.L45:
+ 324              		.align	2
+ 325              	.L44:
+ 326 0240 00000000 		.word	buttonsEnabled
+ 327 0244 00000000 		.word	button1
+ 328 0248 00000000 		.word	ButtonIntrFunc
+ 329 024c 00000000 		.word	button2
+ 330              	.LFE9:
+ 331              		.size	buttonPressService, .-buttonPressService
+ 332              		.bss
+ 333              		.align	2
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 9
+
+
+ 334              	ButtonIntrFunc:
+ 335 0000 00000000 		.space	8
+ 335      00000000 
+ 336              		.comm	button1,1,1
+ 337              		.comm	button2,1,1
+ 338              		.comm	buttonsEnabled,1,1
+ 339              		.section	.debug_frame,"",%progbits
+ 340              	.Lframe0:
+ 341 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+ 342              	.LSCIE0:
+ 343 0004 FFFFFFFF 		.4byte	0xffffffff
+ 344 0008 01       		.byte	0x1
+ 345 0009 00       		.ascii	"\000"
+ 346 000a 01       		.uleb128 0x1
+ 347 000b 7C       		.sleb128 -4
+ 348 000c 0E       		.byte	0xe
+ 349 000d 0C       		.byte	0xc
+ 350 000e 0D       		.uleb128 0xd
+ 351 000f 00       		.uleb128 0x0
+ 352              		.align	2
+ 353              	.LECIE0:
+ 354              	.LSFDE0:
+ 355 0010 18000000 		.4byte	.LEFDE0-.LASFDE0
+ 356              	.LASFDE0:
+ 357 0014 00000000 		.4byte	.Lframe0
+ 358 0018 00000000 		.4byte	.LFB2
+ 359 001c 50000000 		.4byte	.LFE2-.LFB2
+ 360 0020 44       		.byte	0x4
+ 361              		.4byte	.LCFI0-.LFB2
+ 362 0021 0E       		.byte	0xe
+ 363 0022 0C       		.uleb128 0xc
+ 364 0023 83       		.byte	0x83
+ 365 0024 01       		.uleb128 0x1
+ 366 0025 82       		.byte	0x82
+ 367 0026 02       		.uleb128 0x2
+ 368 0027 81       		.byte	0x81
+ 369 0028 03       		.uleb128 0x3
+ 370 0029 000000   		.align	2
+ 371              	.LEFDE0:
+ 372              	.LSFDE2:
+ 373 002c 18000000 		.4byte	.LEFDE2-.LASFDE2
+ 374              	.LASFDE2:
+ 375 0030 00000000 		.4byte	.Lframe0
+ 376 0034 50000000 		.4byte	.LFB3
+ 377 0038 50000000 		.4byte	.LFE3-.LFB3
+ 378 003c 44       		.byte	0x4
+ 379              		.4byte	.LCFI1-.LFB3
+ 380 003d 0E       		.byte	0xe
+ 381 003e 0C       		.uleb128 0xc
+ 382 003f 83       		.byte	0x83
+ 383 0040 01       		.uleb128 0x1
+ 384 0041 82       		.byte	0x82
+ 385 0042 02       		.uleb128 0x2
+ 386 0043 81       		.byte	0x81
+ 387 0044 03       		.uleb128 0x3
+ 388 0045 000000   		.align	2
+ 389              	.LEFDE2:
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 10
+
+
+ 390              	.LSFDE4:
+ 391 0048 0C000000 		.4byte	.LEFDE4-.LASFDE4
+ 392              	.LASFDE4:
+ 393 004c 00000000 		.4byte	.Lframe0
+ 394 0050 A0000000 		.4byte	.LFB5
+ 395 0054 14000000 		.4byte	.LFE5-.LFB5
+ 396              		.align	2
+ 397              	.LEFDE4:
+ 398              	.LSFDE6:
+ 399 0058 0C000000 		.4byte	.LEFDE6-.LASFDE6
+ 400              	.LASFDE6:
+ 401 005c 00000000 		.4byte	.Lframe0
+ 402 0060 B4000000 		.4byte	.LFB6
+ 403 0064 14000000 		.4byte	.LFE6-.LFB6
+ 404              		.align	2
+ 405              	.LEFDE6:
+ 406              	.LSFDE8:
+ 407 0068 0C000000 		.4byte	.LEFDE8-.LASFDE8
+ 408              	.LASFDE8:
+ 409 006c 00000000 		.4byte	.Lframe0
+ 410 0070 C8000000 		.4byte	.LFB7
+ 411 0074 1C000000 		.4byte	.LFE7-.LFB7
+ 412              		.align	2
+ 413              	.LEFDE8:
+ 414              	.LSFDE10:
+ 415 0078 0C000000 		.4byte	.LEFDE10-.LASFDE10
+ 416              	.LASFDE10:
+ 417 007c 00000000 		.4byte	.Lframe0
+ 418 0080 E4000000 		.4byte	.LFB8
+ 419 0084 20000000 		.4byte	.LFE8-.LFB8
+ 420              		.align	2
+ 421              	.LEFDE10:
+ 422              	.LSFDE12:
+ 423 0088 14000000 		.4byte	.LEFDE12-.LASFDE12
+ 424              	.LASFDE12:
+ 425 008c 00000000 		.4byte	.Lframe0
+ 426 0090 04010000 		.4byte	.LFB4
+ 427 0094 BC000000 		.4byte	.LFE4-.LFB4
+ 428 0098 44       		.byte	0x4
+ 429              		.4byte	.LCFI2-.LFB4
+ 430 0099 0E       		.byte	0xe
+ 431 009a 04       		.uleb128 0x4
+ 432 009b 8E       		.byte	0x8e
+ 433 009c 01       		.uleb128 0x1
+ 434 009d 000000   		.align	2
+ 435              	.LEFDE12:
+ 436              	.LSFDE14:
+ 437 00a0 14000000 		.4byte	.LEFDE14-.LASFDE14
+ 438              	.LASFDE14:
+ 439 00a4 00000000 		.4byte	.Lframe0
+ 440 00a8 C0010000 		.4byte	.LFB9
+ 441 00ac 90000000 		.4byte	.LFE9-.LFB9
+ 442 00b0 44       		.byte	0x4
+ 443              		.4byte	.LCFI3-.LFB9
+ 444 00b1 0E       		.byte	0xe
+ 445 00b2 04       		.uleb128 0x4
+ 446 00b3 8E       		.byte	0x8e
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 11
+
+
+ 447 00b4 01       		.uleb128 0x1
+ 448 00b5 000000   		.align	2
+ 449              	.LEFDE14:
+ 450              		.file 2 "C:\\WinARM\\armlib/armlibtypes.h"
+ 451              		.text
+ 452              	.Letext0:
+ 453              		.section	.debug_loc,"",%progbits
+ 454              	.Ldebug_loc0:
+ 455              	.LLST0:
+ 456 0000 00000000 		.4byte	.LFB2-.Ltext0
+ 457 0004 04000000 		.4byte	.LCFI0-.Ltext0
+ 458 0008 0100     		.2byte	0x1
+ 459 000a 5D       		.byte	0x5d
+ 460 000b 04000000 		.4byte	.LCFI0-.Ltext0
+ 461 000f 50000000 		.4byte	.LFE2-.Ltext0
+ 462 0013 0200     		.2byte	0x2
+ 463 0015 7D       		.byte	0x7d
+ 464 0016 0C       		.sleb128 12
+ 465 0017 00000000 		.4byte	0x0
+ 466 001b 00000000 		.4byte	0x0
+ 467              	.LLST1:
+ 468 001f 50000000 		.4byte	.LFB3-.Ltext0
+ 469 0023 54000000 		.4byte	.LCFI1-.Ltext0
+ 470 0027 0100     		.2byte	0x1
+ 471 0029 5D       		.byte	0x5d
+ 472 002a 54000000 		.4byte	.LCFI1-.Ltext0
+ 473 002e A0000000 		.4byte	.LFE3-.Ltext0
+ 474 0032 0200     		.2byte	0x2
+ 475 0034 7D       		.byte	0x7d
+ 476 0035 0C       		.sleb128 12
+ 477 0036 00000000 		.4byte	0x0
+ 478 003a 00000000 		.4byte	0x0
+ 479              	.LLST6:
+ 480 003e 04010000 		.4byte	.LFB4-.Ltext0
+ 481 0042 08010000 		.4byte	.LCFI2-.Ltext0
+ 482 0046 0100     		.2byte	0x1
+ 483 0048 5D       		.byte	0x5d
+ 484 0049 08010000 		.4byte	.LCFI2-.Ltext0
+ 485 004d C0010000 		.4byte	.LFE4-.Ltext0
+ 486 0051 0200     		.2byte	0x2
+ 487 0053 7D       		.byte	0x7d
+ 488 0054 04       		.sleb128 4
+ 489 0055 00000000 		.4byte	0x0
+ 490 0059 00000000 		.4byte	0x0
+ 491              	.LLST7:
+ 492 005d C0010000 		.4byte	.LFB9-.Ltext0
+ 493 0061 C4010000 		.4byte	.LCFI3-.Ltext0
+ 494 0065 0100     		.2byte	0x1
+ 495 0067 5D       		.byte	0x5d
+ 496 0068 C4010000 		.4byte	.LCFI3-.Ltext0
+ 497 006c 50020000 		.4byte	.LFE9-.Ltext0
+ 498 0070 0200     		.2byte	0x2
+ 499 0072 7D       		.byte	0x7d
+ 500 0073 04       		.sleb128 4
+ 501 0074 00000000 		.4byte	0x0
+ 502 0078 00000000 		.4byte	0x0
+ 503              		.section	.debug_info
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 12
+
+
+ 504 0000 C1010000 		.4byte	0x1c1
+ 505 0004 0200     		.2byte	0x2
+ 506 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 507 000a 04       		.byte	0x4
+ 508 000b 01       		.uleb128 0x1
+ 509 000c 00000000 		.4byte	.Ldebug_line0
+ 510 0010 50020000 		.4byte	.Letext0
+ 511 0014 00000000 		.4byte	.Ltext0
+ 512 0018 E6000000 		.4byte	.LASF25
+ 513 001c 01       		.byte	0x1
+ 514 001d 8E010000 		.4byte	.LASF26
+ 515 0021 B5000000 		.4byte	.LASF27
+ 516 0025 02       		.uleb128 0x2
+ 517 0026 75303800 		.ascii	"u08\000"
+ 518 002a 02       		.byte	0x2
+ 519 002b 20       		.byte	0x20
+ 520 002c 30000000 		.4byte	0x30
+ 521 0030 03       		.uleb128 0x3
+ 522 0031 FB000000 		.4byte	.LASF0
+ 523 0035 01       		.byte	0x1
+ 524 0036 08       		.byte	0x8
+ 525 0037 03       		.uleb128 0x3
+ 526 0038 49000000 		.4byte	.LASF1
+ 527 003c 01       		.byte	0x1
+ 528 003d 06       		.byte	0x6
+ 529 003e 03       		.uleb128 0x3
+ 530 003f 4F010000 		.4byte	.LASF2
+ 531 0043 02       		.byte	0x2
+ 532 0044 07       		.byte	0x7
+ 533 0045 03       		.uleb128 0x3
+ 534 0046 12010000 		.4byte	.LASF3
+ 535 004a 02       		.byte	0x2
+ 536 004b 05       		.byte	0x5
+ 537 004c 03       		.uleb128 0x3
+ 538 004d 86000000 		.4byte	.LASF4
+ 539 0051 04       		.byte	0x4
+ 540 0052 07       		.byte	0x7
+ 541 0053 03       		.uleb128 0x3
+ 542 0054 62000000 		.4byte	.LASF5
+ 543 0058 04       		.byte	0x4
+ 544 0059 05       		.byte	0x5
+ 545 005a 03       		.uleb128 0x3
+ 546 005b 0E000000 		.4byte	.LASF6
+ 547 005f 08       		.byte	0x8
+ 548 0060 07       		.byte	0x7
+ 549 0061 03       		.uleb128 0x3
+ 550 0062 3B000000 		.4byte	.LASF7
+ 551 0066 08       		.byte	0x8
+ 552 0067 05       		.byte	0x5
+ 553 0068 03       		.uleb128 0x3
+ 554 0069 6B000000 		.4byte	.LASF8
+ 555 006d 04       		.byte	0x4
+ 556 006e 07       		.byte	0x7
+ 557 006f 03       		.uleb128 0x3
+ 558 0070 24010000 		.4byte	.LASF9
+ 559 0074 01       		.byte	0x1
+ 560 0075 08       		.byte	0x8
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 13
+
+
+ 561 0076 04       		.uleb128 0x4
+ 562 0077 696E7400 		.ascii	"int\000"
+ 563 007b 04       		.byte	0x4
+ 564 007c 05       		.byte	0x5
+ 565 007d 03       		.uleb128 0x3
+ 566 007e 86000000 		.4byte	.LASF4
+ 567 0082 04       		.byte	0x4
+ 568 0083 07       		.byte	0x7
+ 569 0084 05       		.uleb128 0x5
+ 570 0085 25000000 		.4byte	.LASF10
+ 571 0089 01       		.byte	0x1
+ 572 008a 09       		.byte	0x9
+ 573 008b 8F000000 		.4byte	0x8f
+ 574 008f 06       		.uleb128 0x6
+ 575 0090 04       		.byte	0x4
+ 576 0091 95000000 		.4byte	0x95
+ 577 0095 07       		.uleb128 0x7
+ 578 0096 01       		.byte	0x1
+ 579 0097 08       		.uleb128 0x8
+ 580 0098 01       		.byte	0x1
+ 581 0099 78000000 		.4byte	.LASF11
+ 582 009d 01       		.byte	0x1
+ 583 009e 11       		.byte	0x11
+ 584 009f 01       		.byte	0x1
+ 585 00a0 00000000 		.4byte	.LFB2
+ 586 00a4 50000000 		.4byte	.LFE2
+ 587 00a8 00000000 		.4byte	.LLST0
+ 588 00ac 08       		.uleb128 0x8
+ 589 00ad 01       		.byte	0x1
+ 590 00ae A7000000 		.4byte	.LASF12
+ 591 00b2 01       		.byte	0x1
+ 592 00b3 1C       		.byte	0x1c
+ 593 00b4 01       		.byte	0x1
+ 594 00b5 50000000 		.4byte	.LFB3
+ 595 00b9 A0000000 		.4byte	.LFE3
+ 596 00bd 1F000000 		.4byte	.LLST1
+ 597 00c1 09       		.uleb128 0x9
+ 598 00c2 01       		.byte	0x1
+ 599 00c3 00000000 		.4byte	.LASF13
+ 600 00c7 01       		.byte	0x1
+ 601 00c8 49       		.byte	0x49
+ 602 00c9 01       		.byte	0x1
+ 603 00ca A0000000 		.4byte	.LFB5
+ 604 00ce B4000000 		.4byte	.LFE5
+ 605 00d2 01       		.byte	0x1
+ 606 00d3 5D       		.byte	0x5d
+ 607 00d4 09       		.uleb128 0x9
+ 608 00d5 01       		.byte	0x1
+ 609 00d6 29010000 		.4byte	.LASF14
+ 610 00da 01       		.byte	0x1
+ 611 00db 4E       		.byte	0x4e
+ 612 00dc 01       		.byte	0x1
+ 613 00dd B4000000 		.4byte	.LFB6
+ 614 00e1 C8000000 		.4byte	.LFE6
+ 615 00e5 01       		.byte	0x1
+ 616 00e6 5D       		.byte	0x5d
+ 617 00e7 0A       		.uleb128 0xa
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 14
+
+
+ 618 00e8 19010000 		.4byte	0x119
+ 619 00ec 01       		.byte	0x1
+ 620 00ed 81010000 		.4byte	.LASF17
+ 621 00f1 01       		.byte	0x1
+ 622 00f2 53       		.byte	0x53
+ 623 00f3 01       		.byte	0x1
+ 624 00f4 C8000000 		.4byte	.LFB7
+ 625 00f8 E4000000 		.4byte	.LFE7
+ 626 00fc 01       		.byte	0x1
+ 627 00fd 5D       		.byte	0x5d
+ 628 00fe 0B       		.uleb128 0xb
+ 629 00ff 31000000 		.4byte	.LASF15
+ 630 0103 01       		.byte	0x1
+ 631 0104 52       		.byte	0x52
+ 632 0105 25000000 		.4byte	0x25
+ 633 0109 01       		.byte	0x1
+ 634 010a 50       		.byte	0x50
+ 635 010b 0B       		.uleb128 0xb
+ 636 010c 09010000 		.4byte	.LASF16
+ 637 0110 01       		.byte	0x1
+ 638 0111 52       		.byte	0x52
+ 639 0112 8F000000 		.4byte	0x8f
+ 640 0116 01       		.byte	0x1
+ 641 0117 51       		.byte	0x51
+ 642 0118 00       		.byte	0x0
+ 643 0119 0A       		.uleb128 0xa
+ 644 011a 3E010000 		.4byte	0x13e
+ 645 011e 01       		.byte	0x1
+ 646 011f 55000000 		.4byte	.LASF18
+ 647 0123 01       		.byte	0x1
+ 648 0124 5E       		.byte	0x5e
+ 649 0125 01       		.byte	0x1
+ 650 0126 E4000000 		.4byte	.LFB8
+ 651 012a 04010000 		.4byte	.LFE8
+ 652 012e 01       		.byte	0x1
+ 653 012f 5D       		.byte	0x5d
+ 654 0130 0B       		.uleb128 0xb
+ 655 0131 31000000 		.4byte	.LASF15
+ 656 0135 01       		.byte	0x1
+ 657 0136 5D       		.byte	0x5d
+ 658 0137 25000000 		.4byte	0x25
+ 659 013b 01       		.byte	0x1
+ 660 013c 50       		.byte	0x50
+ 661 013d 00       		.byte	0x0
+ 662 013e 08       		.uleb128 0x8
+ 663 013f 01       		.byte	0x1
+ 664 0140 75010000 		.4byte	.LASF19
+ 665 0144 01       		.byte	0x1
+ 666 0145 27       		.byte	0x27
+ 667 0146 01       		.byte	0x1
+ 668 0147 04010000 		.4byte	.LFB4
+ 669 014b C0010000 		.4byte	.LFE4
+ 670 014f 3E000000 		.4byte	.LLST6
+ 671 0153 08       		.uleb128 0x8
+ 672 0154 01       		.byte	0x1
+ 673 0155 62010000 		.4byte	.LASF20
+ 674 0159 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 15
+
+
+ 675 015a 68       		.byte	0x68
+ 676 015b 01       		.byte	0x1
+ 677 015c C0010000 		.4byte	.LFB9
+ 678 0160 50020000 		.4byte	.LFE9
+ 679 0164 5D000000 		.4byte	.LLST7
+ 680 0168 0C       		.uleb128 0xc
+ 681 0169 78010000 		.4byte	0x178
+ 682 016d 84000000 		.4byte	0x84
+ 683 0171 0D       		.uleb128 0xd
+ 684 0172 7D000000 		.4byte	0x7d
+ 685 0176 01       		.byte	0x1
+ 686 0177 00       		.byte	0x0
+ 687 0178 0E       		.uleb128 0xe
+ 688 0179 98000000 		.4byte	.LASF21
+ 689 017d 01       		.byte	0x1
+ 690 017e 0A       		.byte	0xa
+ 691 017f 89010000 		.4byte	0x189
+ 692 0183 05       		.byte	0x5
+ 693 0184 03       		.byte	0x3
+ 694 0185 00000000 		.4byte	ButtonIntrFunc
+ 695 0189 0F       		.uleb128 0xf
+ 696 018a 68010000 		.4byte	0x168
+ 697 018e 10       		.uleb128 0x10
+ 698 018f 1C010000 		.4byte	.LASF22
+ 699 0193 01       		.byte	0x1
+ 700 0194 07       		.byte	0x7
+ 701 0195 25000000 		.4byte	0x25
+ 702 0199 01       		.byte	0x1
+ 703 019a 05       		.byte	0x5
+ 704 019b 03       		.byte	0x3
+ 705 019c 00000000 		.4byte	button1
+ 706 01a0 10       		.uleb128 0x10
+ 707 01a1 38010000 		.4byte	.LASF23
+ 708 01a5 01       		.byte	0x1
+ 709 01a6 07       		.byte	0x7
+ 710 01a7 25000000 		.4byte	0x25
+ 711 01ab 01       		.byte	0x1
+ 712 01ac 05       		.byte	0x5
+ 713 01ad 03       		.byte	0x3
+ 714 01ae 00000000 		.4byte	button2
+ 715 01b2 10       		.uleb128 0x10
+ 716 01b3 40010000 		.4byte	.LASF24
+ 717 01b7 01       		.byte	0x1
+ 718 01b8 07       		.byte	0x7
+ 719 01b9 25000000 		.4byte	0x25
+ 720 01bd 01       		.byte	0x1
+ 721 01be 05       		.byte	0x5
+ 722 01bf 03       		.byte	0x3
+ 723 01c0 00000000 		.4byte	buttonsEnabled
+ 724 01c4 00       		.byte	0x0
+ 725              		.section	.debug_abbrev
+ 726 0000 01       		.uleb128 0x1
+ 727 0001 11       		.uleb128 0x11
+ 728 0002 01       		.byte	0x1
+ 729 0003 10       		.uleb128 0x10
+ 730 0004 06       		.uleb128 0x6
+ 731 0005 12       		.uleb128 0x12
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 16
+
+
+ 732 0006 01       		.uleb128 0x1
+ 733 0007 11       		.uleb128 0x11
+ 734 0008 01       		.uleb128 0x1
+ 735 0009 25       		.uleb128 0x25
+ 736 000a 0E       		.uleb128 0xe
+ 737 000b 13       		.uleb128 0x13
+ 738 000c 0B       		.uleb128 0xb
+ 739 000d 03       		.uleb128 0x3
+ 740 000e 0E       		.uleb128 0xe
+ 741 000f 1B       		.uleb128 0x1b
+ 742 0010 0E       		.uleb128 0xe
+ 743 0011 00       		.byte	0x0
+ 744 0012 00       		.byte	0x0
+ 745 0013 02       		.uleb128 0x2
+ 746 0014 16       		.uleb128 0x16
+ 747 0015 00       		.byte	0x0
+ 748 0016 03       		.uleb128 0x3
+ 749 0017 08       		.uleb128 0x8
+ 750 0018 3A       		.uleb128 0x3a
+ 751 0019 0B       		.uleb128 0xb
+ 752 001a 3B       		.uleb128 0x3b
+ 753 001b 0B       		.uleb128 0xb
+ 754 001c 49       		.uleb128 0x49
+ 755 001d 13       		.uleb128 0x13
+ 756 001e 00       		.byte	0x0
+ 757 001f 00       		.byte	0x0
+ 758 0020 03       		.uleb128 0x3
+ 759 0021 24       		.uleb128 0x24
+ 760 0022 00       		.byte	0x0
+ 761 0023 03       		.uleb128 0x3
+ 762 0024 0E       		.uleb128 0xe
+ 763 0025 0B       		.uleb128 0xb
+ 764 0026 0B       		.uleb128 0xb
+ 765 0027 3E       		.uleb128 0x3e
+ 766 0028 0B       		.uleb128 0xb
+ 767 0029 00       		.byte	0x0
+ 768 002a 00       		.byte	0x0
+ 769 002b 04       		.uleb128 0x4
+ 770 002c 24       		.uleb128 0x24
+ 771 002d 00       		.byte	0x0
+ 772 002e 03       		.uleb128 0x3
+ 773 002f 08       		.uleb128 0x8
+ 774 0030 0B       		.uleb128 0xb
+ 775 0031 0B       		.uleb128 0xb
+ 776 0032 3E       		.uleb128 0x3e
+ 777 0033 0B       		.uleb128 0xb
+ 778 0034 00       		.byte	0x0
+ 779 0035 00       		.byte	0x0
+ 780 0036 05       		.uleb128 0x5
+ 781 0037 16       		.uleb128 0x16
+ 782 0038 00       		.byte	0x0
+ 783 0039 03       		.uleb128 0x3
+ 784 003a 0E       		.uleb128 0xe
+ 785 003b 3A       		.uleb128 0x3a
+ 786 003c 0B       		.uleb128 0xb
+ 787 003d 3B       		.uleb128 0x3b
+ 788 003e 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 17
+
+
+ 789 003f 49       		.uleb128 0x49
+ 790 0040 13       		.uleb128 0x13
+ 791 0041 00       		.byte	0x0
+ 792 0042 00       		.byte	0x0
+ 793 0043 06       		.uleb128 0x6
+ 794 0044 0F       		.uleb128 0xf
+ 795 0045 00       		.byte	0x0
+ 796 0046 0B       		.uleb128 0xb
+ 797 0047 0B       		.uleb128 0xb
+ 798 0048 49       		.uleb128 0x49
+ 799 0049 13       		.uleb128 0x13
+ 800 004a 00       		.byte	0x0
+ 801 004b 00       		.byte	0x0
+ 802 004c 07       		.uleb128 0x7
+ 803 004d 15       		.uleb128 0x15
+ 804 004e 00       		.byte	0x0
+ 805 004f 27       		.uleb128 0x27
+ 806 0050 0C       		.uleb128 0xc
+ 807 0051 00       		.byte	0x0
+ 808 0052 00       		.byte	0x0
+ 809 0053 08       		.uleb128 0x8
+ 810 0054 2E       		.uleb128 0x2e
+ 811 0055 00       		.byte	0x0
+ 812 0056 3F       		.uleb128 0x3f
+ 813 0057 0C       		.uleb128 0xc
+ 814 0058 03       		.uleb128 0x3
+ 815 0059 0E       		.uleb128 0xe
+ 816 005a 3A       		.uleb128 0x3a
+ 817 005b 0B       		.uleb128 0xb
+ 818 005c 3B       		.uleb128 0x3b
+ 819 005d 0B       		.uleb128 0xb
+ 820 005e 27       		.uleb128 0x27
+ 821 005f 0C       		.uleb128 0xc
+ 822 0060 11       		.uleb128 0x11
+ 823 0061 01       		.uleb128 0x1
+ 824 0062 12       		.uleb128 0x12
+ 825 0063 01       		.uleb128 0x1
+ 826 0064 40       		.uleb128 0x40
+ 827 0065 06       		.uleb128 0x6
+ 828 0066 00       		.byte	0x0
+ 829 0067 00       		.byte	0x0
+ 830 0068 09       		.uleb128 0x9
+ 831 0069 2E       		.uleb128 0x2e
+ 832 006a 00       		.byte	0x0
+ 833 006b 3F       		.uleb128 0x3f
+ 834 006c 0C       		.uleb128 0xc
+ 835 006d 03       		.uleb128 0x3
+ 836 006e 0E       		.uleb128 0xe
+ 837 006f 3A       		.uleb128 0x3a
+ 838 0070 0B       		.uleb128 0xb
+ 839 0071 3B       		.uleb128 0x3b
+ 840 0072 0B       		.uleb128 0xb
+ 841 0073 27       		.uleb128 0x27
+ 842 0074 0C       		.uleb128 0xc
+ 843 0075 11       		.uleb128 0x11
+ 844 0076 01       		.uleb128 0x1
+ 845 0077 12       		.uleb128 0x12
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 18
+
+
+ 846 0078 01       		.uleb128 0x1
+ 847 0079 40       		.uleb128 0x40
+ 848 007a 0A       		.uleb128 0xa
+ 849 007b 00       		.byte	0x0
+ 850 007c 00       		.byte	0x0
+ 851 007d 0A       		.uleb128 0xa
+ 852 007e 2E       		.uleb128 0x2e
+ 853 007f 01       		.byte	0x1
+ 854 0080 01       		.uleb128 0x1
+ 855 0081 13       		.uleb128 0x13
+ 856 0082 3F       		.uleb128 0x3f
+ 857 0083 0C       		.uleb128 0xc
+ 858 0084 03       		.uleb128 0x3
+ 859 0085 0E       		.uleb128 0xe
+ 860 0086 3A       		.uleb128 0x3a
+ 861 0087 0B       		.uleb128 0xb
+ 862 0088 3B       		.uleb128 0x3b
+ 863 0089 0B       		.uleb128 0xb
+ 864 008a 27       		.uleb128 0x27
+ 865 008b 0C       		.uleb128 0xc
+ 866 008c 11       		.uleb128 0x11
+ 867 008d 01       		.uleb128 0x1
+ 868 008e 12       		.uleb128 0x12
+ 869 008f 01       		.uleb128 0x1
+ 870 0090 40       		.uleb128 0x40
+ 871 0091 0A       		.uleb128 0xa
+ 872 0092 00       		.byte	0x0
+ 873 0093 00       		.byte	0x0
+ 874 0094 0B       		.uleb128 0xb
+ 875 0095 05       		.uleb128 0x5
+ 876 0096 00       		.byte	0x0
+ 877 0097 03       		.uleb128 0x3
+ 878 0098 0E       		.uleb128 0xe
+ 879 0099 3A       		.uleb128 0x3a
+ 880 009a 0B       		.uleb128 0xb
+ 881 009b 3B       		.uleb128 0x3b
+ 882 009c 0B       		.uleb128 0xb
+ 883 009d 49       		.uleb128 0x49
+ 884 009e 13       		.uleb128 0x13
+ 885 009f 02       		.uleb128 0x2
+ 886 00a0 0A       		.uleb128 0xa
+ 887 00a1 00       		.byte	0x0
+ 888 00a2 00       		.byte	0x0
+ 889 00a3 0C       		.uleb128 0xc
+ 890 00a4 01       		.uleb128 0x1
+ 891 00a5 01       		.byte	0x1
+ 892 00a6 01       		.uleb128 0x1
+ 893 00a7 13       		.uleb128 0x13
+ 894 00a8 49       		.uleb128 0x49
+ 895 00a9 13       		.uleb128 0x13
+ 896 00aa 00       		.byte	0x0
+ 897 00ab 00       		.byte	0x0
+ 898 00ac 0D       		.uleb128 0xd
+ 899 00ad 21       		.uleb128 0x21
+ 900 00ae 00       		.byte	0x0
+ 901 00af 49       		.uleb128 0x49
+ 902 00b0 13       		.uleb128 0x13
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 19
+
+
+ 903 00b1 2F       		.uleb128 0x2f
+ 904 00b2 0B       		.uleb128 0xb
+ 905 00b3 00       		.byte	0x0
+ 906 00b4 00       		.byte	0x0
+ 907 00b5 0E       		.uleb128 0xe
+ 908 00b6 34       		.uleb128 0x34
+ 909 00b7 00       		.byte	0x0
+ 910 00b8 03       		.uleb128 0x3
+ 911 00b9 0E       		.uleb128 0xe
+ 912 00ba 3A       		.uleb128 0x3a
+ 913 00bb 0B       		.uleb128 0xb
+ 914 00bc 3B       		.uleb128 0x3b
+ 915 00bd 0B       		.uleb128 0xb
+ 916 00be 49       		.uleb128 0x49
+ 917 00bf 13       		.uleb128 0x13
+ 918 00c0 02       		.uleb128 0x2
+ 919 00c1 0A       		.uleb128 0xa
+ 920 00c2 00       		.byte	0x0
+ 921 00c3 00       		.byte	0x0
+ 922 00c4 0F       		.uleb128 0xf
+ 923 00c5 35       		.uleb128 0x35
+ 924 00c6 00       		.byte	0x0
+ 925 00c7 49       		.uleb128 0x49
+ 926 00c8 13       		.uleb128 0x13
+ 927 00c9 00       		.byte	0x0
+ 928 00ca 00       		.byte	0x0
+ 929 00cb 10       		.uleb128 0x10
+ 930 00cc 34       		.uleb128 0x34
+ 931 00cd 00       		.byte	0x0
+ 932 00ce 03       		.uleb128 0x3
+ 933 00cf 0E       		.uleb128 0xe
+ 934 00d0 3A       		.uleb128 0x3a
+ 935 00d1 0B       		.uleb128 0xb
+ 936 00d2 3B       		.uleb128 0x3b
+ 937 00d3 0B       		.uleb128 0xb
+ 938 00d4 49       		.uleb128 0x49
+ 939 00d5 13       		.uleb128 0x13
+ 940 00d6 3F       		.uleb128 0x3f
+ 941 00d7 0C       		.uleb128 0xc
+ 942 00d8 02       		.uleb128 0x2
+ 943 00d9 0A       		.uleb128 0xa
+ 944 00da 00       		.byte	0x0
+ 945 00db 00       		.byte	0x0
+ 946 00dc 00       		.byte	0x0
+ 947              		.section	.debug_pubnames,"",%progbits
+ 948 0000 CB000000 		.4byte	0xcb
+ 949 0004 0200     		.2byte	0x2
+ 950 0006 00000000 		.4byte	.Ldebug_info0
+ 951 000a C5010000 		.4byte	0x1c5
+ 952 000e 97000000 		.4byte	0x97
+ 953 0012 45494E54 		.ascii	"EINT1_routine\000"
+ 953      315F726F 
+ 953      7574696E 
+ 953      6500
+ 954 0020 AC000000 		.4byte	0xac
+ 955 0024 45494E54 		.ascii	"EINT2_routine\000"
+ 955      325F726F 
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 20
+
+
+ 955      7574696E 
+ 955      6500
+ 956 0032 C1000000 		.4byte	0xc1
+ 957 0036 656E6162 		.ascii	"enableButtons\000"
+ 957      6C654275 
+ 957      74746F6E 
+ 957      7300
+ 958 0044 D4000000 		.4byte	0xd4
+ 959 0048 64697361 		.ascii	"disableButtons\000"
+ 959      626C6542 
+ 959      7574746F 
+ 959      6E7300
+ 960 0057 E7000000 		.4byte	0xe7
+ 961 005b 62757474 		.ascii	"buttonAttach\000"
+ 961      6F6E4174 
+ 961      74616368 
+ 961      00
+ 962 0068 19010000 		.4byte	0x119
+ 963 006c 62757474 		.ascii	"buttonDetach\000"
+ 963      6F6E4465 
+ 963      74616368 
+ 963      00
+ 964 0079 3E010000 		.4byte	0x13e
+ 965 007d 696E6974 		.ascii	"initButtons\000"
+ 965      42757474 
+ 965      6F6E7300 
+ 966 0089 53010000 		.4byte	0x153
+ 967 008d 62757474 		.ascii	"buttonPressService\000"
+ 967      6F6E5072 
+ 967      65737353 
+ 967      65727669 
+ 967      636500
+ 968 00a0 8E010000 		.4byte	0x18e
+ 969 00a4 62757474 		.ascii	"button1\000"
+ 969      6F6E3100 
+ 970 00ac A0010000 		.4byte	0x1a0
+ 971 00b0 62757474 		.ascii	"button2\000"
+ 971      6F6E3200 
+ 972 00b8 B2010000 		.4byte	0x1b2
+ 973 00bc 62757474 		.ascii	"buttonsEnabled\000"
+ 973      6F6E7345 
+ 973      6E61626C 
+ 973      656400
+ 974 00cb 00000000 		.4byte	0x0
+ 975              		.section	.debug_aranges,"",%progbits
+ 976 0000 1C000000 		.4byte	0x1c
+ 977 0004 0200     		.2byte	0x2
+ 978 0006 00000000 		.4byte	.Ldebug_info0
+ 979 000a 04       		.byte	0x4
+ 980 000b 00       		.byte	0x0
+ 981 000c 0000     		.2byte	0x0
+ 982 000e 0000     		.2byte	0x0
+ 983 0010 00000000 		.4byte	.Ltext0
+ 984 0014 50020000 		.4byte	.Letext0-.Ltext0
+ 985 0018 00000000 		.4byte	0x0
+ 986 001c 00000000 		.4byte	0x0
+ 987              		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 21
+
+
+ 988              	.LASF13:
+ 989 0000 656E6162 		.ascii	"enableButtons\000"
+ 989      6C654275 
+ 989      74746F6E 
+ 989      7300
+ 990              	.LASF6:
+ 991 000e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 991      206C6F6E 
+ 991      6720756E 
+ 991      7369676E 
+ 991      65642069 
+ 992              	.LASF10:
+ 993 0025 766F6964 		.ascii	"voidFuncPtr\000"
+ 993      46756E63 
+ 993      50747200 
+ 994              	.LASF15:
+ 995 0031 62757474 		.ascii	"buttonNum\000"
+ 995      6F6E4E75 
+ 995      6D00
+ 996              	.LASF7:
+ 997 003b 6C6F6E67 		.ascii	"long long int\000"
+ 997      206C6F6E 
+ 997      6720696E 
+ 997      7400
+ 998              	.LASF1:
+ 999 0049 7369676E 		.ascii	"signed char\000"
+ 999      65642063 
+ 999      68617200 
+ 1000              	.LASF18:
+ 1001 0055 62757474 		.ascii	"buttonDetach\000"
+ 1001      6F6E4465 
+ 1001      74616368 
+ 1001      00
+ 1002              	.LASF5:
+ 1003 0062 6C6F6E67 		.ascii	"long int\000"
+ 1003      20696E74 
+ 1003      00
+ 1004              	.LASF8:
+ 1005 006b 756E7369 		.ascii	"unsigned int\000"
+ 1005      676E6564 
+ 1005      20696E74 
+ 1005      00
+ 1006              	.LASF11:
+ 1007 0078 45494E54 		.ascii	"EINT1_routine\000"
+ 1007      315F726F 
+ 1007      7574696E 
+ 1007      6500
+ 1008              	.LASF4:
+ 1009 0086 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1009      20756E73 
+ 1009      69676E65 
+ 1009      6420696E 
+ 1009      7400
+ 1010              	.LASF21:
+ 1011 0098 42757474 		.ascii	"ButtonIntrFunc\000"
+ 1011      6F6E496E 
+ 1011      74724675 
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 22
+
+
+ 1011      6E6300
+ 1012              	.LASF12:
+ 1013 00a7 45494E54 		.ascii	"EINT2_routine\000"
+ 1013      325F726F 
+ 1013      7574696E 
+ 1013      6500
+ 1014              	.LASF27:
+ 1015 00b5 633A5C4D 		.ascii	"c:\\MScubes\\Simulator\\2008conv\\controller\\runti"
+ 1015      53637562 
+ 1015      65735C53 
+ 1015      696D756C 
+ 1015      61746F72 
+ 1016 00e3 6D6500   		.ascii	"me\000"
+ 1017              	.LASF25:
+ 1018 00e6 474E5520 		.ascii	"GNU C 4.1.1 (WinARM)\000"
+ 1018      4320342E 
+ 1018      312E3120 
+ 1018      2857696E 
+ 1018      41524D29 
+ 1019              	.LASF0:
+ 1020 00fb 756E7369 		.ascii	"unsigned char\000"
+ 1020      676E6564 
+ 1020      20636861 
+ 1020      7200
+ 1021              	.LASF16:
+ 1022 0109 75736572 		.ascii	"userFunc\000"
+ 1022      46756E63 
+ 1022      00
+ 1023              	.LASF3:
+ 1024 0112 73686F72 		.ascii	"short int\000"
+ 1024      7420696E 
+ 1024      7400
+ 1025              	.LASF22:
+ 1026 011c 62757474 		.ascii	"button1\000"
+ 1026      6F6E3100 
+ 1027              	.LASF9:
+ 1028 0124 63686172 		.ascii	"char\000"
+ 1028      00
+ 1029              	.LASF14:
+ 1030 0129 64697361 		.ascii	"disableButtons\000"
+ 1030      626C6542 
+ 1030      7574746F 
+ 1030      6E7300
+ 1031              	.LASF23:
+ 1032 0138 62757474 		.ascii	"button2\000"
+ 1032      6F6E3200 
+ 1033              	.LASF24:
+ 1034 0140 62757474 		.ascii	"buttonsEnabled\000"
+ 1034      6F6E7345 
+ 1034      6E61626C 
+ 1034      656400
+ 1035              	.LASF2:
+ 1036 014f 73686F72 		.ascii	"short unsigned int\000"
+ 1036      7420756E 
+ 1036      7369676E 
+ 1036      65642069 
+ 1036      6E7400
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 23
+
+
+ 1037              	.LASF20:
+ 1038 0162 62757474 		.ascii	"buttonPressService\000"
+ 1038      6F6E5072 
+ 1038      65737353 
+ 1038      65727669 
+ 1038      636500
+ 1039              	.LASF19:
+ 1040 0175 696E6974 		.ascii	"initButtons\000"
+ 1040      42757474 
+ 1040      6F6E7300 
+ 1041              	.LASF17:
+ 1042 0181 62757474 		.ascii	"buttonAttach\000"
+ 1042      6F6E4174 
+ 1042      74616368 
+ 1042      00
+ 1043              	.LASF26:
+ 1044 018e 62757474 		.ascii	"buttons.c\000"
+ 1044      6F6E732E 
+ 1044      6300
+ 1045              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+ARM GAS  C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 buttons.c
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:13     .text:00000000 EINT1_routine
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:21     .text:00000000 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:51     .text:0000004c $d
+                            *COM*:00000001 button1
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:57     .text:00000050 EINT2_routine
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:64     .text:00000050 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:94     .text:0000009c $d
+                            *COM*:00000001 button2
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:100    .text:000000a0 enableButtons
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:108    .text:000000a0 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:116    .text:000000b0 $d
+                            *COM*:00000001 buttonsEnabled
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:122    .text:000000b4 disableButtons
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:130    .text:000000b4 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:138    .text:000000c4 $d
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:144    .text:000000c8 buttonAttach
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:152    .text:000000c8 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:163    .text:000000e0 $d
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:334    .bss:00000000 ButtonIntrFunc
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:169    .text:000000e4 buttonDetach
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:177    .text:000000e4 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:189    .text:00000100 $d
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:195    .text:00000104 initButtons
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:200    .text:00000104 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:263    .text:000001ac $d
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:273    .text:000001c0 buttonPressService
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:278    .text:000001c0 $a
+C:\DOCUME~1\TECHCO~1\LOCALS~1\Temp/ccmyaaaa.s:326    .text:00000240 $d
+
+NO UNDEFINED SYMBOLS

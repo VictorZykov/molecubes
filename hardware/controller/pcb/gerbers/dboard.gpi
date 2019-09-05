@@ -1,0 +1,42 @@
+Photoplotter Info File: C:/cornell/molecubes_sf/trunk/hardware/ctl_daughterboard/dboard.gpi
+
+ Date              :  2/22/2008 11:34:21a
+ Plotfile          : C:/cornell/molecubes_sf/trunk/hardware/ctl_daughterboard/dboard.pls
+ Apertures         : generated: 
+ Device            : Gerber photoplotter with RS-274-X aperture generation
+
+Parameter settings:
+
+ Emulate Apertures : no
+ Emulate Thermal   : no
+ Emulate Annulus   : no
+ Tolerance Draw  + :  0.00 %
+ Tolerance Draw  - :  0.00 %
+ Tolerance Flash + :  0.00 %
+ Tolerance Flash - :  0.00 %
+ Rotate            : no
+ Mirror            : no
+ Optimize          : yes
+ Auto fit          : yes
+ OffsetX           : 0inch
+ OffsetY           : 0inch
+
+Plotfile Info:
+
+ Coordinate Format : 2.4
+ Coordinate Units  : Inch
+ Data Mode         : Absolute
+ Zero Suppression  : None
+ End Of Block      : *
+
+Apertures used:
+
+ Code     Shape     Size                  used
+
+ D10      draw      0.0000inch              12
+ D11      draw      0.0060inch             170
+ D12      draw      0.0040inch             174
+ D13      draw      0.0030inch              45
+ D14      draw      0.0050inch              81
+ D15      draw      0.0080inch              21
+

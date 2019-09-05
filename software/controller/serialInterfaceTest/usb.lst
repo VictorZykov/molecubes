@@ -1,0 +1,2748 @@
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 1
+
+
+   1              		.file	"usb.c"
+   2              		.section	.debug_abbrev,"",%progbits
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,"",%progbits
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,"",%progbits
+   7              	.Ldebug_line0:
+   8 0000 C5000000 		.text
+   8      02005900 
+   8      00000201 
+   8      FB0E0D00 
+   8      01010101 
+   9              	.Ltext0:
+  10              		.align	2
+  11              		.type	USBIntHandler, %function
+  12              	USBIntHandler:
+  13              	.LFB8:
+  14              		.file 1 "usb.c"
+   1:usb.c         **** #include "global.h"			// include our global project settings
+   2:usb.c         **** #include "processor.h"		// include processor initialization functions
+   3:usb.c         **** #include "lpc2000.h"		// include LPC210x defines
+   4:usb.c         **** #include "buffer.h"
+   5:usb.c         **** #include "usb.h"
+   6:usb.c         **** 
+   7:usb.c         **** static unsigned char uartRxData[UART_RX_BUFFER_SIZE];
+   8:usb.c         **** static unsigned char uartTxData[UART_TX_BUFFER_SIZE];
+   9:usb.c         **** cBuffer uartRxBuffer;				///< uart receive buffer
+  10:usb.c         **** cBuffer uartTxBuffer;				///< uart transmit buffer
+  11:usb.c         **** unsigned short uartRxOverflow;		///< receive overflow counter
+  12:usb.c         **** 
+  13:usb.c         **** 
+  14:usb.c         **** // data structure for GET_LINE_CODING / SET_LINE_CODING class requests
+  15:usb.c         **** typedef struct {
+  16:usb.c         **** 	U32		dwDTERate;
+  17:usb.c         **** 	U8		bCharFormat;
+  18:usb.c         **** 	U8		bParityType;
+  19:usb.c         **** 	U8		bDataBits;
+  20:usb.c         **** } TLineCoding;
+  21:usb.c         **** 
+  22:usb.c         **** //static TLineCoding LineCoding = {115200, 0, 0, 8};
+  23:usb.c         **** static TLineCoding LineCoding = {1000000, 0, 0, 8};
+  24:usb.c         **** static U8 abBulkBuf[64];
+  25:usb.c         **** static U8 abClassReqData[8];
+  26:usb.c         **** 
+  27:usb.c         **** // forward declaration of interrupt handler
+  28:usb.c         **** static void USBIntHandler(void) __attribute__ ((interrupt("IRQ")));
+  29:usb.c         **** 
+  30:usb.c         **** 
+  31:usb.c         **** static const U8 abDescriptors[] = {
+  32:usb.c         **** 
+  33:usb.c         **** // device descriptor
+  34:usb.c         **** 	0x12,
+  35:usb.c         **** 	DESC_DEVICE,
+  36:usb.c         **** 	LE_WORD(0x0101),			// bcdUSB
+  37:usb.c         **** 	0x02,						// bDeviceClass
+  38:usb.c         **** 	0x00,						// bDeviceSubClass
+  39:usb.c         **** 	0x00,						// bDeviceProtocol
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 2
+
+
+  40:usb.c         **** 	MAX_PACKET_SIZE0,			// bMaxPacketSize
+  41:usb.c         **** 	LE_WORD(0xFFFF),			// idVendor
+  42:usb.c         **** 	LE_WORD(0x0005),			// idProduct
+  43:usb.c         **** 	LE_WORD(0x0100),			// bcdDevice
+  44:usb.c         **** 	0x01,						// iManufacturer
+  45:usb.c         **** 	0x02,						// iProduct
+  46:usb.c         **** 	0x03,						// iSerialNumber
+  47:usb.c         **** 	0x01,						// bNumConfigurations
+  48:usb.c         **** 
+  49:usb.c         **** // configuration descriptor
+  50:usb.c         **** 	0x09,
+  51:usb.c         **** 	DESC_CONFIGURATION,
+  52:usb.c         **** 	LE_WORD(67),				// wTotalLength
+  53:usb.c         **** 	0x02,						// bNumInterfaces
+  54:usb.c         **** 	0x01,						// bConfigurationValue
+  55:usb.c         **** 	0x00,						// iConfiguration
+  56:usb.c         **** 	0xC0,						// bmAttributes
+  57:usb.c         **** 	0x32,						// bMaxPower
+  58:usb.c         **** // control class interface
+  59:usb.c         **** 	0x09,
+  60:usb.c         **** 	DESC_INTERFACE,
+  61:usb.c         **** 	0x00,						// bInterfaceNumber
+  62:usb.c         **** 	0x00,						// bAlternateSetting
+  63:usb.c         **** 	0x01,						// bNumEndPoints
+  64:usb.c         **** 	0x02,						// bInterfaceClass
+  65:usb.c         **** 	0x02,						// bInterfaceSubClass
+  66:usb.c         **** 	0x01,						// bInterfaceProtocol, linux requires value of 1 for the cdc_acm module
+  67:usb.c         **** 	0x00,						// iInterface
+  68:usb.c         **** // header functional descriptor
+  69:usb.c         **** 	0x05,
+  70:usb.c         **** 	CS_INTERFACE,
+  71:usb.c         **** 	0x00,
+  72:usb.c         **** 	LE_WORD(0x0110),
+  73:usb.c         **** // call management functional descriptor
+  74:usb.c         **** 	0x05,
+  75:usb.c         **** 	CS_INTERFACE,
+  76:usb.c         **** 	0x01,
+  77:usb.c         **** 	0x01,						// bmCapabilities = device handles call management
+  78:usb.c         **** 	0x01,						// bDataInterface
+  79:usb.c         **** // ACM functional descriptor
+  80:usb.c         **** 	0x04,
+  81:usb.c         **** 	CS_INTERFACE,
+  82:usb.c         **** 	0x02,
+  83:usb.c         **** 	0x02,						// bmCapabilities
+  84:usb.c         **** // union functional descriptor
+  85:usb.c         **** 	0x05,
+  86:usb.c         **** 	CS_INTERFACE,
+  87:usb.c         **** 	0x06,
+  88:usb.c         **** 	0x00,						// bMasterInterface
+  89:usb.c         **** 	0x01,						// bSlaveInterface0
+  90:usb.c         **** // notification EP
+  91:usb.c         **** 	0x07,
+  92:usb.c         **** 	DESC_ENDPOINT,
+  93:usb.c         **** 	INT_IN_EP,					// bEndpointAddress
+  94:usb.c         **** 	0x03,						// bmAttributes = intr
+  95:usb.c         **** 	LE_WORD(8),					// wMaxPacketSize
+  96:usb.c         **** 	0x0A,						// bInterval
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 3
+
+
+  97:usb.c         **** // data class interface descriptor
+  98:usb.c         **** 	0x09,
+  99:usb.c         **** 	DESC_INTERFACE,
+ 100:usb.c         **** 	0x01,						// bInterfaceNumber
+ 101:usb.c         **** 	0x00,						// bAlternateSetting
+ 102:usb.c         **** 	0x02,						// bNumEndPoints
+ 103:usb.c         **** 	0x0A,						// bInterfaceClass = data
+ 104:usb.c         **** 	0x00,						// bInterfaceSubClass
+ 105:usb.c         **** 	0x00,						// bInterfaceProtocol
+ 106:usb.c         **** 	0x00,						// iInterface
+ 107:usb.c         **** // data EP OUT
+ 108:usb.c         **** 	0x07,
+ 109:usb.c         **** 	DESC_ENDPOINT,
+ 110:usb.c         **** 	BULK_OUT_EP,				// bEndpointAddress
+ 111:usb.c         **** 	0x02,						// bmAttributes = bulk
+ 112:usb.c         **** 	LE_WORD(MAX_PACKET_SIZE),	// wMaxPacketSize
+ 113:usb.c         **** 	0x00,						// bInterval
+ 114:usb.c         **** // data EP in
+ 115:usb.c         **** 	0x07,
+ 116:usb.c         **** 	DESC_ENDPOINT,
+ 117:usb.c         **** 	BULK_IN_EP,					// bEndpointAddress
+ 118:usb.c         **** 	0x02,						// bmAttributes = bulk
+ 119:usb.c         **** 	LE_WORD(MAX_PACKET_SIZE),	// wMaxPacketSize
+ 120:usb.c         **** 	0x00,						// bInterval
+ 121:usb.c         **** 	
+ 122:usb.c         **** 	// string descriptors
+ 123:usb.c         **** 	0x04,
+ 124:usb.c         **** 	DESC_STRING,
+ 125:usb.c         **** 	LE_WORD(0x0409),
+ 126:usb.c         **** 
+ 127:usb.c         **** 	0x0E,
+ 128:usb.c         **** 	DESC_STRING,
+ 129:usb.c         **** 	'L', 0, 'P', 0, 'C', 0, 'U', 0, 'S', 0, 'B', 0,
+ 130:usb.c         **** 
+ 131:usb.c         **** 	0x14,
+ 132:usb.c         **** 	DESC_STRING,
+ 133:usb.c         **** 	'U', 0, 'S', 0, 'B', 0, 'S', 0, 'e', 0, 'r', 0, 'i', 0, 'a', 0, 'l', 0,
+ 134:usb.c         **** 
+ 135:usb.c         **** 	0x12,
+ 136:usb.c         **** 	DESC_STRING,
+ 137:usb.c         **** 	'D', 0, 'E', 0, 'A', 0, 'D', 0, 'C', 0, '0', 0, 'D', 0, 'E', 0,
+ 138:usb.c         **** 
+ 139:usb.c         **** // terminating zero
+ 140:usb.c         **** 	0
+ 141:usb.c         **** };
+ 142:usb.c         **** 
+ 143:usb.c         **** 
+ 144:usb.c         **** /**
+ 145:usb.c         **** 	Local function to handle incoming bulk data
+ 146:usb.c         **** 		
+ 147:usb.c         **** 	@param [in] bEP
+ 148:usb.c         **** 	@param [in] bEPStatus
+ 149:usb.c         ****  */
+ 150:usb.c         **** static void BulkOut(U8 bEP, U8 bEPStatus)
+ 151:usb.c         **** {
+ 152:usb.c         **** 	int i, iLen;
+ 153:usb.c         **** 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 4
+
+
+ 154:usb.c         **** 	
+ 155:usb.c         **** 	//if (fifo_free(&rxfifo) < MAX_PACKET_SIZE) {
+ 156:usb.c         **** 	if (bufferIsNotFull(&uartRxBuffer) < MAX_PACKET_SIZE) {
+ 157:usb.c         **** 		// may not fit into fifo
+ 158:usb.c         **** 		return;
+ 159:usb.c         **** 	}
+ 160:usb.c         **** 
+ 161:usb.c         **** 	// get data from USB into intermediate buffer
+ 162:usb.c         **** 	iLen = USBHwEPRead(bEP, abBulkBuf, sizeof(abBulkBuf));
+ 163:usb.c         **** 	for (i = 0; i < iLen; i++) {
+ 164:usb.c         **** 		// put into FIFO
+ 165:usb.c         **** 		//if (!fifo_put(&rxfifo, abBulkBuf[i])) {
+ 166:usb.c         **** 		if(!bufferAddToEnd(&uartRxBuffer, abBulkBuf[i])) {	
+ 167:usb.c         **** 			// overflow... :(
+ 168:usb.c         **** 			//ASSERT(FALSE);
+ 169:usb.c         **** 			break;
+ 170:usb.c         **** 		}
+ 171:usb.c         **** 	}
+ 172:usb.c         **** }
+ 173:usb.c         **** 
+ 174:usb.c         **** 
+ 175:usb.c         **** /**
+ 176:usb.c         **** 	Local function to handle outgoing bulk data
+ 177:usb.c         **** 		
+ 178:usb.c         **** 	@param [in] bEP
+ 179:usb.c         **** 	@param [in] bEPStatus
+ 180:usb.c         ****  */
+ 181:usb.c         **** static void BulkIn(U8 bEP, U8 bEPStatus)
+ 182:usb.c         **** {
+ 183:usb.c         **** 	int i, iLen;
+ 184:usb.c         **** 	unsigned char c;
+ 185:usb.c         **** 
+ 186:usb.c         **** 	//if (fifo_avail(&txfifo) == 0) {
+ 187:usb.c         **** 	if (!bufferIsNotFull(&uartTxBuffer)) {
+ 188:usb.c         **** 		// no more data, disable further NAK interrupts until next USB frame
+ 189:usb.c         **** 		USBHwNakIntEnable(0);
+ 190:usb.c         **** 		return;
+ 191:usb.c         **** 	}
+ 192:usb.c         **** 
+ 193:usb.c         **** 	// get bytes from transmit FIFO into intermediate buffer
+ 194:usb.c         **** 	for (i = 0; i < MAX_PACKET_SIZE; i++) {
+ 195:usb.c         **** 		c = bufferGetFromFront(&uartTxBuffer);
+ 196:usb.c         **** 		if(!c) {
+ 197:usb.c         **** 		//if (!fifo_get(&txfifo, &abBulkBuf[i])) {
+ 198:usb.c         **** 			break;
+ 199:usb.c         **** 		} else {
+ 200:usb.c         **** 			abBulkBuf[i] = c;
+ 201:usb.c         **** 		}
+ 202:usb.c         **** 	}
+ 203:usb.c         **** 	iLen = i;
+ 204:usb.c         **** 	
+ 205:usb.c         **** 	// send over USB
+ 206:usb.c         **** 	if (iLen > 0) {
+ 207:usb.c         **** 		USBHwEPWrite(bEP, abBulkBuf, iLen);
+ 208:usb.c         **** 	}
+ 209:usb.c         **** }
+ 210:usb.c         **** 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 5
+
+
+ 211:usb.c         **** 
+ 212:usb.c         **** /**
+ 213:usb.c         **** 	Local function to handle the USB-CDC class requests
+ 214:usb.c         **** 		
+ 215:usb.c         **** 	@param [in] pSetup
+ 216:usb.c         **** 	@param [out] piLen
+ 217:usb.c         **** 	@param [out] ppbData
+ 218:usb.c         ****  */
+ 219:usb.c         **** static BOOL HandleClassRequest(TSetupPacket *pSetup, int *piLen, U8 **ppbData)
+ 220:usb.c         **** {
+ 221:usb.c         **** 	switch (pSetup->bRequest) {
+ 222:usb.c         **** 
+ 223:usb.c         **** 	// set line coding
+ 224:usb.c         **** 	case SET_LINE_CODING:
+ 225:usb.c         **** //DBG("SET_LINE_CODING\n");
+ 226:usb.c         **** 		memcpy((U8 *)&LineCoding, *ppbData, 7);
+ 227:usb.c         **** 		*piLen = 7;
+ 228:usb.c         **** //DBG("dwDTERate=%u, bCharFormat=%u, bParityType=%u, bDataBits=%u\n",
+ 229:usb.c         **** //	LineCoding.dwDTERate,
+ 230:usb.c         **** //	LineCoding.bCharFormat,
+ 231:usb.c         **** //	LineCoding.bParityType,
+ 232:usb.c         **** //	LineCoding.bDataBits);
+ 233:usb.c         **** 		break;
+ 234:usb.c         **** 
+ 235:usb.c         **** 	// get line coding
+ 236:usb.c         **** 	case GET_LINE_CODING:
+ 237:usb.c         **** //DBG("GET_LINE_CODING\n");
+ 238:usb.c         **** 		*ppbData = (U8 *)&LineCoding;
+ 239:usb.c         **** 		*piLen = 7;
+ 240:usb.c         **** 		break;
+ 241:usb.c         **** 
+ 242:usb.c         **** 	// set control line state
+ 243:usb.c         **** 	case SET_CONTROL_LINE_STATE:
+ 244:usb.c         **** 		// bit0 = DTR, bit = RTS
+ 245:usb.c         **** //DBG("SET_CONTROL_LINE_STATE %X\n", pSetup->wValue);
+ 246:usb.c         **** 		break;
+ 247:usb.c         **** 
+ 248:usb.c         **** 	default:
+ 249:usb.c         **** 		return FALSE;
+ 250:usb.c         **** 	}
+ 251:usb.c         **** 	return TRUE;
+ 252:usb.c         **** }
+ 253:usb.c         **** 
+ 254:usb.c         **** 
+ 255:usb.c         **** /**
+ 256:usb.c         **** 	Initialises the VCOM port.
+ 257:usb.c         **** 	Call this function before using VCOM_putchar or VCOM_getchar
+ 258:usb.c         ****  */
+ 259:usb.c         **** void VCOM_init(void)
+ 260:usb.c         **** {
+ 261:usb.c         **** 	//fifo_init(&txfifo, txdata);
+ 262:usb.c         **** 	//fifo_init(&rxfifo, rxdata);
+ 263:usb.c         **** 	bufferInit(&uartTxBuffer, uartTxData, UART_TX_BUFFER_SIZE);
+ 264:usb.c         **** 	bufferInit(&uartRxBuffer, uartRxData, UART_RX_BUFFER_SIZE);
+ 265:usb.c         **** }
+ 266:usb.c         **** 
+ 267:usb.c         **** 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 6
+
+
+ 268:usb.c         **** /**
+ 269:usb.c         **** 	Writes one character to VCOM port
+ 270:usb.c         **** 	
+ 271:usb.c         **** 	@param [in] c character to write
+ 272:usb.c         **** 	@returns character written, or EOF if character could not be written
+ 273:usb.c         ****  */
+ 274:usb.c         **** int VCOM_putchar(int c)
+ 275:usb.c         **** {
+ 276:usb.c         **** 	//return fifo_put(&txfifo, c) ? c : EOF;
+ 277:usb.c         **** 	return bufferAddToEnd(&uartTxBuffer, c) ? c : EOF;
+ 278:usb.c         **** }
+ 279:usb.c         **** 
+ 280:usb.c         **** 
+ 281:usb.c         **** /**
+ 282:usb.c         **** 	Reads one character from VCOM port
+ 283:usb.c         **** 	
+ 284:usb.c         **** 	@returns character read, or EOF if character could not be read
+ 285:usb.c         ****  */
+ 286:usb.c         **** int VCOM_getchar(void)
+ 287:usb.c         **** {
+ 288:usb.c         **** 	U8 c;
+ 289:usb.c         **** 	c = bufferGetFromFront(&uartRxBuffer);
+ 290:usb.c         **** 	//return fifo_get(&rxfifo, &c) ? c : EOF;
+ 291:usb.c         **** 	return c ? c : EOF;
+ 292:usb.c         **** }
+ 293:usb.c         **** 
+ 294:usb.c         **** 
+ 295:usb.c         **** /**
+ 296:usb.c         **** 	Interrupt handler
+ 297:usb.c         **** 	
+ 298:usb.c         **** 	Simply calls the USB ISR, then signals end of interrupt to VIC
+ 299:usb.c         ****  */
+ 300:usb.c         **** static void USBIntHandler(void)
+ 301:usb.c         **** {
+  15              		.loc 1 301 0
+  16              		@ Interrupt Service Routine.
+  17              		@ args = 0, pretend = 0, frame = 0
+  18              		@ frame_needed = 0, uses_anonymous_args = 0
+  19 0000 04E04EE2 		sub	lr, lr, #4
+  20 0004 0F502DE9 		stmfd	sp!, {r0, r1, r2, r3, ip, lr}
+  21              	.LCFI0:
+ 302:usb.c         **** 	USBHwISR();
+  22              		.loc 1 302 0
+  23 0008 FEFFFFEB 		bl	USBHwISR
+ 303:usb.c         **** 	VICVectAddr = 0x00;    // dummy write to VIC to signal end of ISR 	
+  24              		.loc 1 303 0
+  25 000c 0020A0E3 		mov	r2, #0
+  26 0010 0F3CE0E3 		mvn	r3, #3840
+  27 0014 CF2003E5 		str	r2, [r3, #-207]
+ 304:usb.c         **** }
+  28              		.loc 1 304 0
+  29 0018 0F90FDE8 		ldmfd	sp!, {r0, r1, r2, r3, ip, pc}^
+  30              	.LFE8:
+  31              		.size	USBIntHandler, .-USBIntHandler
+  32              		.align	2
+  33              		.type	USBFrameHandler, %function
+  34              	USBFrameHandler:
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 7
+
+
+  35              	.LFB9:
+ 305:usb.c         **** 
+ 306:usb.c         **** 
+ 307:usb.c         **** static void USBFrameHandler(U16 wFrame)
+ 308:usb.c         **** {
+  36              		.loc 1 308 0
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              	.LVL0:
+  40 001c 04E02DE5 		str	lr, [sp, #-4]!
+  41              	.LCFI1:
+ 309:usb.c         **** 	//if (fifo_avail(&txfifo) > 0) {
+ 310:usb.c         **** 	if (bufferIsNotFull(&uartTxBuffer)) {
+  42              		.loc 1 310 0
+  43 0020 14009FE5 		ldr	r0, .L7
+  44              	.LVL1:
+  45 0024 FEFFFFEB 		bl	bufferIsNotFull
+  46 0028 000050E3 		cmp	r0, #0
+  47 002c 04F09D04 		ldreq	pc, [sp], #4
+ 311:usb.c         **** 		// data available, enable NAK interrupt on bulk in
+ 312:usb.c         **** 		USBHwNakIntEnable(INACK_BI);
+  48              		.loc 1 312 0
+  49 0030 2000A0E3 		mov	r0, #32
+  50 0034 FEFFFFEB 		bl	USBHwNakIntEnable
+  51 0038 04F09DE4 		ldr	pc, [sp], #4
+  52              	.L8:
+  53              		.align	2
+  54              	.L7:
+  55 003c 00000000 		.word	uartTxBuffer
+  56              	.LFE9:
+  57              		.size	USBFrameHandler, .-USBFrameHandler
+  58              		.align	2
+  59              		.global	VCOM_putchar
+  60              		.type	VCOM_putchar, %function
+  61              	VCOM_putchar:
+  62              	.LFB6:
+  63              		.loc 1 275 0
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              	.LVL2:
+  67 0040 10402DE9 		stmfd	sp!, {r4, lr}
+  68              	.LCFI2:
+  69 0044 0040A0E1 		mov	r4, r0
+  70              		.loc 1 277 0
+  71 0048 FF1000E2 		and	r1, r0, #255
+  72 004c 10009FE5 		ldr	r0, .L13
+  73              	.LVL3:
+  74 0050 FEFFFFEB 		bl	bufferAddToEnd
+  75 0054 000050E3 		cmp	r0, #0
+  76              		.loc 1 278 0
+  77 0058 0400A011 		movne	r0, r4
+  78 005c 0000E003 		mvneq	r0, #0
+  79 0060 1080BDE8 		ldmfd	sp!, {r4, pc}
+  80              	.L14:
+  81              		.align	2
+  82              	.L13:
+  83 0064 00000000 		.word	uartTxBuffer
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 8
+
+
+  84              	.LFE6:
+  85              		.size	VCOM_putchar, .-VCOM_putchar
+  86              		.align	2
+  87              		.type	BulkOut, %function
+  88              	BulkOut:
+  89              	.LFB2:
+  90              		.loc 1 151 0
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93              	.LVL4:
+  94 0068 70402DE9 		stmfd	sp!, {r4, r5, r6, lr}
+  95              	.LCFI3:
+  96 006c FF4000E2 		and	r4, r0, #255
+  97              		.loc 1 156 0
+  98 0070 4C009FE5 		ldr	r0, .L23
+  99              	.LVL5:
+ 100 0074 FEFFFFEB 		bl	bufferIsNotFull
+ 101              	.LVL6:
+ 102 0078 3F0050E3 		cmp	r0, #63
+ 103 007c 7080BD98 		ldmlsfd	sp!, {r4, r5, r6, pc}
+ 104              		.loc 1 162 0
+ 105 0080 0400A0E1 		mov	r0, r4
+ 106 0084 3C109FE5 		ldr	r1, .L23+4
+ 107 0088 4020A0E3 		mov	r2, #64
+ 108 008c FEFFFFEB 		bl	USBHwEPRead
+ 109              		.loc 1 163 0
+ 110 0090 005050E2 		subs	r5, r0, #0
+ 111              	.LVL7:
+ 112 0094 7080BDD8 		ldmlefd	sp!, {r4, r5, r6, pc}
+ 113 0098 0040A0E3 		mov	r4, #0
+ 114              	.LVL8:
+ 115 009c 24609FE5 		ldr	r6, .L23+4
+ 116              	.L19:
+ 117              		.loc 1 166 0
+ 118 00a0 1C009FE5 		ldr	r0, .L23
+ 119 00a4 0610D4E7 		ldrb	r1, [r4, r6]	@ zero_extendqisi2
+ 120 00a8 FEFFFFEB 		bl	bufferAddToEnd
+ 121 00ac 000050E3 		cmp	r0, #0
+ 122 00b0 7080BD08 		ldmeqfd	sp!, {r4, r5, r6, pc}
+ 123              		.loc 1 163 0
+ 124 00b4 014084E2 		add	r4, r4, #1
+ 125 00b8 040055E1 		cmp	r5, r4
+ 126 00bc F7FFFF1A 		bne	.L19
+ 127 00c0 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+ 128              	.L24:
+ 129              		.align	2
+ 130              	.L23:
+ 131 00c4 00000000 		.word	uartRxBuffer
+ 132 00c8 00010000 		.word	abBulkBuf
+ 133              	.LFE2:
+ 134              		.size	BulkOut, .-BulkOut
+ 135              		.align	2
+ 136              		.global	VCOM_getchar
+ 137              		.type	VCOM_getchar, %function
+ 138              	VCOM_getchar:
+ 139              	.LFB7:
+ 140              		.loc 1 287 0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 9
+
+
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143 00cc 04E02DE5 		str	lr, [sp, #-4]!
+ 144              	.LCFI4:
+ 145              		.loc 1 289 0
+ 146 00d0 0C009FE5 		ldr	r0, .L30
+ 147 00d4 FEFFFFEB 		bl	bufferGetFromFront
+ 148              		.loc 1 291 0
+ 149 00d8 000050E3 		cmp	r0, #0
+ 150              	.LVL9:
+ 151              		.loc 1 292 0
+ 152 00dc 0000E003 		mvneq	r0, #0
+ 153              	.LVL10:
+ 154 00e0 04F09DE4 		ldr	pc, [sp], #4
+ 155              	.L31:
+ 156              		.align	2
+ 157              	.L30:
+ 158 00e4 00000000 		.word	uartRxBuffer
+ 159              	.LFE7:
+ 160              		.size	VCOM_getchar, .-VCOM_getchar
+ 161              		.align	2
+ 162              		.type	BulkIn, %function
+ 163              	BulkIn:
+ 164              	.LFB3:
+ 165              		.loc 1 182 0
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              	.LVL11:
+ 169 00e8 70402DE9 		stmfd	sp!, {r4, r5, r6, lr}
+ 170              	.LCFI5:
+ 171 00ec FF6000E2 		and	r6, r0, #255
+ 172              		.loc 1 187 0
+ 173 00f0 58009FE5 		ldr	r0, .L42
+ 174              	.LVL12:
+ 175 00f4 FEFFFFEB 		bl	bufferIsNotFull
+ 176              	.LVL13:
+ 177 00f8 000050E3 		cmp	r0, #0
+ 178              		.loc 1 190 0
+ 179 00fc 0040A013 		movne	r4, #0
+ 180              	.LVL14:
+ 181 0100 4C509F15 		ldrne	r5, .L42+4
+ 182              		.loc 1 187 0
+ 183 0104 0100001A 		bne	.L36
+ 184              		.loc 1 189 0
+ 185 0108 FEFFFFEB 		bl	USBHwNakIntEnable
+ 186 010c 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+ 187              	.LVL15:
+ 188              	.L36:
+ 189              		.loc 1 195 0
+ 190 0110 38009FE5 		ldr	r0, .L42
+ 191              	.LVL16:
+ 192 0114 FEFFFFEB 		bl	bufferGetFromFront
+ 193              		.loc 1 196 0
+ 194 0118 000050E3 		cmp	r0, #0
+ 195              	.LVL17:
+ 196 011c 0200001A 		bne	.L37
+ 197              		.loc 1 206 0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 10
+
+
+ 198 0120 000054E3 		cmp	r4, #0
+ 199 0124 7080BDD8 		ldmlefd	sp!, {r4, r5, r6, pc}
+ 200 0128 030000EA 		b	.L39
+ 201              	.L37:
+ 202              		.loc 1 200 0
+ 203 012c 0500C4E7 		strb	r0, [r4, r5]
+ 204              		.loc 1 194 0
+ 205 0130 014084E2 		add	r4, r4, #1
+ 206 0134 400054E3 		cmp	r4, #64
+ 207 0138 F4FFFF1A 		bne	.L36
+ 208              	.L39:
+ 209              		.loc 1 207 0
+ 210 013c 0600A0E1 		mov	r0, r6
+ 211              	.LVL18:
+ 212 0140 0C109FE5 		ldr	r1, .L42+4
+ 213 0144 0420A0E1 		mov	r2, r4
+ 214 0148 FEFFFFEB 		bl	USBHwEPWrite
+ 215 014c 7080BDE8 		ldmfd	sp!, {r4, r5, r6, pc}
+ 216              	.L43:
+ 217              		.align	2
+ 218              	.L42:
+ 219 0150 00000000 		.word	uartTxBuffer
+ 220 0154 00010000 		.word	abBulkBuf
+ 221              	.LFE3:
+ 222              		.size	BulkIn, .-BulkIn
+ 223              		.align	2
+ 224              		.type	HandleClassRequest, %function
+ 225              	HandleClassRequest:
+ 226              	.LFB4:
+ 227              		.loc 1 220 0
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              	.LVL19:
+ 231 0158 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 232              	.LCFI6:
+ 233 015c 0150A0E1 		mov	r5, r1
+ 234              		.loc 1 221 0
+ 235 0160 0130D0E5 		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 236 0164 210053E3 		cmp	r3, #33
+ 237 0168 0D00000A 		beq	.L47
+ 238              	.LVL20:
+ 239 016c 220053E3 		cmp	r3, #34
+ 240 0170 FF00A003 		moveq	r0, #255
+ 241              	.LVL21:
+ 242 0174 3080BD08 		ldmeqfd	sp!, {r4, r5, pc}
+ 243 0178 200053E3 		cmp	r3, #32
+ 244 017c 0000A013 		movne	r0, #0
+ 245 0180 3080BD18 		ldmnefd	sp!, {r4, r5, pc}
+ 246              		.loc 1 226 0
+ 247 0184 0740A0E3 		mov	r4, #7
+ 248 0188 2C009FE5 		ldr	r0, .L51
+ 249 018c 001092E5 		ldr	r1, [r2, #0]
+ 250 0190 0420A0E1 		mov	r2, r4
+ 251              	.LVL22:
+ 252 0194 FEFFFFEB 		bl	memcpy
+ 253              		.loc 1 227 0
+ 254 0198 004085E5 		str	r4, [r5, #0]
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 11
+
+
+ 255 019c FF00A0E3 		mov	r0, #255
+ 256 01a0 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 257              	.LVL23:
+ 258              	.L47:
+ 259              		.loc 1 238 0
+ 260 01a4 10309FE5 		ldr	r3, .L51
+ 261 01a8 003082E5 		str	r3, [r2, #0]
+ 262              		.loc 1 239 0
+ 263 01ac 0730A0E3 		mov	r3, #7
+ 264 01b0 003081E5 		str	r3, [r1, #0]
+ 265 01b4 FF00A0E3 		mov	r0, #255
+ 266              	.LVL24:
+ 267              		.loc 1 252 0
+ 268 01b8 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 269              	.L52:
+ 270              		.align	2
+ 271              	.L51:
+ 272 01bc 00000000 		.word	LineCoding
+ 273              	.LFE4:
+ 274              		.size	HandleClassRequest, .-HandleClassRequest
+ 275              		.align	2
+ 276              		.global	VCOM_init
+ 277              		.type	VCOM_init, %function
+ 278              	VCOM_init:
+ 279              	.LFB5:
+ 280              		.loc 1 260 0
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283 01c0 04E02DE5 		str	lr, [sp, #-4]!
+ 284              	.LCFI7:
+ 285              		.loc 1 263 0
+ 286 01c4 1C009FE5 		ldr	r0, .L55
+ 287 01c8 1C109FE5 		ldr	r1, .L55+4
+ 288 01cc 8020A0E3 		mov	r2, #128
+ 289 01d0 FEFFFFEB 		bl	bufferInit
+ 290              		.loc 1 264 0
+ 291 01d4 14009FE5 		ldr	r0, .L55+8
+ 292 01d8 14109FE5 		ldr	r1, .L55+12
+ 293 01dc 8020A0E3 		mov	r2, #128
+ 294 01e0 FEFFFFEB 		bl	bufferInit
+ 295              		.loc 1 265 0
+ 296 01e4 04F09DE4 		ldr	pc, [sp], #4
+ 297              	.L56:
+ 298              		.align	2
+ 299              	.L55:
+ 300 01e8 00000000 		.word	uartTxBuffer
+ 301 01ec 80000000 		.word	uartTxData
+ 302 01f0 00000000 		.word	uartRxBuffer
+ 303 01f4 00000000 		.word	uartRxData
+ 304              	.LFE5:
+ 305              		.size	VCOM_init, .-VCOM_init
+ 306              		.align	2
+ 307              		.global	usbSetup
+ 308              		.type	usbSetup, %function
+ 309              	usbSetup:
+ 310              	.LFB10:
+ 313:usb.c         **** 	}
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 12
+
+
+ 314:usb.c         **** }
+ 315:usb.c         **** 
+ 316:usb.c         **** void usbSetup(void)
+ 317:usb.c         **** {
+ 311              		.loc 1 317 0
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314 01f8 04E02DE5 		str	lr, [sp, #-4]!
+ 315              	.LCFI8:
+ 318:usb.c         **** 	
+ 319:usb.c         **** 	// init DBG
+ 320:usb.c         **** 	//ConsoleInit(60000000 / (16 * BAUD_RATE));
+ 321:usb.c         **** 
+ 322:usb.c         **** 	//DBG("Initialising USB stack\n");
+ 323:usb.c         **** 
+ 324:usb.c         **** 	// initialise stack
+ 325:usb.c         **** 	USBInit();
+ 316              		.loc 1 325 0
+ 317 01fc FEFFFFEB 		bl	USBInit
+ 326:usb.c         **** 
+ 327:usb.c         **** 	// register descriptors
+ 328:usb.c         **** 	USBRegisterDescriptors(abDescriptors);
+ 318              		.loc 1 328 0
+ 319 0200 8C009FE5 		ldr	r0, .L59
+ 320 0204 FEFFFFEB 		bl	USBRegisterDescriptors
+ 329:usb.c         **** 
+ 330:usb.c         **** 	// register class request handler
+ 331:usb.c         **** 	USBRegisterRequestHandler(REQTYPE_TYPE_CLASS, HandleClassRequest, abClassReqData);
+ 321              		.loc 1 331 0
+ 322 0208 0100A0E3 		mov	r0, #1
+ 323 020c 84109FE5 		ldr	r1, .L59+4
+ 324 0210 84209FE5 		ldr	r2, .L59+8
+ 325 0214 FEFFFFEB 		bl	USBRegisterRequestHandler
+ 332:usb.c         **** 
+ 333:usb.c         **** 	// register endpoint handlers
+ 334:usb.c         **** 	USBHwRegisterEPIntHandler(INT_IN_EP, NULL);
+ 326              		.loc 1 334 0
+ 327 0218 8100A0E3 		mov	r0, #129
+ 328 021c 0010A0E3 		mov	r1, #0
+ 329 0220 FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 335:usb.c         **** 	USBHwRegisterEPIntHandler(BULK_IN_EP, BulkIn);
+ 330              		.loc 1 335 0
+ 331 0224 8200A0E3 		mov	r0, #130
+ 332 0228 70109FE5 		ldr	r1, .L59+12
+ 333 022c FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 336:usb.c         **** 	USBHwRegisterEPIntHandler(BULK_OUT_EP, BulkOut);
+ 334              		.loc 1 336 0
+ 335 0230 0500A0E3 		mov	r0, #5
+ 336 0234 68109FE5 		ldr	r1, .L59+16
+ 337 0238 FEFFFFEB 		bl	USBHwRegisterEPIntHandler
+ 337:usb.c         **** 	
+ 338:usb.c         **** 	// register frame handler
+ 339:usb.c         **** 	USBHwRegisterFrameHandler(USBFrameHandler);
+ 338              		.loc 1 339 0
+ 339 023c 64009FE5 		ldr	r0, .L59+20
+ 340 0240 FEFFFFEB 		bl	USBHwRegisterFrameHandler
+ 340:usb.c         **** 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 13
+
+
+ 341:usb.c         **** 	// enable bulk-in interrupts on NAKs
+ 342:usb.c         **** 	USBHwNakIntEnable(INACK_BI);
+ 341              		.loc 1 342 0
+ 342 0244 2000A0E3 		mov	r0, #32
+ 343 0248 FEFFFFEB 		bl	USBHwNakIntEnable
+ 343:usb.c         **** 
+ 344:usb.c         **** 	// initialise VCOM
+ 345:usb.c         **** 	VCOM_init();
+ 344              		.loc 1 345 0
+ 345 024c FEFFFFEB 		bl	VCOM_init
+ 346:usb.c         **** 
+ 347:usb.c         **** 	//DBG("Starting USB communication\n");
+ 348:usb.c         **** 
+ 349:usb.c         **** 	// set up USB interrupt
+ 350:usb.c         **** 	VICIntSelect &= ~(1<<22);               // select IRQ for USB
+ 346              		.loc 1 350 0
+ 347 0250 0F2CE0E3 		mvn	r2, #3840
+ 348 0254 F33012E5 		ldr	r3, [r2, #-243]
+ 349 0258 0135C3E3 		bic	r3, r3, #4194304
+ 350 025c F33002E5 		str	r3, [r2, #-243]
+ 351:usb.c         **** 	VICIntEnable |= (1<<22);
+ 351              		.loc 1 351 0
+ 352 0260 EF3012E5 		ldr	r3, [r2, #-239]
+ 353 0264 013583E3 		orr	r3, r3, #4194304
+ 354 0268 EF3002E5 		str	r3, [r2, #-239]
+ 352:usb.c         **** 
+ 353:usb.c         **** 	(*(&VICVectCntl0+INT_VECT_NUM)) = 0x20 | 22; // choose highest priority ISR slot 	
+ 355              		.loc 1 353 0
+ 356 026c 0F2C82E2 		add	r2, r2, #3840
+ 357 0270 3630A0E3 		mov	r3, #54
+ 358 0274 FF3D02E5 		str	r3, [r2, #-3583]
+ 354:usb.c         **** 	(*(&VICVectAddr0+INT_VECT_NUM)) = (int)USBIntHandler;
+ 359              		.loc 1 354 0
+ 360 0278 2C309FE5 		ldr	r3, .L59+24
+ 361 027c FF3E02E5 		str	r3, [r2, #-3839]
+ 355:usb.c         **** 	
+ 356:usb.c         **** 	processorEnableInt(CPSR_MASK_IRQ);
+ 362              		.loc 1 356 0
+ 363 0280 8000A0E3 		mov	r0, #128
+ 364 0284 FEFFFFEB 		bl	processorEnableInt
+ 357:usb.c         **** 	//enableIRQ();
+ 358:usb.c         **** 	
+ 359:usb.c         **** 	
+ 360:usb.c         **** 	// connect to bus
+ 361:usb.c         **** 	USBHwConnect(TRUE);
+ 365              		.loc 1 361 0
+ 366 0288 FF00A0E3 		mov	r0, #255
+ 367 028c FEFFFFEB 		bl	USBHwConnect
+ 362:usb.c         **** }
+ 368              		.loc 1 362 0
+ 369 0290 04F09DE4 		ldr	pc, [sp], #4
+ 370              	.L60:
+ 371              		.align	2
+ 372              	.L59:
+ 373 0294 00000000 		.word	abDescriptors
+ 374 0298 58010000 		.word	HandleClassRequest
+ 375 029c 40010000 		.word	abClassReqData
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 14
+
+
+ 376 02a0 E8000000 		.word	BulkIn
+ 377 02a4 68000000 		.word	BulkOut
+ 378 02a8 1C000000 		.word	USBFrameHandler
+ 379 02ac 00000000 		.word	USBIntHandler
+ 380              	.LFE10:
+ 381              		.size	usbSetup, .-usbSetup
+ 382              		.section	.rodata
+ 383              		.type	abDescriptors, %object
+ 384              		.size	abDescriptors, 142
+ 385              	abDescriptors:
+ 386 0000 12       		.byte	18
+ 387 0001 01       		.byte	1
+ 388 0002 01       		.byte	1
+ 389 0003 01       		.byte	1
+ 390 0004 02       		.byte	2
+ 391 0005 00       		.byte	0
+ 392 0006 00       		.byte	0
+ 393 0007 40       		.byte	64
+ 394 0008 FF       		.byte	-1
+ 395 0009 FF       		.byte	-1
+ 396 000a 05       		.byte	5
+ 397 000b 00       		.byte	0
+ 398 000c 00       		.byte	0
+ 399 000d 01       		.byte	1
+ 400 000e 01       		.byte	1
+ 401 000f 02       		.byte	2
+ 402 0010 03       		.byte	3
+ 403 0011 01       		.byte	1
+ 404 0012 09       		.byte	9
+ 405 0013 02       		.byte	2
+ 406 0014 43       		.byte	67
+ 407 0015 00       		.byte	0
+ 408 0016 02       		.byte	2
+ 409 0017 01       		.byte	1
+ 410 0018 00       		.byte	0
+ 411 0019 C0       		.byte	-64
+ 412 001a 32       		.byte	50
+ 413 001b 09       		.byte	9
+ 414 001c 04       		.byte	4
+ 415 001d 00       		.byte	0
+ 416 001e 00       		.byte	0
+ 417 001f 01       		.byte	1
+ 418 0020 02       		.byte	2
+ 419 0021 02       		.byte	2
+ 420 0022 01       		.byte	1
+ 421 0023 00       		.byte	0
+ 422 0024 05       		.byte	5
+ 423 0025 24       		.byte	36
+ 424 0026 00       		.byte	0
+ 425 0027 10       		.byte	16
+ 426 0028 01       		.byte	1
+ 427 0029 05       		.byte	5
+ 428 002a 24       		.byte	36
+ 429 002b 01       		.byte	1
+ 430 002c 01       		.byte	1
+ 431 002d 01       		.byte	1
+ 432 002e 04       		.byte	4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 15
+
+
+ 433 002f 24       		.byte	36
+ 434 0030 02       		.byte	2
+ 435 0031 02       		.byte	2
+ 436 0032 05       		.byte	5
+ 437 0033 24       		.byte	36
+ 438 0034 06       		.byte	6
+ 439 0035 00       		.byte	0
+ 440 0036 01       		.byte	1
+ 441 0037 07       		.byte	7
+ 442 0038 05       		.byte	5
+ 443 0039 81       		.byte	-127
+ 444 003a 03       		.byte	3
+ 445 003b 08       		.byte	8
+ 446 003c 00       		.byte	0
+ 447 003d 0A       		.byte	10
+ 448 003e 09       		.byte	9
+ 449 003f 04       		.byte	4
+ 450 0040 01       		.byte	1
+ 451 0041 00       		.byte	0
+ 452 0042 02       		.byte	2
+ 453 0043 0A       		.byte	10
+ 454 0044 00       		.byte	0
+ 455 0045 00       		.byte	0
+ 456 0046 00       		.byte	0
+ 457 0047 07       		.byte	7
+ 458 0048 05       		.byte	5
+ 459 0049 05       		.byte	5
+ 460 004a 02       		.byte	2
+ 461 004b 40       		.byte	64
+ 462 004c 00       		.byte	0
+ 463 004d 00       		.byte	0
+ 464 004e 07       		.byte	7
+ 465 004f 05       		.byte	5
+ 466 0050 82       		.byte	-126
+ 467 0051 02       		.byte	2
+ 468 0052 40       		.byte	64
+ 469 0053 00       		.byte	0
+ 470 0054 00       		.byte	0
+ 471 0055 04       		.byte	4
+ 472 0056 03       		.byte	3
+ 473 0057 09       		.byte	9
+ 474 0058 04       		.byte	4
+ 475 0059 0E       		.byte	14
+ 476 005a 03       		.byte	3
+ 477 005b 4C       		.byte	76
+ 478 005c 00       		.byte	0
+ 479 005d 50       		.byte	80
+ 480 005e 00       		.byte	0
+ 481 005f 43       		.byte	67
+ 482 0060 00       		.byte	0
+ 483 0061 55       		.byte	85
+ 484 0062 00       		.byte	0
+ 485 0063 53       		.byte	83
+ 486 0064 00       		.byte	0
+ 487 0065 42       		.byte	66
+ 488 0066 00       		.byte	0
+ 489 0067 14       		.byte	20
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 16
+
+
+ 490 0068 03       		.byte	3
+ 491 0069 55       		.byte	85
+ 492 006a 00       		.byte	0
+ 493 006b 53       		.byte	83
+ 494 006c 00       		.byte	0
+ 495 006d 42       		.byte	66
+ 496 006e 00       		.byte	0
+ 497 006f 53       		.byte	83
+ 498 0070 00       		.byte	0
+ 499 0071 65       		.byte	101
+ 500 0072 00       		.byte	0
+ 501 0073 72       		.byte	114
+ 502 0074 00       		.byte	0
+ 503 0075 69       		.byte	105
+ 504 0076 00       		.byte	0
+ 505 0077 61       		.byte	97
+ 506 0078 00       		.byte	0
+ 507 0079 6C       		.byte	108
+ 508 007a 00       		.byte	0
+ 509 007b 12       		.byte	18
+ 510 007c 03       		.byte	3
+ 511 007d 44       		.byte	68
+ 512 007e 00       		.byte	0
+ 513 007f 45       		.byte	69
+ 514 0080 00       		.byte	0
+ 515 0081 41       		.byte	65
+ 516 0082 00       		.byte	0
+ 517 0083 44       		.byte	68
+ 518 0084 00       		.byte	0
+ 519 0085 43       		.byte	67
+ 520 0086 00       		.byte	0
+ 521 0087 30       		.byte	48
+ 522 0088 00       		.byte	0
+ 523 0089 44       		.byte	68
+ 524 008a 00       		.byte	0
+ 525 008b 45       		.byte	69
+ 526 008c 00       		.byte	0
+ 527 008d 00       		.byte	0
+ 528              		.data
+ 529              		.align	2
+ 530              		.type	LineCoding, %object
+ 531              		.size	LineCoding, 8
+ 532              	LineCoding:
+ 533 0000 40420F00 		.word	1000000
+ 534 0004 00       		.byte	0
+ 535 0005 00       		.byte	0
+ 536 0006 08       		.byte	8
+ 537 0007 00       		.space	1
+ 538              		.bss
+ 539              	uartRxData:
+ 540 0000 00000000 		.space	128
+ 540      00000000 
+ 540      00000000 
+ 540      00000000 
+ 540      00000000 
+ 541              	uartTxData:
+ 542 0080 00000000 		.space	128
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 17
+
+
+ 542      00000000 
+ 542      00000000 
+ 542      00000000 
+ 542      00000000 
+ 543              	abBulkBuf:
+ 544 0100 00000000 		.space	64
+ 544      00000000 
+ 544      00000000 
+ 544      00000000 
+ 544      00000000 
+ 545              	abClassReqData:
+ 546 0140 00000000 		.space	8
+ 546      00000000 
+ 547              		.comm	uartRxBuffer,12,4
+ 548              		.comm	uartTxBuffer,12,4
+ 549              		.comm	uartRxOverflow,2,2
+ 550              		.section	.debug_frame,"",%progbits
+ 551              	.Lframe0:
+ 552 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+ 553              	.LSCIE0:
+ 554 0004 FFFFFFFF 		.4byte	0xffffffff
+ 555 0008 01       		.byte	0x1
+ 556 0009 00       		.ascii	"\000"
+ 557 000a 01       		.uleb128 0x1
+ 558 000b 7C       		.sleb128 -4
+ 559 000c 0E       		.byte	0xe
+ 560 000d 0C       		.byte	0xc
+ 561 000e 0D       		.uleb128 0xd
+ 562 000f 00       		.uleb128 0x0
+ 563              		.align	2
+ 564              	.LECIE0:
+ 565              	.LSFDE0:
+ 566 0010 1C000000 		.4byte	.LEFDE0-.LASFDE0
+ 567              	.LASFDE0:
+ 568 0014 00000000 		.4byte	.Lframe0
+ 569 0018 00000000 		.4byte	.LFB8
+ 570 001c 1C000000 		.4byte	.LFE8-.LFB8
+ 571 0020 48       		.byte	0x4
+ 572              		.4byte	.LCFI0-.LFB8
+ 573 0021 0E       		.byte	0xe
+ 574 0022 18       		.uleb128 0x18
+ 575 0023 8E       		.byte	0x8e
+ 576 0024 01       		.uleb128 0x1
+ 577 0025 8C       		.byte	0x8c
+ 578 0026 02       		.uleb128 0x2
+ 579 0027 83       		.byte	0x83
+ 580 0028 03       		.uleb128 0x3
+ 581 0029 82       		.byte	0x82
+ 582 002a 04       		.uleb128 0x4
+ 583 002b 81       		.byte	0x81
+ 584 002c 05       		.uleb128 0x5
+ 585 002d 80       		.byte	0x80
+ 586 002e 06       		.uleb128 0x6
+ 587 002f 00       		.align	2
+ 588              	.LEFDE0:
+ 589              	.LSFDE2:
+ 590 0030 14000000 		.4byte	.LEFDE2-.LASFDE2
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 18
+
+
+ 591              	.LASFDE2:
+ 592 0034 00000000 		.4byte	.Lframe0
+ 593 0038 1C000000 		.4byte	.LFB9
+ 594 003c 24000000 		.4byte	.LFE9-.LFB9
+ 595 0040 44       		.byte	0x4
+ 596              		.4byte	.LCFI1-.LFB9
+ 597 0041 0E       		.byte	0xe
+ 598 0042 04       		.uleb128 0x4
+ 599 0043 8E       		.byte	0x8e
+ 600 0044 01       		.uleb128 0x1
+ 601 0045 000000   		.align	2
+ 602              	.LEFDE2:
+ 603              	.LSFDE4:
+ 604 0048 14000000 		.4byte	.LEFDE4-.LASFDE4
+ 605              	.LASFDE4:
+ 606 004c 00000000 		.4byte	.Lframe0
+ 607 0050 40000000 		.4byte	.LFB6
+ 608 0054 28000000 		.4byte	.LFE6-.LFB6
+ 609 0058 44       		.byte	0x4
+ 610              		.4byte	.LCFI2-.LFB6
+ 611 0059 0E       		.byte	0xe
+ 612 005a 08       		.uleb128 0x8
+ 613 005b 8E       		.byte	0x8e
+ 614 005c 01       		.uleb128 0x1
+ 615 005d 84       		.byte	0x84
+ 616 005e 02       		.uleb128 0x2
+ 617 005f 00       		.align	2
+ 618              	.LEFDE4:
+ 619              	.LSFDE6:
+ 620 0060 18000000 		.4byte	.LEFDE6-.LASFDE6
+ 621              	.LASFDE6:
+ 622 0064 00000000 		.4byte	.Lframe0
+ 623 0068 68000000 		.4byte	.LFB2
+ 624 006c 64000000 		.4byte	.LFE2-.LFB2
+ 625 0070 44       		.byte	0x4
+ 626              		.4byte	.LCFI3-.LFB2
+ 627 0071 0E       		.byte	0xe
+ 628 0072 10       		.uleb128 0x10
+ 629 0073 8E       		.byte	0x8e
+ 630 0074 01       		.uleb128 0x1
+ 631 0075 86       		.byte	0x86
+ 632 0076 02       		.uleb128 0x2
+ 633 0077 85       		.byte	0x85
+ 634 0078 03       		.uleb128 0x3
+ 635 0079 84       		.byte	0x84
+ 636 007a 04       		.uleb128 0x4
+ 637 007b 00       		.align	2
+ 638              	.LEFDE6:
+ 639              	.LSFDE8:
+ 640 007c 14000000 		.4byte	.LEFDE8-.LASFDE8
+ 641              	.LASFDE8:
+ 642 0080 00000000 		.4byte	.Lframe0
+ 643 0084 CC000000 		.4byte	.LFB7
+ 644 0088 1C000000 		.4byte	.LFE7-.LFB7
+ 645 008c 44       		.byte	0x4
+ 646              		.4byte	.LCFI4-.LFB7
+ 647 008d 0E       		.byte	0xe
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 19
+
+
+ 648 008e 04       		.uleb128 0x4
+ 649 008f 8E       		.byte	0x8e
+ 650 0090 01       		.uleb128 0x1
+ 651 0091 000000   		.align	2
+ 652              	.LEFDE8:
+ 653              	.LSFDE10:
+ 654 0094 18000000 		.4byte	.LEFDE10-.LASFDE10
+ 655              	.LASFDE10:
+ 656 0098 00000000 		.4byte	.Lframe0
+ 657 009c E8000000 		.4byte	.LFB3
+ 658 00a0 70000000 		.4byte	.LFE3-.LFB3
+ 659 00a4 44       		.byte	0x4
+ 660              		.4byte	.LCFI5-.LFB3
+ 661 00a5 0E       		.byte	0xe
+ 662 00a6 10       		.uleb128 0x10
+ 663 00a7 8E       		.byte	0x8e
+ 664 00a8 01       		.uleb128 0x1
+ 665 00a9 86       		.byte	0x86
+ 666 00aa 02       		.uleb128 0x2
+ 667 00ab 85       		.byte	0x85
+ 668 00ac 03       		.uleb128 0x3
+ 669 00ad 84       		.byte	0x84
+ 670 00ae 04       		.uleb128 0x4
+ 671 00af 00       		.align	2
+ 672              	.LEFDE10:
+ 673              	.LSFDE12:
+ 674 00b0 18000000 		.4byte	.LEFDE12-.LASFDE12
+ 675              	.LASFDE12:
+ 676 00b4 00000000 		.4byte	.Lframe0
+ 677 00b8 58010000 		.4byte	.LFB4
+ 678 00bc 68000000 		.4byte	.LFE4-.LFB4
+ 679 00c0 44       		.byte	0x4
+ 680              		.4byte	.LCFI6-.LFB4
+ 681 00c1 0E       		.byte	0xe
+ 682 00c2 0C       		.uleb128 0xc
+ 683 00c3 8E       		.byte	0x8e
+ 684 00c4 01       		.uleb128 0x1
+ 685 00c5 85       		.byte	0x85
+ 686 00c6 02       		.uleb128 0x2
+ 687 00c7 84       		.byte	0x84
+ 688 00c8 03       		.uleb128 0x3
+ 689 00c9 000000   		.align	2
+ 690              	.LEFDE12:
+ 691              	.LSFDE14:
+ 692 00cc 14000000 		.4byte	.LEFDE14-.LASFDE14
+ 693              	.LASFDE14:
+ 694 00d0 00000000 		.4byte	.Lframe0
+ 695 00d4 C0010000 		.4byte	.LFB5
+ 696 00d8 38000000 		.4byte	.LFE5-.LFB5
+ 697 00dc 44       		.byte	0x4
+ 698              		.4byte	.LCFI7-.LFB5
+ 699 00dd 0E       		.byte	0xe
+ 700 00de 04       		.uleb128 0x4
+ 701 00df 8E       		.byte	0x8e
+ 702 00e0 01       		.uleb128 0x1
+ 703 00e1 000000   		.align	2
+ 704              	.LEFDE14:
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 20
+
+
+ 705              	.LSFDE16:
+ 706 00e4 14000000 		.4byte	.LEFDE16-.LASFDE16
+ 707              	.LASFDE16:
+ 708 00e8 00000000 		.4byte	.Lframe0
+ 709 00ec F8010000 		.4byte	.LFB10
+ 710 00f0 B8000000 		.4byte	.LFE10-.LFB10
+ 711 00f4 44       		.byte	0x4
+ 712              		.4byte	.LCFI8-.LFB10
+ 713 00f5 0E       		.byte	0xe
+ 714 00f6 04       		.uleb128 0x4
+ 715 00f7 8E       		.byte	0x8e
+ 716 00f8 01       		.uleb128 0x1
+ 717 00f9 000000   		.align	2
+ 718              	.LEFDE16:
+ 719              		.file 2 "D:\\WinARM\\armlib/armlibtypes.h"
+ 720              		.file 3 "usbstruct.h"
+ 721              		.file 4 "D:\\WinARM\\armlib/buffer.h"
+ 722              		.text
+ 723              	.Letext0:
+ 724              		.section	.debug_loc,"",%progbits
+ 725              	.Ldebug_loc0:
+ 726              	.LLST0:
+ 727 0000 00000000 		.4byte	.LFB8-.Ltext0
+ 728 0004 08000000 		.4byte	.LCFI0-.Ltext0
+ 729 0008 0100     		.2byte	0x1
+ 730 000a 5D       		.byte	0x5d
+ 731 000b 08000000 		.4byte	.LCFI0-.Ltext0
+ 732 000f 1C000000 		.4byte	.LFE8-.Ltext0
+ 733 0013 0200     		.2byte	0x2
+ 734 0015 7D       		.byte	0x7d
+ 735 0016 18       		.sleb128 24
+ 736 0017 00000000 		.4byte	0x0
+ 737 001b 00000000 		.4byte	0x0
+ 738              	.LLST1:
+ 739 001f 1C000000 		.4byte	.LFB9-.Ltext0
+ 740 0023 20000000 		.4byte	.LCFI1-.Ltext0
+ 741 0027 0100     		.2byte	0x1
+ 742 0029 5D       		.byte	0x5d
+ 743 002a 20000000 		.4byte	.LCFI1-.Ltext0
+ 744 002e 40000000 		.4byte	.LFE9-.Ltext0
+ 745 0032 0200     		.2byte	0x2
+ 746 0034 7D       		.byte	0x7d
+ 747 0035 04       		.sleb128 4
+ 748 0036 00000000 		.4byte	0x0
+ 749 003a 00000000 		.4byte	0x0
+ 750              	.LLST2:
+ 751 003e 1C000000 		.4byte	.LVL0-.Ltext0
+ 752 0042 24000000 		.4byte	.LVL1-.Ltext0
+ 753 0046 0100     		.2byte	0x1
+ 754 0048 50       		.byte	0x50
+ 755 0049 00000000 		.4byte	0x0
+ 756 004d 00000000 		.4byte	0x0
+ 757              	.LLST3:
+ 758 0051 40000000 		.4byte	.LFB6-.Ltext0
+ 759 0055 44000000 		.4byte	.LCFI2-.Ltext0
+ 760 0059 0100     		.2byte	0x1
+ 761 005b 5D       		.byte	0x5d
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 21
+
+
+ 762 005c 44000000 		.4byte	.LCFI2-.Ltext0
+ 763 0060 68000000 		.4byte	.LFE6-.Ltext0
+ 764 0064 0200     		.2byte	0x2
+ 765 0066 7D       		.byte	0x7d
+ 766 0067 08       		.sleb128 8
+ 767 0068 00000000 		.4byte	0x0
+ 768 006c 00000000 		.4byte	0x0
+ 769              	.LLST4:
+ 770 0070 40000000 		.4byte	.LVL2-.Ltext0
+ 771 0074 50000000 		.4byte	.LVL3-.Ltext0
+ 772 0078 0100     		.2byte	0x1
+ 773 007a 50       		.byte	0x50
+ 774 007b 50000000 		.4byte	.LVL3-.Ltext0
+ 775 007f 68000000 		.4byte	.LFE6-.Ltext0
+ 776 0083 0100     		.2byte	0x1
+ 777 0085 54       		.byte	0x54
+ 778 0086 00000000 		.4byte	0x0
+ 779 008a 00000000 		.4byte	0x0
+ 780              	.LLST5:
+ 781 008e 68000000 		.4byte	.LFB2-.Ltext0
+ 782 0092 6C000000 		.4byte	.LCFI3-.Ltext0
+ 783 0096 0100     		.2byte	0x1
+ 784 0098 5D       		.byte	0x5d
+ 785 0099 6C000000 		.4byte	.LCFI3-.Ltext0
+ 786 009d CC000000 		.4byte	.LFE2-.Ltext0
+ 787 00a1 0200     		.2byte	0x2
+ 788 00a3 7D       		.byte	0x7d
+ 789 00a4 10       		.sleb128 16
+ 790 00a5 00000000 		.4byte	0x0
+ 791 00a9 00000000 		.4byte	0x0
+ 792              	.LLST6:
+ 793 00ad 68000000 		.4byte	.LVL4-.Ltext0
+ 794 00b1 74000000 		.4byte	.LVL5-.Ltext0
+ 795 00b5 0100     		.2byte	0x1
+ 796 00b7 50       		.byte	0x50
+ 797 00b8 74000000 		.4byte	.LVL5-.Ltext0
+ 798 00bc 9C000000 		.4byte	.LVL8-.Ltext0
+ 799 00c0 0100     		.2byte	0x1
+ 800 00c2 54       		.byte	0x54
+ 801 00c3 00000000 		.4byte	0x0
+ 802 00c7 00000000 		.4byte	0x0
+ 803              	.LLST7:
+ 804 00cb 68000000 		.4byte	.LVL4-.Ltext0
+ 805 00cf 78000000 		.4byte	.LVL6-.Ltext0
+ 806 00d3 0100     		.2byte	0x1
+ 807 00d5 51       		.byte	0x51
+ 808 00d6 00000000 		.4byte	0x0
+ 809 00da 00000000 		.4byte	0x0
+ 810              	.LLST8:
+ 811 00de CC000000 		.4byte	.LFB7-.Ltext0
+ 812 00e2 D0000000 		.4byte	.LCFI4-.Ltext0
+ 813 00e6 0100     		.2byte	0x1
+ 814 00e8 5D       		.byte	0x5d
+ 815 00e9 D0000000 		.4byte	.LCFI4-.Ltext0
+ 816 00ed E8000000 		.4byte	.LFE7-.Ltext0
+ 817 00f1 0200     		.2byte	0x2
+ 818 00f3 7D       		.byte	0x7d
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 22
+
+
+ 819 00f4 04       		.sleb128 4
+ 820 00f5 00000000 		.4byte	0x0
+ 821 00f9 00000000 		.4byte	0x0
+ 822              	.LLST9:
+ 823 00fd DC000000 		.4byte	.LVL9-.Ltext0
+ 824 0101 E0000000 		.4byte	.LVL10-.Ltext0
+ 825 0105 0100     		.2byte	0x1
+ 826 0107 50       		.byte	0x50
+ 827 0108 00000000 		.4byte	0x0
+ 828 010c 00000000 		.4byte	0x0
+ 829              	.LLST10:
+ 830 0110 E8000000 		.4byte	.LFB3-.Ltext0
+ 831 0114 EC000000 		.4byte	.LCFI5-.Ltext0
+ 832 0118 0100     		.2byte	0x1
+ 833 011a 5D       		.byte	0x5d
+ 834 011b EC000000 		.4byte	.LCFI5-.Ltext0
+ 835 011f 58010000 		.4byte	.LFE3-.Ltext0
+ 836 0123 0200     		.2byte	0x2
+ 837 0125 7D       		.byte	0x7d
+ 838 0126 10       		.sleb128 16
+ 839 0127 00000000 		.4byte	0x0
+ 840 012b 00000000 		.4byte	0x0
+ 841              	.LLST11:
+ 842 012f E8000000 		.4byte	.LVL11-.Ltext0
+ 843 0133 F4000000 		.4byte	.LVL12-.Ltext0
+ 844 0137 0100     		.2byte	0x1
+ 845 0139 50       		.byte	0x50
+ 846 013a F4000000 		.4byte	.LVL12-.Ltext0
+ 847 013e 58010000 		.4byte	.LFE3-.Ltext0
+ 848 0142 0100     		.2byte	0x1
+ 849 0144 56       		.byte	0x56
+ 850 0145 00000000 		.4byte	0x0
+ 851 0149 00000000 		.4byte	0x0
+ 852              	.LLST12:
+ 853 014d E8000000 		.4byte	.LVL11-.Ltext0
+ 854 0151 F8000000 		.4byte	.LVL13-.Ltext0
+ 855 0155 0100     		.2byte	0x1
+ 856 0157 51       		.byte	0x51
+ 857 0158 00000000 		.4byte	0x0
+ 858 015c 00000000 		.4byte	0x0
+ 859              	.LLST13:
+ 860 0160 10010000 		.4byte	.LVL15-.Ltext0
+ 861 0164 14010000 		.4byte	.LVL16-.Ltext0
+ 862 0168 0100     		.2byte	0x1
+ 863 016a 50       		.byte	0x50
+ 864 016b 1C010000 		.4byte	.LVL17-.Ltext0
+ 865 016f 40010000 		.4byte	.LVL18-.Ltext0
+ 866 0173 0100     		.2byte	0x1
+ 867 0175 50       		.byte	0x50
+ 868 0176 00000000 		.4byte	0x0
+ 869 017a 00000000 		.4byte	0x0
+ 870              	.LLST14:
+ 871 017e 58010000 		.4byte	.LFB4-.Ltext0
+ 872 0182 5C010000 		.4byte	.LCFI6-.Ltext0
+ 873 0186 0100     		.2byte	0x1
+ 874 0188 5D       		.byte	0x5d
+ 875 0189 5C010000 		.4byte	.LCFI6-.Ltext0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 23
+
+
+ 876 018d C0010000 		.4byte	.LFE4-.Ltext0
+ 877 0191 0200     		.2byte	0x2
+ 878 0193 7D       		.byte	0x7d
+ 879 0194 0C       		.sleb128 12
+ 880 0195 00000000 		.4byte	0x0
+ 881 0199 00000000 		.4byte	0x0
+ 882              	.LLST15:
+ 883 019d 58010000 		.4byte	.LVL19-.Ltext0
+ 884 01a1 74010000 		.4byte	.LVL21-.Ltext0
+ 885 01a5 0100     		.2byte	0x1
+ 886 01a7 50       		.byte	0x50
+ 887 01a8 A4010000 		.4byte	.LVL23-.Ltext0
+ 888 01ac B8010000 		.4byte	.LVL24-.Ltext0
+ 889 01b0 0100     		.2byte	0x1
+ 890 01b2 50       		.byte	0x50
+ 891 01b3 00000000 		.4byte	0x0
+ 892 01b7 00000000 		.4byte	0x0
+ 893              	.LLST16:
+ 894 01bb 58010000 		.4byte	.LVL19-.Ltext0
+ 895 01bf 6C010000 		.4byte	.LVL20-.Ltext0
+ 896 01c3 0100     		.2byte	0x1
+ 897 01c5 51       		.byte	0x51
+ 898 01c6 6C010000 		.4byte	.LVL20-.Ltext0
+ 899 01ca C0010000 		.4byte	.LFE4-.Ltext0
+ 900 01ce 0100     		.2byte	0x1
+ 901 01d0 55       		.byte	0x55
+ 902 01d1 00000000 		.4byte	0x0
+ 903 01d5 00000000 		.4byte	0x0
+ 904              	.LLST17:
+ 905 01d9 58010000 		.4byte	.LVL19-.Ltext0
+ 906 01dd 94010000 		.4byte	.LVL22-.Ltext0
+ 907 01e1 0100     		.2byte	0x1
+ 908 01e3 52       		.byte	0x52
+ 909 01e4 A4010000 		.4byte	.LVL23-.Ltext0
+ 910 01e8 C0010000 		.4byte	.LFE4-.Ltext0
+ 911 01ec 0100     		.2byte	0x1
+ 912 01ee 52       		.byte	0x52
+ 913 01ef 00000000 		.4byte	0x0
+ 914 01f3 00000000 		.4byte	0x0
+ 915              	.LLST18:
+ 916 01f7 C0010000 		.4byte	.LFB5-.Ltext0
+ 917 01fb C4010000 		.4byte	.LCFI7-.Ltext0
+ 918 01ff 0100     		.2byte	0x1
+ 919 0201 5D       		.byte	0x5d
+ 920 0202 C4010000 		.4byte	.LCFI7-.Ltext0
+ 921 0206 F8010000 		.4byte	.LFE5-.Ltext0
+ 922 020a 0200     		.2byte	0x2
+ 923 020c 7D       		.byte	0x7d
+ 924 020d 04       		.sleb128 4
+ 925 020e 00000000 		.4byte	0x0
+ 926 0212 00000000 		.4byte	0x0
+ 927              	.LLST19:
+ 928 0216 F8010000 		.4byte	.LFB10-.Ltext0
+ 929 021a FC010000 		.4byte	.LCFI8-.Ltext0
+ 930 021e 0100     		.2byte	0x1
+ 931 0220 5D       		.byte	0x5d
+ 932 0221 FC010000 		.4byte	.LCFI8-.Ltext0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 24
+
+
+ 933 0225 B0020000 		.4byte	.LFE10-.Ltext0
+ 934 0229 0200     		.2byte	0x2
+ 935 022b 7D       		.byte	0x7d
+ 936 022c 04       		.sleb128 4
+ 937 022d 00000000 		.4byte	0x0
+ 938 0231 00000000 		.4byte	0x0
+ 939              		.section	.debug_info
+ 940 0000 4F040000 		.4byte	0x44f
+ 941 0004 0200     		.2byte	0x2
+ 942 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 943 000a 04       		.byte	0x4
+ 944 000b 01       		.uleb128 0x1
+ 945 000c 00000000 		.4byte	.Ldebug_line0
+ 946 0010 B0020000 		.4byte	.Letext0
+ 947 0014 00000000 		.4byte	.Ltext0
+ 948 0018 06010000 		.4byte	.LASF50
+ 949 001c 01       		.byte	0x1
+ 950 001d EC000000 		.4byte	.LASF51
+ 951 0021 41010000 		.4byte	.LASF52
+ 952 0025 02       		.uleb128 0x2
+ 953 0026 75303800 		.ascii	"u08\000"
+ 954 002a 02       		.byte	0x2
+ 955 002b 20       		.byte	0x20
+ 956 002c 30000000 		.4byte	0x30
+ 957 0030 03       		.uleb128 0x3
+ 958 0031 47020000 		.4byte	.LASF0
+ 959 0035 01       		.byte	0x1
+ 960 0036 08       		.byte	0x8
+ 961 0037 03       		.uleb128 0x3
+ 962 0038 64020000 		.4byte	.LASF1
+ 963 003c 01       		.byte	0x1
+ 964 003d 06       		.byte	0x6
+ 965 003e 02       		.uleb128 0x2
+ 966 003f 75313600 		.ascii	"u16\000"
+ 967 0043 02       		.byte	0x2
+ 968 0044 22       		.byte	0x22
+ 969 0045 49000000 		.4byte	0x49
+ 970 0049 03       		.uleb128 0x3
+ 971 004a 70020000 		.4byte	.LASF2
+ 972 004e 02       		.byte	0x2
+ 973 004f 07       		.byte	0x7
+ 974 0050 03       		.uleb128 0x3
+ 975 0051 36000000 		.4byte	.LASF3
+ 976 0055 02       		.byte	0x2
+ 977 0056 05       		.byte	0x5
+ 978 0057 02       		.uleb128 0x2
+ 979 0058 75333200 		.ascii	"u32\000"
+ 980 005c 02       		.byte	0x2
+ 981 005d 24       		.byte	0x24
+ 982 005e 62000000 		.4byte	0x62
+ 983 0062 03       		.uleb128 0x3
+ 984 0063 2B020000 		.4byte	.LASF4
+ 985 0067 04       		.byte	0x4
+ 986 0068 07       		.byte	0x7
+ 987 0069 03       		.uleb128 0x3
+ 988 006a EC010000 		.4byte	.LASF5
+ 989 006e 04       		.byte	0x4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 25
+
+
+ 990 006f 05       		.byte	0x5
+ 991 0070 03       		.uleb128 0x3
+ 992 0071 7A000000 		.4byte	.LASF6
+ 993 0075 08       		.byte	0x8
+ 994 0076 07       		.byte	0x7
+ 995 0077 03       		.uleb128 0x3
+ 996 0078 2E010000 		.4byte	.LASF7
+ 997 007c 08       		.byte	0x8
+ 998 007d 05       		.byte	0x5
+ 999 007e 04       		.uleb128 0x4
+ 1000 007f 75000000 		.4byte	.LASF8
+ 1001 0083 02       		.byte	0x2
+ 1002 0084 3A       		.byte	0x3a
+ 1003 0085 30000000 		.4byte	0x30
+ 1004 0089 03       		.uleb128 0x3
+ 1005 008a 11000000 		.4byte	.LASF9
+ 1006 008e 04       		.byte	0x4
+ 1007 008f 07       		.byte	0x7
+ 1008 0090 03       		.uleb128 0x3
+ 1009 0091 01010000 		.4byte	.LASF10
+ 1010 0095 01       		.byte	0x1
+ 1011 0096 08       		.byte	0x8
+ 1012 0097 05       		.uleb128 0x5
+ 1013 0098 696E7400 		.ascii	"int\000"
+ 1014 009c 04       		.byte	0x4
+ 1015 009d 05       		.byte	0x5
+ 1016 009e 03       		.uleb128 0x3
+ 1017 009f 2B020000 		.4byte	.LASF4
+ 1018 00a3 04       		.byte	0x4
+ 1019 00a4 07       		.byte	0x7
+ 1020 00a5 06       		.uleb128 0x6
+ 1021 00a6 EA000000 		.4byte	0xea
+ 1022 00aa F2000000 		.4byte	.LASF53
+ 1023 00ae 0C       		.byte	0xc
+ 1024 00af 04       		.byte	0x4
+ 1025 00b0 2A       		.byte	0x2a
+ 1026 00b1 07       		.uleb128 0x7
+ 1027 00b2 B5010000 		.4byte	.LASF11
+ 1028 00b6 04       		.byte	0x4
+ 1029 00b7 2B       		.byte	0x2b
+ 1030 00b8 EA000000 		.4byte	0xea
+ 1031 00bc 02       		.byte	0x2
+ 1032 00bd 23       		.byte	0x23
+ 1033 00be 00       		.uleb128 0x0
+ 1034 00bf 07       		.uleb128 0x7
+ 1035 00c0 3C010000 		.4byte	.LASF12
+ 1036 00c4 04       		.byte	0x4
+ 1037 00c5 2C       		.byte	0x2c
+ 1038 00c6 49000000 		.4byte	0x49
+ 1039 00ca 02       		.byte	0x2
+ 1040 00cb 23       		.byte	0x23
+ 1041 00cc 04       		.uleb128 0x4
+ 1042 00cd 07       		.uleb128 0x7
+ 1043 00ce 91000000 		.4byte	.LASF13
+ 1044 00d2 04       		.byte	0x4
+ 1045 00d3 2D       		.byte	0x2d
+ 1046 00d4 49000000 		.4byte	0x49
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 26
+
+
+ 1047 00d8 02       		.byte	0x2
+ 1048 00d9 23       		.byte	0x23
+ 1049 00da 06       		.uleb128 0x6
+ 1050 00db 07       		.uleb128 0x7
+ 1051 00dc AB010000 		.4byte	.LASF14
+ 1052 00e0 04       		.byte	0x4
+ 1053 00e1 2E       		.byte	0x2e
+ 1054 00e2 49000000 		.4byte	0x49
+ 1055 00e6 02       		.byte	0x2
+ 1056 00e7 23       		.byte	0x23
+ 1057 00e8 08       		.uleb128 0x8
+ 1058 00e9 00       		.byte	0x0
+ 1059 00ea 08       		.uleb128 0x8
+ 1060 00eb 04       		.byte	0x4
+ 1061 00ec 30000000 		.4byte	0x30
+ 1062 00f0 04       		.uleb128 0x4
+ 1063 00f1 5C020000 		.4byte	.LASF15
+ 1064 00f5 04       		.byte	0x4
+ 1065 00f6 2F       		.byte	0x2f
+ 1066 00f7 A5000000 		.4byte	0xa5
+ 1067 00fb 09       		.uleb128 0x9
+ 1068 00fc 4A010000 		.4byte	0x14a
+ 1069 0100 08       		.byte	0x8
+ 1070 0101 03       		.byte	0x3
+ 1071 0102 2B       		.byte	0x2b
+ 1072 0103 07       		.uleb128 0x7
+ 1073 0104 FD010000 		.4byte	.LASF16
+ 1074 0108 03       		.byte	0x3
+ 1075 0109 2C       		.byte	0x2c
+ 1076 010a 25000000 		.4byte	0x25
+ 1077 010e 02       		.byte	0x2
+ 1078 010f 23       		.byte	0x23
+ 1079 0110 00       		.uleb128 0x0
+ 1080 0111 07       		.uleb128 0x7
+ 1081 0112 0B020000 		.4byte	.LASF17
+ 1082 0116 03       		.byte	0x3
+ 1083 0117 2D       		.byte	0x2d
+ 1084 0118 25000000 		.4byte	0x25
+ 1085 011c 02       		.byte	0x2
+ 1086 011d 23       		.byte	0x23
+ 1087 011e 01       		.uleb128 0x1
+ 1088 011f 07       		.uleb128 0x7
+ 1089 0120 59000000 		.4byte	.LASF18
+ 1090 0124 03       		.byte	0x3
+ 1091 0125 2E       		.byte	0x2e
+ 1092 0126 3E000000 		.4byte	0x3e
+ 1093 012a 02       		.byte	0x2
+ 1094 012b 23       		.byte	0x23
+ 1095 012c 02       		.uleb128 0x2
+ 1096 012d 07       		.uleb128 0x7
+ 1097 012e B0000000 		.4byte	.LASF19
+ 1098 0132 03       		.byte	0x3
+ 1099 0133 2F       		.byte	0x2f
+ 1100 0134 3E000000 		.4byte	0x3e
+ 1101 0138 02       		.byte	0x2
+ 1102 0139 23       		.byte	0x23
+ 1103 013a 04       		.uleb128 0x4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 27
+
+
+ 1104 013b 07       		.uleb128 0x7
+ 1105 013c F5010000 		.4byte	.LASF20
+ 1106 0140 03       		.byte	0x3
+ 1107 0141 30       		.byte	0x30
+ 1108 0142 3E000000 		.4byte	0x3e
+ 1109 0146 02       		.byte	0x2
+ 1110 0147 23       		.byte	0x23
+ 1111 0148 06       		.uleb128 0x6
+ 1112 0149 00       		.byte	0x0
+ 1113 014a 04       		.uleb128 0x4
+ 1114 014b DF000000 		.4byte	.LASF21
+ 1115 014f 03       		.byte	0x3
+ 1116 0150 31       		.byte	0x31
+ 1117 0151 FB000000 		.4byte	0xfb
+ 1118 0155 08       		.uleb128 0x8
+ 1119 0156 04       		.byte	0x4
+ 1120 0157 4A010000 		.4byte	0x14a
+ 1121 015b 08       		.uleb128 0x8
+ 1122 015c 04       		.byte	0x4
+ 1123 015d 97000000 		.4byte	0x97
+ 1124 0161 08       		.uleb128 0x8
+ 1125 0162 04       		.byte	0x4
+ 1126 0163 67010000 		.4byte	0x167
+ 1127 0167 08       		.uleb128 0x8
+ 1128 0168 04       		.byte	0x4
+ 1129 0169 25000000 		.4byte	0x25
+ 1130 016d 09       		.uleb128 0x9
+ 1131 016e AE010000 		.4byte	0x1ae
+ 1132 0172 08       		.byte	0x8
+ 1133 0173 01       		.byte	0x1
+ 1134 0174 0F       		.byte	0xf
+ 1135 0175 07       		.uleb128 0x7
+ 1136 0176 60000000 		.4byte	.LASF22
+ 1137 017a 01       		.byte	0x1
+ 1138 017b 10       		.byte	0x10
+ 1139 017c 57000000 		.4byte	0x57
+ 1140 0180 02       		.byte	0x2
+ 1141 0181 23       		.byte	0x23
+ 1142 0182 00       		.uleb128 0x0
+ 1143 0183 07       		.uleb128 0x7
+ 1144 0184 BD010000 		.4byte	.LASF23
+ 1145 0188 01       		.byte	0x1
+ 1146 0189 11       		.byte	0x11
+ 1147 018a 25000000 		.4byte	0x25
+ 1148 018e 02       		.byte	0x2
+ 1149 018f 23       		.byte	0x23
+ 1150 0190 04       		.uleb128 0x4
+ 1151 0191 07       		.uleb128 0x7
+ 1152 0192 92010000 		.4byte	.LASF24
+ 1153 0196 01       		.byte	0x1
+ 1154 0197 12       		.byte	0x12
+ 1155 0198 25000000 		.4byte	0x25
+ 1156 019c 02       		.byte	0x2
+ 1157 019d 23       		.byte	0x23
+ 1158 019e 05       		.uleb128 0x5
+ 1159 019f 07       		.uleb128 0x7
+ 1160 01a0 3D020000 		.4byte	.LASF25
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 28
+
+
+ 1161 01a4 01       		.byte	0x1
+ 1162 01a5 13       		.byte	0x13
+ 1163 01a6 25000000 		.4byte	0x25
+ 1164 01aa 02       		.byte	0x2
+ 1165 01ab 23       		.byte	0x23
+ 1166 01ac 06       		.uleb128 0x6
+ 1167 01ad 00       		.byte	0x0
+ 1168 01ae 04       		.uleb128 0x4
+ 1169 01af 9C000000 		.4byte	.LASF26
+ 1170 01b3 01       		.byte	0x1
+ 1171 01b4 14       		.byte	0x14
+ 1172 01b5 6D010000 		.4byte	0x16d
+ 1173 01b9 0A       		.uleb128 0xa
+ 1174 01ba 8A020000 		.4byte	.LASF54
+ 1175 01be 01       		.byte	0x1
+ 1176 01bf 2D01     		.2byte	0x12d
+ 1177 01c1 01       		.byte	0x1
+ 1178 01c2 00000000 		.4byte	.LFB8
+ 1179 01c6 1C000000 		.4byte	.LFE8
+ 1180 01ca 00000000 		.4byte	.LLST0
+ 1181 01ce 0B       		.uleb128 0xb
+ 1182 01cf F8010000 		.4byte	0x1f8
+ 1183 01d3 C9010000 		.4byte	.LASF28
+ 1184 01d7 01       		.byte	0x1
+ 1185 01d8 3401     		.2byte	0x134
+ 1186 01da 01       		.byte	0x1
+ 1187 01db 1C000000 		.4byte	.LFB9
+ 1188 01df 40000000 		.4byte	.LFE9
+ 1189 01e3 1F000000 		.4byte	.LLST1
+ 1190 01e7 0C       		.uleb128 0xc
+ 1191 01e8 83020000 		.4byte	.LASF27
+ 1192 01ec 01       		.byte	0x1
+ 1193 01ed 3301     		.2byte	0x133
+ 1194 01ef 3E000000 		.4byte	0x3e
+ 1195 01f3 3E000000 		.4byte	.LLST2
+ 1196 01f7 00       		.byte	0x0
+ 1197 01f8 0D       		.uleb128 0xd
+ 1198 01f9 25020000 		.4byte	0x225
+ 1199 01fd 01       		.byte	0x1
+ 1200 01fe 14020000 		.4byte	.LASF32
+ 1201 0202 01       		.byte	0x1
+ 1202 0203 1301     		.2byte	0x113
+ 1203 0205 01       		.byte	0x1
+ 1204 0206 97000000 		.4byte	0x97
+ 1205 020a 40000000 		.4byte	.LFB6
+ 1206 020e 68000000 		.4byte	.LFE6
+ 1207 0212 51000000 		.4byte	.LLST3
+ 1208 0216 0E       		.uleb128 0xe
+ 1209 0217 6300     		.ascii	"c\000"
+ 1210 0219 01       		.byte	0x1
+ 1211 021a 1201     		.2byte	0x112
+ 1212 021c 97000000 		.4byte	0x97
+ 1213 0220 70000000 		.4byte	.LLST4
+ 1214 0224 00       		.byte	0x0
+ 1215 0225 0F       		.uleb128 0xf
+ 1216 0226 74020000 		.4byte	0x274
+ 1217 022a A8000000 		.4byte	.LASF29
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 29
+
+
+ 1218 022e 01       		.byte	0x1
+ 1219 022f 97       		.byte	0x97
+ 1220 0230 01       		.byte	0x1
+ 1221 0231 68000000 		.4byte	.LFB2
+ 1222 0235 CC000000 		.4byte	.LFE2
+ 1223 0239 8E000000 		.4byte	.LLST5
+ 1224 023d 10       		.uleb128 0x10
+ 1225 023e 62455000 		.ascii	"bEP\000"
+ 1226 0242 01       		.byte	0x1
+ 1227 0243 96       		.byte	0x96
+ 1228 0244 25000000 		.4byte	0x25
+ 1229 0248 AD000000 		.4byte	.LLST6
+ 1230 024c 11       		.uleb128 0x11
+ 1231 024d D5000000 		.4byte	.LASF30
+ 1232 0251 01       		.byte	0x1
+ 1233 0252 96       		.byte	0x96
+ 1234 0253 25000000 		.4byte	0x25
+ 1235 0257 CB000000 		.4byte	.LLST7
+ 1236 025b 12       		.uleb128 0x12
+ 1237 025c 6900     		.ascii	"i\000"
+ 1238 025e 01       		.byte	0x1
+ 1239 025f 98       		.byte	0x98
+ 1240 0260 97000000 		.4byte	0x97
+ 1241 0264 01       		.byte	0x1
+ 1242 0265 54       		.byte	0x54
+ 1243 0266 13       		.uleb128 0x13
+ 1244 0267 29010000 		.4byte	.LASF31
+ 1245 026b 01       		.byte	0x1
+ 1246 026c 98       		.byte	0x98
+ 1247 026d 97000000 		.4byte	0x97
+ 1248 0271 01       		.byte	0x1
+ 1249 0272 55       		.byte	0x55
+ 1250 0273 00       		.byte	0x0
+ 1251 0274 0D       		.uleb128 0xd
+ 1252 0275 A1020000 		.4byte	0x2a1
+ 1253 0279 01       		.byte	0x1
+ 1254 027a 29000000 		.4byte	.LASF33
+ 1255 027e 01       		.byte	0x1
+ 1256 027f 1F01     		.2byte	0x11f
+ 1257 0281 01       		.byte	0x1
+ 1258 0282 97000000 		.4byte	0x97
+ 1259 0286 CC000000 		.4byte	.LFB7
+ 1260 028a E8000000 		.4byte	.LFE7
+ 1261 028e DE000000 		.4byte	.LLST8
+ 1262 0292 14       		.uleb128 0x14
+ 1263 0293 6300     		.ascii	"c\000"
+ 1264 0295 01       		.byte	0x1
+ 1265 0296 2001     		.2byte	0x120
+ 1266 0298 25000000 		.4byte	0x25
+ 1267 029c FD000000 		.4byte	.LLST9
+ 1268 02a0 00       		.byte	0x0
+ 1269 02a1 0F       		.uleb128 0xf
+ 1270 02a2 FB020000 		.4byte	0x2fb
+ 1271 02a6 8B010000 		.4byte	.LASF34
+ 1272 02aa 01       		.byte	0x1
+ 1273 02ab B6       		.byte	0xb6
+ 1274 02ac 01       		.byte	0x1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 30
+
+
+ 1275 02ad E8000000 		.4byte	.LFB3
+ 1276 02b1 58010000 		.4byte	.LFE3
+ 1277 02b5 10010000 		.4byte	.LLST10
+ 1278 02b9 10       		.uleb128 0x10
+ 1279 02ba 62455000 		.ascii	"bEP\000"
+ 1280 02be 01       		.byte	0x1
+ 1281 02bf B5       		.byte	0xb5
+ 1282 02c0 25000000 		.4byte	0x25
+ 1283 02c4 2F010000 		.4byte	.LLST11
+ 1284 02c8 11       		.uleb128 0x11
+ 1285 02c9 D5000000 		.4byte	.LASF30
+ 1286 02cd 01       		.byte	0x1
+ 1287 02ce B5       		.byte	0xb5
+ 1288 02cf 25000000 		.4byte	0x25
+ 1289 02d3 4D010000 		.4byte	.LLST12
+ 1290 02d7 12       		.uleb128 0x12
+ 1291 02d8 6900     		.ascii	"i\000"
+ 1292 02da 01       		.byte	0x1
+ 1293 02db B7       		.byte	0xb7
+ 1294 02dc 97000000 		.4byte	0x97
+ 1295 02e0 01       		.byte	0x1
+ 1296 02e1 54       		.byte	0x54
+ 1297 02e2 15       		.uleb128 0x15
+ 1298 02e3 29010000 		.4byte	.LASF31
+ 1299 02e7 01       		.byte	0x1
+ 1300 02e8 B7       		.byte	0xb7
+ 1301 02e9 97000000 		.4byte	0x97
+ 1302 02ed 16       		.uleb128 0x16
+ 1303 02ee 6300     		.ascii	"c\000"
+ 1304 02f0 01       		.byte	0x1
+ 1305 02f1 B8       		.byte	0xb8
+ 1306 02f2 30000000 		.4byte	0x30
+ 1307 02f6 60010000 		.4byte	.LLST13
+ 1308 02fa 00       		.byte	0x0
+ 1309 02fb 17       		.uleb128 0x17
+ 1310 02fc 45030000 		.4byte	0x345
+ 1311 0300 D9010000 		.4byte	.LASF35
+ 1312 0304 01       		.byte	0x1
+ 1313 0305 DC       		.byte	0xdc
+ 1314 0306 01       		.byte	0x1
+ 1315 0307 7E000000 		.4byte	0x7e
+ 1316 030b 58010000 		.4byte	.LFB4
+ 1317 030f C0010000 		.4byte	.LFE4
+ 1318 0313 7E010000 		.4byte	.LLST14
+ 1319 0317 11       		.uleb128 0x11
+ 1320 0318 55020000 		.4byte	.LASF36
+ 1321 031c 01       		.byte	0x1
+ 1322 031d DB       		.byte	0xdb
+ 1323 031e 55010000 		.4byte	0x155
+ 1324 0322 9D010000 		.4byte	.LLST15
+ 1325 0326 11       		.uleb128 0x11
+ 1326 0327 CF000000 		.4byte	.LASF37
+ 1327 032b 01       		.byte	0x1
+ 1328 032c DB       		.byte	0xdb
+ 1329 032d 5B010000 		.4byte	0x15b
+ 1330 0331 BB010000 		.4byte	.LLST16
+ 1331 0335 11       		.uleb128 0x11
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 31
+
+
+ 1332 0336 00000000 		.4byte	.LASF38
+ 1333 033a 01       		.byte	0x1
+ 1334 033b DB       		.byte	0xdb
+ 1335 033c 61010000 		.4byte	0x161
+ 1336 0340 D9010000 		.4byte	.LLST17
+ 1337 0344 00       		.byte	0x0
+ 1338 0345 18       		.uleb128 0x18
+ 1339 0346 01       		.byte	0x1
+ 1340 0347 21020000 		.4byte	.LASF39
+ 1341 034b 01       		.byte	0x1
+ 1342 034c 0401     		.2byte	0x104
+ 1343 034e 01       		.byte	0x1
+ 1344 034f C0010000 		.4byte	.LFB5
+ 1345 0353 F8010000 		.4byte	.LFE5
+ 1346 0357 F7010000 		.4byte	.LLST18
+ 1347 035b 18       		.uleb128 0x18
+ 1348 035c 01       		.byte	0x1
+ 1349 035d 08000000 		.4byte	.LASF40
+ 1350 0361 01       		.byte	0x1
+ 1351 0362 3D01     		.2byte	0x13d
+ 1352 0364 01       		.byte	0x1
+ 1353 0365 F8010000 		.4byte	.LFB10
+ 1354 0369 B0020000 		.4byte	.LFE10
+ 1355 036d 16020000 		.4byte	.LLST19
+ 1356 0371 19       		.uleb128 0x19
+ 1357 0372 81030000 		.4byte	0x381
+ 1358 0376 30000000 		.4byte	0x30
+ 1359 037a 1A       		.uleb128 0x1a
+ 1360 037b 9E000000 		.4byte	0x9e
+ 1361 037f 7F       		.byte	0x7f
+ 1362 0380 00       		.byte	0x0
+ 1363 0381 13       		.uleb128 0x13
+ 1364 0382 1E000000 		.4byte	.LASF41
+ 1365 0386 01       		.byte	0x1
+ 1366 0387 07       		.byte	0x7
+ 1367 0388 71030000 		.4byte	0x371
+ 1368 038c 05       		.byte	0x5
+ 1369 038d 03       		.byte	0x3
+ 1370 038e 00000000 		.4byte	uartRxData
+ 1371 0392 13       		.uleb128 0x13
+ 1372 0393 B7000000 		.4byte	.LASF42
+ 1373 0397 01       		.byte	0x1
+ 1374 0398 08       		.byte	0x8
+ 1375 0399 71030000 		.4byte	0x371
+ 1376 039d 05       		.byte	0x5
+ 1377 039e 03       		.byte	0x3
+ 1378 039f 80000000 		.4byte	uartTxData
+ 1379 03a3 13       		.uleb128 0x13
+ 1380 03a4 6A000000 		.4byte	.LASF43
+ 1381 03a8 01       		.byte	0x1
+ 1382 03a9 17       		.byte	0x17
+ 1383 03aa AE010000 		.4byte	0x1ae
+ 1384 03ae 05       		.byte	0x5
+ 1385 03af 03       		.byte	0x3
+ 1386 03b0 00000000 		.4byte	LineCoding
+ 1387 03b4 19       		.uleb128 0x19
+ 1388 03b5 C4030000 		.4byte	0x3c4
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 32
+
+
+ 1389 03b9 25000000 		.4byte	0x25
+ 1390 03bd 1A       		.uleb128 0x1a
+ 1391 03be 9E000000 		.4byte	0x9e
+ 1392 03c2 3F       		.byte	0x3f
+ 1393 03c3 00       		.byte	0x0
+ 1394 03c4 13       		.uleb128 0x13
+ 1395 03c5 40000000 		.4byte	.LASF44
+ 1396 03c9 01       		.byte	0x1
+ 1397 03ca 18       		.byte	0x18
+ 1398 03cb B4030000 		.4byte	0x3b4
+ 1399 03cf 05       		.byte	0x5
+ 1400 03d0 03       		.byte	0x3
+ 1401 03d1 00010000 		.4byte	abBulkBuf
+ 1402 03d5 19       		.uleb128 0x19
+ 1403 03d6 E5030000 		.4byte	0x3e5
+ 1404 03da 25000000 		.4byte	0x25
+ 1405 03de 1A       		.uleb128 0x1a
+ 1406 03df 9E000000 		.4byte	0x9e
+ 1407 03e3 07       		.byte	0x7
+ 1408 03e4 00       		.byte	0x0
+ 1409 03e5 13       		.uleb128 0x13
+ 1410 03e6 98020000 		.4byte	.LASF45
+ 1411 03ea 01       		.byte	0x1
+ 1412 03eb 19       		.byte	0x19
+ 1413 03ec D5030000 		.4byte	0x3d5
+ 1414 03f0 05       		.byte	0x5
+ 1415 03f1 03       		.byte	0x3
+ 1416 03f2 40010000 		.4byte	abClassReqData
+ 1417 03f6 19       		.uleb128 0x19
+ 1418 03f7 06040000 		.4byte	0x406
+ 1419 03fb 25000000 		.4byte	0x25
+ 1420 03ff 1A       		.uleb128 0x1a
+ 1421 0400 9E000000 		.4byte	0x9e
+ 1422 0404 8D       		.byte	0x8d
+ 1423 0405 00       		.byte	0x0
+ 1424 0406 13       		.uleb128 0x13
+ 1425 0407 1B010000 		.4byte	.LASF46
+ 1426 040b 01       		.byte	0x1
+ 1427 040c 1F       		.byte	0x1f
+ 1428 040d 17040000 		.4byte	0x417
+ 1429 0411 05       		.byte	0x5
+ 1430 0412 03       		.byte	0x3
+ 1431 0413 00000000 		.4byte	abDescriptors
+ 1432 0417 1B       		.uleb128 0x1b
+ 1433 0418 F6030000 		.4byte	0x3f6
+ 1434 041c 1C       		.uleb128 0x1c
+ 1435 041d 9E010000 		.4byte	.LASF47
+ 1436 0421 01       		.byte	0x1
+ 1437 0422 09       		.byte	0x9
+ 1438 0423 F0000000 		.4byte	0xf0
+ 1439 0427 01       		.byte	0x1
+ 1440 0428 05       		.byte	0x5
+ 1441 0429 03       		.byte	0x3
+ 1442 042a 00000000 		.4byte	uartRxBuffer
+ 1443 042e 1C       		.uleb128 0x1c
+ 1444 042f C2000000 		.4byte	.LASF48
+ 1445 0433 01       		.byte	0x1
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 33
+
+
+ 1446 0434 0A       		.byte	0xa
+ 1447 0435 F0000000 		.4byte	0xf0
+ 1448 0439 01       		.byte	0x1
+ 1449 043a 05       		.byte	0x5
+ 1450 043b 03       		.byte	0x3
+ 1451 043c 00000000 		.4byte	uartTxBuffer
+ 1452 0440 1C       		.uleb128 0x1c
+ 1453 0441 4A000000 		.4byte	.LASF49
+ 1454 0445 01       		.byte	0x1
+ 1455 0446 0B       		.byte	0xb
+ 1456 0447 49000000 		.4byte	0x49
+ 1457 044b 01       		.byte	0x1
+ 1458 044c 05       		.byte	0x5
+ 1459 044d 03       		.byte	0x3
+ 1460 044e 00000000 		.4byte	uartRxOverflow
+ 1461 0452 00       		.byte	0x0
+ 1462              		.section	.debug_abbrev
+ 1463 0000 01       		.uleb128 0x1
+ 1464 0001 11       		.uleb128 0x11
+ 1465 0002 01       		.byte	0x1
+ 1466 0003 10       		.uleb128 0x10
+ 1467 0004 06       		.uleb128 0x6
+ 1468 0005 12       		.uleb128 0x12
+ 1469 0006 01       		.uleb128 0x1
+ 1470 0007 11       		.uleb128 0x11
+ 1471 0008 01       		.uleb128 0x1
+ 1472 0009 25       		.uleb128 0x25
+ 1473 000a 0E       		.uleb128 0xe
+ 1474 000b 13       		.uleb128 0x13
+ 1475 000c 0B       		.uleb128 0xb
+ 1476 000d 03       		.uleb128 0x3
+ 1477 000e 0E       		.uleb128 0xe
+ 1478 000f 1B       		.uleb128 0x1b
+ 1479 0010 0E       		.uleb128 0xe
+ 1480 0011 00       		.byte	0x0
+ 1481 0012 00       		.byte	0x0
+ 1482 0013 02       		.uleb128 0x2
+ 1483 0014 16       		.uleb128 0x16
+ 1484 0015 00       		.byte	0x0
+ 1485 0016 03       		.uleb128 0x3
+ 1486 0017 08       		.uleb128 0x8
+ 1487 0018 3A       		.uleb128 0x3a
+ 1488 0019 0B       		.uleb128 0xb
+ 1489 001a 3B       		.uleb128 0x3b
+ 1490 001b 0B       		.uleb128 0xb
+ 1491 001c 49       		.uleb128 0x49
+ 1492 001d 13       		.uleb128 0x13
+ 1493 001e 00       		.byte	0x0
+ 1494 001f 00       		.byte	0x0
+ 1495 0020 03       		.uleb128 0x3
+ 1496 0021 24       		.uleb128 0x24
+ 1497 0022 00       		.byte	0x0
+ 1498 0023 03       		.uleb128 0x3
+ 1499 0024 0E       		.uleb128 0xe
+ 1500 0025 0B       		.uleb128 0xb
+ 1501 0026 0B       		.uleb128 0xb
+ 1502 0027 3E       		.uleb128 0x3e
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 34
+
+
+ 1503 0028 0B       		.uleb128 0xb
+ 1504 0029 00       		.byte	0x0
+ 1505 002a 00       		.byte	0x0
+ 1506 002b 04       		.uleb128 0x4
+ 1507 002c 16       		.uleb128 0x16
+ 1508 002d 00       		.byte	0x0
+ 1509 002e 03       		.uleb128 0x3
+ 1510 002f 0E       		.uleb128 0xe
+ 1511 0030 3A       		.uleb128 0x3a
+ 1512 0031 0B       		.uleb128 0xb
+ 1513 0032 3B       		.uleb128 0x3b
+ 1514 0033 0B       		.uleb128 0xb
+ 1515 0034 49       		.uleb128 0x49
+ 1516 0035 13       		.uleb128 0x13
+ 1517 0036 00       		.byte	0x0
+ 1518 0037 00       		.byte	0x0
+ 1519 0038 05       		.uleb128 0x5
+ 1520 0039 24       		.uleb128 0x24
+ 1521 003a 00       		.byte	0x0
+ 1522 003b 03       		.uleb128 0x3
+ 1523 003c 08       		.uleb128 0x8
+ 1524 003d 0B       		.uleb128 0xb
+ 1525 003e 0B       		.uleb128 0xb
+ 1526 003f 3E       		.uleb128 0x3e
+ 1527 0040 0B       		.uleb128 0xb
+ 1528 0041 00       		.byte	0x0
+ 1529 0042 00       		.byte	0x0
+ 1530 0043 06       		.uleb128 0x6
+ 1531 0044 13       		.uleb128 0x13
+ 1532 0045 01       		.byte	0x1
+ 1533 0046 01       		.uleb128 0x1
+ 1534 0047 13       		.uleb128 0x13
+ 1535 0048 03       		.uleb128 0x3
+ 1536 0049 0E       		.uleb128 0xe
+ 1537 004a 0B       		.uleb128 0xb
+ 1538 004b 0B       		.uleb128 0xb
+ 1539 004c 3A       		.uleb128 0x3a
+ 1540 004d 0B       		.uleb128 0xb
+ 1541 004e 3B       		.uleb128 0x3b
+ 1542 004f 0B       		.uleb128 0xb
+ 1543 0050 00       		.byte	0x0
+ 1544 0051 00       		.byte	0x0
+ 1545 0052 07       		.uleb128 0x7
+ 1546 0053 0D       		.uleb128 0xd
+ 1547 0054 00       		.byte	0x0
+ 1548 0055 03       		.uleb128 0x3
+ 1549 0056 0E       		.uleb128 0xe
+ 1550 0057 3A       		.uleb128 0x3a
+ 1551 0058 0B       		.uleb128 0xb
+ 1552 0059 3B       		.uleb128 0x3b
+ 1553 005a 0B       		.uleb128 0xb
+ 1554 005b 49       		.uleb128 0x49
+ 1555 005c 13       		.uleb128 0x13
+ 1556 005d 38       		.uleb128 0x38
+ 1557 005e 0A       		.uleb128 0xa
+ 1558 005f 00       		.byte	0x0
+ 1559 0060 00       		.byte	0x0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 35
+
+
+ 1560 0061 08       		.uleb128 0x8
+ 1561 0062 0F       		.uleb128 0xf
+ 1562 0063 00       		.byte	0x0
+ 1563 0064 0B       		.uleb128 0xb
+ 1564 0065 0B       		.uleb128 0xb
+ 1565 0066 49       		.uleb128 0x49
+ 1566 0067 13       		.uleb128 0x13
+ 1567 0068 00       		.byte	0x0
+ 1568 0069 00       		.byte	0x0
+ 1569 006a 09       		.uleb128 0x9
+ 1570 006b 13       		.uleb128 0x13
+ 1571 006c 01       		.byte	0x1
+ 1572 006d 01       		.uleb128 0x1
+ 1573 006e 13       		.uleb128 0x13
+ 1574 006f 0B       		.uleb128 0xb
+ 1575 0070 0B       		.uleb128 0xb
+ 1576 0071 3A       		.uleb128 0x3a
+ 1577 0072 0B       		.uleb128 0xb
+ 1578 0073 3B       		.uleb128 0x3b
+ 1579 0074 0B       		.uleb128 0xb
+ 1580 0075 00       		.byte	0x0
+ 1581 0076 00       		.byte	0x0
+ 1582 0077 0A       		.uleb128 0xa
+ 1583 0078 2E       		.uleb128 0x2e
+ 1584 0079 00       		.byte	0x0
+ 1585 007a 03       		.uleb128 0x3
+ 1586 007b 0E       		.uleb128 0xe
+ 1587 007c 3A       		.uleb128 0x3a
+ 1588 007d 0B       		.uleb128 0xb
+ 1589 007e 3B       		.uleb128 0x3b
+ 1590 007f 05       		.uleb128 0x5
+ 1591 0080 27       		.uleb128 0x27
+ 1592 0081 0C       		.uleb128 0xc
+ 1593 0082 11       		.uleb128 0x11
+ 1594 0083 01       		.uleb128 0x1
+ 1595 0084 12       		.uleb128 0x12
+ 1596 0085 01       		.uleb128 0x1
+ 1597 0086 40       		.uleb128 0x40
+ 1598 0087 06       		.uleb128 0x6
+ 1599 0088 00       		.byte	0x0
+ 1600 0089 00       		.byte	0x0
+ 1601 008a 0B       		.uleb128 0xb
+ 1602 008b 2E       		.uleb128 0x2e
+ 1603 008c 01       		.byte	0x1
+ 1604 008d 01       		.uleb128 0x1
+ 1605 008e 13       		.uleb128 0x13
+ 1606 008f 03       		.uleb128 0x3
+ 1607 0090 0E       		.uleb128 0xe
+ 1608 0091 3A       		.uleb128 0x3a
+ 1609 0092 0B       		.uleb128 0xb
+ 1610 0093 3B       		.uleb128 0x3b
+ 1611 0094 05       		.uleb128 0x5
+ 1612 0095 27       		.uleb128 0x27
+ 1613 0096 0C       		.uleb128 0xc
+ 1614 0097 11       		.uleb128 0x11
+ 1615 0098 01       		.uleb128 0x1
+ 1616 0099 12       		.uleb128 0x12
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 36
+
+
+ 1617 009a 01       		.uleb128 0x1
+ 1618 009b 40       		.uleb128 0x40
+ 1619 009c 06       		.uleb128 0x6
+ 1620 009d 00       		.byte	0x0
+ 1621 009e 00       		.byte	0x0
+ 1622 009f 0C       		.uleb128 0xc
+ 1623 00a0 05       		.uleb128 0x5
+ 1624 00a1 00       		.byte	0x0
+ 1625 00a2 03       		.uleb128 0x3
+ 1626 00a3 0E       		.uleb128 0xe
+ 1627 00a4 3A       		.uleb128 0x3a
+ 1628 00a5 0B       		.uleb128 0xb
+ 1629 00a6 3B       		.uleb128 0x3b
+ 1630 00a7 05       		.uleb128 0x5
+ 1631 00a8 49       		.uleb128 0x49
+ 1632 00a9 13       		.uleb128 0x13
+ 1633 00aa 02       		.uleb128 0x2
+ 1634 00ab 06       		.uleb128 0x6
+ 1635 00ac 00       		.byte	0x0
+ 1636 00ad 00       		.byte	0x0
+ 1637 00ae 0D       		.uleb128 0xd
+ 1638 00af 2E       		.uleb128 0x2e
+ 1639 00b0 01       		.byte	0x1
+ 1640 00b1 01       		.uleb128 0x1
+ 1641 00b2 13       		.uleb128 0x13
+ 1642 00b3 3F       		.uleb128 0x3f
+ 1643 00b4 0C       		.uleb128 0xc
+ 1644 00b5 03       		.uleb128 0x3
+ 1645 00b6 0E       		.uleb128 0xe
+ 1646 00b7 3A       		.uleb128 0x3a
+ 1647 00b8 0B       		.uleb128 0xb
+ 1648 00b9 3B       		.uleb128 0x3b
+ 1649 00ba 05       		.uleb128 0x5
+ 1650 00bb 27       		.uleb128 0x27
+ 1651 00bc 0C       		.uleb128 0xc
+ 1652 00bd 49       		.uleb128 0x49
+ 1653 00be 13       		.uleb128 0x13
+ 1654 00bf 11       		.uleb128 0x11
+ 1655 00c0 01       		.uleb128 0x1
+ 1656 00c1 12       		.uleb128 0x12
+ 1657 00c2 01       		.uleb128 0x1
+ 1658 00c3 40       		.uleb128 0x40
+ 1659 00c4 06       		.uleb128 0x6
+ 1660 00c5 00       		.byte	0x0
+ 1661 00c6 00       		.byte	0x0
+ 1662 00c7 0E       		.uleb128 0xe
+ 1663 00c8 05       		.uleb128 0x5
+ 1664 00c9 00       		.byte	0x0
+ 1665 00ca 03       		.uleb128 0x3
+ 1666 00cb 08       		.uleb128 0x8
+ 1667 00cc 3A       		.uleb128 0x3a
+ 1668 00cd 0B       		.uleb128 0xb
+ 1669 00ce 3B       		.uleb128 0x3b
+ 1670 00cf 05       		.uleb128 0x5
+ 1671 00d0 49       		.uleb128 0x49
+ 1672 00d1 13       		.uleb128 0x13
+ 1673 00d2 02       		.uleb128 0x2
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 37
+
+
+ 1674 00d3 06       		.uleb128 0x6
+ 1675 00d4 00       		.byte	0x0
+ 1676 00d5 00       		.byte	0x0
+ 1677 00d6 0F       		.uleb128 0xf
+ 1678 00d7 2E       		.uleb128 0x2e
+ 1679 00d8 01       		.byte	0x1
+ 1680 00d9 01       		.uleb128 0x1
+ 1681 00da 13       		.uleb128 0x13
+ 1682 00db 03       		.uleb128 0x3
+ 1683 00dc 0E       		.uleb128 0xe
+ 1684 00dd 3A       		.uleb128 0x3a
+ 1685 00de 0B       		.uleb128 0xb
+ 1686 00df 3B       		.uleb128 0x3b
+ 1687 00e0 0B       		.uleb128 0xb
+ 1688 00e1 27       		.uleb128 0x27
+ 1689 00e2 0C       		.uleb128 0xc
+ 1690 00e3 11       		.uleb128 0x11
+ 1691 00e4 01       		.uleb128 0x1
+ 1692 00e5 12       		.uleb128 0x12
+ 1693 00e6 01       		.uleb128 0x1
+ 1694 00e7 40       		.uleb128 0x40
+ 1695 00e8 06       		.uleb128 0x6
+ 1696 00e9 00       		.byte	0x0
+ 1697 00ea 00       		.byte	0x0
+ 1698 00eb 10       		.uleb128 0x10
+ 1699 00ec 05       		.uleb128 0x5
+ 1700 00ed 00       		.byte	0x0
+ 1701 00ee 03       		.uleb128 0x3
+ 1702 00ef 08       		.uleb128 0x8
+ 1703 00f0 3A       		.uleb128 0x3a
+ 1704 00f1 0B       		.uleb128 0xb
+ 1705 00f2 3B       		.uleb128 0x3b
+ 1706 00f3 0B       		.uleb128 0xb
+ 1707 00f4 49       		.uleb128 0x49
+ 1708 00f5 13       		.uleb128 0x13
+ 1709 00f6 02       		.uleb128 0x2
+ 1710 00f7 06       		.uleb128 0x6
+ 1711 00f8 00       		.byte	0x0
+ 1712 00f9 00       		.byte	0x0
+ 1713 00fa 11       		.uleb128 0x11
+ 1714 00fb 05       		.uleb128 0x5
+ 1715 00fc 00       		.byte	0x0
+ 1716 00fd 03       		.uleb128 0x3
+ 1717 00fe 0E       		.uleb128 0xe
+ 1718 00ff 3A       		.uleb128 0x3a
+ 1719 0100 0B       		.uleb128 0xb
+ 1720 0101 3B       		.uleb128 0x3b
+ 1721 0102 0B       		.uleb128 0xb
+ 1722 0103 49       		.uleb128 0x49
+ 1723 0104 13       		.uleb128 0x13
+ 1724 0105 02       		.uleb128 0x2
+ 1725 0106 06       		.uleb128 0x6
+ 1726 0107 00       		.byte	0x0
+ 1727 0108 00       		.byte	0x0
+ 1728 0109 12       		.uleb128 0x12
+ 1729 010a 34       		.uleb128 0x34
+ 1730 010b 00       		.byte	0x0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 38
+
+
+ 1731 010c 03       		.uleb128 0x3
+ 1732 010d 08       		.uleb128 0x8
+ 1733 010e 3A       		.uleb128 0x3a
+ 1734 010f 0B       		.uleb128 0xb
+ 1735 0110 3B       		.uleb128 0x3b
+ 1736 0111 0B       		.uleb128 0xb
+ 1737 0112 49       		.uleb128 0x49
+ 1738 0113 13       		.uleb128 0x13
+ 1739 0114 02       		.uleb128 0x2
+ 1740 0115 0A       		.uleb128 0xa
+ 1741 0116 00       		.byte	0x0
+ 1742 0117 00       		.byte	0x0
+ 1743 0118 13       		.uleb128 0x13
+ 1744 0119 34       		.uleb128 0x34
+ 1745 011a 00       		.byte	0x0
+ 1746 011b 03       		.uleb128 0x3
+ 1747 011c 0E       		.uleb128 0xe
+ 1748 011d 3A       		.uleb128 0x3a
+ 1749 011e 0B       		.uleb128 0xb
+ 1750 011f 3B       		.uleb128 0x3b
+ 1751 0120 0B       		.uleb128 0xb
+ 1752 0121 49       		.uleb128 0x49
+ 1753 0122 13       		.uleb128 0x13
+ 1754 0123 02       		.uleb128 0x2
+ 1755 0124 0A       		.uleb128 0xa
+ 1756 0125 00       		.byte	0x0
+ 1757 0126 00       		.byte	0x0
+ 1758 0127 14       		.uleb128 0x14
+ 1759 0128 34       		.uleb128 0x34
+ 1760 0129 00       		.byte	0x0
+ 1761 012a 03       		.uleb128 0x3
+ 1762 012b 08       		.uleb128 0x8
+ 1763 012c 3A       		.uleb128 0x3a
+ 1764 012d 0B       		.uleb128 0xb
+ 1765 012e 3B       		.uleb128 0x3b
+ 1766 012f 05       		.uleb128 0x5
+ 1767 0130 49       		.uleb128 0x49
+ 1768 0131 13       		.uleb128 0x13
+ 1769 0132 02       		.uleb128 0x2
+ 1770 0133 06       		.uleb128 0x6
+ 1771 0134 00       		.byte	0x0
+ 1772 0135 00       		.byte	0x0
+ 1773 0136 15       		.uleb128 0x15
+ 1774 0137 34       		.uleb128 0x34
+ 1775 0138 00       		.byte	0x0
+ 1776 0139 03       		.uleb128 0x3
+ 1777 013a 0E       		.uleb128 0xe
+ 1778 013b 3A       		.uleb128 0x3a
+ 1779 013c 0B       		.uleb128 0xb
+ 1780 013d 3B       		.uleb128 0x3b
+ 1781 013e 0B       		.uleb128 0xb
+ 1782 013f 49       		.uleb128 0x49
+ 1783 0140 13       		.uleb128 0x13
+ 1784 0141 00       		.byte	0x0
+ 1785 0142 00       		.byte	0x0
+ 1786 0143 16       		.uleb128 0x16
+ 1787 0144 34       		.uleb128 0x34
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 39
+
+
+ 1788 0145 00       		.byte	0x0
+ 1789 0146 03       		.uleb128 0x3
+ 1790 0147 08       		.uleb128 0x8
+ 1791 0148 3A       		.uleb128 0x3a
+ 1792 0149 0B       		.uleb128 0xb
+ 1793 014a 3B       		.uleb128 0x3b
+ 1794 014b 0B       		.uleb128 0xb
+ 1795 014c 49       		.uleb128 0x49
+ 1796 014d 13       		.uleb128 0x13
+ 1797 014e 02       		.uleb128 0x2
+ 1798 014f 06       		.uleb128 0x6
+ 1799 0150 00       		.byte	0x0
+ 1800 0151 00       		.byte	0x0
+ 1801 0152 17       		.uleb128 0x17
+ 1802 0153 2E       		.uleb128 0x2e
+ 1803 0154 01       		.byte	0x1
+ 1804 0155 01       		.uleb128 0x1
+ 1805 0156 13       		.uleb128 0x13
+ 1806 0157 03       		.uleb128 0x3
+ 1807 0158 0E       		.uleb128 0xe
+ 1808 0159 3A       		.uleb128 0x3a
+ 1809 015a 0B       		.uleb128 0xb
+ 1810 015b 3B       		.uleb128 0x3b
+ 1811 015c 0B       		.uleb128 0xb
+ 1812 015d 27       		.uleb128 0x27
+ 1813 015e 0C       		.uleb128 0xc
+ 1814 015f 49       		.uleb128 0x49
+ 1815 0160 13       		.uleb128 0x13
+ 1816 0161 11       		.uleb128 0x11
+ 1817 0162 01       		.uleb128 0x1
+ 1818 0163 12       		.uleb128 0x12
+ 1819 0164 01       		.uleb128 0x1
+ 1820 0165 40       		.uleb128 0x40
+ 1821 0166 06       		.uleb128 0x6
+ 1822 0167 00       		.byte	0x0
+ 1823 0168 00       		.byte	0x0
+ 1824 0169 18       		.uleb128 0x18
+ 1825 016a 2E       		.uleb128 0x2e
+ 1826 016b 00       		.byte	0x0
+ 1827 016c 3F       		.uleb128 0x3f
+ 1828 016d 0C       		.uleb128 0xc
+ 1829 016e 03       		.uleb128 0x3
+ 1830 016f 0E       		.uleb128 0xe
+ 1831 0170 3A       		.uleb128 0x3a
+ 1832 0171 0B       		.uleb128 0xb
+ 1833 0172 3B       		.uleb128 0x3b
+ 1834 0173 05       		.uleb128 0x5
+ 1835 0174 27       		.uleb128 0x27
+ 1836 0175 0C       		.uleb128 0xc
+ 1837 0176 11       		.uleb128 0x11
+ 1838 0177 01       		.uleb128 0x1
+ 1839 0178 12       		.uleb128 0x12
+ 1840 0179 01       		.uleb128 0x1
+ 1841 017a 40       		.uleb128 0x40
+ 1842 017b 06       		.uleb128 0x6
+ 1843 017c 00       		.byte	0x0
+ 1844 017d 00       		.byte	0x0
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 40
+
+
+ 1845 017e 19       		.uleb128 0x19
+ 1846 017f 01       		.uleb128 0x1
+ 1847 0180 01       		.byte	0x1
+ 1848 0181 01       		.uleb128 0x1
+ 1849 0182 13       		.uleb128 0x13
+ 1850 0183 49       		.uleb128 0x49
+ 1851 0184 13       		.uleb128 0x13
+ 1852 0185 00       		.byte	0x0
+ 1853 0186 00       		.byte	0x0
+ 1854 0187 1A       		.uleb128 0x1a
+ 1855 0188 21       		.uleb128 0x21
+ 1856 0189 00       		.byte	0x0
+ 1857 018a 49       		.uleb128 0x49
+ 1858 018b 13       		.uleb128 0x13
+ 1859 018c 2F       		.uleb128 0x2f
+ 1860 018d 0B       		.uleb128 0xb
+ 1861 018e 00       		.byte	0x0
+ 1862 018f 00       		.byte	0x0
+ 1863 0190 1B       		.uleb128 0x1b
+ 1864 0191 26       		.uleb128 0x26
+ 1865 0192 00       		.byte	0x0
+ 1866 0193 49       		.uleb128 0x49
+ 1867 0194 13       		.uleb128 0x13
+ 1868 0195 00       		.byte	0x0
+ 1869 0196 00       		.byte	0x0
+ 1870 0197 1C       		.uleb128 0x1c
+ 1871 0198 34       		.uleb128 0x34
+ 1872 0199 00       		.byte	0x0
+ 1873 019a 03       		.uleb128 0x3
+ 1874 019b 0E       		.uleb128 0xe
+ 1875 019c 3A       		.uleb128 0x3a
+ 1876 019d 0B       		.uleb128 0xb
+ 1877 019e 3B       		.uleb128 0x3b
+ 1878 019f 0B       		.uleb128 0xb
+ 1879 01a0 49       		.uleb128 0x49
+ 1880 01a1 13       		.uleb128 0x13
+ 1881 01a2 3F       		.uleb128 0x3f
+ 1882 01a3 0C       		.uleb128 0xc
+ 1883 01a4 02       		.uleb128 0x2
+ 1884 01a5 0A       		.uleb128 0xa
+ 1885 01a6 00       		.byte	0x0
+ 1886 01a7 00       		.byte	0x0
+ 1887 01a8 00       		.byte	0x0
+ 1888              		.section	.debug_pubnames,"",%progbits
+ 1889 0000 80000000 		.4byte	0x80
+ 1890 0004 0200     		.2byte	0x2
+ 1891 0006 00000000 		.4byte	.Ldebug_info0
+ 1892 000a 53040000 		.4byte	0x453
+ 1893 000e F8010000 		.4byte	0x1f8
+ 1894 0012 56434F4D 		.ascii	"VCOM_putchar\000"
+ 1894      5F707574 
+ 1894      63686172 
+ 1894      00
+ 1895 001f 74020000 		.4byte	0x274
+ 1896 0023 56434F4D 		.ascii	"VCOM_getchar\000"
+ 1896      5F676574 
+ 1896      63686172 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 41
+
+
+ 1896      00
+ 1897 0030 45030000 		.4byte	0x345
+ 1898 0034 56434F4D 		.ascii	"VCOM_init\000"
+ 1898      5F696E69 
+ 1898      7400
+ 1899 003e 5B030000 		.4byte	0x35b
+ 1900 0042 75736253 		.ascii	"usbSetup\000"
+ 1900      65747570 
+ 1900      00
+ 1901 004b 1C040000 		.4byte	0x41c
+ 1902 004f 75617274 		.ascii	"uartRxBuffer\000"
+ 1902      52784275 
+ 1902      66666572 
+ 1902      00
+ 1903 005c 2E040000 		.4byte	0x42e
+ 1904 0060 75617274 		.ascii	"uartTxBuffer\000"
+ 1904      54784275 
+ 1904      66666572 
+ 1904      00
+ 1905 006d 40040000 		.4byte	0x440
+ 1906 0071 75617274 		.ascii	"uartRxOverflow\000"
+ 1906      52784F76 
+ 1906      6572666C 
+ 1906      6F7700
+ 1907 0080 00000000 		.4byte	0x0
+ 1908              		.section	.debug_aranges,"",%progbits
+ 1909 0000 1C000000 		.4byte	0x1c
+ 1910 0004 0200     		.2byte	0x2
+ 1911 0006 00000000 		.4byte	.Ldebug_info0
+ 1912 000a 04       		.byte	0x4
+ 1913 000b 00       		.byte	0x0
+ 1914 000c 0000     		.2byte	0x0
+ 1915 000e 0000     		.2byte	0x0
+ 1916 0010 00000000 		.4byte	.Ltext0
+ 1917 0014 B0020000 		.4byte	.Letext0-.Ltext0
+ 1918 0018 00000000 		.4byte	0x0
+ 1919 001c 00000000 		.4byte	0x0
+ 1920              		.section	.debug_str,"MS",%progbits,1
+ 1921              	.LASF38:
+ 1922 0000 70706244 		.ascii	"ppbData\000"
+ 1922      61746100 
+ 1923              	.LASF40:
+ 1924 0008 75736253 		.ascii	"usbSetup\000"
+ 1924      65747570 
+ 1924      00
+ 1925              	.LASF9:
+ 1926 0011 756E7369 		.ascii	"unsigned int\000"
+ 1926      676E6564 
+ 1926      20696E74 
+ 1926      00
+ 1927              	.LASF41:
+ 1928 001e 75617274 		.ascii	"uartRxData\000"
+ 1928      52784461 
+ 1928      746100
+ 1929              	.LASF33:
+ 1930 0029 56434F4D 		.ascii	"VCOM_getchar\000"
+ 1930      5F676574 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 42
+
+
+ 1930      63686172 
+ 1930      00
+ 1931              	.LASF3:
+ 1932 0036 73686F72 		.ascii	"short int\000"
+ 1932      7420696E 
+ 1932      7400
+ 1933              	.LASF44:
+ 1934 0040 61624275 		.ascii	"abBulkBuf\000"
+ 1934      6C6B4275 
+ 1934      6600
+ 1935              	.LASF49:
+ 1936 004a 75617274 		.ascii	"uartRxOverflow\000"
+ 1936      52784F76 
+ 1936      6572666C 
+ 1936      6F7700
+ 1937              	.LASF18:
+ 1938 0059 7756616C 		.ascii	"wValue\000"
+ 1938      756500
+ 1939              	.LASF22:
+ 1940 0060 64774454 		.ascii	"dwDTERate\000"
+ 1940      45526174 
+ 1940      6500
+ 1941              	.LASF43:
+ 1942 006a 4C696E65 		.ascii	"LineCoding\000"
+ 1942      436F6469 
+ 1942      6E6700
+ 1943              	.LASF8:
+ 1944 0075 424F4F4C 		.ascii	"BOOL\000"
+ 1944      00
+ 1945              	.LASF6:
+ 1946 007a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1946      206C6F6E 
+ 1946      6720756E 
+ 1946      7369676E 
+ 1946      65642069 
+ 1947              	.LASF13:
+ 1948 0091 64617461 		.ascii	"datalength\000"
+ 1948      6C656E67 
+ 1948      746800
+ 1949              	.LASF26:
+ 1950 009c 544C696E 		.ascii	"TLineCoding\000"
+ 1950      65436F64 
+ 1950      696E6700 
+ 1951              	.LASF29:
+ 1952 00a8 42756C6B 		.ascii	"BulkOut\000"
+ 1952      4F757400 
+ 1953              	.LASF19:
+ 1954 00b0 77496E64 		.ascii	"wIndex\000"
+ 1954      657800
+ 1955              	.LASF42:
+ 1956 00b7 75617274 		.ascii	"uartTxData\000"
+ 1956      54784461 
+ 1956      746100
+ 1957              	.LASF48:
+ 1958 00c2 75617274 		.ascii	"uartTxBuffer\000"
+ 1958      54784275 
+ 1958      66666572 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 43
+
+
+ 1958      00
+ 1959              	.LASF37:
+ 1960 00cf 70694C65 		.ascii	"piLen\000"
+ 1960      6E00
+ 1961              	.LASF30:
+ 1962 00d5 62455053 		.ascii	"bEPStatus\000"
+ 1962      74617475 
+ 1962      7300
+ 1963              	.LASF21:
+ 1964 00df 54536574 		.ascii	"TSetupPacket\000"
+ 1964      75705061 
+ 1964      636B6574 
+ 1964      00
+ 1965              	.LASF51:
+ 1966 00ec 7573622E 		.ascii	"usb.c\000"
+ 1966      6300
+ 1967              	.LASF53:
+ 1968 00f2 73747275 		.ascii	"struct_cBuffer\000"
+ 1968      63745F63 
+ 1968      42756666 
+ 1968      657200
+ 1969              	.LASF10:
+ 1970 0101 63686172 		.ascii	"char\000"
+ 1970      00
+ 1971              	.LASF50:
+ 1972 0106 474E5520 		.ascii	"GNU C 4.1.1 (WinARM)\000"
+ 1972      4320342E 
+ 1972      312E3120 
+ 1972      2857696E 
+ 1972      41524D29 
+ 1973              	.LASF46:
+ 1974 011b 61624465 		.ascii	"abDescriptors\000"
+ 1974      73637269 
+ 1974      70746F72 
+ 1974      7300
+ 1975              	.LASF31:
+ 1976 0129 694C656E 		.ascii	"iLen\000"
+ 1976      00
+ 1977              	.LASF7:
+ 1978 012e 6C6F6E67 		.ascii	"long long int\000"
+ 1978      206C6F6E 
+ 1978      6720696E 
+ 1978      7400
+ 1979              	.LASF12:
+ 1980 013c 73697A65 		.ascii	"size\000"
+ 1980      00
+ 1981              	.LASF52:
+ 1982 0141 653A5C57 		.ascii	"e:\\Work\\MScubes\\SourceForge\\trunk\\software\\co"
+ 1982      6F726B5C 
+ 1982      4D536375 
+ 1982      6265735C 
+ 1982      536F7572 
+ 1983 016e 6E74726F 		.ascii	"ntroller\\serialInterfaceTest\000"
+ 1983      6C6C6572 
+ 1983      5C736572 
+ 1983      69616C49 
+ 1983      6E746572 
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 44
+
+
+ 1984              	.LASF34:
+ 1985 018b 42756C6B 		.ascii	"BulkIn\000"
+ 1985      496E00
+ 1986              	.LASF24:
+ 1987 0192 62506172 		.ascii	"bParityType\000"
+ 1987      69747954 
+ 1987      79706500 
+ 1988              	.LASF47:
+ 1989 019e 75617274 		.ascii	"uartRxBuffer\000"
+ 1989      52784275 
+ 1989      66666572 
+ 1989      00
+ 1990              	.LASF14:
+ 1991 01ab 64617461 		.ascii	"dataindex\000"
+ 1991      696E6465 
+ 1991      7800
+ 1992              	.LASF11:
+ 1993 01b5 64617461 		.ascii	"dataptr\000"
+ 1993      70747200 
+ 1994              	.LASF23:
+ 1995 01bd 62436861 		.ascii	"bCharFormat\000"
+ 1995      72466F72 
+ 1995      6D617400 
+ 1996              	.LASF28:
+ 1997 01c9 55534246 		.ascii	"USBFrameHandler\000"
+ 1997      72616D65 
+ 1997      48616E64 
+ 1997      6C657200 
+ 1998              	.LASF35:
+ 1999 01d9 48616E64 		.ascii	"HandleClassRequest\000"
+ 1999      6C65436C 
+ 1999      61737352 
+ 1999      65717565 
+ 1999      737400
+ 2000              	.LASF5:
+ 2001 01ec 6C6F6E67 		.ascii	"long int\000"
+ 2001      20696E74 
+ 2001      00
+ 2002              	.LASF20:
+ 2003 01f5 774C656E 		.ascii	"wLength\000"
+ 2003      67746800 
+ 2004              	.LASF16:
+ 2005 01fd 626D5265 		.ascii	"bmRequestType\000"
+ 2005      71756573 
+ 2005      74547970 
+ 2005      6500
+ 2006              	.LASF17:
+ 2007 020b 62526571 		.ascii	"bRequest\000"
+ 2007      75657374 
+ 2007      00
+ 2008              	.LASF32:
+ 2009 0214 56434F4D 		.ascii	"VCOM_putchar\000"
+ 2009      5F707574 
+ 2009      63686172 
+ 2009      00
+ 2010              	.LASF39:
+ 2011 0221 56434F4D 		.ascii	"VCOM_init\000"
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 45
+
+
+ 2011      5F696E69 
+ 2011      7400
+ 2012              	.LASF4:
+ 2013 022b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2013      20756E73 
+ 2013      69676E65 
+ 2013      6420696E 
+ 2013      7400
+ 2014              	.LASF25:
+ 2015 023d 62446174 		.ascii	"bDataBits\000"
+ 2015      61426974 
+ 2015      7300
+ 2016              	.LASF0:
+ 2017 0247 756E7369 		.ascii	"unsigned char\000"
+ 2017      676E6564 
+ 2017      20636861 
+ 2017      7200
+ 2018              	.LASF36:
+ 2019 0255 70536574 		.ascii	"pSetup\000"
+ 2019      757000
+ 2020              	.LASF15:
+ 2021 025c 63427566 		.ascii	"cBuffer\000"
+ 2021      66657200 
+ 2022              	.LASF1:
+ 2023 0264 7369676E 		.ascii	"signed char\000"
+ 2023      65642063 
+ 2023      68617200 
+ 2024              	.LASF2:
+ 2025 0270 73686F72 		.ascii	"short unsigned int\000"
+ 2025      7420756E 
+ 2025      7369676E 
+ 2025      65642069 
+ 2025      6E7400
+ 2026              	.LASF27:
+ 2027 0283 77467261 		.ascii	"wFrame\000"
+ 2027      6D6500
+ 2028              	.LASF54:
+ 2029 028a 55534249 		.ascii	"USBIntHandler\000"
+ 2029      6E744861 
+ 2029      6E646C65 
+ 2029      7200
+ 2030              	.LASF45:
+ 2031 0298 6162436C 		.ascii	"abClassReqData\000"
+ 2031      61737352 
+ 2031      65714461 
+ 2031      746100
+ 2032              		.ident	"GCC: (GNU) 4.1.1 (WinARM)"
+ARM GAS  D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usb.c
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:12     .text:00000000 USBIntHandler
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:19     .text:00000000 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:34     .text:0000001c USBFrameHandler
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:55     .text:0000003c $d
+                            *COM*:0000000c uartTxBuffer
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:61     .text:00000040 VCOM_putchar
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:67     .text:00000040 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:83     .text:00000064 $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:88     .text:00000068 BulkOut
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:94     .text:00000068 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:131    .text:000000c4 $d
+                            *COM*:0000000c uartRxBuffer
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:543    .bss:00000100 abBulkBuf
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:138    .text:000000cc VCOM_getchar
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:143    .text:000000cc $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:158    .text:000000e4 $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:163    .text:000000e8 BulkIn
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:169    .text:000000e8 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:219    .text:00000150 $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:225    .text:00000158 HandleClassRequest
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:231    .text:00000158 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:272    .text:000001bc $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:532    .data:00000000 LineCoding
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:278    .text:000001c0 VCOM_init
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:283    .text:000001c0 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:300    .text:000001e8 $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:541    .bss:00000080 uartTxData
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:539    .bss:00000000 uartRxData
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:309    .text:000001f8 usbSetup
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:314    .text:000001f8 $a
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:373    .text:00000294 $d
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:385    .rodata:00000000 abDescriptors
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:545    .bss:00000140 abClassReqData
+D:\DOCUME~1\VIKTOR~1\LOCALS~1\Temp/ccAzaaaa.s:533    .data:00000000 $d
+                            *COM*:00000002 uartRxOverflow
+
+UNDEFINED SYMBOLS
+USBHwISR
+bufferIsNotFull
+USBHwNakIntEnable
+bufferAddToEnd
+USBHwEPRead
+bufferGetFromFront
+USBHwEPWrite
+memcpy
+bufferInit
+USBInit
+USBRegisterDescriptors
+USBRegisterRequestHandler
+USBHwRegisterEPIntHandler
+USBHwRegisterFrameHandler
+processorEnableInt
+USBHwConnect

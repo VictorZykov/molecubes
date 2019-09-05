@@ -1,0 +1,1 @@
+r0 halfCube2.0 l2 halfCube2.0 f2 halfCube2.0 k0 halfCube2.0 f2 halfCube1.3 l2 halfCube1.2 k2 halfCube2.4 r2 halfCube2.1 

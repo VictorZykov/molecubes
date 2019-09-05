@@ -1,0 +1,3 @@
+NXOGRE_DIR	C:\OgreSDK\NxOgre
+OGRE_HOME	C:\OgreSDK
+PHYSX_DIR	C:\Program Files\AGEIA Technologies\AGEIA PhysX SDK\v2.6.4

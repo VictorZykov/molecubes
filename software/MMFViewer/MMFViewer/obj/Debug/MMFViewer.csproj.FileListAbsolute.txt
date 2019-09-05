@@ -1,0 +1,8 @@
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\ResolveAssemblyReference.cache
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\MMFViewer.Properties.Resources.resources
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\MMFViewer.csproj.GenerateResource.Cache
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\bin\Debug\MMFViewer.exe
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\bin\Debug\MMFViewer.pdb
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\MMFViewer.exe
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\MMFViewer.pdb
+C:\cornell\molecubes_sf\trunk\software\MMFViewer\MMFViewer\obj\Debug\MMFViewer.Form1.resources

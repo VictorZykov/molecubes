@@ -1,0 +1,139 @@
+14:33:58.000001 Starting up NxOgre using versions:
+  -> PhysX SDK   2.6.4
+  -> Hardware    None installed or none found.
+  -> NxOgre      NxOgre 0.4.RC3 (Compatible: no)
+  -> Ogre        1.4.3 'Eihort'
+14:33:58.000001 Started.
+14:33:58.000001 Creating scene 'Main'.
+14:34:12.001028 Deleting 'controller.0'.
+14:34:12.001028 Deleting 'battery.1'.
+14:34:12.001028 Deleting 'halfCube1.2'.
+14:34:12.001028 Deleting 'halfCube2.2'.
+14:34:12.001028 Deleting 'halfCube1.3'.
+14:34:12.001028 Deleting 'halfCube2.3'.
+14:34:12.001028 Deleting 'halfCube1.4'.
+14:34:12.001028 Deleting 'halfCube2.4'.
+14:34:12.001028 Deleting 'halfCube1.5'.
+14:34:12.001028 Deleting 'halfCube2.5'.
+14:34:20.001689 Deleting 'controller.0'.
+14:34:20.001689 Deleting 'battery.1'.
+14:34:20.001689 Deleting 'halfCube1.2'.
+14:34:20.001689 Deleting 'halfCube2.2'.
+14:34:20.001689 Deleting 'halfCube1.3'.
+14:34:20.001689 Deleting 'halfCube2.3'.
+14:34:20.001689 Deleting 'halfCube1.4'.
+14:34:20.001689 Deleting 'halfCube2.4'.
+14:34:20.001689 Deleting 'halfCube1.5'.
+14:34:20.001689 Deleting 'halfCube2.5'.
+14:34:27.002266 Deleting 'controller.0'.
+14:34:27.002266 Deleting 'battery.1'.
+14:34:27.002266 Deleting 'halfCube1.2'.
+14:34:27.002266 Deleting 'halfCube2.2'.
+14:34:27.002266 Deleting 'halfCube1.3'.
+14:34:27.002266 Deleting 'halfCube2.3'.
+14:34:27.002266 Deleting 'halfCube1.4'.
+14:34:27.002266 Deleting 'halfCube2.4'.
+14:34:27.002266 Deleting 'halfCube1.5'.
+14:34:27.002266 Deleting 'halfCube2.5'.
+14:34:33.002768 Deleting 'controller.0'.
+14:34:33.002768 Deleting 'battery.1'.
+14:34:33.002768 Deleting 'halfCube1.2'.
+14:34:33.002768 Deleting 'halfCube2.2'.
+14:34:33.002768 Deleting 'halfCube1.3'.
+14:34:33.002768 Deleting 'halfCube2.3'.
+14:34:33.002768 Deleting 'halfCube1.4'.
+14:34:33.002768 Deleting 'halfCube2.4'.
+14:34:33.002768 Deleting 'halfCube1.5'.
+14:34:33.002768 Deleting 'halfCube2.5'.
+14:34:39.003171 Deleting 'controller.0'.
+14:34:39.003171 Deleting 'battery.1'.
+14:34:39.003171 Deleting 'halfCube1.2'.
+14:34:39.003171 Deleting 'halfCube2.2'.
+14:34:39.003171 Deleting 'halfCube1.3'.
+14:34:39.003171 Deleting 'halfCube2.3'.
+14:34:39.003171 Deleting 'halfCube1.4'.
+14:34:39.003171 Deleting 'halfCube2.4'.
+14:34:39.003171 Deleting 'halfCube1.5'.
+14:34:39.003171 Deleting 'halfCube2.5'.
+14:34:44.003575 Deleting 'controller.0'.
+14:34:44.003575 Deleting 'battery.1'.
+14:34:44.003575 Deleting 'halfCube1.2'.
+14:34:44.003575 Deleting 'halfCube2.2'.
+14:34:44.003575 Deleting 'halfCube1.3'.
+14:34:44.003575 Deleting 'halfCube2.3'.
+14:34:44.003575 Deleting 'halfCube1.4'.
+14:34:44.003575 Deleting 'halfCube2.4'.
+14:34:44.003575 Deleting 'halfCube1.5'.
+14:34:44.003575 Deleting 'halfCube2.5'.
+14:34:47.003861 Deleting 'controller.0'.
+14:34:47.003861 Deleting 'battery.1'.
+14:34:47.003861 Deleting 'halfCube1.2'.
+14:34:47.003861 Deleting 'halfCube2.2'.
+14:34:47.003861 Deleting 'halfCube1.3'.
+14:34:47.003861 Deleting 'halfCube2.3'.
+14:34:47.003861 Deleting 'halfCube1.4'.
+14:34:47.003861 Deleting 'halfCube2.4'.
+14:34:47.003861 Deleting 'halfCube1.5'.
+14:34:47.003861 Deleting 'halfCube2.5'.
+14:34:51.004203 Deleting 'controller.0'.
+14:34:51.004203 Deleting 'battery.1'.
+14:34:51.004203 Deleting 'halfCube1.2'.
+14:34:51.004203 Deleting 'halfCube2.2'.
+14:34:51.004203 Deleting 'halfCube1.3'.
+14:34:51.004203 Deleting 'halfCube2.3'.
+14:34:51.004203 Deleting 'halfCube1.4'.
+14:34:51.004203 Deleting 'halfCube2.4'.
+14:34:51.004203 Deleting 'halfCube1.5'.
+14:34:51.004203 Deleting 'halfCube2.5'.
+14:34:55.004679 Deleting 'controller.0'.
+14:34:55.004679 Deleting 'battery.1'.
+14:34:55.004679 Deleting 'halfCube1.2'.
+14:34:55.004679 Deleting 'halfCube2.2'.
+14:34:55.004679 Deleting 'halfCube1.3'.
+14:34:55.004679 Deleting 'halfCube2.3'.
+14:34:55.004679 Deleting 'halfCube1.4'.
+14:34:55.004679 Deleting 'halfCube2.4'.
+14:34:55.004679 Deleting 'halfCube1.5'.
+14:34:55.004679 Deleting 'halfCube2.5'.
+14:35:01.005220 Deleting 'controller.0'.
+14:35:01.005220 Deleting 'battery.1'.
+14:35:01.005220 Deleting 'halfCube1.2'.
+14:35:01.005220 Deleting 'halfCube2.2'.
+14:35:01.005220 Deleting 'halfCube1.3'.
+14:35:01.005220 Deleting 'halfCube2.3'.
+14:35:01.005220 Deleting 'halfCube1.4'.
+14:35:01.005220 Deleting 'halfCube2.4'.
+14:35:01.005220 Deleting 'halfCube1.5'.
+14:35:01.005220 Deleting 'halfCube2.5'.
+14:35:05.005494 Deleting 'controller.0'.
+14:35:05.005494 Deleting 'battery.1'.
+14:35:05.005494 Deleting 'halfCube1.2'.
+14:35:05.005494 Deleting 'halfCube2.2'.
+14:35:05.005494 Deleting 'halfCube1.3'.
+14:35:05.005494 Deleting 'halfCube2.3'.
+14:35:05.005494 Deleting 'halfCube1.4'.
+14:35:05.005494 Deleting 'halfCube2.4'.
+14:35:05.005494 Deleting 'halfCube1.5'.
+14:35:05.005494 Deleting 'halfCube2.5'.
+14:46:21.556973 Deleting 'controller.0'.
+14:46:21.556973 Deleting 'battery.1'.
+14:46:21.556973 Deleting 'halfCube1.2'.
+14:46:21.556973 Deleting 'halfCube2.2'.
+14:46:21.556973 Deleting 'halfCube1.3'.
+14:46:21.556973 Deleting 'halfCube2.3'.
+14:46:21.556973 Deleting 'halfCube1.4'.
+14:46:21.556973 Deleting 'halfCube2.4'.
+14:46:21.556973 Deleting 'halfCube1.5'.
+14:46:21.556973 Deleting 'halfCube2.5'.
+14:46:21.556973 Shutting down.
+14:46:21.556973 Scene 'Main' (Software) shutting down
+  > 1 bodies
+  > 1 NxActors
+  > 0 controllables
+  > 0 fluids
+14:46:21.556973 Deleting 'Main.floor'.
+14:46:21.556973 Deleted Materials
+14:46:21.556973 Deleted Material aliases.
+14:46:21.556973 Released Scene.
+14:46:21.556973 Calculated physics for 741.073 seconds.
+14:46:21.556973 Goodbye.

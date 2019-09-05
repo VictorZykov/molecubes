@@ -1,0 +1,15 @@
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\MSFPlotTool.exe
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\MSFPlotTool.pdb
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\ZedGraph.dll
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\ZedGraph.xml
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\ResolveAssemblyReference.cache
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.Properties.Resources.resources
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.csproj.GenerateResource.Cache
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.exe
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.pdb
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.AboutBox.resources
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.MSFPlotTool.resources
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\MSFPlotTool.exe.manifest
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\bin\Debug\MSFPlotTool.application
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.exe.manifest
+C:\cornell\molecubes_sf\trunk\software\MSFPlotTool\MSFPlotTool\obj\Debug\MSFPlotTool.application

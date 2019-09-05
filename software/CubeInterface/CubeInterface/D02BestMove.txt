@@ -1,0 +1,20 @@
+Generation1: Group: 6: 5.96055; 
+0303
+2312
+2132
+Generation4: Group: 1: 6.26575; 
+0303
+2312
+2132
+Generation7: Group: 7: 6.37065; 
+0303
+23122
+2232
+Generation46: Group: 1: 6.60897; 
+03230
+20122
+2222
+Generation52: Group: 6: 6.82643; 
+332303
+21122
+32223

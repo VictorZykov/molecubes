@@ -1,0 +1,797 @@
+Archive member included because of file (symbol)
+
+usbstack.a(usbhw_lpc.o)       usb.o (USBHwRegisterEPIntHandler)
+usbstack.a(usbcontrol.o)      usb.o (USBRegisterRequestHandler)
+usbstack.a(usbstdreq.o)       usb.o (USBRegisterDescriptors)
+usbstack.a(usbinit.o)         usb.o (USBInit)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                              C:\WinARM\armlib/rprintf.o (__udivsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                              C:\WinARM\armlib/rprintf.o (__umodsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                              C:\WinARM\armlib/buffer.o (__modsi3)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                              c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o) (__div0)
+c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                              usb.o (memcpy)
+
+Allocating common symbols
+Common symbol       size              file
+
+buttonsEnabled      0x1               buttons.o
+list                0x34              main_serial.o
+Timer0OverflowCount
+                    0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+int_busRxPkt        0x84              main_serial.o
+cmdBuffer           0xc               main_serial.o
+uartRxBuffer        0x18              C:\WinARM\armlib/arch/lpc2000/uartintr.o
+efs                 0x2c4             main_serial.o
+cmdBufferData       0x80              main_serial.o
+button2             0x1               buttons.o
+Timer1OverflowCount
+                    0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+Timer0Pause         0x4               C:\WinARM\armlib/arch/lpc2000/timer.o
+filer               0x50              main_serial.o
+filew               0x50              main_serial.o
+button1             0x1               buttons.o
+uartTxBuffer        0x18              C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uartRxOverflow      0x2               usb.o
+ext_busRxPkt        0x84              main_serial.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x00000000         0x00080000
+ram              0x40000200         0x00007e00
+ram_iap_rsvd1    0x40000120         0x000000df         a
+ram_iap_rsvd2    0x40007fe0         0x00000020         a
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+LOAD main_serial.o
+LOAD buttons.o
+LOAD bluetooth.o
+LOAD usb.o
+LOAD molecubePacket.o
+LOAD C:\WinARM\armlib/rprintf.o
+LOAD C:\WinARM\armlib/buffer.o
+LOAD C:\WinARM\armlib/arch/lpc2000/processor.o
+LOAD C:\WinARM\armlib/arch/lpc2000/timer.o
+LOAD C:\WinARM\armlib/arch/lpc2000/uartintr.o
+LOAD usbstack.a
+LOAD libefsl.a
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libm.a
+START GROUP
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a
+LOAD c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a
+END GROUP
+                0x40007fdc                __stack_end__ = 0x40007fdc
+                0x00000000                . = 0x0
+
+startup         0x00000000       0x20
+ *(.startup)
+ .startup       0x00000000       0x20 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+prog            0x00000020     0x30b8
+ *(.text)
+ .text          0x00000020       0xcc C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+                0x00000020                start
+                0x000000d0                endless_loop
+ .text          0x000000ec       0x9c main_serial.o
+                0x000000ec                printButton1
+                0x0000011c                main
+                0x00000104                printButton2
+ .text          0x00000188      0x250 buttons.o
+                0x0000026c                buttonDetach
+                0x00000250                buttonAttach
+                0x00000348                buttonPressService
+                0x00000188                EINT1_routine
+                0x0000028c                initButtons
+                0x00000228                enableButtons
+                0x0000023c                disableButtons
+                0x000001d8                EINT2_routine
+ .text          0x000003d8       0x74 bluetooth.o
+                0x000003d8                initBluetooth
+ .text          0x0000044c      0x374 usb.o
+                0x00000580                VCOM_putchar
+                0x000005a8                SendData2Host
+                0x00000704                usbSetup
+                0x00000480                VCOM_getchar
+                0x000006ac                VCOM_init
+ .text          0x000007c0      0x848 molecubePacket.o
+                0x00000d40                cmd_Flush
+                0x0000086c                packetRxProcess_NoAddrClassCheck
+                0x00000efc                cmd_Init
+                0x00000f1c                HD232_Init
+                0x00000e58                cmd_AddByteToEnd
+                0x00000d54                cmd_Execute
+                0x0000081c                cmd_PrintPacket
+                0x00000a84                packetRxProcess
+                0x000007c0                cmd_PrintRxPacket
+                0x00000e70                cmd_BuildPacket
+ .text          0x00001008      0x408 C:\WinARM\armlib/rprintf.o
+                0x000012c4                rprintf1RamRom
+                0x00001124                rprintfu08
+                0x00001164                rprintfu32
+                0x0000104c                rprintfStr
+                0x0000107c                rprintfStrLen
+                0x00001140                rprintfu16
+                0x00001008                rprintfInit
+                0x00001018                rprintfChar
+                0x000010f0                rprintfCRLF
+                0x00001108                rprintfu04
+                0x00001184                rprintfNum
+ .text          0x00001410      0x200 C:\WinARM\armlib/buffer.o
+                0x00001430                bufferIsNotFull
+                0x0000156c                bufferGetFromFront
+                0x000014c4                bufferGetAtIndex
+                0x00001508                bufferDumpFromFront
+                0x000015d8                bufferInit
+                0x00001460                bufferAddToEnd
+                0x00001410                bufferFlush
+ .text          0x00001610      0x16c C:\WinARM\armlib/arch/lpc2000/processor.o
+                0x0000175c                processorVicDetach
+                0x00001644                processorRestoreInt
+                0x00001628                processorEnableInt
+                0x00001660                processorVicInit
+                0x0000171c                processorVicAttach
+                0x000016a8                processorInit
+                0x00001610                processorDisableInt
+ .text          0x0000177c      0x604 C:\WinARM\armlib/arch/lpc2000/timer.o
+                0x00001940                timer0Match1Set
+                0x000018ac                timerDetach
+                0x00001b34                timer0Service
+                0x0000190c                timer1ClearOverflowCount
+                0x00001ac0                timer1Capture1Init
+                0x00001930                timer0Match0Set
+                0x000017a8                timer0Init
+                0x00001920                timer1GetOverflowCount
+                0x00001970                timer0Capture0Init
+                0x00001950                timer1Match0Set
+                0x000018fc                timer0GetOverflowCount
+                0x00001960                timer1Match1Set
+                0x00001d50                timerInit
+                0x00001c50                timer1Service
+                0x00001794                timer0PrescalerSet
+                0x000018e8                timer0ClearOverflowCount
+                0x0000177c                delay
+                0x00001834                timer1Init
+                0x000019e4                timer0Capture1Init
+                0x00001820                timer1PrescalerSet
+                0x00001894                timerAttach
+                0x00001a4c                timer1Capture0Init
+                0x000018c8                timerPause
+ .text          0x00001d80      0x3a8 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                0x00001fd8                uart0InitBuffers
+                0x00001d80                uart0GetRxBuffer
+                0x00001f64                uart1GetByte
+                0x00001dfc                uart1Service
+                0x00001f90                uart0GetByte
+                0x00002090                uart0Init
+                0x00001ff8                uart1Init
+                0x00001d8c                uart1GetRxBuffer
+                0x00001db4                uart0SendByte
+                0x00001dd8                uart1SendByte
+                0x00001d98                uartGetRxBuffer
+                0x00001fb8                uart1InitBuffers
+                0x00001eb8                uart0Service
+ .text          0x00002128      0x5cc usbstack.a(usbhw_lpc.o)
+                0x00002408                USBHwEPRead
+                0x00002594                USBHwISR
+                0x000024b0                USBHwEPWrite
+                0x00002398                USBHwEPConfig
+                0x00002388                USBHwSetAddress
+                0x00002378                USBHwConnect
+                0x00002268                USBHwEPStall
+                0x00002178                USBHwRegisterDevIntHandler
+                0x00002128                USBHwRegisterEPIntHandler
+                0x00002258                USBHwConfigDevice
+                0x00002288                USBHwNakIntEnable
+                0x00002294                USBHwInit
+                0x0000219c                USBHwRegisterFrameHandler
+                0x000026d4                USBHwEPGetStatus
+ .text          0x000026f4      0x208 usbstack.a(usbcontrol.o)
+                0x0000279c                USBHandleControlTransfer
+                0x000028e0                USBRegisterRequestHandler
+ .text          0x000028fc      0x314 usbstack.a(usbstdreq.o)
+                0x0000290c                USBGetDescriptor
+                0x00002c00                USBRegisterCustomReqHandler
+                0x000028fc                USBRegisterDescriptors
+                0x0000298c                USBHandleStandardRequest
+ .text          0x00002c10       0x70 usbstack.a(usbinit.o)
+                0x00002c14                USBInit
+ .text          0x00002c80      0x110 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                0x00002c80                __udivsi3
+                0x00002c80                __aeabi_uidiv
+                0x00002d78                __aeabi_uidivmod
+ .text          0x00002d90       0xcc c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                0x00002d90                __umodsi3
+ .text          0x00002e5c       0xe4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                0x00002e5c                __modsi3
+ .text          0x00002f40        0x4 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                0x00002f40                __aeabi_ldiv0
+                0x00002f40                __div0
+                0x00002f40                __aeabi_idiv0
+ .text          0x00002f44       0xac c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                0x00002f44                memcpy
+ *(.rodata)
+ .rodata        0x00002ff0       0x8e usb.o
+ *fill*         0x0000307e        0x2 00
+ .rodata        0x00003080       0x14 C:\WinARM\armlib/rprintf.o
+ *(.rodata*)
+ .rodata.str1.4
+                0x00003094       0x36 main_serial.o
+                                 0x38 (size before relaxing)
+ *fill*         0x000030ca        0x2 00
+ .rodata.str1.4
+                0x000030cc        0xb molecubePacket.o
+                                  0xc (size before relaxing)
+ *(.glue_7)
+ *fill*         0x000030d7        0x1 00
+ *(.glue_7t)
+                0x000030d8                __end_of_text__ = .
+
+.data           0x40000200        0x8 load address 0x000030d8
+                0x40000200                __data_beg__ = .
+                0x000030d8                __data_beg_src__ = __end_of_text__
+ *(.data)
+ .data          0x40000200        0x8 usb.o
+                0x40000208                __data_end__ = .
+
+.bss            0x40000208      0x818
+                0x40000208                __bss_beg__ = .
+ *(.bss)
+ .bss           0x40000208        0x8 buttons.o
+ .bss           0x40000210       0xca usb.o
+ *fill*         0x400002da        0x2 00
+ .bss           0x400002dc        0x4 C:\WinARM\armlib/rprintf.o
+ .bss           0x400002e0       0x40 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .bss           0x40000320      0x100 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .bss           0x40000420       0x48 usbstack.a(usbhw_lpc.o)
+ .bss           0x40000468       0x34 usbstack.a(usbcontrol.o)
+ .bss           0x4000049c        0xc usbstack.a(usbstdreq.o)
+ .bss           0x400004a8        0x8 usbstack.a(usbinit.o)
+ COMMON         0x400004b0      0x52c main_serial.o
+                0x400004b0                list
+                0x400004e4                int_busRxPkt
+                0x40000568                cmdBuffer
+                0x40000574                efs
+                0x40000838                cmdBufferData
+                0x400008b8                filer
+                0x40000908                filew
+                0x40000958                ext_busRxPkt
+ COMMON         0x400009dc        0x3 buttons.o
+                0x400009dc                buttonsEnabled
+                0x400009dd                button2
+                0x400009de                button1
+ *fill*         0x400009df        0x1 00
+ COMMON         0x400009e0        0x2 usb.o
+                0x400009e0                uartRxOverflow
+ *fill*         0x400009e2        0x2 00
+ COMMON         0x400009e4        0xc C:\WinARM\armlib/arch/lpc2000/timer.o
+                0x400009e4                Timer0OverflowCount
+                0x400009e8                Timer1OverflowCount
+                0x400009ec                Timer0Pause
+ COMMON         0x400009f0       0x30 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                0x400009f0                uartRxBuffer
+                0x40000a08                uartTxBuffer
+                0x40000a20                . = ALIGN (0x4)
+                0x40000a20                . = ALIGN (0x4)
+                0x40000a20                _end = .
+                0x40000a20                _bss_end__ = .
+                0x40000a20                __bss_end__ = .
+                0x40000a20                __end__ = .
+                0x40000a20                PROVIDE (end, .)
+                0x000000d0                PROVIDE (undefined_instruction_exception, endless_loop)
+                0x000000d0                PROVIDE (software_interrupt_exception, endless_loop)
+                0x000000d0                PROVIDE (prefetch_abort_exception, endless_loop)
+                0x000000d0                PROVIDE (data_abort_exception, endless_loop)
+                0x000000d0                PROVIDE (reserved_exception, endless_loop)
+                0x000000d0                PROVIDE (interrupt_exception, endless_loop)
+                0x000000d0                PROVIDE (fast_interrupt_exception, endless_loop)
+                0xe002c000                PROVIDE (PINSEL0, 0xe002c000)
+                0xe0028008                PROVIDE (IODIR, 0xe0028008)
+                0xe002800c                PROVIDE (IOCLR, 0xe002800c)
+                0xe0028004                PROVIDE (IOSET, 0xe0028004)
+                0xe000c000                PROVIDE (U0RBR, 0xe000c000)
+                0xe000c000                PROVIDE (U0THR, 0xe000c000)
+                0xe000c004                PROVIDE (U0IER, 0xe000c004)
+                0xe000c008                PROVIDE (U0IIR, 0xe000c008)
+                0xe000c008                PROVIDE (U0FCR, 0xe000c008)
+                0xe000c00c                PROVIDE (U0LCR, 0xe000c00c)
+                0xe000c014                PROVIDE (U0LSR, 0xe000c014)
+                0xe000c01c                PROVIDE (U0SCR, 0xe000c01c)
+                0xe000c000                PROVIDE (U0DLL, 0xe000c000)
+                0xe000c004                PROVIDE (U0DLM, 0xe000c004)
+                0xe000c028                PROVIDE (U0FDR, 0xe000c028)
+                0xe01fc080                PROVIDE (PLLCON, 0xe01fc080)
+                0xe01fc084                PROVIDE (PLLCFG, 0xe01fc084)
+                0xe01fc088                PROVIDE (PLLSTAT, 0xe01fc088)
+                0xe01fc08c                PROVIDE (PLLFEED, 0xe01fc08c)
+                0xe01fc000                PROVIDE (MAMCR, 0xe01fc000)
+                0xe01fc004                PROVIDE (MAMTIM, 0xe01fc004)
+                0xe01fc100                PROVIDE (VPBDIV, 0xe01fc100)
+                0xe0004000                PROVIDE (T0IR, 0xe0004000)
+                0xe0004004                PROVIDE (T0TCR, 0xe0004004)
+                0xe0004008                PROVIDE (T0TC, 0xe0004008)
+                0xe000400c                PROVIDE (T0PR, 0xe000400c)
+                0xe0004010                PROVIDE (T0PC, 0xe0004010)
+                0xe0004014                PROVIDE (T0MCR, 0xe0004014)
+                0xe0004018                PROVIDE (T0MR0, 0xe0004018)
+                0xe000401c                PROVIDE (T0MR1, 0xe000401c)
+                0xe0004020                PROVIDE (T0MR2, 0xe0004020)
+                0xe0004024                PROVIDE (T0MR3, 0xe0004024)
+                0xe0004028                PROVIDE (T0CCR, 0xe0004028)
+                0xe000402c                PROVIDE (T0CR0, 0xe000402c)
+                0xe0004030                PROVIDE (T0CR1, 0xe0004030)
+                0xe0004034                PROVIDE (T0CR2, 0xe0004034)
+                0xe000403c                PROVIDE (T0EMR, 0xe000403c)
+OUTPUT(main_serial.elf elf32-littlearm)
+
+.stab           0x00000000      0x2a0
+ .stab          0x00000000      0x2a0 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+.stabstr        0x00000000       0x59
+ .stabstr       0x00000000       0x59 C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+
+.debug_abbrev   0x00000000     0x1322
+ .debug_abbrev  0x00000000       0xff main_serial.o
+ .debug_abbrev  0x000000ff       0xdd buttons.o
+ .debug_abbrev  0x000001dc       0xbf bluetooth.o
+ .debug_abbrev  0x0000029b      0x21c usb.o
+ .debug_abbrev  0x000004b7      0x1cf molecubePacket.o
+ .debug_abbrev  0x00000686      0x181 C:\WinARM\armlib/rprintf.o
+ .debug_abbrev  0x00000807       0xdd C:\WinARM\armlib/buffer.o
+ .debug_abbrev  0x000008e4       0xce C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_abbrev  0x000009b2      0x171 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_abbrev  0x00000b23      0x154 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_abbrev  0x00000c77      0x1f3 usbstack.a(usbhw_lpc.o)
+ .debug_abbrev  0x00000e6a      0x135 usbstack.a(usbcontrol.o)
+ .debug_abbrev  0x00000f9f      0x1fa usbstack.a(usbstdreq.o)
+ .debug_abbrev  0x00001199       0xa0 usbstack.a(usbinit.o)
+ .debug_abbrev  0x00001239       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x0000124d       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_abbrev  0x00001261       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_abbrev  0x00001275       0x14 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x00001289       0x99 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_info     0x00000000     0x3e78
+ .debug_info    0x00000000      0x95b main_serial.o
+ .debug_info    0x0000095b      0x1c5 buttons.o
+ .debug_info    0x00000b20      0x1b0 bluetooth.o
+ .debug_info    0x00000cd0      0xc87 usb.o
+ .debug_info    0x00001957      0x4eb molecubePacket.o
+ .debug_info    0x00001e42      0x38b C:\WinARM\armlib/rprintf.o
+ .debug_info    0x000021cd      0x2c3 C:\WinARM\armlib/buffer.o
+ .debug_info    0x00002490      0x1c8 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_info    0x00002658      0x3e6 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_info    0x00002a3e      0x342 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_info    0x00002d80      0x612 usbstack.a(usbhw_lpc.o)
+ .debug_info    0x00003392      0x2df usbstack.a(usbcontrol.o)
+ .debug_info    0x00003671      0x46e usbstack.a(usbstdreq.o)
+ .debug_info    0x00003adf       0xbc usbstack.a(usbinit.o)
+ .debug_info    0x00003b9b       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_info    0x00003c0f       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_info    0x00003c83       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_info    0x00003cf7       0x74 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x00003d6b      0x10d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_line     0x00000000      0xf05
+ .debug_line    0x00000000      0x117 main_serial.o
+ .debug_line    0x00000117       0x91 buttons.o
+ .debug_line    0x000001a8       0x82 bluetooth.o
+ .debug_line    0x0000022a      0x15f usb.o
+ .debug_line    0x00000389      0x137 molecubePacket.o
+ .debug_line    0x000004c0       0xee C:\WinARM\armlib/rprintf.o
+ .debug_line    0x000005ae       0x96 C:\WinARM\armlib/buffer.o
+ .debug_line    0x00000644       0x80 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_line    0x000006c4       0xfe C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_line    0x000007c2      0x149 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_line    0x0000090b      0x169 usbstack.a(usbhw_lpc.o)
+ .debug_line    0x00000a74       0xb2 usbstack.a(usbcontrol.o)
+ .debug_line    0x00000b26       0xec usbstack.a(usbstdreq.o)
+ .debug_line    0x00000c12       0x4e usbstack.a(usbinit.o)
+ .debug_line    0x00000c60       0x8c c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_line    0x00000cec       0x75 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_line    0x00000d61       0x7b c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_line    0x00000ddc       0x60 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x00000e3c       0xc9 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_frame    0x00000000      0xc4c
+ .debug_frame   0x00000000       0x58 main_serial.o
+ .debug_frame   0x00000058       0xb8 buttons.o
+ .debug_frame   0x00000110       0x20 bluetooth.o
+ .debug_frame   0x00000130      0x144 usb.o
+ .debug_frame   0x00000274      0x134 molecubePacket.o
+ .debug_frame   0x000003a8      0x138 C:\WinARM\armlib/rprintf.o
+ .debug_frame   0x000004e0       0xd0 C:\WinARM\armlib/buffer.o
+ .debug_frame   0x000005b0       0x88 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_frame   0x00000638      0x198 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_frame   0x000007d0      0x148 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_frame   0x00000918      0x164 usbstack.a(usbhw_lpc.o)
+ .debug_frame   0x00000a7c       0x8c usbstack.a(usbcontrol.o)
+ .debug_frame   0x00000b08       0x6c usbstack.a(usbstdreq.o)
+ .debug_frame   0x00000b74       0x38 usbstack.a(usbinit.o)
+ .debug_frame   0x00000bac       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000bd4       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_frame   0x00000bfc       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_frame   0x00000c24       0x28 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_loc      0x00000000     0x19aa
+ .debug_loc     0x00000000       0x5d main_serial.o
+ .debug_loc     0x0000005d       0x7c buttons.o
+ .debug_loc     0x000000d9      0x2af usb.o
+ .debug_loc     0x00000388      0x561 molecubePacket.o
+ .debug_loc     0x000008e9      0x3c4 C:\WinARM\armlib/rprintf.o
+ .debug_loc     0x00000cad      0x254 C:\WinARM\armlib/buffer.o
+ .debug_loc     0x00000f01       0xa4 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_loc     0x00000fa5       0x83 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_loc     0x00001028      0x1e3 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_loc     0x0000120b      0x2ea usbstack.a(usbhw_lpc.o)
+ .debug_loc     0x000014f5      0x13d usbstack.a(usbcontrol.o)
+ .debug_loc     0x00001632      0x27d usbstack.a(usbstdreq.o)
+ .debug_loc     0x000018af       0xfb c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_pubnames
+                0x00000000      0xb37
+ .debug_pubnames
+                0x00000000       0xa4 main_serial.o
+ .debug_pubnames
+                0x000000a4       0xcf buttons.o
+ .debug_pubnames
+                0x00000173       0x66 bluetooth.o
+ .debug_pubnames
+                0x000001d9       0xbb usb.o
+ .debug_pubnames
+                0x00000294      0x11a molecubePacket.o
+ .debug_pubnames
+                0x000003ae       0xc1 C:\WinARM\armlib/rprintf.o
+ .debug_pubnames
+                0x0000046f       0x9c C:\WinARM\armlib/buffer.o
+ .debug_pubnames
+                0x0000050b       0xae C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_pubnames
+                0x000005b9      0x225 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_pubnames
+                0x000007de      0x120 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_pubnames
+                0x000008fe      0x132 usbstack.a(usbhw_lpc.o)
+ .debug_pubnames
+                0x00000a30       0x4d usbstack.a(usbcontrol.o)
+ .debug_pubnames
+                0x00000a7d       0x7f usbstack.a(usbstdreq.o)
+ .debug_pubnames
+                0x00000afc       0x1e usbstack.a(usbinit.o)
+ .debug_pubnames
+                0x00000b1a       0x1d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_aranges  0x00000000      0x260
+ .debug_aranges
+                0x00000000       0x20 main_serial.o
+ .debug_aranges
+                0x00000020       0x20 buttons.o
+ .debug_aranges
+                0x00000040       0x20 bluetooth.o
+ .debug_aranges
+                0x00000060       0x20 usb.o
+ .debug_aranges
+                0x00000080       0x20 molecubePacket.o
+ .debug_aranges
+                0x000000a0       0x20 C:\WinARM\armlib/rprintf.o
+ .debug_aranges
+                0x000000c0       0x20 C:\WinARM\armlib/buffer.o
+ .debug_aranges
+                0x000000e0       0x20 C:\WinARM\armlib/arch/lpc2000/processor.o
+ .debug_aranges
+                0x00000100       0x20 C:\WinARM\armlib/arch/lpc2000/timer.o
+ .debug_aranges
+                0x00000120       0x20 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .debug_aranges
+                0x00000140       0x20 usbstack.a(usbhw_lpc.o)
+ .debug_aranges
+                0x00000160       0x20 usbstack.a(usbcontrol.o)
+ .debug_aranges
+                0x00000180       0x20 usbstack.a(usbstdreq.o)
+ .debug_aranges
+                0x000001a0       0x20 usbstack.a(usbinit.o)
+ .debug_aranges
+                0x000001c0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x000001e0       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+ .debug_aranges
+                0x00000200       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+ .debug_aranges
+                0x00000220       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+ .debug_aranges
+                0x00000240       0x20 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_str      0x00000000     0x1426
+ .debug_str     0x00000000      0x4f5 main_serial.o
+                                0x5b4 (size before relaxing)
+ .debug_str     0x000004f5       0xc9 buttons.o
+                                0x1a7 (size before relaxing)
+ .debug_str     0x000005be       0x1a bluetooth.o
+                                0x182 (size before relaxing)
+ .debug_str     0x000005d8      0x1c3 usb.o
+                                0x71e (size before relaxing)
+ .debug_str     0x0000079b      0x12f molecubePacket.o
+                                0x29e (size before relaxing)
+ .debug_str     0x000008ca      0x12f C:\WinARM\armlib/rprintf.o
+                                0x1e5 (size before relaxing)
+ .debug_str     0x000009f9       0xa8 C:\WinARM\armlib/buffer.o
+                                0x1d0 (size before relaxing)
+ .debug_str     0x00000aa1       0xc6 C:\WinARM\armlib/arch/lpc2000/processor.o
+                                0x1b2 (size before relaxing)
+ .debug_str     0x00000b67      0x210 C:\WinARM\armlib/arch/lpc2000/timer.o
+                                0x303 (size before relaxing)
+ .debug_str     0x00000d77      0x123 C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                0x25e (size before relaxing)
+ .debug_str     0x00000e9a      0x2b6 usbstack.a(usbhw_lpc.o)
+                                0x30d (size before relaxing)
+ .debug_str     0x00001150       0xab usbstack.a(usbcontrol.o)
+                                0x1d7 (size before relaxing)
+ .debug_str     0x000011fb      0x160 usbstack.a(usbstdreq.o)
+                                0x26c (size before relaxing)
+ .debug_str     0x0000135b       0x2e usbstack.a(usbinit.o)
+                                 0xe5 (size before relaxing)
+ .debug_str     0x00001389       0x9d c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                                 0xc9 (size before relaxing)
+
+.comment        0x00000000      0x168
+ .comment       0x00000000       0x1b main_serial.o
+ .comment       0x0000001b       0x1b buttons.o
+ .comment       0x00000036       0x1b bluetooth.o
+ .comment       0x00000051       0x1b usb.o
+ .comment       0x0000006c       0x1b molecubePacket.o
+ .comment       0x00000087       0x1b C:\WinARM\armlib/rprintf.o
+ .comment       0x000000a2       0x1b C:\WinARM\armlib/buffer.o
+ .comment       0x000000bd       0x1b C:\WinARM\armlib/arch/lpc2000/processor.o
+ .comment       0x000000d8       0x1b C:\WinARM\armlib/arch/lpc2000/timer.o
+ .comment       0x000000f3       0x1b C:\WinARM\armlib/arch/lpc2000/uartintr.o
+ .comment       0x0000010e       0x12 usbstack.a(usbhw_lpc.o)
+ .comment       0x00000120       0x12 usbstack.a(usbcontrol.o)
+ .comment       0x00000132       0x12 usbstack.a(usbstdreq.o)
+ .comment       0x00000144       0x12 usbstack.a(usbinit.o)
+ .comment       0x00000156       0x12 c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+
+.debug_ranges   0x00000000       0x18
+ .debug_ranges  0x00000000       0x18 usbstack.a(usbstdreq.o)
+
+Cross Reference Table
+
+Symbol                                            File
+EINT1_routine                                     buttons.o
+EINT2_routine                                     buttons.o
+HD232_Init                                        molecubePacket.o
+                                                  main_serial.o
+SendData2Host                                     usb.o
+Timer0OverflowCount                               C:\WinARM\armlib/arch/lpc2000/timer.o
+Timer0Pause                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+Timer1OverflowCount                               C:\WinARM\armlib/arch/lpc2000/timer.o
+USBGetDescriptor                                  usbstack.a(usbstdreq.o)
+USBHandleControlTransfer                          usbstack.a(usbcontrol.o)
+                                                  usbstack.a(usbinit.o)
+USBHandleStandardRequest                          usbstack.a(usbstdreq.o)
+                                                  usbstack.a(usbinit.o)
+USBHwConfigDevice                                 usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwConnect                                      usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwEPConfig                                     usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwEPGetStatus                                  usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBHwEPRead                                       usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbcontrol.o)
+                                                  usb.o
+USBHwEPStall                                      usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+                                                  usbstack.a(usbcontrol.o)
+USBHwEPWrite                                      usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbcontrol.o)
+                                                  usb.o
+USBHwISR                                          usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwInit                                         usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+USBHwNakIntEnable                                 usbstack.a(usbhw_lpc.o)
+USBHwRegisterDevIntHandler                        usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+USBHwRegisterEPIntHandler                         usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+USBHwRegisterFrameHandler                         usbstack.a(usbhw_lpc.o)
+                                                  usb.o
+USBHwSetAddress                                   usbstack.a(usbhw_lpc.o)
+                                                  usbstack.a(usbstdreq.o)
+USBInit                                           usbstack.a(usbinit.o)
+                                                  usb.o
+USBRegisterCustomReqHandler                       usbstack.a(usbstdreq.o)
+USBRegisterDescriptors                            usbstack.a(usbstdreq.o)
+                                                  usb.o
+USBRegisterRequestHandler                         usbstack.a(usbcontrol.o)
+                                                  usbstack.a(usbinit.o)
+                                                  usb.o
+VCOM_getchar                                      usb.o
+VCOM_init                                         usb.o
+VCOM_putchar                                      usb.o
+__aeabi_idiv0                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+__aeabi_ldiv0                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+__aeabi_uidiv                                     c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__aeabi_uidivmod                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__bss_beg__                                       C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__bss_end__                                       C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__data_beg__                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__data_beg_src__                                  C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__data_end__                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__div0                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_dvmd_tls.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                                                  c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+__modsi3                                          c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_modsi3.o)
+                                                  C:\WinARM\armlib/buffer.o
+__stack_end__                                     C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+__udivsi3                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_udivsi3.o)
+                                                  C:\WinARM\armlib/rprintf.o
+__umodsi3                                         c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/libgcc.a(_umodsi3.o)
+                                                  C:\WinARM\armlib/rprintf.o
+bufferAddToEnd                                    C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferDumpFromFront                               C:\WinARM\armlib/buffer.o
+bufferFlush                                       C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+bufferGetAtIndex                                  C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+bufferGetFromFront                                C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferInit                                        C:\WinARM\armlib/buffer.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  usb.o
+bufferIsNotFull                                   C:\WinARM\armlib/buffer.o
+                                                  molecubePacket.o
+                                                  usb.o
+button1                                           buttons.o
+button2                                           buttons.o
+buttonAttach                                      buttons.o
+                                                  main_serial.o
+buttonDetach                                      buttons.o
+buttonPressService                                buttons.o
+                                                  main_serial.o
+buttonsEnabled                                    buttons.o
+cmdBuffer                                         molecubePacket.o
+                                                  bluetooth.o
+                                                  main_serial.o
+cmdBufferData                                     molecubePacket.o
+                                                  bluetooth.o
+                                                  main_serial.o
+cmd_AddByteToEnd                                  molecubePacket.o
+cmd_BuildPacket                                   molecubePacket.o
+cmd_Execute                                       molecubePacket.o
+cmd_Flush                                         molecubePacket.o
+cmd_Init                                          molecubePacket.o
+cmd_PrintPacket                                   molecubePacket.o
+cmd_PrintRxPacket                                 molecubePacket.o
+data_abort_exception                              C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+delay                                             C:\WinARM\armlib/arch/lpc2000/timer.o
+disableButtons                                    buttons.o
+efs                                               usb.o
+                                                  main_serial.o
+enableButtons                                     buttons.o
+                                                  main_serial.o
+endless_loop                                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+ext_busRxPkt                                      molecubePacket.o
+                                                  bluetooth.o
+                                                  main_serial.o
+fast_interrupt_exception                          C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+filer                                             usb.o
+                                                  main_serial.o
+filew                                             usb.o
+                                                  main_serial.o
+initBluetooth                                     bluetooth.o
+                                                  main_serial.o
+initButtons                                       buttons.o
+                                                  main_serial.o
+int_busRxPkt                                      molecubePacket.o
+                                                  bluetooth.o
+                                                  main_serial.o
+list                                              usb.o
+                                                  main_serial.o
+main                                              main_serial.o
+                                                  C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+memcpy                                            c:/winarm/bin/../lib/gcc/arm-elf/4.1.1/../../../../arm-elf/lib/libc.a(memcpy.o)
+                                                  usb.o
+packetRxProcess                                   molecubePacket.o
+packetRxProcess_NoAddrClassCheck                  molecubePacket.o
+prefetch_abort_exception                          C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+printButton1                                      main_serial.o
+printButton2                                      main_serial.o
+processorDisableInt                               C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/buffer.o
+processorEnableInt                                C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  usb.o
+processorInit                                     C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  main_serial.o
+processorRestoreInt                               C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/buffer.o
+processorVicAttach                                C:\WinARM\armlib/arch/lpc2000/processor.o
+                                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+processorVicDetach                                C:\WinARM\armlib/arch/lpc2000/processor.o
+processorVicInit                                  C:\WinARM\armlib/arch/lpc2000/processor.o
+reserved_exception                                C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+rprintf1RamRom                                    C:\WinARM\armlib/rprintf.o
+                                                  molecubePacket.o
+                                                  main_serial.o
+rprintfCRLF                                       C:\WinARM\armlib/rprintf.o
+                                                  molecubePacket.o
+rprintfChar                                       C:\WinARM\armlib/rprintf.o
+rprintfInit                                       C:\WinARM\armlib/rprintf.o
+                                                  main_serial.o
+rprintfNum                                        C:\WinARM\armlib/rprintf.o
+rprintfStr                                        C:\WinARM\armlib/rprintf.o
+rprintfStrLen                                     C:\WinARM\armlib/rprintf.o
+rprintfu04                                        C:\WinARM\armlib/rprintf.o
+rprintfu08                                        C:\WinARM\armlib/rprintf.o
+                                                  molecubePacket.o
+rprintfu16                                        C:\WinARM\armlib/rprintf.o
+rprintfu32                                        C:\WinARM\armlib/rprintf.o
+software_interrupt_exception                      C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+start                                             C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+timer0Capture0Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Capture1Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0ClearOverflowCount                          C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0GetOverflowCount                            C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Init                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Match0Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Match1Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0PrescalerSet                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer0Service                                     C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Capture0Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Capture1Init                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1ClearOverflowCount                          C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1GetOverflowCount                            C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Init                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Match0Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Match1Set                                   C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1PrescalerSet                                C:\WinARM\armlib/arch/lpc2000/timer.o
+timer1Service                                     C:\WinARM\armlib/arch/lpc2000/timer.o
+timerAttach                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+timerDetach                                       C:\WinARM\armlib/arch/lpc2000/timer.o
+timerInit                                         C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+timerPause                                        C:\WinARM\armlib/arch/lpc2000/timer.o
+                                                  main_serial.o
+uart0GetByte                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart0GetRxBuffer                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart0Init                                         C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart0InitBuffers                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart0SendByte                                     C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+                                                  main_serial.o
+uart0Service                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1GetByte                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1GetRxBuffer                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1Init                                         C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart1InitBuffers                                  C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uart1SendByte                                     C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  molecubePacket.o
+uart1Service                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uartGetRxBuffer                                   C:\WinARM\armlib/arch/lpc2000/uartintr.o
+uartRxBuffer                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  usb.o
+uartRxOverflow                                    usb.o
+uartTxBuffer                                      C:\WinARM\armlib/arch/lpc2000/uartintr.o
+                                                  usb.o
+undefined_instruction_exception                   C:\WinARM\armlib/arch/lpc2000/boot/boot.o
+usbSetup                                          usb.o

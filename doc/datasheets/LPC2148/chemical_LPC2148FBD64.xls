@@ -1,0 +1,162 @@
+<table width="100%"><tr><td>
+
+	
+	
+	
+	
+
+
+<p>
+	As a proactive and sustainable company, NXP has decided to publish chemical content information of its product portfolio through direct Internet access.</br />
+	With this information, we can provide data to our customers to facilitate any assessment regarding compliance to the RoHS directive and lead-free status.</br />
+	NXP has set a standard in the semiconductor business with this detailed level of data, directly retrieved from its general product database.</br />
+	NXP products are compliant to the EU Directives RoHS, WEEE, ELV and the China RoHS.
+	Please see also our Restricted Substances Declaration.
+</p>
+
+<br style="clear:both" />
+
+
+
+<table class="cc-table" cellspacing="0" border="1">
+	<tr>
+		<td class="cc-head">Typenumber</td>
+		<td class="cc-head">Package</td>
+		<td class="cc-head">Package<br />description</td>
+		<td class="cc-head">Moisture<br />Sensitivity<br />Level</td>
+		<td class="cc-head">Total product<br />weight</td>
+		<td rowspan="2" class="cc-middle-center"></td>
+	</tr>
+	<tr>
+		<td class="cc-even">LPC2148FBD64</td>
+		<td class="cc-even">SOT314-2</td>
+		<td class="cc-even">LQFP64</td>
+		<td class="cc-even"></td>
+		<td class="cc-even">367 mg</td>
+	</tr>
+</table>
+
+<br />
+
+<table class="cc-table" cellspacing="0" border="1">
+	<tr>
+		<td class="cc-head">Subpart</td>
+		<td class="cc-head">Material<br />group</td>
+		<td class="cc-head">Substances</td>
+		<td class="cc-head">CAS number</td>
+		<td class="cc-head">Mass(mg)</td>
+		<td class="cc-head">Mass(%)</td>
+	</tr>	<tr>
+		<td class="cc-component">Wire</td>
+		<td class="cc-even">Other</td>
+		<td class="cc-even">Gold (Au)</td>
+		<td class="cc-even">7440-57-5</td>
+		<td class="cc-even">02.42</td>
+		<td class="cc-even">00.66</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">Component</td>
+		<td class="cc-odd">Other</td>
+		<td class="cc-odd">Copper (Cu)</td>
+		<td class="cc-odd">7440-50-8</td>
+		<td class="cc-odd">88.54</td>
+		<td class="cc-odd">24.10</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">&nbsp;</td>
+		<td class="cc-even">&nbsp;</td>
+		<td class="cc-even">Nickel (Ni)</td>
+		<td class="cc-even">7440-02-0</td>
+		<td class="cc-even">02.74</td>
+		<td class="cc-even">00.75</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">&nbsp;</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">Silver (Ag)</td>
+		<td class="cc-odd">7440-22-4</td>
+		<td class="cc-odd">02.73</td>
+		<td class="cc-odd">00.74</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">&nbsp;</td>
+		<td class="cc-even">&nbsp;</td>
+		<td class="cc-even">Tin (Sn)</td>
+		<td class="cc-even">7440-31-5</td>
+		<td class="cc-even">02.01</td>
+		<td class="cc-even">00.55</td>
+	</tr>	<tr>
+		<td class="cc-component-total">&nbsp;</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">Subtotal</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td align="left">96.02</td>
+		<td align="left">26.13</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">Mould compound</td>
+		<td class="cc-even">Other</td>
+		<td class="cc-even">Epoxy resin system</td>
+		<td class="cc-even">&nbsp;</td>
+		<td class="cc-even">39.76</td>
+		<td class="cc-even">10.82</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">&nbsp;</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">Misc. silica compounds</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">208.74</td>
+		<td class="cc-odd">56.81</td>
+	</tr>	<tr>
+		<td class="cc-component-total">&nbsp;</td>
+		<td class="cc-even">&nbsp;</td>
+		<td class="cc-even">Subtotal</td>
+		<td class="cc-even">&nbsp;</td>
+		<td align="left">248.50</td>
+		<td align="left">67.63</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">Adhesive</td>
+		<td class="cc-odd">Other</td>
+		<td class="cc-odd">Resin system</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">00.30</td>
+		<td class="cc-odd">00.08</td>
+	</tr>	<tr>
+		<td class="cc-component-spanned">&nbsp;</td>
+		<td class="cc-even">&nbsp;</td>
+		<td class="cc-even">Silver (Ag)</td>
+		<td class="cc-even">7440-22-4</td>
+		<td class="cc-even">01.19</td>
+		<td class="cc-even">00.32</td>
+	</tr>	<tr>
+		<td class="cc-component-total">&nbsp;</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd">Subtotal</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td align="left">01.49</td>
+		<td align="left">00.40</td>
+	</tr>	<tr>
+		<td class="cc-component">Die</td>
+		<td class="cc-even">Other</td>
+		<td class="cc-even">Silicon (Si)</td>
+		<td class="cc-even">7440-21-3</td>
+		<td class="cc-even">19.02</td>
+		<td class="cc-even">05.18</td>
+	</tr>	<tr>
+		<td class="cc-component">&nbsp;</td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd"><b>Total</b></td>
+		<td class="cc-odd">&nbsp;</td>
+		<td class="cc-odd"><b>367</b></td>
+		<td class="cc-odd"><b>100.00</b></td>
+	</tr></table>
+
+<br />
+
+<table class="cc-table" cellspacing="0" border="1">
+	<tr>
+		
+		<td class="cc-head">Disclaimer</td>
+	</tr>
+	<tr>
+		
+		<td class="cc-even" id="disclaimer">All information in this document is furnished for exploratory or indicative purposes only. All information in this document is believed to be accurate and reliable. However, NXP does not give any representations or warranties as to the accuracy or completeness of such information and shall have no liability for the consequences of use of such information. NXP may make changes to information published in this document at any time and without notice.<br /><br />Minor deviations may occur in the products from different manufacturing location.<br /><br />This document supersedes and replaces all information supplied prior to the publication hereof. Nothing in this document may be interpreted or construed as an offer to sell products that is open for acceptance or the grant, conveyance or implication of any license under any copyrights, patents or other industrial or intellectual property rights.</td>
+	</tr>
+</table>
+
+</td></tr></table>

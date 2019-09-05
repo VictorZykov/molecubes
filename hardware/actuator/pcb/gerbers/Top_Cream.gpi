@@ -1,0 +1,66 @@
+Photoplotter Info File: D:/Work/MScubes/PCB/v2.8/Gerb/Top_Cream.gpi
+
+ Date              : 10/17/2007 10:58:02p
+ Plotfile          : D:/Work/MScubes/PCB/v2.8/Gerb/Top_Cream.grb
+ Apertures         : generated: 
+ Device            : Gerber photoplotter with RS-274-X aperture generation
+
+Parameter settings:
+
+ Emulate Apertures : no
+ Emulate Thermal   : no
+ Emulate Annulus   : no
+ Tolerance Draw  + :  0.00 %
+ Tolerance Draw  - :  0.00 %
+ Tolerance Flash + :  0.00 %
+ Tolerance Flash - :  0.00 %
+ Rotate            : no
+ Mirror            : no
+ Optimize          : yes
+ Auto fit          : yes
+ OffsetX           : 0inch
+ OffsetY           : 0inch
+
+Plotfile Info:
+
+ Coordinate Format : 2.4
+ Coordinate Units  : Inch
+ Data Mode         : Absolute
+ Zero Suppression  : None
+ End Of Block      : *
+
+Apertures used:
+
+ Code     Shape     Size                  used
+
+ D10      draw      0.0000inch              15
+ D11      draw      0.0100inch             127
+ D12      rectangle 0.0236inch x 0.0118inch     8
+ D13      rectangle 0.0630inch x 0.0118inch     3
+ D14      rectangle 0.0394inch x 0.0433inch    26
+ D15      rectangle 0.0630inch x 0.0709inch     4
+ D16      draw      0.0047inch             200
+ D17      octagon   0.0850inch               7
+ D18      round     0.0400inch               6
+ D19      draw      0.0059inch              44
+ D20      rectangle 0.0118inch x 0.0236inch     8
+ D21      rectangle 0.0425inch x 0.0413inch     4
+ D22      square    0.0394inch               2
+ D23      rectangle 0.0394inch x 0.0551inch     3
+ D24      rectangle 0.0118inch x 0.0197inch     4
+ D25      square    0.0197inch              12
+ D26      rectangle 0.0197inch x 0.0118inch     8
+ D27      rectangle 0.0472inch x 0.0126inch    30
+ D28      rectangle 0.0433inch x 0.0394inch    12
+ D29      round     0.0700inch              14
+ D30      rectangle 0.0709inch x 0.0630inch     2
+ D31      rectangle 0.0880inch x 0.0480inch     6
+ D32      rectangle 0.0866inch x 0.1417inch     2
+ D33      rectangle 0.0480inch x 0.0880inch     3
+ D34      rectangle 0.1417inch x 0.0866inch     1
+ D35      rectangle 0.0236inch x 0.0866inch     8
+ D36      rectangle 0.1299inch x 0.0630inch     2
+ D37      rectangle 0.0472inch x 0.0591inch     2
+ D38      rectangle 0.1063inch x 0.1004inch     4
+ D39      rectangle 0.0413inch x 0.0425inch     2
+

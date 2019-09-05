@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CubeInterface - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\HANGLI~1\LOCALS~1\Temp\RSP951.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/CubeInterface.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Documents and Settings\Hang Li\My Documents\2007 Fall\Research\Files for Li\Project Space\CubeInterface\CubeInterface\source\CubeInterface.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\HANGLI~1\LOCALS~1\Temp\RSP951.tmp" 
+Creating temporary file "C:\DOCUME~1\HANGLI~1\LOCALS~1\Temp\RSP952.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/CubeInterface.pdb" /debug /machine:I386 /out:"Debug/CubeInterface.exe" /pdbtype:sept 
+".\Debug\CubeInterface.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\HANGLI~1\LOCALS~1\Temp\RSP952.tmp"
+<h3>Output Window</h3>
+Compiling...
+CubeInterface.cpp
+c:\documents and settings\hang li\my documents\2007 fall\research\files for li\project space\cubeinterface\cubeinterface\source\cubeinterface.cpp(68) : fatal error C1083: Cannot open include file: 'nxOgre.h': No such file or directory
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+CubeInterface.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

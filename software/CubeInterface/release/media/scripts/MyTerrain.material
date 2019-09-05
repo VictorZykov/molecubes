@@ -1,0 +1,74 @@
+fragment_program MyTerrainPS cg
+{
+	source MyTerrainPS.source
+	profiles ps_2_0
+	entry_point main_fp
+}
+
+vertex_program MyTerrainVS cg
+{
+	source MyTerrainVS.source
+	profiles vs_2_0
+	entry_point main_vp
+}
+
+
+// Single light material, less passes (one pass on a 4-unit card)
+material MyTerrain
+{
+	// Preferred technique, uses vertex and fragment programs
+	// to support a single coloured light
+	technique
+	{
+		pass
+		{
+			// base colours, not needed for rendering, but as information
+			// to lighting pass categorisation routine
+			ambient 0.0 0.0 0.0 
+			// Vertex program reference
+			vertex_program_ref MyTerrainVS
+			{
+				param_named_auto lightPosition light_position_object_space 0
+				param_named_auto worldViewProj worldviewproj_matrix
+				param_named fScale float 32.0
+				param_named fVars float4 0.0 0.0 0.0 0.0
+			}
+
+			// Fragment program
+			fragment_program_ref MyTerrainPS
+			{
+				//param_named_auto lightDiffuse light_diffuse_colour 1 
+				param_named lightDiffuse float4 0.1 0.1 0.1 1.0
+				//param_named_auto lightAmbient light_diffuse_colour 1
+				param_named lightAmbient float4 0.8 0.8 0.8 1.0
+	
+				param_named_auto fogColor fog_colour
+				param_named fFade float 0.0
+			}
+			
+			// Base bump map
+			texture_unit
+			{
+
+			}
+			// Normalisation cube map
+			texture_unit
+			{
+				cubic_texture nm.png combinedUVW
+				tex_coord_set 1
+				tex_address_mode clamp
+			}
+
+			
+			texture_unit
+			{
+				texture Grass_1024.jpg
+			}
+			texture_unit
+			{
+				texture terr_rock-dirt.jpg
+			}
+
+		}
+	}
+}

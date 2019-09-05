@@ -1,0 +1,14 @@
+
+material 01 - Default
+{
+	technique Default
+	{
+		pass Main
+		{
+			ambient 0.129412 0.0666667 0.262745 1
+			specular 1 1 1 1 0.2
+		}
+
+	}
+
+}
